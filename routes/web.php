@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +13,20 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-Route::get('users', [UserController::class, 'index'])->name('users.index');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Auth Routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('login');
+    Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login']);
+    Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
 });
 
-require __DIR__.'/auth.php';
+Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
+Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
+
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+
+    // Home and Resource Routes
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
+});
