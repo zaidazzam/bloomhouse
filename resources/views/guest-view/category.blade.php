@@ -1,12 +1,18 @@
 @extends('guest-layout.layout')
 
 @section('title')
-    Beranda
+    Category
 @endsection
 
 @section('content')
-<section class="mt-0 ">
+    <section class="mt-0 ">
         <!-- Category Top Banner -->
-        @include('components.guest.category.category-top-banner)
+        @include('components.guest.category.category-top-banner')
+        <!-- Category Top Banner -->
+
+        <!-- Main Section-->
+        @include('components.guest.category.main-content')
+        <!-- Main Section-->
+
     </section>
 @endsection

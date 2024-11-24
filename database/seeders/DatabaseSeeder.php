@@ -17,18 +17,11 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(3)->create();
 
-        $roles = ['admin', 'user'];
-
-        foreach ($roles as $role) {
-            Role::create(['name' => $role], ['created_at' => now()]);
-        }
-
         User::create([
             'fullname' => 'Admin',
             'username' => 'admin',
             'no_hp' => '081234567890',
             'password' => bcrypt('admin'),
-            'role_id' => 1,
             'created_at' => now()
         ]);
     }

@@ -39,10 +39,10 @@
     <div class="wrapper">
 
         {{-- Header --}}
-        @include('admin-layout.header')
+        @include('dashboard-layout.header')
 
         {{-- Sidebar --}}
-        @include('admin-layout.sidebar')
+        @include('dashboard-layout.sidebar')
 
         {{-- Content --}}
         <main class="main-content">

@@ -6,46 +6,40 @@
                         <div class="me-2 f-w-20 m-4 ms-md-0 mt-md-0 mb-md-0">
                             <a class="d-block" href="./category.html" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Shop Kathmandu">
-                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/logo-1.svg"
+                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/anivlogo-removebg-preview.png"
                                     alt="Bootstrap 5 Template by Pixel Rocket">
-                            </a>
-                        </div>
+                                </a>
+                                <p class="fw-bolder lead">Anniversary</p>
+                            </div>
                         <div class="me-2 f-w-20 m-4 ms-md-0 mt-md-0 mb-md-0">
                             <a class="d-block" href="./category.html" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Shop Billabong">
-                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/logo-2.svg"
+                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/birtdaylogo.jpg"
                                     alt="Bootstrap 5 Template by Pixel Rocket">
                             </a>
                         </div>
                         <div class="me-2 f-w-20 m-4 ms-md-0 mt-md-0 mb-md-0">
                             <a class="d-block" href="./category.html" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Shop Oakley">
-                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/logo-9.svg"
+                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/getwilsonlogo.jpg"
                                     alt="Bootstrap 5 Template by Pixel Rocket">
                             </a>
                         </div>
                         <div class="me-2 f-w-20 m-4 ms-md-0 mt-md-0 mb-md-0">
                             <a class="d-block" href="./category.html" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Shop Patagonia">
-                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/logo-4.svg"
+                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/gradutionlogo.jpg"
                                     alt="Bootstrap 5 Template by Pixel Rocket">
                             </a>
                         </div>
                         <div class="me-2 f-w-20 m-4 ms-md-0 mt-md-0 mb-md-0">
                             <a class="d-block" href="./category.html" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Shop North Face">
-                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/logo-5.svg"
+                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/granopeninglogo.jpg"
                                     alt="Bootstrap 5 Template by Pixel Rocket">
                             </a>
                         </div>
-                        <div class="me-2 f-w-20 m-4 ms-md-0 mt-md-0 mb-md-0">
-                            <a class="d-block" href="./category.html" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="Shop Salomon">
-                                <img class="img-fluid d-table mx-auto" src="./assets/images/logos/logo-7.svg"
-                                    alt="Bootstrap 5 Template by Pixel Rocket">
-                            </a>
-                        </div>
-                        <a href="./category.html" class="btn btn-link fw-bolder">Explore All Brands <i
+                        <a href="./category.html" class="btn btn-link fw-bolder">Explore All Category <i
                                 class="ri-arrow-right-line align-bottom fw-bold"></i></a>
                     </div>
                 </div>

@@ -10,4 +10,9 @@ class GuestController extends Controller
 
         return view('guest-view.homepage');
     }
+
+    public function category(){
+
+        return view('guest-view.category');
+    }
 }

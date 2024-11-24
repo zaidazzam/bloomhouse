@@ -1,11 +1,11 @@
 @extends('guest-layout.layout')
 
 @section('title')
-    Beranda
+    BloomHouse
 @endsection
 
 @section('content')
-<section class="mt-0 ">
+    <section class="mt-0 ">
         <!-- Page Content Goes Here -->
 
         <!-- hero section vidio -->
