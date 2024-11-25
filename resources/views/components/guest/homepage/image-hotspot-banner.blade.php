@@ -5,7 +5,7 @@
                 <svg class="align-self-start d-flex" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1283 53.25"><polygon fill="currentColor" points="1283 0 0 0 0 53.25 1283 0"/></svg></div>
             <!-- /SVG Shape Divider-->
 
-            <div class="w-100 h-80 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url(https://img.freepik.com/premium-photo/woman-with-spring-flower-bouquet_93675-11469.jpg);">
+            <div class="w-100 h-80 bg-img-cover bg-pos-center-center hotspot-container py-5 py-md-7 py-lg-10" style="background-image: url(https://images.unsplash.com/photo-1458122989516-8ef176c56d91?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
                 <div class="hotspot d-none d-lg-block" data-options='{
                     "placement": {
                         "left": "68%",
