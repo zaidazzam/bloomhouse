@@ -108,7 +108,8 @@
                                            <input type="checkbox" class="form-check-input" id="filter-brand-1">
                                            <label
                                                class="form-check-label fw-normal text-body flex-grow-1 d-flex justify-content-between"
-                                               for="filter-brand-1">Occasions<span class="text-muted">(13)</span></label>
+                                               for="filter-brand-1">Occasions<span
+                                                   class="text-muted">(13)</span></label>
                                        </div>
                                        <div class="form-group form-check mb-0">
                                            <input type="checkbox" class="form-check-input" id="filter-brand-2">
@@ -121,8 +122,7 @@
                                            <input type="checkbox" class="form-check-input" id="filter-brand-3">
                                            <label
                                                class="form-check-label fw-normal text-body flex-grow-1 d-flex justify-content-between"
-                                               for="filter-brand-3">Gifts <span
-                                                   class="text-muted">(25)</span></label>
+                                               for="filter-brand-3">Gifts <span class="text-muted">(25)</span></label>
                                        </div>
                                        <div class="form-group form-check mb-0">
                                            <input type="checkbox" class="form-check-input" id="filter-brand-4">
@@ -311,11 +311,11 @@
                            <div class="card-header">
                                <picture class="position-relative overflow-hidden d-block bg-light">
                                    <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-1.jpg" alt="">
+                                       src="./assets/images/products/bunga2.jpg" alt="">
                                </picture>
                                <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
                                    <img class="w-100 img-fluid" title=""
-                                       src="./assets/images/products/product-1b.jpg" alt="">
+                                       src="./assets/images/products/bunga3.jpg" alt="">
                                </picture>
                                <div class="card-actions">
                                    <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
@@ -348,8 +348,8 @@
                                    </div> <span class="small fw-bolder ms-2 text-muted"> 4.7 (456)</span>
                                </div>
                                <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Full Zip Hoodie</a>
-                               <p class="fw-bolder m-0 mt-2">$1129.99</p>
+                                   href="./product.html">Flowers Roses</a>
+                               <p class="fw-bolder m-0 mt-2">Rp. 150.000</p>
                            </div>
                        </div>
                        <!--/ Card Product-->
@@ -359,10 +359,8 @@
                        <div class="card position-relative h-100 card-listing hover-trigger">
                            <span class="badge card-badge bg-secondary">-25%</span>
                            <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-2.jpg" alt="">
-                               </picture>
+                               <img class="w-100 img-fluid position-relative z-index-10" title=""
+                                   src="./assets/images/products/bunga2.jpg" alt="">
                                <div class="card-actions">
                                    <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
                                        Add</span>
@@ -394,10 +392,10 @@
                                    </div> <span class="small fw-bolder ms-2 text-muted"> 4.4 (1289)</span>
                                </div>
                                <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Mens Sherpa Hoodie</a>
+                                   href="./product.html">Flowers Roses</a>
                                <div class="d-flex justify-content-center align-items-center mt-2">
-                                   <p class="mb-0 me-2 text-danger fw-bolder">$<span>599.55</span></p>
-                                   <p class="mb-0 text-muted fw-bolder"><s>$<span>150.00</span></s></p>
+                                   <p class="mb-0 me-2 text-danger fw-bolder">Rp.<span>599.55</span></p>
+                                   <p class="mb-0 text-muted fw-bolder"><s>Rp.<span>1.5000.00</span></s></p>
                                </div>
                            </div>
                        </div>
@@ -408,10 +406,8 @@
                        <div class="card position-relative h-100 card-listing hover-trigger">
                            <span class="badge card-badge bg-secondary">-65%</span>
                            <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-3.jpg" alt="">
-                               </picture>
+                               <img class="w-100 img-fluid position-relative z-index-10" title=""
+                                   src="./assets/images/products/bunga2.jpg" alt="">
                                <div class="card-actions">
                                    <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
                                        Add</span>
@@ -443,10 +439,10 @@
                                    </div> <span class="small fw-bolder ms-2 text-muted"> 4.7 (754)</span>
                                </div>
                                <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Womens Essentials Hoodie</a>
+                                   href="./product.html">Flowers Roses</a>
                                <div class="d-flex justify-content-center align-items-center mt-2">
-                                   <p class="mb-0 me-2 text-danger fw-bolder">$<span>779.55</span></p>
-                                   <p class="mb-0 text-muted fw-bolder"><s>$<span>1100.00</span></s></p>
+                                   <p class="mb-0 me-2 text-danger fw-bolder">Rp.<span>779.550</span></p>
+                                   <p class="mb-0 text-muted fw-bolder"><s>Rp.<span>1.100.000</span></s></p>
                                </div>
                            </div>
                        </div>
@@ -458,7 +454,7 @@
                            <div class="card-header">
                                <picture class="position-relative overflow-hidden d-block bg-light">
                                    <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-4.jpg" alt="">
+                                       src="./assets/images/products/bunga2.jpg" alt="">
                                </picture>
                                <div class="card-actions">
                                    <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
@@ -491,8 +487,8 @@
                                    </div> <span class="small fw-bolder ms-2 text-muted"> 4.4 (1289)</span>
                                </div>
                                <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Elevated Lined Hoodie</a>
-                               <p class="fw-bolder m-0 mt-2">$1829.99</p>
+                                   href="./product.html">Flowers Roses</a>
+                               <p class="fw-bolder m-0 mt-2">Rp. 150.000</p>
                            </div>
                        </div>
                        <!--/ Card Product-->
@@ -500,126 +496,29 @@
                    <div class="d-none d-md-flex col-md-8">
                        <div class="w-100 h-100 position-relative">
                            <div class="position-absolute w-50 h-100 start-0 bottom-0 top-0 bg-pos-center-center bg-img-cover"
-                               style="background-image: url(./assets/images/banners/banner-3.jpg);">
+                               style="background-image: url(./assets/images/products/bunga1.jpg);">
                            </div>
                            <div
                                class="position-absolute w-50 h-100 bg-light end-0 top-0 bottom-0 d-flex justify-content-center align-items-center">
                                <div class="px-4 text-center">
-                                   <h4 class="fs-4 fw-bold mb-4">Built for adventure</h4>
-                                   <p class="mb-4">The perfect grab-and-go layer for every hiking adventure</p>
+                                   <h4 class="fs-4 fw-bold mb-4">Flowers </h4>
+                                   <p class="mb-4">Each flower has a special meaning, making the perfect gift for
+                                       many special occasions.</p>
                                    <a href="#" class="text-link-border border-2 pb-1 fw-bolder">Shop Now</a>
                                </div>
                            </div>
                        </div>
                    </div>
-
-                   <div class="col-12 col-sm-6 col-md-4">
-                       <!-- Card Product-->
-                       <div class="card position-relative h-100 card-listing hover-trigger">
-                           <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-1.jpg" alt="">
-                               </picture>
-                               <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
-                                   <img class="w-100 img-fluid" title=""
-                                       src="./assets/images/products/product-1b.jpg" alt="">
-                               </picture>
-                               <div class="card-actions">
-                                   <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                       Add</span>
-                                   <div class="d-flex justify-content-center align-items-center flex-wrap mt-3">
-                                       <button class="btn btn-outline-dark btn-sm mx-2">S</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">M</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">L</button>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="card-body px-0 text-center">
-                               <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                   <!-- Review Stars Small-->
-                                   <div class="rating position-relative d-table">
-                                       <div class="position-absolute stars" style="width: 90%">
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                       </div>
-                                       <div class="stars">
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                       </div>
-                                   </div> <span class="small fw-bolder ms-2 text-muted"> 4.7 (456)</span>
-                               </div>
-                               <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Full Zip Hoodie</a>
-                               <p class="fw-bolder m-0 mt-2">$1129.99</p>
-                           </div>
-                       </div>
-                       <!--/ Card Product-->
-                   </div>
-                   <div class="col-12 col-sm-6 col-md-4">
-                       <!-- Card Product-->
-                       <div class="card position-relative h-100 card-listing hover-trigger">
-                           <span class="badge card-badge bg-secondary">-25%</span>
-                           <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-2.jpg" alt="">
-                               </picture>
-                               <div class="card-actions">
-                                   <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                       Add</span>
-                                   <div class="d-flex justify-content-center align-items-center flex-wrap mt-3">
-                                       <button class="btn btn-outline-dark btn-sm mx-2">S</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">M</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">L</button>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="card-body px-0 text-center">
-                               <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                   <!-- Review Stars Small-->
-                                   <div class="rating position-relative d-table">
-                                       <div class="position-absolute stars" style="width: 60%">
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                       </div>
-                                       <div class="stars">
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                       </div>
-                                   </div> <span class="small fw-bolder ms-2 text-muted"> 4.4 (1289)</span>
-                               </div>
-                               <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Mens Sherpa Hoodie</a>
-                               <div class="d-flex justify-content-center align-items-center mt-2">
-                                   <p class="mb-0 me-2 text-danger fw-bolder">$<span>599.55</span></p>
-                                   <p class="mb-0 text-muted fw-bolder"><s>$<span>150.00</span></s></p>
-                               </div>
-                           </div>
-                       </div>
-                       <!--/ Card Product-->
-                   </div>
+                   <?php
+for ($i = 0; $i < 6; $i++) {
+?>
                    <div class="col-12 col-sm-6 col-md-4">
                        <!-- Card Product-->
                        <div class="card position-relative h-100 card-listing hover-trigger">
                            <span class="badge card-badge bg-secondary">-65%</span>
                            <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-3.jpg" alt="">
-                               </picture>
+                               <img class="w-100 img-fluid position-relative z-index-10" title=""
+                                   src="./assets/images/products/bunga2.jpg" alt="">
                                <div class="card-actions">
                                    <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
                                        Add</span>
@@ -648,157 +547,23 @@
                                            <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
                                            <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
                                        </div>
-                                   </div> <span class="small fw-bolder ms-2 text-muted"> 4.7 (754)</span>
+                                   </div>
+                                   <span class="small fw-bolder ms-2 text-muted"> 4.7 (754)</span>
                                </div>
                                <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Womens Essentials Hoodie</a>
+                                   href="./product.html">Flowers Roses</a>
                                <div class="d-flex justify-content-center align-items-center mt-2">
-                                   <p class="mb-0 me-2 text-danger fw-bolder">$<span>779.55</span></p>
-                                   <p class="mb-0 text-muted fw-bolder"><s>$<span>1100.00</span></s></p>
+                                   <p class="mb-0 me-2 text-danger fw-bolder">Rp.<span>779.550</span></p>
+                                   <p class="mb-0 text-muted fw-bolder"><s>Rp.<span>1.100.000</span></s></p>
                                </div>
                            </div>
                        </div>
                        <!--/ Card Product-->
                    </div>
-                   <div class="col-12 col-sm-6 col-md-4">
-                       <!-- Card Product-->
-                       <div class="card position-relative h-100 card-listing hover-trigger">
-                           <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-4.jpg" alt="">
-                               </picture>
-                               <div class="card-actions">
-                                   <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                       Add</span>
-                                   <div class="d-flex justify-content-center align-items-center flex-wrap mt-3">
-                                       <button class="btn btn-outline-dark btn-sm mx-2">S</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">M</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">L</button>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="card-body px-0 text-center">
-                               <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                   <!-- Review Stars Small-->
-                                   <div class="rating position-relative d-table">
-                                       <div class="position-absolute stars" style="width: 70%">
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                       </div>
-                                       <div class="stars">
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                       </div>
-                                   </div> <span class="small fw-bolder ms-2 text-muted"> 4.4 (1289)</span>
-                               </div>
-                               <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Elevated Lined Hoodie</a>
-                               <p class="fw-bolder m-0 mt-2">$1829.99</p>
-                           </div>
-                       </div>
-                       <!--/ Card Product-->
-                   </div>
-                   <div class="col-12 col-sm-6 col-md-4">
-                       <!-- Card Product-->
-                       <div class="card position-relative h-100 card-listing hover-trigger">
-                           <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-5.jpg" alt="">
-                               </picture>
-                               <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
-                                   <img class="w-100 img-fluid" title=""
-                                       src="./assets/images/products/product-5b.jpg" alt="">
-                               </picture>
-                               <div class="card-actions">
-                                   <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                       Add</span>
-                                   <div class="d-flex justify-content-center align-items-center flex-wrap mt-3">
-                                       <button class="btn btn-outline-dark btn-sm mx-2">S</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">M</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">L</button>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="card-body px-0 text-center">
-                               <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                   <!-- Review Stars Small-->
-                                   <div class="rating position-relative d-table">
-                                       <div class="position-absolute stars" style="width: 84%">
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                       </div>
-                                       <div class="stars">
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                       </div>
-                                   </div> <span class="small fw-bolder ms-2 text-muted"> 4.8 (189)</span>
-                               </div>
-                               <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Mens Slab Hoodie</a>
-                               <p class="fw-bolder m-0 mt-2">$29.99</p>
-                           </div>
-                       </div>
-                       <!--/ Card Product-->
-                   </div>
-                   <div class="col-12 col-sm-6 col-md-4">
-                       <!-- Card Product-->
-                       <div class="card position-relative h-100 card-listing hover-trigger">
-                           <div class="card-header">
-                               <picture class="position-relative overflow-hidden d-block bg-light">
-                                   <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                       src="./assets/images/products/product-6.jpg" alt="">
-                               </picture>
-                               <div class="card-actions">
-                                   <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                       Add</span>
-                                   <div class="d-flex justify-content-center align-items-center flex-wrap mt-3">
-                                       <button class="btn btn-outline-dark btn-sm mx-2">S</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">M</button>
-                                       <button class="btn btn-outline-dark btn-sm mx-2">L</button>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="card-body px-0 text-center">
-                               <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                   <!-- Review Stars Small-->
-                                   <div class="rating position-relative d-table">
-                                       <div class="position-absolute stars" style="width: 60%">
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                           <i class="ri-star-fill text-dark mr-1"></i>
-                                       </div>
-                                       <div class="stars">
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                           <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                       </div>
-                                   </div> <span class="small fw-bolder ms-2 text-muted"> 4.5 (1567)</span>
-                               </div>
-                               <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                   href="./product.html">Blocked Striped Hoodie</a>
-                               <p class="fw-bolder m-0 mt-2">$1329.99</p>
-                           </div>
-                       </div>
-                       <!--/ Card Product-->
-                   </div>
+                   <?php
+}
+?>
+
                </div>
                <!-- / Products-->
 
@@ -826,22 +591,15 @@
                    <p class="lead fw-bolder">Related Categories</p>
                    <div class="d-flex flex-wrap justify-content-start align-items-center">
                        <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Hiking
-                           Shoes</a>
+                           href="#">Birthday Bouquets</a>
                        <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Waterproof Trousers</a>
+                           href="#">Wedding Bouquets</a>
                        <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Hiking
-                           Shirts</a>
+                           href="#">Anniversary Bouquets</a>
                        <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Jackets</a>
+                           href="#">Sympathy Bouquets</a>
                        <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Gilets</a>
-                       <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Hiking
-                           Socks</a>
-                       <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                           href="#">Rugsacks</a>
+                           href="#">Valentine's Day Bouquets</a>
                    </div>
                </div>
                <!-- Related Categories-->
@@ -851,4 +609,4 @@
 
        </div>
    </div>
-<!-- / Main Section-->
+   <!-- / Main Section-->

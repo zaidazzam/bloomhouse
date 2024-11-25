@@ -19,6 +19,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login']);
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category']);
+    Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product']);
 });
 
 Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');

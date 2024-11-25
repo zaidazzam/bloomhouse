@@ -79,6 +79,9 @@
     </main>
     {{-- Header --}}
     @include('guest-layout.footer')
+    @include('guest-layout.filter')
+    @include('guest-layout.cart')
+    @include('guest-layout.search')
 
     <!-- Theme JS -->
     <!-- Vendor JS -->

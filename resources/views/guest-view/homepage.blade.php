@@ -35,7 +35,7 @@
 
 
         <!-- Sale Banner -->
-        @include('components.guest.homepage.sale-banner')
+        {{-- @include('components.guest.homepage.sale-banner') --}}
 
         <!-- /Sale Banner -->
 
