@@ -19,4 +19,12 @@ class GuestController extends Controller
 
      return view('guest-view.product');
         }
+    public function blog(){
+
+    return view('guest-view.blog');
+        }
+    public function detailBlog(){
+
+    return view('guest-view.detail-blog');
+     }
 }

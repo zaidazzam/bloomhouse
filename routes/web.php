@@ -20,6 +20,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category']);
     Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product']);
+    Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
+    Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
 });
 
 Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
