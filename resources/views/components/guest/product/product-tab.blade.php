@@ -8,22 +8,22 @@
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0 active" id="details-tab"
                                 data-bs-toggle="tab" href="#details" role="tab" aria-controls="details"
-                                aria-selected="true">The Details</a>
+                                aria-selected="true">Rincian</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="reviews-tab"
                                 data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                aria-selected="false">Reviews</a>
+                                aria-selected="false">Ulasan</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="delivery-tab"
                                 data-bs-toggle="tab" href="#delivery" role="tab" aria-controls="delivery"
-                                aria-selected="false">Delivery</a>
+                                aria-selected="false">Pengiriman</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="returns-tab"
                                 data-bs-toggle="tab" href="#returns" role="tab" aria-controls="returns"
-                                aria-selected="false">Returns</a>
+                                aria-selected="false">Pengembalian</a>
                         </li>
                     </ul>
                     <!-- / Tab Nav-->
@@ -66,7 +66,7 @@
                                 <div class="col-lg-12 text-center pb-5">
 
                                     <h2 class="fs-1 fw-bold d-flex align-items-center justify-content-center">4.88
-                                        <small class="text-muted fw-bolder ms-3 fw-bolder fs-6">(1288 reviews)</small>
+                                        <small class="text-muted fw-bolder ms-3 fw-bolder fs-6">(1288 ulasan)</small>
                                     </h2>
                                     <div class="d-flex justify-content-center">
                                         <!-- Review Stars Medium-->
@@ -93,7 +93,7 @@
                                         <ul class="list-group list-group-flush">
                                             <li
                                                 class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 bg-transparent">
-                                                <span class="fw-bolder">Fit</span>
+                                                <span class="fw-bolder">Ukuran</span>
                                                 <!-- Review Stars Small-->
                                                 <div class="rating position-relative d-table">
                                                     <div class="position-absolute stars" style="width: 25%">
@@ -183,7 +183,7 @@
                                         class="btn btn-dark mt-4 hover-lift-sm hover-boxshadow disable-child-pointer"
                                         data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
                                         aria-controls="offcanvasReview">
-                                        Write A Review <i class="ri-discuss-line align-bottom ms-1"></i>
+                                        Buat Ulasan <i class="ri-discuss-line align-bottom ms-1"></i>
                                     </button>
                                     <!-- / Review Modal Button-->
 

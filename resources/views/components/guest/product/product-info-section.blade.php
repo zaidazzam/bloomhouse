@@ -38,7 +38,7 @@
                                 <div class="d-flex justify-content-start align-items-center">
                                     <i class="ri-fire-fill lh-1 text-orange"></i>
                                     <div class="ms-2">
-                                        <small class="opacity-75 fw-bolder lh-1">167 views today</small>
+                                        <small class="opacity-75 fw-bolder lh-1">167 Dilihat</small>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
 
                         <!-- Product Options-->
                         <div class="border-top mt-4 mb-3">
-                            <div class="product-option mb-4 mt-4">
+                            <!-- <div class="product-option mb-4 mt-4">
                                 <small class="text-uppercase d-block fw-bolder mb-2">
                                     Colour : <span class="selected-option fw-bold">Crimson Blue</span>
                                 </small>
@@ -77,14 +77,14 @@
                                         <label class="form-check-label" for="option-colour-4"></label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="product-option">
                                 <small class="text-uppercase d-block fw-bolder mb-2">
-                                    Size (IDN) : <span class="selected-option fw-bold"></span>
+                                    Ukuran : <span class="selected-option fw-bold"></span>
                                 </small>
                                 <div class="form-group">
                                     <select name="selectSize" class="form-control" data-choices>
-                                        <option value="">Please Select Size</option>
+                                        <option value="">Pilih Ukuran</option>
                                         <option value="Extra Small">XS</option>
                                         <option value="Medium">M</option>
                                         <option value="Large">L</option>
@@ -97,16 +97,15 @@
 
                         <!-- Add To Cart-->
                         <div class="d-flex justify-content-between mt-3">
-                            <button class="btn btn-dark btn-dark-chunky flex-grow-1 me-2 text-white">Add To
-                                Cart</button>
-                            <button class="btn btn-orange btn-orange-chunky"><i class="ri-heart-line"></i></button>
+                            <button class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan Keranjang</button>
+                            <button class="btn btn-danger"><i class="ri-heart-line"></i></button>
                         </div>
                         <!-- /Add To Cart-->
 
                         <!-- Socials-->
                         <div class="my-4">
                             <div class="d-flex justify-content-start align-items-center">
-                                <p class="fw-bolder lh-1 mb-0 me-3">Share</p>
+                                <p class="fw-bolder lh-1 mb-0 me-3">Bagikan</p>
                                 <ul
                                     class="list-unstyled p-0 m-0 d-flex justify-content-start lh-1 align-items-center mt-1">
                                     <li class="me-2"><a class="text-decoration-none" href="#" role="button"><i
@@ -127,12 +126,9 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex border-0 px-0 bg-transparent">
                                     <i class="ri-truck-line"></i>
-                                    <span class="fs-6 ms-3">Standard delivery free for orders over $99. Next day
-                                        delivery Rp.9.999</span>
+                                    <span class="fs-6 ms-3">Pengiriman standar gratis untuk pesanan di atas $99. Pengiriman keesokan hari Rp.9.999.</span>
                                 </li>
                             </ul>
                         </div>
-                        <!-- /Special Offers-->
-
                     </div>
                 </div>

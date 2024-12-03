@@ -190,3 +190,7 @@ ul.pagination li.active {
     text-transform: capitalize;
     border-radius: 8px;
 }
+
+.btn-blue {
+    background: #007eae !important;
+}
