@@ -1,21 +1,20 @@
 <!-- Main Section -->
 <div class="container">
     <div class="row">
-
         <section class="ftco-section ftco-degree-bg">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 ftco-animate">
-                        <h2 class="mb-3">8 Tips For Shopping</h2>
+                    <div class="col-lg-8 ftco-animate blog-detail">
+                        <h1 style="font-size: 36px; font-weight: 500">8 Tips For Shopping</h1>
+                        <span style="font-size: 16px; font-weight: 200">18 Januari 2000</span>
+                        <center class="my-4">
+                            <img class="img-fluid centered-image" src="./assets/images/products/bunga3.jpg" alt="Deskripsi bunga" title="Bunga">
+                        </center>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit,
                             quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam
                             porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore
                             perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae
                             voluptates soluta architecto tempora.</p>
-                        <p>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg" alt="Deskripsi bunga"
-                                title="Bunga">
-                        </p>
                         <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat
                             sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem
                             soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore
@@ -27,10 +26,6 @@
                             doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi
                             consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis
                             commodi aut, adipisci.</p>
-                        <p>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg" alt="Deskripsi bunga"
-                                title="Bunga">
-                        </p>
                         <p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo
                             quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis
                             quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero
@@ -58,55 +53,9 @@
                                 <a href="#" class="tag-cloud-link">Travel</a>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="pt-5 mt-5">
-                            <h3 class="mb-5">6 Comments</h3>
-                            <ul class="comment-list">
-                                <li class="comment">
-                                    <div class="vcard bio">
-                                        <img src="./assets/images/products/bunga3.jpg" alt="Image placeholder">
-                                    </div>
-                                    <div class="comment-body">
-                                        <h3>John Doe</h3>
-                                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                            laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                            enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?
-                                        </p>
-                                        <p><a href="#" class="reply">Reply</a></p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <!-- END comment-list -->
-
-                            <div class="comment-form-wrap pt-5">
-                                <h3 class="mb-5">Leave a comment</h3>
-                                <form action="#" class="p-5 bg-light">
-                                    <div class="form-group">
-                                        <label for="name">Name *</label>
-                                        <input type="text" class="form-control" id="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email *</label>
-                                        <input type="email" class="form-control" id="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="website">Website</label>
-                                        <input type="url" class="form-control" id="website">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="message">Message</label>
-                                        <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                    </div> <!-- .col-md-8 -->
+                    <!-- Side Bar Content -->
                     <div class="col-lg-4 sidebar ftco-animate">
                         <div class="sidebar-box">
                             <form action="#" class="search-form">
@@ -118,14 +67,24 @@
                             </form>
                         </div>
                         <div class="sidebar-box ftco-animate">
-                            <h3 CLASS="heading">Categories</h3>
-                            <ul class="categories">
-                                <li><a href="#">Bags <span>(12)</span></a></li>
-                                <li><a href="#">Shoes <span>(22)</span></a></li>
-                                <li><a href="#">Dress <span>(37)</span></a></li>
-                                <li><a href="#">Accessories <span>(42)</span></a></li>
-                                <li><a href="#">Makeup <span>(14)</span></a></li>
-                                <li><a href="#">Beauty <span>(140)</span></a></li>
+                            <h3 class="heading">Categories</h3>
+                            <ul class="categories mt-3 mb-5">
+                                <?php
+                                $categories = [
+                                    ["name" => "Roses", "count" => 12],
+                                    ["name" => "Tulips", "count" => 22],
+                                    ["name" => "Orchids", "count" => 37],
+                                    ["name" => "Sunflowers", "count" => 42],
+                                    ["name" => "Lilies", "count" => 14],
+                                    ["name" => "Daisies", "count" => 140],
+                                ];
+                                foreach ($categories as $category) {
+                                    echo '<li><a href="#">' . 
+                                            '<p class="categories">' . $category['name'] . '</p>' .
+                                            '<p class="count">(' . $category['count'] . ')</p>' .
+                                         '</a></li>';
+                                }
+                                ?>
                             </ul>
                         </div>
 
@@ -143,14 +102,63 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </section> <!-- .section -->
-        <!-- Main Content Section (move to the right of the sidebar) -->
-        <div class="col-lg-9">
-            <!-- Your main content goes here -->
-        </div>
+        </section>
+        <div class="col-lg-12">
+            <!-- Blog Comments -->
+            <div class="container" data-aos="fade-in">
+                            <div class="row g-3">
+                            <?php
+                            $posts = [
+                                [
+                                "title" => "Amazing Service!",
+                                "author" => "John Doe",
+                                "location" => "London",
+                                "date" => "18th March 2018",
+                                "image" => "./assets/images/banners/banner-1.jpg",
+                                "content" => "I have shopped with them for a few years now. Very easy to select items, items always as described. Never had to return any item. Good value."
+                                ],
+                                [
+                                "title" => "Great Quality!",
+                                "author" => "Jane Smith",
+                                "location" => "New York",
+                                "date" => "5th April 2019",
+                                "image" => "./assets/images/logos/granopeninglogo.jpg",
+                                "content" => "High-quality products and fast shipping. Highly recommend shopping here!"
+                                ],
+                                [
+                                "title" => "Amazing Service!",
+                                "author" => "John Doe",
+                                "location" => "London",
+                                "date" => "18th March 2018",
+                                "image" => "./assets/images/banners/banner-3.jpg",
+                                "content" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem ipsum, beatae eaque minus iste quod tempore iusto modi maxime nisi quibusdam id quasi at explicabo corporis cum odit similique consequatur."
+                                ],
+                                // Add more posts here
+                            ];
+                            foreach ($posts as $post) {
+                                echo '
+                                <div class="col-12 col-lg-4" data-aos="fade-left">
+                                <div class="new-box-detail p-4 d-flex h-100 justify-content-start flex-column rounded">
+                                    <img class="img-responsive mb-3 rounded" src="' . $post['image'] . '" alt="' . htmlspecialchars($post['title']) . '" />
+                                    <p class="fw-bolder lead mb-0">' . htmlspecialchars($post['title']) . '</p>
+                                    <small class="text-muted d-block mb-2 fw-bolder mb-2 mt-2">
+                                    ' . htmlspecialchars($post['author']) . ', ' . htmlspecialchars($post['location']) . ' / ' . htmlspecialchars($post['date']) . '
+                                    </small>
+                                    <p class="mb-3 truncated-content">' . htmlspecialchars($post['content']) . '</p>
+                                </div>
+                                </div>';
+                            }
+                            ?>
+                            </div>
+                        </div>
+                    <center>
+                        <div class="btn-semua">
+                            <a href="/blog">Semua Artikel</a>
+                        </div>
+                    </center>
+        
+                    </div>
     </div>
 </div>
-<!-- / Main Section -->
