@@ -63,7 +63,7 @@
         <div class="position-relative z-index-30">
             <nav
                 class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
-                @include('layout.guestheader')
+                @include('layout.guest.header')
             </nav>
         </div>
     @else

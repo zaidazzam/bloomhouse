@@ -11,8 +11,8 @@
         <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
-                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-                    aria-label="Search..." />
+                <input type="text" class="form-control border-0 shadow-none" placeholder="cari..."
+                    aria-label="cari..." />
             </div>
         </div>
         <!-- /Search -->
@@ -20,14 +20,14 @@
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Place this tag where you want the button to render. -->
             <li class="nav-item lh-1 ">
-                <div class="icon" id="bell"> <img src="{{ asset('img/admin/bx-notification.svg') }}"
-                        alt=""> </div>
+                <div class="icon" id="bell"> <img
+                        src="{{ asset('/admin/assets/img/admin/bx-notification.svg') }}" alt=""> </div>
                 <div class="notifications" id="box">
                     <h2>Notifikasi - <span>2</span></h2>
-                    <div class="notifications-item"> <img src="{{ asset('img/admin/bx-notification.svg') }}"
-                            alt="img">
+                    <div class="notifications-item"> <img
+                            src="{{ asset('/admin/assets/img/admin/bx-notification.svg') }}" alt="img">
                         <div class="text">
-                            <h4>Pak Ahmad</h4>
+                            <h4>Bloom House</h4>
                             <p>Memperbarahui Homestaynya</p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="../admin/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -54,12 +54,12 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt
+                                        <img src="../admin/assets/img/avatars/1.png" alt
                                             class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">Novi Kamojang</span>
+                                    <span class="fw-semibold d-block">Bloom House</span>
                                     <small class="text-muted">Admin</small>
                                 </div>
                             </div>

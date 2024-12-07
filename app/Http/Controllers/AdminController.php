@@ -11,4 +11,9 @@ class AdminController extends Controller
         return view('dashboard-view.dashboard');
     }
 
+    public function produk(){
+
+    return view('dashboard-view.produk');
+    }
+
 }

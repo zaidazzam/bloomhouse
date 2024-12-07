@@ -24,6 +24,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
 });
 Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
+Route::get('/produk', [App\Http\Controllers\AdminController::class, 'produk']) ->name('produk');;
 
 
 Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');

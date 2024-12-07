@@ -3,7 +3,7 @@
     data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free"">
 
 <head>
-    <title>Kamojang.id</title>
+    <title>Bloom House</title>
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
@@ -29,7 +29,7 @@
 
     <!-- Favicon -->
     {{-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> --}}
-    <link href="{{ asset('img/group12.svg') }}" rel="icon" type="image/x-icon">
+    <link href="{{ asset('/assets/images/logos/Bloom-House-02.png') }}" rel="icon" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,32 +42,32 @@
     {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" rel="stylesheet" /> --}}
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link href="{{ asset('assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" /> --}}
     <!-- Core CSS -->
-    <link href="{{ asset('assets/vendor/css/core.css') }}" rel="stylesheet" class="template-customizer-core-css">
-    <link href="{{ asset('assets/vendor/css/theme-default.css') }}" rel="stylesheet"
+    <link href="{{ asset('admin/assets/vendor/css/core.css') }}" rel="stylesheet" class="template-customizer-core-css">
+    <link href="{{ asset('admin/assets/vendor/css/theme-default.css') }}" rel="stylesheet"
         class="template-customizer-theme-css">
-    <link href="{{ asset('assets/css/demo.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/css/demo.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" /> --}}
     {{-- <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../assets/css/demo.css" /> --}}
 
     <!-- Vendors CSS -->
-    <link href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" /> --}}
-    <link href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" /> --}}
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendor/js/helpers.js') }}"></script>
     {{-- <script src="../assets/vendor/js/helpers.js"></script> --}}
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/config.js') }}"></script>
     {{-- <script src="../assets/js/config.js"></script> --}}
 
 
@@ -209,7 +209,7 @@
                     <!-- Page Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="">
-                            {{ $slot }}
+                            @yield('content')
                         </div>
                     </div>
                     <!-- Footer -->
