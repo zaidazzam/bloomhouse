@@ -63,12 +63,12 @@
         <div class="position-relative z-index-30">
             <nav
                 class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
-                @include('guest-layout.header')
+                @include('layout.guestheader')
             </nav>
         </div>
     @else
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0">
-            @include('guest-layout.header')
+            @include('layout.guest.header')
         </nav>
     @endif
 
@@ -78,10 +78,10 @@
 
     </main>
     {{-- Header --}}
-    @include('guest-layout.footer')
-    @include('guest-layout.filter')
-    @include('guest-layout.cart')
-    @include('guest-layout.search')
+    @include('layout.guest.footer')
+    @include('layout.guest.filter')
+    @include('layout.guest.cart')
+    @include('layout.guest.search')
 
     <!-- Theme JS -->
     <!-- Vendor JS -->

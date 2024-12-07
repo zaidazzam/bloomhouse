@@ -1,4 +1,4 @@
-@extends('guest-layout.layout')
+@extends('layout.guest.layout')
 
 @section('title')
     BloomHouse
