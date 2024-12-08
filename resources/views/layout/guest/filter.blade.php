@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-end d-none" tabindex="-1" id="offcanvasFilters">
+{{-- <div class="offcanvas offcanvas-end d-none" tabindex="-1" id="offcanvasFilters">
     <div class="offcanvas-header d-flex align-items-center">
         <h5 class="offcanvas-title" id="offcanvasFiltersLabel">Category Filters</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -56,21 +56,21 @@
                 <!-- Price Filter -->
                 <div class="py-4 widget-filter widget-filter-price border-top">
                     <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
-                        data-bs-toggle="collapse" href="#filter-modal-price" role="button" aria-expanded="false"
-                        aria-controls="filter-modal-price">
-                        Price
+                        data-bs-toggle="collapse" href="#filter-price" role="button" aria-expanded="true"
+                        aria-controls="filter-price">
+                        Harga
                     </a>
-                    <div id="filter-modal-price" class="collapse">
+                    <div id="filter-price" class="collapse show">
                         <div class="filter-price mt-6"></div>
                         <div class="d-flex justify-content-between align-items-center mt-7">
                             <div class="input-group mb-0 me-2 border">
-                                <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">$</span>
-                                <input type="number" min="00" max="1000" step="1"
+                                <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">Rp</span>
+                                <input type="number" min="50000" max="2000000" step="1000"
                                     class="filter-min form-control-sm border flex-grow-1 text-muted border-0">
                             </div>
                             <div class="input-group mb-0 ms-2 border">
-                                <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">$</span>
-                                <input type="number" min="00" max="1000" step="1"
+                                <span class="input-group-text bg-transparent fs-7 p-2 text-muted border-0">Rp</span>
+                                <input type="number" min="50000" max="2000000" step="1000"
                                     class="filter-max form-control-sm flex-grow-1 text-muted border-0">
                             </div>
                         </div>
@@ -340,4 +340,4 @@
             <!-- /Filter Button-->
         </div>
     </div>
-</div>
+</div> --}}

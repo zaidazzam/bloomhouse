@@ -46,6 +46,7 @@
                             pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus
                             praesentium, rerum ipsa debitis, inventore?</p>
                         <div class="tag-widget post-tag-container mb-5 mt-5">
+                            <h3 class="heading">Tag</h3>
                             <div class="tagcloud">
                                 <a href="#" class="tag-cloud-link">Life</a>
                                 <a href="#" class="tag-cloud-link">Sport</a>
@@ -55,52 +56,45 @@
                         </div>
                     </div>
 
-                    <!-- Side Bar Content -->
                     <div class="col-lg-4 sidebar ftco-animate">
-                        <div class="sidebar-box">
+                        <div class="">
                             <form action="#" class="search-form">
-                                <div class="form-group">
-                                    <span class="icon ion-ios-search"></span>
-                                    <input type="text" class="form-control"
-                                        placeholder="Type a keyword and hit enter">
+                                <div class="form-group d-flex">
+                                    <input type="text" class="form-control py-2 filter-search rounded-start"
+                                        placeholder="Search" aria-label="Search">
+                                    <button type="submit" class="btn btn-search">
+                                        <i class="ri-search-2-line ri-lg align-middle"></i>
+                                    </button>
                                 </div>
                             </form>
                         </div>
-                        <div class="sidebar-box ftco-animate">
-                            <h3 class="heading">Categories</h3>
+
+                        <div class="sidebar-box ftco-animate mt-4 mb-4">
+                            <h3 class="heading">Flower Article Categories</h3>
                             <ul class="categories mt-3 mb-5">
                                 <?php
-                                $categories = [
-                                    ["name" => "Roses", "count" => 12],
-                                    ["name" => "Tulips", "count" => 22],
-                                    ["name" => "Orchids", "count" => 37],
-                                    ["name" => "Sunflowers", "count" => 42],
-                                    ["name" => "Lilies", "count" => 14],
-                                    ["name" => "Daisies", "count" => 140],
-                                ];
+                                $categories = [['name' => 'Flower Care Tips', 'count' => 12], ['name' => 'Flower Arrangements', 'count' => 22], ['name' => 'Flower Meaning & Symbolism', 'count' => 37], ['name' => 'Seasonal Flowers', 'count' => 42], ['name' => 'Flower Delivery Services', 'count' => 14], ['name' => 'Wedding Flowers', 'count' => 140], ['name' => 'Flower Gift Ideas', 'count' => 29], ['name' => 'Flower Gardening Tips', 'count' => 9]];
                                 foreach ($categories as $category) {
-                                    echo '<li><a href="#">' . 
-                                            '<p class="categories">' . $category['name'] . '</p>' .
-                                            '<p class="count">(' . $category['count'] . ')</p>' .
-                                         '</a></li>';
+                                    echo '<li><a href="#">' . '<p class="categories">' . $category['name'] . '</p>' . '<p class="count">(' . $category['count'] . ')</p>' . '</a></li>';
                                 }
                                 ?>
                             </ul>
                         </div>
 
                         <div class="sidebar-box ftco-animate">
-                            <h3 CLASS="heading">Tag Cloud</h3>
+                            <h3 class="heading">Tag Cloud</h3>
                             <div class="tagcloud">
-                                <a href="#" class="tag-cloud-link">shop</a>
-                                <a href="#" class="tag-cloud-link">products</a>
-                                <a href="#" class="tag-cloud-link">shirt</a>
-                                <a href="#" class="tag-cloud-link">jeans</a>
-                                <a href="#" class="tag-cloud-link">shoes</a>
-                                <a href="#" class="tag-cloud-link">dress</a>
-                                <a href="#" class="tag-cloud-link">coats</a>
-                                <a href="#" class="tag-cloud-link">jumpsuits</a>
+                                <a href="#" class="tag-cloud-link">flower care</a>
+                                <a href="#" class="tag-cloud-link">arrangements</a>
+                                <a href="#" class="tag-cloud-link">meaning</a>
+                                <a href="#" class="tag-cloud-link">gardening</a>
+                                <a href="#" class="tag-cloud-link">delivery</a>
+                                <a href="#" class="tag-cloud-link">wedding flowers</a>
+                                <a href="#" class="tag-cloud-link">gift ideas</a>
+                                <a href="#" class="tag-cloud-link">seasonal flowers</a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -158,7 +152,7 @@
                             <a href="/blog">Semua Artikel</a>
                         </div>
                     </center>
-        
+
                     </div>
     </div>
 </div>

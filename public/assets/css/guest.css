@@ -1,4 +1,5 @@
-body, html a{
+body,
+html a {
     text-decoration: none !important;
 }
 
@@ -53,23 +54,23 @@ body, html a{
     object-fit: cover;
 }
 .block-20 {
-  overflow: hidden;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-  height: 250px;
-  width: 100%;
-  position: relative;
-  display: block;
-  margin-bottom: 20px; }
-  
-  @media (min-width: 768px) {
-    .block-20 {
-      width: 450px; 
-      height: 250px;
-    } 
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 250px;
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
 }
 
+@media (min-width: 768px) {
+    .block-20 {
+        width: 450px;
+        height: 250px;
+    }
+}
 
 /* Start Blog */
 .title-blog {
@@ -77,12 +78,12 @@ body, html a{
 }
 
 .sutitle-blog {
-    font-size: 14px;;
+    font-size: 14px;
 }
 
 .btn-primary.new {
     border-radius: 20px;
-    background: #007eae; 
+    background: #007eae;
     border-color: #007eae !important;
 }
 
@@ -104,7 +105,7 @@ ul.categories li a {
     align-items: center;
 }
 
-.tagcloud {
+/* .tagcloud {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 0fr));
     gap: 5px;
@@ -117,7 +118,49 @@ ul.categories li a {
     border-radius: 5px;
     width: 100%;
     text-align: center;
+} */
+
+.tagcloud {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(100px, 1fr)
+    ); /* Ensure each tag can grow but will fit */
+    gap: 10px;
+    padding: 0;
 }
+
+.tagcloud a {
+    padding: 5px 10px; /* Add horizontal padding for more space */
+    border: 1px solid #007eae;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap; /* Prevent wrapping inside the tag */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for very long text */
+    font-size: 14px; /* Adjust font size as needed */
+    color: black;
+    text-decoration: none;
+}
+
+.tagcloud a:hover {
+    background-color: #007eae;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .tagcloud {
+        grid-template-columns: repeat(
+            auto-fill,
+            minmax(80px, 1fr)
+        ); /* Stack them with smaller size on small screens */
+    }
+    .tagcloud a {
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+}
+
 ul.pagination {
     justify-content: space-around;
 }
@@ -178,7 +221,7 @@ ul.pagination li.active {
     padding-top: 3rem;
 }
 
-.btn-semua a{
+.btn-semua a {
     color: #007eae;
     background: #fff;
     border: 1px solid #007eae;
@@ -193,4 +236,105 @@ ul.pagination li.active {
 
 .btn-blue {
     background: #007eae !important;
+}
+
+/* Ensure the sidebar box is responsive and adjusts based on content */
+.sidebar-box {
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 1px solid #ddd; /* Optional, adds border around the box */
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.sidebar-box h3.heading {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.sidebar-box .categories {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.sidebar-box .categories li {
+    padding: 0.5rem 0;
+    word-wrap: break-word;
+}
+
+.sidebar-box .categories li a {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1rem;
+}
+
+.sidebar-box .categories li .count {
+    font-size: 0.875rem;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+    .sidebar-box {
+        padding: 0.8rem;
+    }
+
+    .sidebar-box .categories li a {
+        font-size: 0.875rem;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+    }
+
+    .sidebar-box .categories li .count {
+        margin-top: 0.25rem;
+    }
+}
+.search-form .form-group {
+    display: flex;
+    align-items: center; /* Ensures that the input and button are vertically aligned */
+}
+
+.search-form .form-control {
+    border-radius: 25px 0 0 25px; /* Rounded left corners for the input */
+    padding-left: 10px; /* Adds space inside the input field */
+    flex-grow: 1; /* Makes the input field take up remaining space */
+    margin-right: 4px;
+}
+
+.search-form .btn-search {
+    background-color: #007eae;
+    /* border: none; */
+    padding: 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    /* display: flex
+; */
+    justify-content: center;
+    align-items: center;
+}
+
+.search-form .btn-search i {
+    color: white;
+    font-size: 20px; /* Adjusts the icon size */
+}
+
+.search-form .btn-search:hover {
+    background-color: #005f7f;
+}
+input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="date"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
 }

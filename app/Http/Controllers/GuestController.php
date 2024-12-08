@@ -27,4 +27,8 @@ class GuestController extends Controller
 
     return view('guest-view.detail-blog');
      }
+    public function checkout(){
+
+    return view('guest-view.checkout');
+     }
 }
