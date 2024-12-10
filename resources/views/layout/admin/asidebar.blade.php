@@ -18,7 +18,7 @@
 
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
-                <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
+                <li class="menu-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                     <a href="{{ url('/admin/dashboard') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-store"></i>
                         <div data-i18n="Analytics">Dashboard</div>
@@ -29,25 +29,26 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Product</span>
                 </li>
-                <li class="menu-item">
+                <li
+                    class="menu-item {{ request()->is('admin/product', 'admin/category-product', 'admin/review-product') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-layout"></i>
                         <div data-i18n="Layouts">Product</div>
                     </a>
 
                     <ul class="menu-sub">
-                        <li class="menu-item">
+                        <li class="menu-item {{ request()->is('admin/product') ? 'active' : '' }}">
                             <a href="{{ url('/admin/product') }}" class="menu-link">
                                 <div data-i18n="Without menu">Product</div>
                             </a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item {{ request()->is('admin/category-product') ? 'active' : '' }}">
                             <a href="{{ url('/admin/category-product') }}" class="menu-link">
                                 <div data-i18n="Without navbar">Category Product</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="layouts-container.html" class="menu-link">
+                        <li class="menu-item {{ request()->is('admin/review-product') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/review-product') }}" class="menu-link">
                                 <div data-i18n="Container">Review Product</div>
                             </a>
                         </li>
@@ -59,21 +60,20 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Penjualan</span>
                 </li>
-                <li class="menu-item {{ request()->is('datahomestay', 'tambahhomestay') ? 'active' : '' }}">
-                    <a href="{{ url('/dashboard') }}" class="menu-link ">
+                <li class="menu-item {{ request()->is('admin/sales') ? 'active' : '' }}">
+                    <a href="{{ url('/admin/sales') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-shopping-bag"></i>
                         <div data-i18n=" ">Penjualan</div>
                     </a>
                 </li>
                 {{-- Menu Penjualan --}}
 
-
                 {{-- Menu Report --}}
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Report</span>
                 </li>
-                <li class="menu-item {{ request()->is('dataartikel', 'tambahartikel') ? 'active' : '' }}">
-                    <a href="{{ url('/dashboard') }}" class="menu-link ">
+                <li class="menu-item {{ request()->is('admin/report') ? 'active' : '' }}">
+                    <a href="{{ url('/admin/report') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-report"></i>
                         <div data-i18n="">Report</div>
                     </a>
@@ -84,14 +84,14 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Artikel</span>
                 </li>
-                <li class="menu-item {{ request()->is('dataartikel', 'tambahartikel') ? 'active' : '' }}">
-                    <a href="javascript:void(0);" class="menu-link ">
+                <li class="menu-item {{ request()->is('admin/article') ? 'active' : '' }}">
+                    <a href="{{ url('/admin/article') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxl-blogger"></i>
                         <div data-i18n="">Artikel</div>
                     </a>
                 </li>
                 {{-- Menu Artikel --}}
-
             </ul>
+
         </aside>
         <!-- / Menu -->
