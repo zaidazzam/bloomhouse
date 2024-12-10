@@ -46,11 +46,11 @@
                                 <div data-i18n="Without navbar">Category Product</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('admin/review-product') ? 'active' : '' }}">
+                        {{-- <li class="menu-item {{ request()->is('admin/review-product') ? 'active' : '' }}">
                             <a href="{{ url('/admin/review-product') }}" class="menu-link">
                                 <div data-i18n="Container">Review Product</div>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 {{-- Menu Produk --}}

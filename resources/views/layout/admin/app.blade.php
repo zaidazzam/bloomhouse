@@ -56,7 +56,7 @@
     <!-- Vendors CSS -->
     <link href="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" /> --}}
-    {{-- <link href="{{ asset('admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" /> --}}
 
     <!-- Page CSS -->
@@ -130,7 +130,7 @@
     {{-- <script src="{{ asset('admin/js/tinymce/js/tinymce.min.js') }}" referrerpolicy="origin"></script> --}}
 
     <!-- Vendors JS -->
-    {{-- <script src="{{ asset('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script> --}}
+    <script src="{{ asset('admin/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('admin/assets/js/main.js') }}"></script>

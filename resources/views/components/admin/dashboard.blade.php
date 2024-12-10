@@ -18,28 +18,30 @@
                                       <div class="d-flex align-items-end row">
                                           <div class="col-sm-7">
                                               <div class="card-body">
-                                                  <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
+                                                  <h5 class="card-title text-primary">Welcome to Our Flower Shop! 🌸
+                                                  </h5>
                                                   <p class="mb-4">
-                                                      You have done <span class="fw-bold">72%</span> more sales today.
-                                                      Check your new badge in
-                                                      your profile.
+                                                      Sales have increased by <span class="fw-bold">72%</span> today
+                                                      compared to yesterday. Keep up the great work to gain even more
+                                                      loyal customers!
                                                   </p>
 
                                                   <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
-                                                      Badges</a>
+                                                      Statistics</a>
                                               </div>
                                           </div>
                                           <div class="col-sm-5 text-center text-sm-left">
                                               <div class="card-body pb-0 px-0 px-md-4">
-                                                  <img src="../admin/assets/img/illustrations/man-with-laptop-light.png"
-                                                      height="140" alt="View Badge User"
-                                                      data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                                                      data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                                  <img src="/assets/images/logos/Bloom-House-02.png" height="140"
+                                                      alt="Flower Shop"
+                                                      data-app-dark-img="illustrations/flowers-dark.png"
+                                                      data-app-light-img="illustrations/flowers-light.png" />
                                               </div>
                                           </div>
                                       </div>
                                   </div>
                               </div>
+
                               <div class="col-lg-4 col-md-4 order-1">
                                   <div class="row">
                                       <div class="col-lg-6 col-md-12 col-6 mb-4">
@@ -556,7 +558,7 @@
               </div>
               <!-- / Layout page -->
           </div>
-
-          <!-- Overlay -->
-          <div class="layout-overlay layout-menu-toggle"></div>
       </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>

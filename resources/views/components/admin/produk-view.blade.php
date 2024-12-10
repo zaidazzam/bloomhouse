@@ -28,10 +28,11 @@
                         <th class="text-white">Category</th>
                         <th class="text-white">Description</th>
                         <th class="text-white">Stock</th>
+                        <th class="text-white">Rating</th>
                         <th class="text-white">Address</th>
                         <th class="text-white">Price</th>
-                        <th class="text-white">Price Before Disc</th>
-                        <th class="text-white">Recommend Price From Admin</th>
+                        <th class="text-white">Discount</th>
+                        <th class="text-white">Price After Discount</th>
                         <th class="text-white">Consist Of</th>
                         <th class="text-white">Photo</th>
                         <th class="text-white">Action</th>
@@ -45,10 +46,11 @@
                         <td>Electronics</td>
                         <td>This is a description of product 1.</td>
                         <td>150</td>
+                        <td>Bintang 5</td>
                         <td>123 Main St, City</td>
                         <td>Rp. 150.000</td>
-                        <td>Rp. 250.000</td>
-                        <td>Rp. 350.000</td>
+                        <td>12%</td>
+                        <td>Rp. 120.000</td>
                         <td>Material A, Material B</td>
                         <td><img src="/assets/images/logos/Bloom-House-02.png" alt="Product Photo" class="rounded"
                                 width="50" /></td>
@@ -73,10 +75,11 @@
                         <td>Apparel</td>
                         <td>This is a description of product 2.</td>
                         <td>200</td>
+                        <td>Bintang 5</td>
                         <td>456 Another St, City</td>
                         <td>Rp. 150.000</td>
-                        <td>Rp. 250.000</td>
-                        <td>Rp. 350.000</td>
+                        <td>12%</td>
+                        <td>Rp. 120.000</td>
                         <td>Material C, Material D</td>
                         <td><img src="/assets/images/logos/Bloom-House-02.png" alt="Product Photo" class="rounded"
                                 width="50" /></td>
@@ -180,19 +183,14 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-4">
+                    <div class="col-6">
                         <label for="productPrice" class="form-label">Price</label>
                         <input type="number" id="productPrice" class="form-control" placeholder="Enter Price" />
                     </div>
-                    <div class="col-4">
-                        <label for="priceBeforeDisc" class="form-label">Price Before Disc</label>
-                        <input type="number" id="priceBeforeDisc" class="form-control"
-                            placeholder="Enter Original Price" />
-                    </div>
-                    <div class="col-4">
-                        <label for="recommendPrice" class="form-label">Recommend Price</label>
-                        <input type="number" id="recommendPrice" class="form-control"
-                            placeholder="Enter Recommended Price" />
+                    <div class="col-6">
+                        <label for="editPriceBeforeDisc" class="form-label">Discount</label>
+                        <input type="number" id="editPriceBeforeDisc" class="form-control"
+                            placeholder="Enter Discount Price" />
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -261,20 +259,15 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-4">
+                    <div class="col-6">
                         <label for="editProductPrice" class="form-label">Price</label>
                         <input type="number" id="editProductPrice" class="form-control"
                             placeholder="Enter Price" />
                     </div>
-                    <div class="col-4">
-                        <label for="editPriceBeforeDisc" class="form-label">Price Before Disc</label>
+                    <div class="col-6">
+                        <label for="editPriceBeforeDisc" class="form-label">Discount</label>
                         <input type="number" id="editPriceBeforeDisc" class="form-control"
-                            placeholder="Enter Original Price" />
-                    </div>
-                    <div class="col-4">
-                        <label for="editRecommendPrice" class="form-label">Recommend Price</label>
-                        <input type="number" id="editRecommendPrice" class="form-control"
-                            placeholder="Enter Recommended Price" />
+                            placeholder="Enter Discount Price" />
                     </div>
                 </div>
                 <div class="row mb-3">
