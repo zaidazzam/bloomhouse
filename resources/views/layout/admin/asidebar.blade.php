@@ -32,10 +32,9 @@
                 <li
                     class="menu-item {{ request()->is('admin/product', 'admin/category-product', 'admin/review-product') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-layout"></i>
+                        <i class="menu-icon tf-icons bx bxs-florist"></i>
                         <div data-i18n="Layouts">Product</div>
                     </a>
-
                     <ul class="menu-sub">
                         <li class="menu-item {{ request()->is('admin/product') ? 'active' : '' }}">
                             <a href="{{ url('/admin/product') }}" class="menu-link">
