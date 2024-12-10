@@ -81,12 +81,12 @@
 
                 {{-- Menu Artikel --}}
                 <li class="menu-header small text-uppercase">
-                    <span class="menu-header-text">Artikel</span>
+                    <span class="menu-header-text">Blog</span>
                 </li>
-                <li class="menu-item {{ request()->is('admin/article') ? 'active' : '' }}">
-                    <a href="{{ url('/admin/article') }}" class="menu-link">
+                <li class="menu-item {{ request()->is('admin/blog') ? 'active' : '' }}">
+                    <a href="{{ url('/admin/blog') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxl-blogger"></i>
-                        <div data-i18n="">Artikel</div>
+                        <div data-i18n="">Blog</div>
                     </a>
                 </li>
                 {{-- Menu Artikel --}}

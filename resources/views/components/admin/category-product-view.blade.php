@@ -29,48 +29,33 @@
                 </thead>
 
                 <tbody id="product-list">
-                    <tr>
-                        <td></td>
-                        <td>Category 1</td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                        data-bs-target="#editCategoryModal"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Delete</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Category 2</td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item edit-category-btn" href="javascript:void(0);"
-                                        data-bs-toggle="modal" data-bs-target="#editCategoryModal">
-                                        <i class="bx bx-edit-alt me-1"></i> Edit
-                                    </a>
-                                    <a class="dropdown-item delete-category-btn" href="javascript:void(0);">
-                                        <i class="bx bx-trash me-1"></i> Delete
-                                    </a>
-                                </div>
-
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                    <?php
+                    // Loop through 10 categories
+                    for ($i = 1; $i <= 10; $i++) {
+                        echo "
+                                <tr>
+                                    <td>$i</td>
+                                    <td>Category $i</td>
+                                    <td>
+                                        <div class='dropdown'>
+                                            <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
+                                                <i class='bx bx-dots-vertical-rounded'></i>
+                                            </button>
+                                            <div class='dropdown-menu'>
+                                                <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal' data-bs-target='#editCategoryModal'>
+                                                    <i class='bx bx-edit-alt me-1'></i> Edit
+                                                </a>
+                                                <a class='dropdown-item' href='javascript:void(0);'>
+                                                    <i class='bx bx-trash me-1'></i> Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>";
+                    }
+                    ?>
                 </tbody>
+
 
             </table>
         </div>
@@ -126,8 +111,8 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="categoryName" class="form-label">Category Name</label>
-                        <input type="text" id="categoryName" class="form-control"
-                            placeholder="Enter Category Name" required />
+                        <input type="text" id="categoryName" class="form-control" placeholder="Enter Category Name"
+                            required />
                     </div>
                 </div>
             </div>

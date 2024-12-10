@@ -28,6 +28,8 @@ Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'da
 Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
 Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
 ->name('categoryProduct');;
+Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
+
 
 
 Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');

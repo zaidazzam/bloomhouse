@@ -19,5 +19,9 @@ class AdminController extends Controller
 
     return view('dashboard-view.category-product');
     }
+    public function blog(){
+
+    return view('dashboard-view.blog');
+    }
 
 }

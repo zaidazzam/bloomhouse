@@ -40,66 +40,43 @@
                 </thead>
 
                 <tbody id="product-list">
-                    <tr>
-                        <td></td>
-                        <td><strong>Product 1</strong></td>
-                        <td>Electronics</td>
-                        <td>This is a description of product 1.</td>
-                        <td>150</td>
-                        <td>Bintang 5</td>
-                        <td>123 Main St, City</td>
-                        <td>Rp. 150.000</td>
-                        <td>12%</td>
-                        <td>Rp. 120.000</td>
-                        <td>Material A, Material B</td>
-                        <td><img src="/assets/images/logos/Bloom-House-02.png" alt="Product Photo" class="rounded"
-                                width="50" /></td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                        data-bs-target="#editProductModal"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Delete</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><strong>Product 2</strong></td>
-                        <td>Apparel</td>
-                        <td>This is a description of product 2.</td>
-                        <td>200</td>
-                        <td>Bintang 5</td>
-                        <td>456 Another St, City</td>
-                        <td>Rp. 150.000</td>
-                        <td>12%</td>
-                        <td>Rp. 120.000</td>
-                        <td>Material C, Material D</td>
-                        <td><img src="/assets/images/logos/Bloom-House-02.png" alt="Product Photo" class="rounded"
-                                width="50" /></td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                        data-bs-target="#editProductModal"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Delete</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Add more rows as needed -->
+                    <?php
+                    // Loop through 10 products
+                    for ($i = 1; $i <= 10; $i++) {
+                        echo "
+                                                <tr>
+                                                    <td>$i</td>
+                                                    <td><strong>Product $i</strong></td>
+                                                    <td>Electronics</td>
+                                                    <td>This is a description of product $i.</td>
+                                                    <td>150</td>
+                                                    <td>Bintang 5</td>
+                                                    <td>123 Main St, City</td>
+                                                    <td>Rp. 150.000</td>
+                                                    <td>12%</td>
+                                                    <td>Rp. 120.000</td>
+                                                    <td>Material A, Material B</td>
+                                                    <td><img src='/assets/images/logos/Bloom-House-02.png' alt='Product Photo' class='rounded' width='50' /></td>
+                                                    <td>
+                                                        <div class='dropdown'>
+                                                            <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
+                                                                <i class='bx bx-dots-vertical-rounded'></i>
+                                                            </button>
+                                                            <div class='dropdown-menu'>
+                                                                <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal' data-bs-target='#editProductModal'>
+                                                                    <i class='bx bx-edit-alt me-1'></i> Edit
+                                                                </a>
+                                                                <a class='dropdown-item' href='javascript:void(0);'>
+                                                                    <i class='bx bx-trash me-1'></i> Delete
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>";
+                    }
+                    ?>
                 </tbody>
+
 
             </table>
         </div>
@@ -154,15 +131,13 @@
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="productName" class="form-label">Name</label>
-                        <input type="text" id="productName" class="form-control"
-                            placeholder="Enter Product Name" />
+                        <input type="text" id="productName" class="form-control" placeholder="Enter Product Name" />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="productCategory" class="form-label">Category</label>
-                        <input type="text" id="productCategory" class="form-control"
-                            placeholder="Enter Category" />
+                        <input type="text" id="productCategory" class="form-control" placeholder="Enter Category" />
                     </div>
                 </div>
                 <div class="row mb-3">
