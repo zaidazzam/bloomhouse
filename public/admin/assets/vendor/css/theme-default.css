@@ -206,6 +206,7 @@ button.list-group-item-primary.active {
 }
 
 .btn-primary {
+  width: -webkit-fill-available;
   color: #fff;
   background-color: #1b65a9;
   border-color: #1b65a9;

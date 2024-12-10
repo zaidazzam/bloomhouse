@@ -19,28 +19,6 @@
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Place this tag where you want the button to render. -->
-            <li class="nav-item lh-1 ">
-                <div class="icon" id="bell"> <img
-                        src="{{ asset('/admin/assets/img/admin/bx-notification.svg') }}" alt=""> </div>
-                <div class="notifications" id="box">
-                    <h2>Notifikasi - <span>2</span></h2>
-                    <div class="notifications-item"> <img
-                            src="{{ asset('/admin/assets/img/admin/bx-notification.svg') }}" alt="img">
-                        <div class="text">
-                            <h4>Bloom House</h4>
-                            <p>Memperbarahui Homestaynya</p>
-                        </div>
-                    </div>
-                    <div class="notifications-item"> <img
-                            src="https://img.icons8.com/flat_round/64/000000/vote-badge.png" alt="img">
-                        <div class="text">
-                            <h4>John Silvester</h4>
-                            <p>Telah Selesai Memesan Homestay cool</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
             <!-- User -->
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">

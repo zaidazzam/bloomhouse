@@ -19,7 +19,7 @@
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
                 <li class="menu-item {{ request()->is('dashboard') ? 'active' : '' }}">
-                    <a href="{{ url('/dashboard') }}" class="menu-link">
+                    <a href="{{ url('/admin/dashboard') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-store"></i>
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
@@ -27,13 +27,31 @@
 
                 {{-- Menu Produk --}}
                 <li class="menu-header small text-uppercase">
-                    <span class="menu-header-text">Produk</span>
+                    <span class="menu-header-text">Product</span>
                 </li>
-                <li class="menu-item {{ request()->is('produk', 'produk') ? 'active' : '' }}">
-                    <a href="{{ url('/produk') }}" class="menu-link ">
-                        <i class="menu-icon tf-icons bx bxs-florist"></i>
-                        <div data-i18n=" ">Produk</div>
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-layout"></i>
+                        <div data-i18n="Layouts">Product</div>
                     </a>
+
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{ url('/admin/product') }}" class="menu-link">
+                                <div data-i18n="Without menu">Product</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{ url('/admin/category-product') }}" class="menu-link">
+                                <div data-i18n="Without navbar">Category Product</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="layouts-container.html" class="menu-link">
+                                <div data-i18n="Container">Review Product</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 {{-- Menu Produk --}}
 

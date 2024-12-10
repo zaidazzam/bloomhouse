@@ -24,8 +24,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
     Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);
 });
-Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
-Route::get('/produk', [App\Http\Controllers\AdminController::class, 'produk']) ->name('produk');;
+Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
+Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
+Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
+->name('categoryProduct');;
 
 
 Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
