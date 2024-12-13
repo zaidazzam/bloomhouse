@@ -44,38 +44,56 @@
                     // Loop through 10 products
                     for ($i = 1; $i <= 10; $i++) {
                         echo "
-                                                <tr>
-                                                    <td>$i</td>
-                                                    <td><strong>Product $i</strong></td>
-                                                    <td>Electronics</td>
-                                                    <td>This is a description of product $i.</td>
-                                                    <td>150</td>
-                                                    <td>Bintang 5</td>
-                                                    <td>123 Main St, City</td>
-                                                    <td>Rp. 150.000</td>
-                                                    <td>12%</td>
-                                                    <td>Rp. 120.000</td>
-                                                    <td>Material A, Material B</td>
-                                                    <td><img src='/assets/images/logos/Bloom-House-02.png' alt='Product Photo' class='rounded' width='50' /></td>
-                                                    <td>
-                                                        <div class='dropdown'>
-                                                            <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
-                                                                <i class='bx bx-dots-vertical-rounded'></i>
-                                                            </button>
-                                                            <div class='dropdown-menu'>
-                                                                <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal' data-bs-target='#editProductModal'>
-                                                                    <i class='bx bx-edit-alt me-1'></i> Edit
-                                                                </a>
-                                                                <a class='dropdown-item' href='javascript:void(0);'>
-                                                                    <i class='bx bx-trash me-1'></i> Delete
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>";
+                                           <tr>
+                                               <td>$i</td>
+                                               <td><strong>Product $i</strong></td>
+                                               <td>Electronics</td>
+                                               <td>This is a description of product $i.</td>
+                                               <td>150</td>
+                                               <td>Bintang 5</td>
+                                               <td>123 Main St, City</td>
+                                               <td>Rp. 150.000</td>
+                                               <td>12%</td>
+                                               <td>Rp. 120.000</td>
+                                               <td>Material A, Material B</td>
+                                               <td>
+                                                   <button
+                                                       type='button'
+                                                       class='btn btn-primary btn-add-product table-dark1'
+                                                       data-bs-toggle='modal'
+                                                       data-bs-target='#photoModal'>
+                                                       Photo
+                                                   </button>
+                                               </td>
+                                               <td>
+                                                   <div class='dropdown'>
+                                                       <button
+                                                           type='button'
+                                                           class='btn p-0 dropdown-toggle hide-arrow'
+                                                           data-bs-toggle='dropdown'>
+                                                           <i class='bx bx-dots-vertical-rounded'></i>
+                                                       </button>
+                                                       <div class='dropdown-menu'>
+                                                           <a
+                                                               class='dropdown-item'
+                                                               href='javascript:void(0);'
+                                                               data-bs-toggle='modal'
+                                                               data-bs-target='#editProductModal'>
+                                                               <i class='bx bx-edit-alt me-1'></i> Edit
+                                                           </a>
+                                                           <a
+                                                               class='dropdown-item'
+                                                               href='javascript:void(0);'>
+                                                               <i class='bx bx-trash me-1'></i> Delete
+                                                           </a>
+                                                       </div>
+                                                   </div>
+                                               </td>
+                                           </tr>";
                     }
                     ?>
                 </tbody>
+
 
 
             </table>
@@ -265,6 +283,62 @@
                 <button type="button"
                     class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
             </div>
+        </form>
+    </div>
+</div>
+<!-- Edit Product Modal -->
+<div class="modal fade" id="photoModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <form class="modal-content" id="photoModal">
+            <div class="modal-header d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" id="photoModal-title">Add Photo</h5>
+                <div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="modal-header">
+                <table class="table table-bordered table-striped table-hover text-center">
+                    <thead class="table-dark1">
+                        <tr>
+                            <th class="text-white">Photo</th>
+                            <th class="text-white">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="product-list">
+                        <?php
+                        // Loop through 5 products
+                        for ($i = 1; $i <= 5; $i++) {
+                            echo "
+                                                                                                                                                                      <tr>
+                                                                                                                                                                          <td><img src='/assets/images/logos/Bloom-House-02.png' alt='Product Photo'
+                                                                                                                                                                                  class='rounded' width='100' /></td>
+                                                                                                                                                                          <td>
+                                                                                                                                                                              <button type='button' class='btn btn-outline-danger'>
+                                                                                                                                                                                  Delete
+                                                                                                                                                                              </button>
+                                                                                                                                                                          </td>
+                                                                                                                                                                      </tr>";
+                        }
+                        ?>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <input class="form-control" type="file" id="formFile" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button"
+                    class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
+            </div>
+
         </form>
     </div>
 </div>

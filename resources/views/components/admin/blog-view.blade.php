@@ -27,26 +27,148 @@
                         <th class="text-white">Description</th>
                         <th class="text-white">Photo</th>
                         <th class="text-white">Tag</th>
+                        <th class="text-white">Action</th>
                     </tr>
                 </thead>
 
-                <tbody id="product-list">
-                    <?php
-                    // Loop through 10 categories
-                    for ($i = 1; $i <= 10; $i++) {
-                        echo "
-                                                                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                                                                    <td>$i</td>
-                                                                                                                                                                                                                                                    <td>Flowers $i</td>
-                                                                                                                                                                                                                                                    <td>This is a description for Flowers $i.</td>
-                                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                                        <img src='/assets/images/logos/Bloom-House-02.png' alt='Flowers Photo' class='rounded' width='50' />
-                                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                                    <td>Tag $i</td>
-                                                                                                                                                                                                                                                </tr>";
-                    }
-                    ?>
+                <tbody id="blog-list">
+                    <tr>
+                        <td>1</td>
+                        <td>Flowers 1</td>
+                        <td>This is a description for Flowers 1.</td>
+                        <td>
+                            <img src='/assets/images/logos/Bloom-House-02.png' alt='Flowers Photo' class='rounded'
+                                width='50' />
+                        </td>
+                        <td>Tag 1</td>
+                        <td>
+                            <div class='dropdown'>
+                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
+                                    data-bs-toggle='dropdown'>
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                    <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal'
+                                        data-bs-target='#editProductModal'>
+                                        <i class='bx bx-edit-alt me-1'></i> Edit
+                                    </a>
+                                    <a class='dropdown-item' href='javascript:void(0);'>
+                                        <i class='bx bx-trash me-1'></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Flowers 2</td>
+                        <td>This is a description for Flowers 2.</td>
+                        <td>
+                            <img src='/assets/images/logos/Bloom-House-02.png' alt='Flowers Photo' class='rounded'
+                                width='50' />
+                        </td>
+                        <td>Tag 2</td>
+                        <td>
+                            <div class='dropdown'>
+                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
+                                    data-bs-toggle='dropdown'>
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                    <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal'
+                                        data-bs-target='#editProductModal'>
+                                        <i class='bx bx-edit-alt me-1'></i> Edit
+                                    </a>
+                                    <a class='dropdown-item' href='javascript:void(0);'>
+                                        <i class='bx bx-trash me-1'></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Flowers 3</td>
+                        <td>This is a description for Flowers 3.</td>
+                        <td>
+                            <img src='/assets/images/logos/Bloom-House-02.png' alt='Flowers Photo' class='rounded'
+                                width='50' />
+                        </td>
+                        <td>Tag 3</td>
+                        <td>
+                            <div class='dropdown'>
+                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
+                                    data-bs-toggle='dropdown'>
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                    <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal'
+                                        data-bs-target='#editProductModal'>
+                                        <i class='bx bx-edit-alt me-1'></i> Edit
+                                    </a>
+                                    <a class='dropdown-item' href='javascript:void(0);'>
+                                        <i class='bx bx-trash me-1'></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Flowers 4</td>
+                        <td>This is a description for Flowers 4.</td>
+                        <td>
+                            <img src='/assets/images/logos/Bloom-House-02.png' alt='Flowers Photo' class='rounded'
+                                width='50' />
+                        </td>
+                        <td>Tag 4</td>
+                        <td>
+                            <div class='dropdown'>
+                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
+                                    data-bs-toggle='dropdown'>
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                    <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal'
+                                        data-bs-target='#editProductModal'>
+                                        <i class='bx bx-edit-alt me-1'></i> Edit
+                                    </a>
+                                    <a class='dropdown-item' href='javascript:void(0);'>
+                                        <i class='bx bx-trash me-1'></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Flowers 5</td>
+                        <td>This is a description for Flowers 5.</td>
+                        <td>
+                            <img src='/assets/images/logos/Bloom-House-02.png' alt='Flowers Photo' class='rounded'
+                                width='50' />
+                        </td>
+                        <td>Tag 5</td>
+                        <td>
+                            <div class='dropdown'>
+                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
+                                    data-bs-toggle='dropdown'>
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                    <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal'
+                                        data-bs-target='#editProductModal'>
+                                        <i class='bx bx-edit-alt me-1'></i> Edit
+                                    </a>
+                                    <a class='dropdown-item' href='javascript:void(0);'>
+                                        <i class='bx bx-trash me-1'></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -99,42 +221,57 @@
             </div>
             <div class="modal-body">
                 <div class="row mb-3">
-                    <div class="col-12">
+                    <div class="col-12 mb-2">
                         <label for="blogTitle" class="form-label">Title</label>
                         <input type="text" id="blogTitle" class="form-control" placeholder="Enter Blog Title"
                             required />
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-2">
                         <label for="blogDescription" class="form-label">Description</label>
                         <textarea id="blogDescription" class="form-control" rows="3" placeholder="Enter Blog Description" required></textarea>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-2">
                         <label for="blogPhoto" class="form-label">Photo</label>
                         <input type="file" id="blogPhoto" class="form-control" accept="image/*" required />
                     </div>
-                    <div class="col-12">
-                        <label for="blogTag" class="form-label">Tags</label>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="tag1" value="Tag 1">
-                            <label class="form-check-label" for="tag1">Tag 1</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="tag2" value="Tag 2">
-                            <label class="form-check-label" for="tag2">Tag 2</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="tag3" value="Tag 3">
-                            <label class="form-check-label" for="tag3">Tag 3</label>
-                        </div>
+                    <label for="blogPhoto" class="form-label">Photo</label>
+                    <div class=" col-12 mb-2 dropdown">
+
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCheckbox"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Tags
+                        </button>
+                        <ul class="dropdown-menu p-3" aria-labelledby="dropdownCheckbox">
+                            <li>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" id="check1" />
+                                    <label class="form-check-label" for="check1">Tag 1</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="2" id="check2" />
+                                    <label class="form-check-label" for="check2">Tag 2</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="3" id="check3" />
+                                    <label class="form-check-label" for="check3">Tag 3</label>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="submit"
-                        class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="submit"
+                    class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
+            </div>
         </form>
     </div>
 </div>
@@ -184,7 +321,7 @@
 <!--/ Bordered Table -->
 <script>
     // JavaScript for adding automatic numbering to the "No." column
-    const rows = document.querySelectorAll("#product-list tr");
+    const rows = document.querySelectorAll("#blog-list tr");
     rows.forEach((row, index) => {
         const noCell = row.querySelector("td:first-child");
         noCell.textContent = index + 1; // Assign the row number (1-based index)

@@ -29,6 +29,7 @@ Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'prod
 Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
 ->name('categoryProduct');;
 Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
+Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog']) ->name('tagBlog');;
 
 
 

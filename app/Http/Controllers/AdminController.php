@@ -23,5 +23,9 @@ class AdminController extends Controller
 
     return view('dashboard-view.blog');
     }
+    public function tagBlog(){
+
+    return view('dashboard-view.tag-blog');
+    }
 
 }

@@ -83,11 +83,34 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Blog</span>
                 </li>
-                <li class="menu-item {{ request()->is('admin/blog') ? 'active' : '' }}">
-                    <a href="{{ url('/admin/blog') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bxl-blogger"></i>
-                        <div data-i18n="">Blog</div>
+                <li
+                    class="menu-item {{ request()->is('admin/blog', 'admin/blog-tag', 'admin/review-product') ? 'active open' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-florist"></i>
+                        <div data-i18n="Layouts">Blog</div>
                     </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item {{ request()->is('admin/blog') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/blog') }}" class="menu-link">
+                                <div data-i18n="Without menu">blog</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ request()->is('admin/blog-tag') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/blog-tag') }}" class="menu-link">
+                                <div data-i18n="Without navbar">Tag</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ request()->is('admin/category-product') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/category-product') }}" class="menu-link">
+                                <div data-i18n="Without navbar">Customize</div>
+                            </a>
+                        </li>
+                        {{-- <li class="menu-item {{ request()->is('admin/review-product') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/review-product') }}" class="menu-link">
+                                <div data-i18n="Container">Review Product</div>
+                            </a>
+                        </li> --}}
+                    </ul>
                 </li>
                 {{-- Menu Artikel --}}
             </ul>
