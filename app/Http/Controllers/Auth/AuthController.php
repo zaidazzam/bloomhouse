@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -45,7 +46,10 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            // direct to dashboard=====>
+            // return redirect()->intended('/admin/dashboard');
+
+            return redirect()->route('product');
         }
         return back()->with('error', 'Login failed!');
     }

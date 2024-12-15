@@ -18,6 +18,14 @@
         });
     </script>
 
+    {{-- CKEDITOR 5 TRIAL 14 HARI --}}
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/44.0.0/ckeditor5-premium-features.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5-premium-features/44.0.0/ckeditor5-premium-features.umd.js"></script>
+
+
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -119,6 +127,51 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+
+    {{-- CKEDITOR 5 TRIAL 14 HARI --}}
+    <script>
+        const {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } = CKEDITOR;
+        const { FormatPainter } = CKEDITOR_PREMIUM_FEATURES;
+    
+        ClassicEditor
+            .create( document.querySelector( '#editor' ), {
+                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzU1MTY3OTksImp0aSI6IjQ5Y2JhYzdmLTg5ZjAtNDY4My1hOWZlLTk2NTE3ZjNiZDc4YiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjY5Y2IwM2I4In0.UtghZ0667Q0pT2UgFd6ke2Cce_11d2v_l_8jopptjGiRJrZlWFDoocA_vVLvKgnmVQgO8y_GocspwQE8-Islog',
+                plugins: [ Essentials, Bold, Italic, Font, Paragraph, FormatPainter ],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+                    'formatPainter'
+                ]
+            } )
+            .then( /* ... */ )
+            .catch( /* ... */ );
+
+        ClassicEditor
+            .create( document.querySelector( '#editBlogDescription' ), {
+                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzU1MTY3OTksImp0aSI6IjQ5Y2JhYzdmLTg5ZjAtNDY4My1hOWZlLTk2NTE3ZjNiZDc4YiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjY5Y2IwM2I4In0.UtghZ0667Q0pT2UgFd6ke2Cce_11d2v_l_8jopptjGiRJrZlWFDoocA_vVLvKgnmVQgO8y_GocspwQE8-Islog',
+                plugins: [ Essentials, Bold, Italic, Font, Paragraph, FormatPainter ],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+                    'formatPainter'
+                ]
+            } )
+            .then(editor => {
+                        editorInstance = editor; // Simpan instans editor
+                    })
+            .catch( /* ... */ );
+    </script>
+    {{-- <==============================================================================> --}}
+
+
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->

@@ -29,33 +29,33 @@
                 </thead>
 
                 <tbody id="product-list">
-                    <?php
-                    // Loop through 10 categories
-                    for ($i = 1; $i <= 10; $i++) {
-                        echo "
-                                                                                     <tr>
-                                                                                         <td>$i</td>
-                                                                                         <td>Flowers $i</td>
-                                                                                         <td>
-                                                                                             <div class='dropdown'>
-                                                                                                 <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
-                                                                                                     <i class='bx bx-dots-vertical-rounded'></i>
-                                                                                                 </button>
-                                                                                                 <div class='dropdown-menu'>
-                                                                                                     <a class='dropdown-item' href='javascript:void(0);' data-bs-toggle='modal' data-bs-target='#editCategoryModal'>
-                                                                                                         <i class='bx bx-edit-alt me-1'></i> Edit
-                                                                                                     </a>
-                                                                                                     <a class='dropdown-item' href='javascript:void(0);'>
-                                                                                                         <i class='bx bx-trash me-1'></i> Delete
-                                                                                                     </a>
-                                                                                                 </div>
-                                                                                             </div>
-                                                                                         </td>
-                                                                                     </tr>";
-                    }
-                    ?>
+                    @foreach ($tags as $tag)
+                    <tr>
+                        <td data-id="{{ $tag->id }}">{{ $loop->iteration }}</td>
+                        <td data-name="{{ $tag->name }}">{{ $tag->name }}</td>
+                        <td>
+                            <div class='dropdown'>
+                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
+                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                    <a class='dropdown-item btn-edit-tag' href='javascript:void(0);' data-url="{{ route('tags.update',$tag->id) }}" data-bs-toggle='modal' data-bs-target='#editCategoryModal'>
+                                        <i class='bx bx-edit-alt me-1'></i> Edit
+                                    </a>
+                                    <form method="POST" action="{{ route('tags.destroy',$tag->id) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class='dropdown-item' type="submit">
+                                            <i class='bx bx-trash me-1'></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
-
+                
 
             </table>
         </div>
@@ -102,7 +102,8 @@
 <!-- Modal Add Category -->
 <div class="modal fade" id="addTag" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
-        <form class="modal-content" id="addTag">
+        <form class="modal-content" id="addTag" method="POST" action="{{ route('tags.store') }}">
+            @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="addTag">Add Tag</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -111,7 +112,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="tagName" class="form-label">Tag Name</label>
-                        <input type="text" id="tagName" class="form-control" placeholder="Enter Tag Name"
+                        <input type="text" id="tagName" name="name" class="form-control" placeholder="Enter Tag Name"
                             required />
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
             </div>
         </form>
@@ -131,7 +132,9 @@
 <!-- Modal Edit Category -->
 <div class="modal fade" id="editCategoryModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
-        <form class="modal-content" id="editCategoryForm">
+        <form class="modal-content" id="editTagForm" method="POST">
+            @method('PUT')
+            @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="editCategoryModalTitle">Edit Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -140,7 +143,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="editCategoryName" class="form-label">Category Name</label>
-                        <input type="text" id="editCategoryName" class="form-control"
+                        <input type="text" name="name" id="editTagName" class="form-control"
                             placeholder="Enter Category Name" required />
                     </div>
                 </div>
@@ -149,7 +152,7 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Cancel
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
             </div>
         </form>
@@ -158,6 +161,29 @@
 
 <!--/ Bordered Table -->
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const editButtons = document.querySelectorAll('.btn-edit-tag');
+        const editForm = document.getElementById('editTagForm');
+        
+        editButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                    const row = this.closest('tr'); 
+                    const url = row.querySelector('[data-url]').getAttribute('data-url');
+                    editForm.setAttribute('action', url);
+
+                    
+                    const name = row.querySelector('[data-name]').getAttribute('data-name');
+                    
+                    document.getElementById('editTagName').value = name;
+                });
+            });
+
+            
+        });
+
+
+
+
     // JavaScript for adding automatic numbering to the "No." column
     const rows = document.querySelectorAll("#product-list tr");
     rows.forEach((row, index) => {

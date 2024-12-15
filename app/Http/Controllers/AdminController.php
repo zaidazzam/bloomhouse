@@ -7,25 +7,23 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function dashboard(){
-
         return view('dashboard-view.dashboard');
     }
-
+    
     public function product(){
-
-    return view('dashboard-view.produk');
+        return redirect('/product_products');
     }
+
     public function categoryProduct(){
-
-    return view('dashboard-view.category-product');
+        return redirect('/product_categories');
     }
+
     public function blog(){
-
-    return view('dashboard-view.blog');
+        return redirect('/blogs');
     }
+    
     public function tagBlog(){
-
-    return view('dashboard-view.tag-blog');
+        return redirect('/tags');
     }
 
 }

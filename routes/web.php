@@ -1,6 +1,12 @@
 <?php
 
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductPictureController;
+use App\Http\Controllers\ProductProductController;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +30,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
     Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);
 });
-Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
-Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
-Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
-->name('categoryProduct');;
+
 Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
 Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog']) ->name('tagBlog');;
 
@@ -37,7 +40,20 @@ Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index
 Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+    Route::get('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
+    // ===========================================================>
+    Route::resource('product_products', ProductProductController::class);
+    Route::resource('product_categories', ProductCategoryController::class);
+    Route::resource('product_pictures', ProductPictureController::class);
+    Route::resource('blogs', BlogController::class);
+    Route::resource('tags', TagController::class);
+
+
+    Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
+    Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
+    ->name('categoryProduct');;
 
     // Home and Resource Routes
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
