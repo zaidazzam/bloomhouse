@@ -6,29 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductCategoriesTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
-            Schema::create('product_categories', function (Blueprint $table) {
-                $table->id();
-                $table->string('name')->unique(); 
-                $table->timestamps();
-            });
-    
-            Schema::table('product_products', function (Blueprint $table) {
-                $table->unsignedBigInteger('category_id')->nullable(); 
-                $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('set null');
-            });
-        
-    }
-
-
-    public function down()
-    {
-        Schema::table('product_products', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-            $table->dropColumn('category_id');
+        Schema::create('product_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique(); 
+            $table->timestamps();
         });
 
+        Schema::create('product_categ', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_product_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('product_category_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('product_categ');
         Schema::dropIfExists('product_categories');
     }
 }

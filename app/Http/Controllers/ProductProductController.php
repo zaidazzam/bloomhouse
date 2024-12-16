@@ -27,19 +27,19 @@ class ProductProductController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',
-            'address' => 'required',
+            'address' => 'nullable',
             'product_price' => 'required|numeric',
             'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
             'consist_of' => 'nullable',
-            'category_id' => 'required',
+            'category_id' => 'required|array|exists:product_categories,id',
         ]);
         if ($request->hasFile('main_picture')) {
             $validated['main_picture'] = $request->file('main_picture')->store('products', 'public'); 
         }
-
-        ProductProduct::create($validated);
+        $product = ProductProduct::create($validated);
+        $product->category()->sync($validated['category_id']);
         return redirect()->route('product_products.index')->with('success', 'Product created successfully.');
     }
 

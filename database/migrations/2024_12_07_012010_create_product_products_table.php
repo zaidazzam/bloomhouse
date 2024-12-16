@@ -14,6 +14,7 @@ class CreateProductProductsTable extends Migration
             $table->string('product_description')->nullable();
             $table->decimal('product_stock',8,2)->nullable();
             $table->string('address')->nullable();
+            $table->string('size')->nullable();
             $table->decimal('product_price',12,2)->nullable();
             $table->decimal('discount',8,2)->nullable();
             $table->string('consist_of')->nullable();

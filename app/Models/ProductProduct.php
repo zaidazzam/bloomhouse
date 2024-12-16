@@ -18,13 +18,14 @@ class ProductProduct extends Model
         'product_price',
         'discount',
         'consist_of',
-        'main_picture',
-        'category_id'
+        'main_picture'
     ];
     
     public function category()
     {
-        return $this->belongsTo(ProductCategory::class, 'category_id');
+        return $this->belongsToMany(ProductCategory::class,'product_categ', 
+        'product_product_id', 
+        'product_category_id');
     }
 
     public function pictures()

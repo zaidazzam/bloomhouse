@@ -44,14 +44,18 @@
                         <tr>
                             <td data-id="{{ $product->id }}">{{ $loop->iteration }}</td>
                             <td data-name="{{ $product->name }}"><strong>{{ $product->name }}</strong></td>
-                            <td data-category="{{ $product->category_id }}">{{ $product->category->name }}</td>
+                            <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
+                                @foreach ($product->category as $category)
+                                    <span class="badge bg-primary">{{ $category->name }}</span>
+                                @endforeach
+                            </td>
                             <td data-desc="{{ $product->product_description }}">{{ $product->product_description }}</td>
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
                             <td>Bintang 5</td>
                             <td data-address="{{ $product->address }}">{{ $product->address }}</td>
                             <td data-price="{{ $product->product_price }}">{{ $product->product_price }}</td>
                             <td data-disc="{{ $product->discount }}">{{ $product->discount }}%</td>
-                            <td>{{ $product->product_price * ($product->discount / 100) }}</td>
+                            <td>{{ $product->product_price - ($product->product_price * ($product->discount / 100)) }}</td>
                             <td data-consist="{{ $product->consist_of }}">{{ $product->consist_of }}</td>
                             <td>
                                 <button type='button' class='btn btn-photo btn-primary btn-add-product table-dark1'
@@ -162,7 +166,7 @@
                             @foreach ($categories as $category)
                                 <li>
                                     <div class="form-check">
-                                        <input class="form-check-input" name="tags[]" type="checkbox"
+                                        <input class="form-check-input" name="category_id[]" type="checkbox"
                                             value="{{ $category->id }}" id="check1" />
                                         <label class="form-check-label" for="check1">{{ $category->name }}</label>
                                     </div>
@@ -197,8 +201,8 @@
                             placeholder="Enter Address" />
                     </div>
                     <div class="col-4">
-                        <label for="editProductAddress" class="form-label">Size</label>
-                        <input type="text" name="address" id="editProductAddress" class="form-control"
+                        <label for="productSize" class="form-label">Size</label>
+                        <input type="text" name="size" id="productSize" class="form-control"
                             placeholder="Enter Size" />
                     </div>
                 </div>
@@ -256,16 +260,33 @@
                             placeholder="Enter Product Name" />
                     </div>
                 </div>
+                <label for="productName" class="form-label">Category</label>
                 <div class="row mb-3">
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <label for="editProductCategory" class="form-label">Category</label>
-                            <select id="editProductCategory" name="category_id" class="form-select">
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div class="col-12 ">
+
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCheckbox"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Category
+                        </button>
+                        <ul class="dropdown-menu p-3" aria-labelledby="dropdownCheckbox">
+                            @foreach ($categories as $category)
+                                <li>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="category_id[]" type="checkbox"
+                                            value="{{ $category->id }}" id="category_{{ $category->id }}" />
+                                        <label class="form-check-label" for="category_{{ $category->id }}">{{ $category->name }}</label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                        {{-- <label for="productCategory" class="form-label">Category</label>
+                        <select class="form-select" aria-label="Default select example" name="category_id"
+                            id="productCategory">
+                            <option value="null" aria-readonly="true" selected>Pilih Kategori Produk....</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select> --}}
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -287,8 +308,8 @@
                             placeholder="Enter Address" />
                     </div>
                     <div class="col-4">
-                        <label for="editProductAddress" class="form-label">Size</label>
-                        <input type="text" name="address" id="editProductAddress" class="form-control"
+                        <label for="editProductSize" class="form-label">Size</label>
+                        <input type="text" name="size" id="editProductSize" class="form-control"
                             placeholder="Enter Size" />
                     </div>
                 </div>
@@ -421,21 +442,12 @@
                 document.getElementById('editProductDisc').value = product_disc;
                 document.getElementById('editProductConsistOf').value = product_consist;
 
-                const categoryId = row.querySelector('[data-category]').getAttribute(
-                    'data-category');
-                const categorySelect = document.getElementById('editProductCategory');
+                const product_categories = row.querySelector('[data-categories]').getAttribute('data-categories').split(',');
 
-                // Reset pilihan dropdown
-                Array.from(categorySelect.options).forEach(option => {
-                    option.selected = false;
-                });
-                if (categoryId) {
-                    const optionToSelect = categorySelect.querySelector(
-                        `option[value="${categoryId}"]`);
-                    if (optionToSelect) {
-                        optionToSelect.selected = true;
-                    }
-                }
+                const categoryCheckboxes = document.querySelectorAll('.form-check-input[name="category_id[]"]');
+            categoryCheckboxes.forEach(checkbox => {
+                checkbox.checked = product_categories.includes(checkbox.value);
+            });
 
 
             });
