@@ -520,7 +520,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center ">
                             <p class="m-0 fw-bolder fs-6">Shipping</p>
-                            <p class="m-0 fs-6 fw-bolder">$8.95</p>
+                            <p class="m-0 fs-6 fw-bolder">postage + time slot</p>
                         </div>
                     </div>
                     <div class="py-3 border-bottom">
