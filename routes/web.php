@@ -21,8 +21,8 @@ use App\Http\Controllers\ProductCategoryController;
 
 // Auth Routes
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('login');
-    Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login']);
+    Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('index_login');
+    Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category']);
     Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product']);
@@ -40,9 +40,8 @@ Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index
 Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
-
-    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
+    Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+    Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     // ===========================================================>
     Route::resource('product_products', ProductProductController::class);
     Route::resource('product_categories', ProductCategoryController::class);

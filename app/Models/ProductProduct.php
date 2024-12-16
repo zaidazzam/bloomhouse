@@ -11,20 +11,21 @@ class ProductProduct extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 
+        'name',
         'product_description',
         'product_stock',
         'address',
+        'size',
         'product_price',
         'discount',
         'consist_of',
         'main_picture'
     ];
-    
+
     public function category()
     {
-        return $this->belongsToMany(ProductCategory::class,'product_categ', 
-        'product_product_id', 
+        return $this->belongsToMany(ProductCategory::class,'product_categ',
+        'product_product_id',
         'product_category_id');
     }
 
@@ -32,7 +33,7 @@ class ProductProduct extends Model
     {
         return $this->hasMany(ProductPicture::class, 'product_product_id');
     }
-    
+
     public function reviews()
     {
         return $this->hasMany(ProductReview::class);

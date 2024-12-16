@@ -7,7 +7,7 @@
              <div class="d-flex align-items-center">
                  <div class="f-w-6 d-flex align-items-center me-2 lh-1">
                      <img class="img-fluid-logo" src="/assets/images/logos/Bloom-House-02.png">
-                     <span  class="fs-5">BloomHouse</span>
+                     <span class="fs-5">BloomHouse</span>
                  </div>
              </div>
              <!-- / Logo-->
@@ -180,7 +180,8 @@
                                  <!-- Dropdown Menu Images Section-->
                                  <div class="d-none d-lg-block col-lg-5">
                                      <div class="vw-50 h-100 bg-img-cover bg-pos-center-center position-absolute"
-                                         style="background-image: url(./assets/images/banners/banner-bunga.jpg);"></div>
+                                         style="background-image: url(./assets/images/banners/banner-bunga.jpg);">
+                                     </div>
                                  </div>
                                  <!-- Dropdown Menu Images Section-->
                              </div>
@@ -190,7 +191,7 @@
                  </li>
                  <li class="nav-item me-lg-4">
                      <a class="nav-link fw-bolder py-lg-4" href="#">
-                        Mix Flower
+                         Mix Flower
                      </a>
                  </li>
                  <li class="nav-item me-lg-4">
@@ -247,10 +248,12 @@
 
              <!-- Navbar Login-->
              <li class="ms-1 d-none d-lg-inline-block">
-                 <a class="btn btn-link px-2 text-decoration-none d-flex align-items-center" href="#">
-                     <i class="ri-user-line ri-lg align-middle"></i>
-                 </a>
-             </li>
+                <a class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
+                   data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="ri-user-line ri-lg align-middle"></i>
+                </a>
+            </li>
+
              <!-- /Navbar Login-->
 
              <!-- Navbar Cart-->
@@ -268,4 +271,101 @@
          <!-- Navbar Icons-->
 
      </div>
+
+
  </div>
+     <!-- Login Modal -->
+     <div class="modal fade" id="loginModal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Header -->
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    <form id="loginForm">
+                        @csrf
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input name="password" type="password" value="" class="form-control" id="password" placeholder="Password" required>
+                            <span class="input-group-text" onclick="togglePasswordVisibility();">
+                                <i class="bx bx-hide"></i>
+                            </span>
+                        </div>
+                        {{-- <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="remember-me" />
+                                <label class="form-check-label" for="remember-me"> Remember Me </label>
+                            </div>
+                        </div> --}}
+                        <button type="button" id="loginButton" class="btn btn-primary d-grid w-100">Login</button>
+                    </form>
+                    <div id="errorMessage" class="alert alert-danger d-none mt-3"></div>
+
+                </div>
+                <!-- Modal Body -->
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <p class="small">Don't have an account? <a href="{{ route('register') }}" class="text-primary">Register</a></p>
+                    {{-- <p class="small"><a href="/forgot-password" class="text-primary">Forgot Password?</a></p> --}}
+                </div>
+                <!-- Modal Footer -->
+            </div>
+        </div>
+    </div>
+
+<script>
+     document.getElementById('loginButton').addEventListener('click', function () {
+        const formData = new FormData(document.getElementById('loginForm'));
+
+        fetch('{{ route('login') }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Redirect to dashboard or reload the page
+                window.location.href = data.redirect || '/dashboard';
+            } else {
+                // Display error message
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = data.message || 'Login failed. Please try again.';
+                errorMessage.classList.remove('d-none');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+    function togglePasswordVisibility() {
+    let passwordInput = document.getElementById('password');
+    let showEye = document.getElementById('hide_eye');
+    let hideEye = document.getElementById('hide_eye');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        // showEye.classList.add('d-none');
+        // hideEye.classList.remove('d-none');
+    } else {
+        passwordInput.type = 'password';
+        // showEye.classList.remove('d-none');
+        // hideEye.classList.add('d-none');
+    }
+}
+
+</script>

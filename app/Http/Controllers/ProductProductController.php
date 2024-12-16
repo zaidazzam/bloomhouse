@@ -28,6 +28,7 @@ class ProductProductController extends Controller
             'name' => 'required',
             'product_stock' => 'required|numeric',
             'address' => 'nullable',
+            'size' => 'nullable',
             'product_price' => 'required|numeric',
             'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
@@ -36,7 +37,7 @@ class ProductProductController extends Controller
             'category_id' => 'required|array|exists:product_categories,id',
         ]);
         if ($request->hasFile('main_picture')) {
-            $validated['main_picture'] = $request->file('main_picture')->store('products', 'public'); 
+            $validated['main_picture'] = $request->file('main_picture')->store('products', 'public');
         }
         $product = ProductProduct::create($validated);
         $product->category()->sync($validated['category_id']);
@@ -62,7 +63,8 @@ class ProductProductController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',
-            'address' => 'required',
+            'address' => 'nullable',
+            'size' => 'nullable',
             'product_price' => 'required|numeric',
             'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
@@ -70,16 +72,16 @@ class ProductProductController extends Controller
             'consist_of' => 'nullable',
             'category_id' => 'required|array|exists:product_categories,id',
         ]);
-    
+
         $product = ProductProduct::findOrFail($id);
-    
+
         if ($request->hasFile('main_picture')) {
             if ($product->main_picture) {
                 Storage::disk('public')->delete($product->main_picture);
             }
-            $validated['main_picture'] = $request->file('main_picture')->store('products', 'public'); 
+            $validated['main_picture'] = $request->file('main_picture')->store('products', 'public');
         }
-    
+
         $product->update($validated);
         $product->category()->sync($validated['category_id']);
         return redirect()->route('product_products.index')->with('success', 'Product updated successfully.');

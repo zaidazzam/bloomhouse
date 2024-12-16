@@ -31,6 +31,7 @@
                         <th class="text-white">Rating</th>
                         <th class="text-white">Address</th>
                         <th class="text-white">Price</th>
+                        <th class="text-white">Size</th>
                         <th class="text-white">Discount</th>
                         <th class="text-white">Price After Discount</th>
                         <th class="text-white">Consist Of</th>
@@ -53,9 +54,11 @@
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
                             <td>Bintang 5</td>
                             <td data-address="{{ $product->address }}">{{ $product->address }}</td>
+                            <td data-size="{{ $product->size }}">{{ $product->size }}</td>
                             <td data-price="{{ $product->product_price }}">{{ $product->product_price }}</td>
                             <td data-disc="{{ $product->discount }}">{{ $product->discount }}%</td>
-                            <td>{{ $product->product_price - ($product->product_price * ($product->discount / 100)) }}</td>
+                            <td>{{ $product->product_price - $product->product_price * ($product->discount / 100) }}
+                            </td>
                             <td data-consist="{{ $product->consist_of }}">{{ $product->consist_of }}</td>
                             <td>
                                 <button type='button' class='btn btn-photo btn-primary btn-add-product table-dark1'
@@ -274,7 +277,8 @@
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
                                             value="{{ $category->id }}" id="category_{{ $category->id }}" />
-                                        <label class="form-check-label" for="category_{{ $category->id }}">{{ $category->name }}</label>
+                                        <label class="form-check-label"
+                                            for="category_{{ $category->id }}">{{ $category->name }}</label>
                                     </div>
                                 </li>
                             @endforeach
@@ -430,6 +434,8 @@
                     'data-address');
                 const product_price = row.querySelector('[data-price]').getAttribute(
                     'data-price');
+                const product_size = row.querySelector('[data-size]').getAttribute(
+                    'data-size');
                 const product_disc = row.querySelector('[data-disc]').getAttribute('data-disc');
                 const product_consist = row.querySelector('[data-consist]').getAttribute(
                     'data-consist');
@@ -438,16 +444,19 @@
                 document.getElementById('editProductDescription').value = product_desc;
                 document.getElementById('editProductStock').value = product_stock;
                 document.getElementById('editProductAddress').value = product_address;
+                document.getElementById('editProductAddress').value = product_size;
                 document.getElementById('editProductPrice').value = product_price;
                 document.getElementById('editProductDisc').value = product_disc;
                 document.getElementById('editProductConsistOf').value = product_consist;
 
-                const product_categories = row.querySelector('[data-categories]').getAttribute('data-categories').split(',');
+                const product_categories = row.querySelector('[data-categories]').getAttribute(
+                    'data-categories').split(',');
 
-                const categoryCheckboxes = document.querySelectorAll('.form-check-input[name="category_id[]"]');
-            categoryCheckboxes.forEach(checkbox => {
-                checkbox.checked = product_categories.includes(checkbox.value);
-            });
+                const categoryCheckboxes = document.querySelectorAll(
+                    '.form-check-input[name="category_id[]"]');
+                categoryCheckboxes.forEach(checkbox => {
+                    checkbox.checked = product_categories.includes(checkbox.value);
+                });
 
 
             });

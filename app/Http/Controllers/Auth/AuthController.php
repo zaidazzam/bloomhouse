@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -39,26 +38,23 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            // direct to dashboard=====>
-            // return redirect()->intended('/admin/dashboard');
-
-            return redirect()->route('product');
+        if (Auth::attempt($request->only('username', 'password'), $request->remember)) {
+            return response()->json(['success' => true, 'redirect' => route('dashboard')]);
         }
-        return back()->with('error', 'Login failed!');
+
+        return response()->json(['success' => false, 'message' => 'Invalid username or password.'], 401);
     }
 
     public function logout(Request $request)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             Auth::logout();
         }
-        return redirect('/');
+        return redirect('/'); // Redirect to the root URL
     }
 }

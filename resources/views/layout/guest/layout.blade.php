@@ -18,6 +18,7 @@
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
     <link rel="stylesheet" href="./assets/css/guest.css" />
+    <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
