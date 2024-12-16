@@ -68,7 +68,7 @@ class ProductProductController extends Controller
             'product_description' => 'nullable',
             'discount' => 'nullable',
             'consist_of' => 'nullable',
-            'category_id' => 'required'
+            'category_id' => 'required|array|exists:product_categories,id',
         ]);
     
         $product = ProductProduct::findOrFail($id);
@@ -81,6 +81,7 @@ class ProductProductController extends Controller
         }
     
         $product->update($validated);
+        $product->category()->sync($validated['category_id']);
         return redirect()->route('product_products.index')->with('success', 'Product updated successfully.');
     }
 
