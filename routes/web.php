@@ -4,9 +4,11 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PostageRuleController;
 use App\Http\Controllers\ProductPictureController;
 use App\Http\Controllers\ProductProductController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Models\PostageRule;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('product_pictures', ProductPictureController::class);
     Route::resource('blogs', BlogController::class);
     Route::resource('tags', TagController::class);
+    Route::resource('postages', PostageRuleController::class);
 
 
     Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;

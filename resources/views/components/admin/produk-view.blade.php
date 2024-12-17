@@ -176,14 +176,6 @@
                                 </li>
                             @endforeach
                         </ul>
-                        {{-- <label for="productCategory" class="form-label">Category</label>
-                        <select class="form-select" aria-label="Default select example" name="category_id"
-                            id="productCategory">
-                            <option value="null" aria-readonly="true" selected>Pilih Kategori Produk....</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select> --}}
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -211,9 +203,11 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6">
-                        <label for="productPrice" class="form-label">Price</label>
-                        <input type="number" name="product_price" id="productPrice" class="form-control"
-                            placeholder="Enter Price" />
+                        <label for="editProductPrice" class="form-label">Price</label>
+                        <input type="hidden" name="product_price" id="editProductPrice" class="form-control"
+                            placeholder="Enter Price" required />
+                        <input type="text" name="product_price2" id="editProductPrice2" class="form-control"
+                            placeholder="Enter Price" required />
                     </div>
                     <div class="col-6">
                         <label for="editPriceBeforeDisc" class="form-label">Discount</label>
@@ -276,21 +270,17 @@
                                 <li>
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
-                                            value="{{ $category->id }}" id="category_{{ $category->id }}" />
-                                        <label class="form-check-label"
-                                            for="category_{{ $category->id }}">{{ $category->name }}</label>
+                                            value="{{ $category->id }}" id="category_{{ $category->id }}"
+                                            @if (isset($selectedCategories) && in_array($category->id, $selectedCategories)) checked @endif />
+
+                                        <label class="form-check-label" for="category_{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </label>
                                     </div>
                                 </li>
                             @endforeach
+
                         </ul>
-                        {{-- <label for="productCategory" class="form-label">Category</label>
-                        <select class="form-select" aria-label="Default select example" name="category_id"
-                            id="productCategory">
-                            <option value="null" aria-readonly="true" selected>Pilih Kategori Produk....</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select> --}}
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -320,8 +310,10 @@
                 <div class="row mb-3">
                     <div class="col-6">
                         <label for="editProductPrice" class="form-label">Price</label>
-                        <input type="number" name="product_price" id="editProductPrice" class="form-control"
-                            placeholder="Enter Price" />
+                        <input type="hidden" name="product_price" id="editProductPrice" class="form-control"
+                            placeholder="Enter Price" required />
+                        <input type="text" name="product_price2" id="editProductPrice2" class="form-control"
+                            placeholder="Enter Price" required />
                     </div>
                     <div class="col-6">
                         <label for="editPriceBeforeDisc" class="form-label">Discount</label>
@@ -352,7 +344,7 @@
         </form>
     </div>
 </div>
-<!-- Edit Product Modal -->
+<!-- Photo Product Modal -->
 <div class="modal fade" id="photoModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
         <form class="modal-content" id="photoForm" method="POST" enctype="multipart/form-data">
@@ -375,15 +367,6 @@
                         </tr>
                     </thead>
                     <tbody id="picture-list">
-                        {{-- <tr>
-                                <td><img src='/assets/images/logos/Bloom-House-02.png' alt='Product Photo'
-                                    class='rounded' width='100' /></td>
-                                    <td>
-                                        <button type='button' class='btn btn-outline-danger'>
-                                            Delete
-                                            </button>
-                                            </td>
-                                            </tr>"; --}}
                     </tbody>
 
                 </table>
@@ -472,7 +455,10 @@
                 const main_photo = row.querySelector('[main-photo]').getAttribute('main-photo');
                 document.getElementById('productId').value = productId;
                 main_picture.setAttribute('src', main_photo);
+
+                // Dapatkan elemen tbody dan kosongkan terlebih dahulu
                 const tbody = document.getElementById('picture-list');
+                tbody.innerHTML = ""; // Kosongkan isi tabel sebelum menambahkan gambar baru
 
                 const list_photo_raw = row.querySelector('[list-pict]').getAttribute(
                     'list-pict');
@@ -487,14 +473,14 @@
                     const row = document.createElement('tr');
                     const pictureCell = document.createElement('td');
                     pictureCell.innerHTML = `
-                        <img src="/storage/${photo.picture_path}" alt="Product Photo" class="rounded" width="100">`;
+                <img src="/storage/${photo.picture_path}" alt="Product Photo" class="rounded" width="100">`;
 
                     const actionCell = document.createElement('td');
                     actionCell.innerHTML = `
-                        <button type="button" class="btn btn-outline-danger" onclick="deletePicture('${photo.id}')">
-                            Delete
-                        </button>
-                        `;
+                <button type="button" class="btn btn-outline-danger" onclick="deletePicture('${photo.id}')">
+                    Delete
+                </button>
+            `;
 
                     row.appendChild(pictureCell);
                     row.appendChild(actionCell);
@@ -530,5 +516,23 @@
     rows.forEach((row, index) => {
         const noCell = row.querySelector("td:first-child");
         noCell.textContent = index + 1; // Assign the row number (1-based index)
+
+
+
+    });
+    document.getElementById('editProductPrice2').addEventListener('input', function(e) {
+        // Remove non-numeric characters
+        let value = e.target.value.replace(/[^,\d]/g, '').toString();
+        let price2 = document.getElementById('editProductPrice').value = value;
+        // Split the value into whole and decimal parts
+        let parts = value.split(',');
+        let wholePart = parts[0];
+        let decimalPart = parts.length > 1 ? ',' + parts[1] : '';
+
+        // Format the whole part with thousands separator
+        wholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+        // Combine whole and decimal parts
+        e.target.value = 'Rp ' + wholePart + decimalPart;
     });
 </script>

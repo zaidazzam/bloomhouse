@@ -24,12 +24,13 @@ class ProductProductController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',
             'address' => 'nullable',
             'size' => 'nullable',
-            'product_price' => 'required|numeric',
+            'product_price' => 'required',
             'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
@@ -53,10 +54,14 @@ class ProductProductController extends Controller
 
     public function edit($id)
     {
-        $product = ProductProduct::findOrFail($id);
+        $product = ProductProduct::with('category')->findOrFail($id); // Ambil produk beserta kategorinya
+        $categories = ProductCategory::all(); // Semua kategori
+        $selectedCategories = $product->category->pluck('id')->toArray(); // Array ID kategori yang dipilih
 
-        return view('product_products.edit', compact('product'));
+        return view('product_products.edit', compact('product', 'categories', 'selectedCategories'));
     }
+
+
 
     public function update(Request $request, $id)
     {

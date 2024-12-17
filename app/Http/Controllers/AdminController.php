@@ -9,7 +9,7 @@ class AdminController extends Controller
     public function dashboard(){
         return view('dashboard-view.dashboard');
     }
-    
+
     public function product(){
         return redirect('/product_products');
     }
@@ -17,11 +17,14 @@ class AdminController extends Controller
     public function categoryProduct(){
         return redirect('/product_categories');
     }
+    public function delivery(){
+        return redirect('/postages');
+    }
 
     public function blog(){
         return redirect('/blogs');
     }
-    
+
     public function tagBlog(){
         return redirect('/tags');
     }

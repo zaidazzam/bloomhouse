@@ -30,19 +30,19 @@
                     <span class="menu-header-text">Product</span>
                 </li>
                 <li
-                    class="menu-item {{ request()->is('admin/product', 'admin/category-product', 'admin/review-product') ? 'active open' : '' }}">
+                    class="menu-item {{ request()->is('product_products', 'product_categories', 'admin/review-product') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-florist"></i>
                         <div data-i18n="Layouts">Product</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item {{ request()->is('admin/product') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/product') }}" class="menu-link">
+                        <li class="menu-item {{ request()->is('product_products') ? 'active' : '' }}">
+                            <a href="{{ url('product_products') }}" class="menu-link">
                                 <div data-i18n="Without menu">Product</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('admin/category-product') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/category-product') }}" class="menu-link">
+                        <li class="menu-item {{ request()->is('product_categories') ? 'active' : '' }}">
+                            <a href="{{ url('product_categories') }}" class="menu-link">
                                 <div data-i18n="Without navbar">Category Product</div>
                             </a>
                         </li>
@@ -51,6 +51,25 @@
                                 <div data-i18n="Container">Review Product</div>
                             </a>
                         </li> --}}
+                    </ul>
+                </li>
+                {{-- Menu Produk --}}
+                {{-- Delivery Produk --}}
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Delivery</span>
+                </li>
+                <li
+                    class="menu-item {{ request()->is('postages') ? 'active open' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-truck"></i>
+                        <div data-i18n="Layouts">Delivery</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item {{ request()->is('postages') ? 'active' : '' }}">
+                            <a href="{{ url('postages') }}" class="menu-link">
+                                <div data-i18n="Without menu">Rule</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 {{-- Menu Produk --}}
