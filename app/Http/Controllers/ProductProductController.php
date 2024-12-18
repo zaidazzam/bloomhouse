@@ -30,7 +30,7 @@ class ProductProductController extends Controller
             'product_stock' => 'required|numeric',
             'address' => 'nullable',
             'size' => 'nullable',
-            'product_price' => 'required',
+            'product_price' => 'required|numeric',
             'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
@@ -65,6 +65,7 @@ class ProductProductController extends Controller
 
     public function update(Request $request, $id)
     {
+                // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',

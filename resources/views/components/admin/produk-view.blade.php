@@ -54,10 +54,11 @@
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
                             <td>Bintang 5</td>
                             <td data-address="{{ $product->address }}">{{ $product->address }}</td>
+                            <td data-price="{{ $product->product_price }}">Rp {{ number_format($product->product_price, 0, ' ,', '.') }}</td>
                             <td data-size="{{ $product->size }}">{{ $product->size }}</td>
-                            <td data-price="{{ $product->product_price }}">{{ $product->product_price }}</td>
                             <td data-disc="{{ $product->discount }}">{{ $product->discount }}%</td>
-                            <td>{{ $product->product_price - $product->product_price * ($product->discount / 100) }}
+                            <td>
+                                Rp {{ number_format($product->product_price - ($product->product_price * ($product->discount / 100)), 0, ',', '.') }}
                             </td>
                             <td data-consist="{{ $product->consist_of }}">{{ $product->consist_of }}</td>
                             <td>
@@ -203,10 +204,10 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6">
-                        <label for="editProductPrice" class="form-label">Price</label>
-                        <input type="hidden" name="product_price" id="editProductPrice" class="form-control"
+                        <label for="addProductPrice" class="form-label">Price</label>
+                        <input type="hidden" name="product_price" id="addProductPrice" class="form-control"
                             placeholder="Enter Price" required />
-                        <input type="text" name="product_price2" id="editProductPrice2" class="form-control"
+                        <input type="text" name="product_price" id="addProductPrice2" class="form-control"
                             placeholder="Enter Price" required />
                     </div>
                     <div class="col-6">
@@ -244,23 +245,26 @@
     <div class="modal-dialog">
         <form class="modal-content" id="editProductForm" method="POST" enctype="multipart/form-data">
             @method('PUT')
+            @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="editProductModalTitle">Edit Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @csrf
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="editProductName" class="form-label">Name</label>
                         <input type="text" id="editProductName" name="name" class="form-control"
-                            placeholder="Enter Product Name" />
+                            placeholder="Enter Product Name" value="{{ old('name') }}" />
+                        @error('name')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
+
                 <label for="productName" class="form-label">Category</label>
                 <div class="row mb-3">
-                    <div class="col-12 ">
-
+                    <div class="col-12">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCheckbox"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Select Category
@@ -271,66 +275,72 @@
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
                                             value="{{ $category->id }}" id="category_{{ $category->id }}"
-                                            @if (isset($selectedCategories) && in_array($category->id, $selectedCategories)) checked @endif />
-
+                                            @if (old('category_id') && in_array($category->id, old('category_id'))) checked @endif />
                                         <label class="form-check-label" for="category_{{ $category->id }}">
                                             {{ $category->name }}
                                         </label>
                                     </div>
                                 </li>
                             @endforeach
-
                         </ul>
+                        @error('category_id')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="editProductDescription" class="form-label">Description</label>
                         <textarea name="product_description" id="editProductDescription" class="form-control"
-                            placeholder="Enter Description"></textarea>
+                            placeholder="Enter Description">{{ old('product_description') }}</textarea>
+                        @error('product_description')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-4">
                         <label for="editProductStock" class="form-label">Stock</label>
                         <input type="number" name="product_stock" id="editProductStock" class="form-control"
-                            placeholder="Enter Stock" />
+                            placeholder="Enter Stock" value="{{ old('product_stock') }}" />
+                        @error('product_stock')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-4">
                         <label for="editProductAddress" class="form-label">Address</label>
                         <input type="text" name="address" id="editProductAddress" class="form-control"
-                            placeholder="Enter Address" />
+                            placeholder="Enter Address" value="{{ old('address') }}" />
+                        @error('address')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-4">
                         <label for="editProductSize" class="form-label">Size</label>
                         <input type="text" name="size" id="editProductSize" class="form-control"
-                            placeholder="Enter Size" />
+                            placeholder="Enter Size" value="{{ old('size') }}" />
+                        @error('size')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-6">
                         <label for="editProductPrice" class="form-label">Price</label>
-                        <input type="hidden" name="product_price" id="editProductPrice" class="form-control"
-                            placeholder="Enter Price" required />
-                        <input type="text" name="product_price2" id="editProductPrice2" class="form-control"
-                            placeholder="Enter Price" required />
+                        <input type="text" name="product_price" id="editProductPrice2" class="form-control"
+                            placeholder="Enter Price" value="{{ old('product_price') }}" />
+                        @error('product_price')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col-6">
                         <label for="editPriceBeforeDisc" class="form-label">Discount</label>
                         <input type="number" name="discount" id="editProductDisc" class="form-control"
-                            placeholder="Enter Discount Price" />
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <label for="editProductConsistOf" class="form-label">Consist Of</label>
-                        <textarea id="editProductConsistOf" name="consist_of" class="form-control" placeholder="Enter Materials"></textarea>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <label for="editProductPhoto" class="form-label">Photo(thumbnail)</label>
-                        <input type="file" id="editProductPhoto" name="main_picture" class="form-control" />
+                            placeholder="Enter Discount Price" value="{{ old('discount') }}" />
+                        @error('discount')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -344,6 +354,7 @@
         </form>
     </div>
 </div>
+
 <!-- Photo Product Modal -->
 <div class="modal fade" id="photoModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
@@ -427,7 +438,7 @@
                 document.getElementById('editProductDescription').value = product_desc;
                 document.getElementById('editProductStock').value = product_stock;
                 document.getElementById('editProductAddress').value = product_address;
-                document.getElementById('editProductAddress').value = product_size;
+                document.getElementById('editProductSize').value = product_size;
                 document.getElementById('editProductPrice').value = product_price;
                 document.getElementById('editProductDisc').value = product_disc;
                 document.getElementById('editProductConsistOf').value = product_consist;
@@ -520,10 +531,25 @@
 
 
     });
-    document.getElementById('editProductPrice2').addEventListener('input', function(e) {
+    document.getElementById('addProductPrice').addEventListener('input', function(e) {
         // Remove non-numeric characters
         let value = e.target.value.replace(/[^,\d]/g, '').toString();
-        let price2 = document.getElementById('editProductPrice').value = value;
+        let price2 = document.getElementById('addProductPrice2').value = value;
+        // Split the value into whole and decimal parts
+        let parts = value.split(',');
+        let wholePart = parts[0];
+        let decimalPart = parts.length > 1 ? ',' + parts[1] : '';
+
+        // Format the whole part with thousands separator
+        wholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+        // Combine whole and decimal parts
+        e.target.value = 'Rp ' + wholePart + decimalPart;
+    });
+    document.getElementById('editProductPrice').addEventListener('input', function(e) {
+        // Remove non-numeric characters
+        let value = e.target.value.replace(/[^,\d]/g, '').toString();
+        let price2 = document.getElementById('editProductPrice2').value = value;
         // Split the value into whole and decimal parts
         let parts = value.split(',');
         let wholePart = parts[0];
