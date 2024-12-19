@@ -26,8 +26,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('index_login');
     Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
-    Route::get('/category', [App\Http\Controllers\GuestController::class, 'category']);
-    Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product']);
+    Route::get('/category', [App\Http\Controllers\GuestController::class, 'category'])->name('category');
+    Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
     Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
     Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);

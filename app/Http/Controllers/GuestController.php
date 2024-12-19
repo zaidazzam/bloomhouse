@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\ProductProduct;
+use App\Models\ProductCategory;
 
 class GuestController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        // Mengambil data produk terbaru dengan eager loading relasi
+        $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+            ->latest()
+            ->get();
+        $categories = ProductCategory::all();
 
-        return view('guest-view.homepage');
+        // Mengirimkan data ke view
+        return view('guest-view.homepage', compact('products','categories'));
     }
 
     public function category(){

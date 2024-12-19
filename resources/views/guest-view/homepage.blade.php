@@ -13,7 +13,7 @@
 
 
         <!-- Featured Brands-->
-        @include('components.guest.homepage.featured-brands')
+        {{-- @include('components.guest.homepage.featured-brands') --}}
 
         <!--/ Featured Brands-->
 
