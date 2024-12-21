@@ -8,20 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logos/Bloom-House-02.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logos/Bloom-House-02.png">
-    <link rel="mask-icon" href="./assets/images/logos/Bloom-House-02.png" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}">
+    <link rel="mask-icon" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
-    <link rel="stylesheet" href="./assets/css/guest.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/libs.bundle.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/guest.css') }}" />
     <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.bundle.css') }}" />
 
     <!-- Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,21 +76,25 @@
     {{-- Content --}}
     <main class="mt-0">
         @yield('content')
-
     </main>
-    {{-- Header --}}
+
+    {{-- Footer --}}
     @include('layout.guest.footer')
+
+    {{-- Filter --}}
     @include('layout.guest.filter')
+
+    {{-- Cart --}}
     @include('layout.guest.cart')
+
+    {{-- Search --}}
     @include('layout.guest.search')
 
-    <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="./assets/js/vendor.bundle.js"></script>
+    <script src="{{ asset('assets/js/vendor.bundle.js') }}"></script>
 
     <!-- Theme JS -->
-    <script src="./assets/js/theme.bundle.js"></script>
-
+    <script src="{{ asset('assets/js/theme.bundle.js') }}"></script>
 </body>
 
 </html>

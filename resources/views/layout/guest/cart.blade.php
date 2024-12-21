@@ -22,7 +22,7 @@
                 <div class="row mx-0 pb-4 mb-4 border-bottom">
                     <div class="col-3">
                         <picture class="d-block bg-light">
-                            <img class="img-fluid" src="./assets/images/products/product-1.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/product-1.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket">
                         </picture>
                     </div>
@@ -43,7 +43,7 @@
                 <div class="row mx-0 pb-4 mb-4 border-bottom">
                     <div class="col-3">
                         <picture class="d-block bg-light">
-                            <img class="img-fluid" src="./assets/images/products/product-2.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/product-2.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket">
                         </picture>
                     </div>
@@ -66,9 +66,9 @@
                     <p class="m-0 fw-bolder">Subtotal</p>
                     <p class="m-0 fw-bolder">$233.33</p>
                 </div>
-                <a href="./checkout.html"
+                <a href="{{ url('checkout') }}"
                     class="btn btn-orange btn-orange-chunky mt-5 mb-2 d-block text-center">Checkout</a>
-                <a href="./cart.html"
+                <a href="{{ url('cart') }}"
                     class="btn btn-dark fw-bolder d-block text-center transition-all opacity-50-hover">View Cart</a>
             </div>
         </div>

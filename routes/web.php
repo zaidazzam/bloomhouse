@@ -8,6 +8,7 @@ use App\Http\Controllers\PostageRuleController;
 use App\Http\Controllers\ProductPictureController;
 use App\Http\Controllers\ProductProductController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\GuestController;
 use App\Models\PostageRule;
 
 /*
@@ -31,6 +32,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
     Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
     Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);
+    Route::get('/product/{id}', [GuestController::class, 'productShow1'])->name('product1.show');
+
 });
 
 Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;

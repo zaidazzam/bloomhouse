@@ -26,7 +26,7 @@
         <div class="row g-2">
             <div class="d-none d-md-block col-md-4" data-aos="fade-in" data-aos-delay="150">
                 <picture>
-                    <img class="img-fluid" src="./assets/images/products/bunga1.jpg"
+                    <img class="img-fluid" src="{{ asset('assets/images/products/bunga1.jpg') }}"
                         alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                 </picture>
             </div>
@@ -34,49 +34,49 @@
                 <div class="row g-2">
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
@@ -84,11 +84,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center mt-3">
-            <p class="text-muted m-0">Follow us on Instragram <span class="text-lowercase">@Alpine</span></p>
+            <p class="text-muted m-0">Follow us on Instagram <span class="text-lowercase">@Alpine</span></p>
             <a class="text-link-border fw-bolder m-0 text-white" href="#">More On Instagram <i
                     class="ri-external-link-line align-bottom"></i></a>
         </div>
     </div>
+
     <!-- Instagram Display-->
 
     <!-- Info Bar-->
