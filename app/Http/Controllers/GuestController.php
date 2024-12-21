@@ -13,8 +13,8 @@ class GuestController extends Controller
     {
         // Mengambil data produk terbaru dengan eager loading relasi
         $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
-            ->latest()
-            ->get();
+        ->oldest() // Mengurutkan data dari yang lebih lama
+        ->get();
         $categories = ProductCategory::all();
 
         // Mengirimkan data ke view
