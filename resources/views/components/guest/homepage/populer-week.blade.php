@@ -97,7 +97,8 @@
                                         (178)</span>
                                 </div>
                                 <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                    href="/detail-product">{{ $product->name }}</a>
+                                href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
+
                                 <p class="fw-bolder m-0 mt-2">
                                     Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
                             </div>

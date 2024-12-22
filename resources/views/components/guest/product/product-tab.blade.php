@@ -8,22 +8,22 @@
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0 active" id="details-tab"
                                 data-bs-toggle="tab" href="#details" role="tab" aria-controls="details"
-                                aria-selected="true">Rincian</a>
+                                aria-selected="true">Details</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="reviews-tab"
                                 data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                aria-selected="false">Ulasan</a>
+                                aria-selected="false">Review</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="delivery-tab"
                                 data-bs-toggle="tab" href="#delivery" role="tab" aria-controls="delivery"
-                                aria-selected="false">Pengiriman</a>
+                                aria-selected="false">Delivery</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="returns-tab"
                                 data-bs-toggle="tab" href="#returns" role="tab" aria-controls="returns"
-                                aria-selected="false">Pengembalian</a>
+                                aria-selected="false">Return</a>
                         </li>
                     </ul>
                     <!-- / Tab Nav-->
@@ -31,27 +31,28 @@
                     <!-- Tab Content-->
                     <div class="tab-content" id="myTabContent">
 
-                        <!-- Tab Details Content-->
+                        <!-- Tab Details Content -->
                         <div class="tab-pane fade show active py-5" id="details" role="tabpanel"
                             aria-labelledby="details-tab">
                             <div class="col-12 col-lg-10 mx-auto">
                                 <div class="row g-5">
+                                    <!-- Product Description -->
                                     <div class="col-12 col-md-6">
-                                        <p>Soft, stretchy - the most flattering product of the season! What could be
-                                            easier? Beautifully soft and
-                                            light cotton-modal jersey, with the extra advantage of stretch, cut in an
-                                            A-line - the universally
-                                            flattering shape for every body. We promise you, once you've tried these
-                                            lovely products - you'll be
-                                            hooked..</p>
+                                        <p style="text-align: justify;">
+                                            {{ $product->product_description ?? 'No description available for this product.' }}
+                                        </p>
+
                                     </div>
+                                    <!-- Consist Of -->
                                     <div class="col-12 col-md-6">
                                         <ul>
-                                            <li>Stretchy cotton-modal jersey stripe</li>
-                                            <li>Garment washed</li>
-                                            <li>Flat, covered elastic waistband</li>
-                                            <li>58% pima cotton/38% viscose </li>
-                                            <li>Modal/4% Lycra® elastane</li>
+                                            @if (!empty($product->consist_of))
+                                                @foreach (explode(',', $product->consist_of) as $item)
+                                                    <li>{{ trim($item) }}</li>
+                                                @endforeach
+                                            @else
+                                                <li>No additional information available.</li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </div>
@@ -65,13 +66,15 @@
                             <section class="reviews">
                                 <div class="col-lg-12 text-center pb-5">
 
-                                    <h2 class="fs-1 fw-bold d-flex align-items-center justify-content-center">4.88
-                                        <small class="text-muted fw-bolder ms-3 fw-bolder fs-6">(1288 ulasan)</small>
+                                    <h2 class="fs-1 fw-bold d-flex align-items-center justify-content-center">
+                                        {{ number_format($averageRating, 2) }}
+                                        <small class="text-muted fw-bolder ms-3 fw-bolder fs-6">({{ $reviewCount }}
+                                            ulasan)</small>
                                     </h2>
                                     <div class="d-flex justify-content-center">
                                         <!-- Review Stars Medium-->
                                         <div class="rating position-relative d-table">
-                                            <div class="position-absolute stars" style="width: 80%">
+                                            <div class="position-absolute stars" style="width: {{ $product->reviews->avg('rating') * 20 }}%">
                                                 <i class="ri-star-fill text-dark ri-2x mr-1"></i>
                                                 <i class="ri-star-fill text-dark ri-2x mr-1"></i>
                                                 <i class="ri-star-fill text-dark ri-2x mr-1"></i>
@@ -88,283 +91,87 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="bg-light rounded py-3 px-4 mt-3 col-12 col-md-6 col-lg-5 mx-auto">
-                                        <ul class="list-group list-group-flush">
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 bg-transparent">
-                                                <span class="fw-bolder">Ukuran</span>
-                                                <!-- Review Stars Small-->
-                                                <div class="rating position-relative d-table">
-                                                    <div class="position-absolute stars" style="width: 25%">
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 bg-transparent">
-                                                <span class="fw-bolder">Value for money</span>
-                                                <!-- Review Stars Small-->
-                                                <div class="rating position-relative d-table">
-                                                    <div class="position-absolute stars" style="width: 75%">
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 bg-transparent">
-                                                <span class="fw-bolder">Build quality</span>
-                                                <!-- Review Stars Small-->
-                                                <div class="rating position-relative d-table">
-                                                    <div class="position-absolute stars" style="width: 65%">
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li
-                                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 bg-transparent">
-                                                <span class="fw-bolder">Style</span>
-                                                <!-- Review Stars Small-->
-                                                <div class="rating position-relative d-table">
-                                                    <div class="position-absolute stars" style="width: 90%">
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                        <i class="ri-star-fill text-dark mr-1"></i>
-                                                    </div>
-                                                    <div class="stars">
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                        <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
                                     <!-- Review Modal-->
                                     <button type="button"
                                         class="btn btn-dark mt-4 hover-lift-sm hover-boxshadow disable-child-pointer"
                                         data-bs-toggle="offcanvas" data-bs-target="#offcanvasReview"
                                         aria-controls="offcanvasReview">
-                                        Buat Ulasan <i class="ri-discuss-line align-bottom ms-1"></i>
+                                        Create a Review<i class="ri-discuss-line align-bottom ms-1"></i>
                                     </button>
                                     <!-- / Review Modal Button-->
 
                                 </div>
 
                                 <!-- Single Review-->
-                                <article class="py-5 border-bottom border-top">
-                                    <div class="row">
-                                        <div class="col-12 col-md-4">
-                                            <small class="text-muted fw-bolder">08/12/2021</small>
-                                            <p class="fw-bolder">Ben Sandhu, Ireland</p>
-                                            <span class="bg-success-faded fs-xs fw-bolder text-uppercase p-2">Verified
-                                                Customer</span>
-                                        </div>
-                                        <div class="col-12 col-md-8 mt-4 mt-md-0">
-                                            <!-- Review Stars Small-->
-                                            <div class="rating position-relative d-table">
-                                                <div class="position-absolute stars" style="width: 80%">
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
+                                <!-- Reviews Section -->
+                                @if ($product->reviews->count() > 0)
+                                    @foreach ($product->reviews as $review)
+                                        <!-- Single Review -->
+                                        <article class="py-5 border-bottom border-top">
+                                            <div class="row">
+                                                <!-- Reviewer Info -->
+                                                <div class="col-12 col-md-4">
+                                                    <small class="text-muted fw-bolder">
+                                                        {{ \Carbon\Carbon::parse($review->created_at)->format('d/m/Y') }}
+                                                    </small>
+                                                    <p class="fw-bolder">
+                                                        {{ $review->customer_name ?? 'Anonymous' }},
+                                                        Indonesia
+                                                    </p>
+                                                    <span
+                                                        class="bg-success-faded fs-xs fw-bolder text-uppercase p-2">Verified
+                                                        Customer</span>
                                                 </div>
-                                                <div class="stars">
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                </div>
-                                            </div>
-                                            <p class="fw-bolder mt-4">Happy with this considering the price</p>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi,
-                                                architecto placeat nam officia
-                                                sapiente ipsam at dolorum quisquam, ipsa earum qui laboriosam. Pariatur
-                                                recusandae nihil, architecto
-                                                reprehenderit perferendis obcaecati. Lorem ipsum dolor, sit amet
-                                                consectetur adipisicing elit.
-                                                Distinctio sint nesciunt velit quae, quisquam ullam veritatis itaque
-                                                repudiandae. Inventore quae
-                                                doloribus modi nihil illum accusamus voluptas suscipit neque perferendis
-                                                totam!</p>
+                                                <!-- Review Content -->
+                                                <div class="col-12 col-md-8 mt-4 mt-md-0">
+                                                    <!-- Review Stars -->
+                                                    <div class="rating position-relative d-table">
+                                                        <div class="position-absolute stars"
+                                                            style="width: {{ ($review->rating / 5) * 100 }}%">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                <i class="ri-star-fill text-dark mr-1"></i>
+                                                            @endfor
+                                                        </div>
+                                                        <div class="stars">
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
+                                                            @endfor
+                                                        </div>
+                                                    </div>
+                                                    <!-- Review Title & Text -->
+                                                    <p class="fw-bolder mt-4">
+                                                        {{ $review->review_title ?? 'Great Product' }}</p>
+                                                    <p>{{ $review->review }}</p>
 
-                                            <small class="fw-bolder bg-light d-table rounded py-1 px-2">Yes, I would
-                                                recommend the product</small>
-                                            <div
-                                                class="d-block d-md-flex mt-3 justify-content-between align-items-center">
-                                                <a href="#"
-                                                    class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start"
-                                                    title=""><small>Was this review helpful?
-                                                        <i class="ri-thumb-up-line ms-4"></i> 112 <i
-                                                            class="ri-thumb-down-line ms-2"></i>
-                                                        23</small></a>
-                                                <a href="#"
-                                                    class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start mt-3 mt-md-0"
-                                                    title=""><small>Flag as
-                                                        inappropriate <i class="ri-flag-2-line ms-2"></i></small></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- /Single Review-->
+                                                    <!-- Recommendation -->
+                                                    <small class="fw-bolder bg-light d-table rounded py-1 px-2">
+                                                        'Yes, I would recommend the product'
+                                                    </small>
 
-                                <!-- Single Review-->
-                                <article class="py-5 border-bottom ">
-                                    <div class="row">
-                                        <div class="col-12 col-md-4">
-                                            <small class="text-muted fw-bolder">08/12/2021</small>
-                                            <p class="fw-bolder">Patricia Smith, London</p>
-                                            <span class="bg-success-faded fs-xs fw-bolder text-uppercase p-2">Verified
-                                                Customer</span>
-                                        </div>
-                                        <div class="col-12 col-md-8 mt-4 mt-md-0">
-                                            <!-- Review Stars Small-->
-                                            <div class="rating position-relative d-table">
-                                                <div class="position-absolute stars" style="width: 80%">
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                </div>
-                                                <div class="stars">
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
+                                                    <!-- Review Actions -->
+                                                    <div
+                                                        class="d-block d-md-flex mt-3 justify-content-between align-items-center">
+                                                        {{-- <a href="#" class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start">
+                                                        <small>Was this review helpful?
+                                                            <i class="ri-thumb-up-line ms-4"></i> {{ $review->likes ?? 0 }}
+                                                            <i class="ri-thumb-down-line ms-2"></i> {{ $review->dislikes ?? 0 }}
+                                                        </small>
+                                                    </a> --}}
+                                                        <a href="#"
+                                                            class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start mt-3 mt-md-0">
+                                                            <small>Flag as inappropriate <i
+                                                                    class="ri-flag-2-line ms-2"></i></small>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <p class="fw-bolder mt-4">Very happy with my purchase so far...</p>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi,
-                                                architecto placeat nam officia
-                                                sapiente ipsam at dolorum quisquam, ipsa earum qui laboriosam. Pariatur
-                                                recusandae nihil, architecto
-                                                reprehenderit perferendis obcaecati. Lorem ipsum dolor, sit amet
-                                                consectetur adipisicing elit.
-                                                Distinctio sint nesciunt velit quae, quisquam ullam veritatis itaque
-                                                repudiandae. Inventore quae
-                                                doloribus modi nihil illum accusamus voluptas suscipit neque perferendis
-                                                totam!</p>
+                                        </article>
+                                        <!-- /Single Review -->
+                                    @endforeach
+                                @else
+                                    <p class="text-center py-5">No reviews yet. Be the first to write one!</p>
+                                @endif
 
-                                            <small class="fw-bolder bg-light d-table rounded py-1 px-2">Yes, I would
-                                                recommend the product</small>
-                                            <div
-                                                class="d-block d-md-flex mt-3 justify-content-between align-items-center">
-                                                <a href="#"
-                                                    class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start"
-                                                    title=""><small>Was this review helpful?
-                                                        <i class="ri-thumb-up-line ms-4"></i> 112 <i
-                                                            class="ri-thumb-down-line ms-2"></i>
-                                                        23</small></a>
-                                                <a href="#"
-                                                    class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start mt-3 mt-md-0"
-                                                    title=""><small>Flag as
-                                                        inappropriate <i class="ri-flag-2-line ms-2"></i></small></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- /Single Review-->
-
-                                <!-- Single Review-->
-                                <article class="py-5 border-bottom ">
-                                    <div class="row">
-                                        <div class="col-12 col-md-4">
-                                            <small class="text-muted fw-bolder">08/12/2021</small>
-                                            <p class="fw-bolder">Jack Jones, Scotland</p>
-                                            <span class="bg-success-faded fs-xs fw-bolder text-uppercase p-2">Verified
-                                                Customer</span>
-                                        </div>
-                                        <div class="col-12 col-md-8 mt-4 mt-md-0">
-                                            <!-- Review Stars Small-->
-                                            <div class="rating position-relative d-table">
-                                                <div class="position-absolute stars" style="width: 80%">
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                    <i class="ri-star-fill text-dark mr-1"></i>
-                                                </div>
-                                                <div class="stars">
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                    <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                </div>
-                                            </div>
-                                            <p class="fw-bolder mt-4">I wish it was a little cheaper - otherwise love
-                                                this!</p>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi,
-                                                architecto placeat nam officia
-                                                sapiente ipsam at dolorum quisquam, ipsa earum qui laboriosam. Pariatur
-                                                recusandae nihil, architecto
-                                                reprehenderit perferendis obcaecati. Lorem ipsum dolor, sit amet
-                                                consectetur adipisicing elit.
-                                                Distinctio sint nesciunt velit quae, quisquam ullam veritatis itaque
-                                                repudiandae. Inventore quae
-                                                doloribus modi nihil illum accusamus voluptas suscipit neque perferendis
-                                                totam!</p>
-
-                                            <small class="fw-bolder bg-light d-table rounded py-1 px-2">Yes, I would
-                                                recommend the product</small>
-                                            <div
-                                                class="d-block d-md-flex mt-3 justify-content-between align-items-center">
-                                                <a href="#"
-                                                    class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start"
-                                                    title=""><small>Was this review helpful?
-                                                        <i class="ri-thumb-up-line ms-4"></i> 112 <i
-                                                            class="ri-thumb-down-line ms-2"></i>
-                                                        23</small></a>
-                                                <a href="#"
-                                                    class="btn btn-link text-muted p-0 text-decoration-none w-100 w-md-auto fw-bolder text-start mt-3 mt-md-0"
-                                                    title=""><small>Flag as
-                                                        inappropriate <i class="ri-flag-2-line ms-2"></i></small></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
                                 <!-- /Single Review-->
 
 
@@ -471,3 +278,68 @@
             <!-- / Product Tabs-->
 
         </section>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasReview">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasReviewLabel">Leave A Review</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- Flash Message -->
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <!-- Review Form -->
+                <form action="{{ route('product_reviews.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_product_id" value="{{ $product->id }}">
+
+                    <!-- Review Title Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="review_title">Review Title</label>
+                        <input type="text" class="form-control @error('review_title') is-invalid @enderror" name="review_title" id="review_title" placeholder="Enter review title" value="{{ old('review_title') }}" required>
+                        @error('review_title')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Customer Name Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="customer_name">Your Name</label>
+                        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" name="customer_name" id="customer_name" placeholder="Enter your name" value="{{ old('customer_name') }}" =>
+                        @error('customer_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Rating Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="rating">Rating</label>
+                        <select class="form-control @error('rating') is-invalid @enderror" name="rating" id="rating" required>
+                            <option value="">Select Rating</option>
+                            <option value="1" @if(old('rating') == 1) selected @endif>1 Star</option>
+                            <option value="2" @if(old('rating') == 2) selected @endif>2 Stars</option>
+                            <option value="3" @if(old('rating') == 3) selected @endif>3 Stars</option>
+                            <option value="4" @if(old('rating') == 4) selected @endif>4 Stars</option>
+                            <option value="5" @if(old('rating') == 5) selected @endif>5 Stars</option>
+                        </select>
+                        @error('rating')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Review Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="review">Your Review</label>
+                        <textarea class="form-control @error('review') is-invalid @enderror" name="review" id="review" rows="5" placeholder="Write your review here" required>{{ old('review') }}</textarea>
+                        @error('review')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Submit Review</button>
+                </form>
+            </div>
+        </div>

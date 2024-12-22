@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductPictureController;
 use App\Http\Controllers\ProductProductController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\ProductReviewController;
 use App\Models\PostageRule;
 
 /*
@@ -28,11 +29,13 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category'])->name('category');
-    Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
+    // Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
     Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
     Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);
     Route::get('/product/{id}', [GuestController::class, 'productShow1'])->name('product1.show');
+    Route::post('/product-reviews', [ProductReviewController::class, 'store'])->name('product_reviews.store');
+    Route::post('/track-view/{productId}', [ProductProductController::class, 'trackView']);
 
 });
 

@@ -2,11 +2,16 @@
     <div class="pb-3">
         <!-- Product Name, Review, Brand, Price-->
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <p class="small fw-bolder text-uppercase tracking-wider text-muted mb-0 lh-1">{{ $product->category->first()->name ?? 'No Category' }}</p>
-            <div class="d-flex justify-content-start align-items-center">
+            <p class="small fw-bolder text-uppercase tracking-wider text-muted mb-0 lh-1">
+                @foreach ($product->category->take(8) as $category)
+                    {{ $category->name }}{{ !$loop->last ? ' / ' : '' }}
+                @endforeach
+            </p>
+                        <div class="d-flex justify-content-start align-items-center">
                 <!-- Review Stars Small-->
                 <div class="rating position-relative d-table">
                     <div class="position-absolute stars" style="width: {{ $product->reviews->avg('rating') * 20 }}%">
+                    {{-- <div class="position-absolute stars" style="width: {{ 3 * 20 }}%"> --}}
                         <i class="ri-star-fill text-dark mr-1"></i>
                         <i class="ri-star-fill text-dark mr-1"></i>
                         <i class="ri-star-fill text-dark mr-1"></i>
@@ -22,6 +27,7 @@
                     </div>
                 </div>
                 <small class="text-muted d-inline-block ms-2 fs-bolder">({{ $product->reviews->count() }})</small>
+                {{-- <small class="text-muted d-inline-block ms-2 fs-bolder">({{ 287 }})</small> --}}
             </div>
         </div>
         <h1 class="mb-2 fs-2 fw-bold">{{ $product->name }}</h1>
@@ -38,11 +44,12 @@
                 <div class="d-flex justify-content-start align-items-center">
                     <i class="ri-fire-fill lh-1 text-orange"></i>
                     <div class="ms-2">
-                        <small class="opacity-75 fw-bolder lh-1">{{ $product->views ?? 0 }} Dilihat</small>
+                        <small class="opacity-75 fw-bolder lh-1 views-count">{{ $product->views ?? 143 }} Dilihat</small>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- /Product Views-->
 
         <!-- Product Options-->
@@ -70,6 +77,7 @@
                 Keranjang</button>
             <button class="btn btn-danger"><i class="ri-heart-line"></i></button>
         </div>
+
         <!-- /Add To Cart-->
 
         <!-- Socials-->
@@ -100,5 +108,36 @@
                 </li>
             </ul>
         </div>
+
     </div>
 </div>
+<script>
+    let timer;
+    const productId = {{ $product->id }}; // Ambil ID produk dari server
+
+    // Fungsi untuk mencatat tampilan setelah 30 detik
+    function trackView() {
+        fetch(`/track-view/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ productId })
+        }).then(response => {
+            if (response.ok) {
+                console.log('Product view tracked');
+            }
+        });
+    }
+
+    // Set timer untuk melacak setelah 30 detik
+    window.onload = function() {
+        timer = setTimeout(trackView, 30000); // 30 detik
+    };
+
+    // Menghentikan timer jika pengguna meninggalkan halaman lebih cepat
+    window.onbeforeunload = function() {
+        clearTimeout(timer);
+    };
+</script>

@@ -12,8 +12,12 @@
                         </picture>
                     </div>
                 @empty
-                    <p>No additional images available.</p>
-                @endforelse
+                <img class="img-fluid mx-auto d-table"
+                src="{{ asset('assets/images/logos/imagenotfound.png') }}"
+                alt="images not found"
+                style="border: 2px solid #808080;">
+
+                 @endforelse
             </div>
         </div>
         <div class="swiper-container gallery-top-vertical col-10">

@@ -17,6 +17,7 @@
                             </div>
 
                             <div class="swiper-wrapper">
+                                @foreach ($products as $product)
 
                                 <!-- Swiper Slide-->
                                 <div class="swiper-slide overflow-hidden">
@@ -25,27 +26,22 @@
                                     <div class="card position-relative h-100 card-listing hover-trigger">
                                         <div class="card-header">
                                             <picture class="position-relative overflow-hidden d-block bg-light">
-                                                <img class="w-100 img-fluid position-relative z-index-10" title=""
-                                                    src="{{ asset('assets/images/products/bunga2.jpg') }}"
-                                                    alt="Bootstrap 5 Template by Pixel Rocket">
+                                                <img class="w-100 img-fluid position-relative z-index-10"
+                                                    title="{{ $product->name }}"
+                                                    src="{{ asset('storage/' . $product->main_picture) }}"
+                                                    alt="{{ $product->name }}">
                                             </picture>
                                             <div class="card-actions">
                                                 <span
                                                     class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
                                                     Add</span>
-                                                <div
-                                                    class="d-flex justify-content-center align-items-center flex-wrap mt-3">
-                                                    <button class="btn btn-outline-dark btn-sm mx-2">S</button>
-                                                    <button class="btn btn-outline-dark btn-sm mx-2">M</button>
-                                                    <button class="btn btn-outline-dark btn-sm mx-2">L</button>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="card-body px-0 text-center">
                                             <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
                                                 <!-- Review Stars Small-->
                                                 <div class="rating position-relative d-table">
-                                                    <div class="position-absolute stars" style="width: 80%">
+                                                    <div class="position-absolute stars" style="width: {{ $product->reviews->avg('rating') * 20 }}%">
                                                         <i class="ri-star-fill text-dark mr-1"></i>
                                                         <i class="ri-star-fill text-dark mr-1"></i>
                                                         <i class="ri-star-fill text-dark mr-1"></i>
@@ -70,6 +66,7 @@
                                     <!--/ Card-->
                                 </div>
                                 <!-- / Swiper Slide-->
+                                @endforeach
 
                                 <!-- Swiper Slide-->
                                 <div class="swiper-slide overflow-hidden">
