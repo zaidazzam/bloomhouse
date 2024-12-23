@@ -10,45 +10,77 @@ use App\Models\ProductCategory;
 class GuestController extends Controller
 {
     public function index()
-    {
-        // Mengambil produk dengan kategori 'Rose' dan 'Tulip'
-        $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
-            ->whereHas('category', function ($query) {
-                $query->whereIn('name', ['Rose', 'Tulip']);
+{
+    // Mengambil produk dengan kategori 'Rose' dan 'Tulip'
+    $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+        ->whereHas('category', function ($query) {
+            $query->whereIn('name', ['Rose', 'Tulip']);
+        })
+        ->oldest() // Mengurutkan produk dari yang lebih lama
+        ->get();
+
+    // Mengambil semua kategori (untuk ditampilkan di dropdown)
+    $categories = ProductCategory::all();
+
+    // Fetch products for Tulip, Rose, and Romance categories
+    $tulipProduct = ProductProduct::with(['reviews', 'category'])
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'Tulip');
+        })
+        ->first(); // Mengambil produk pertama dari kategori Tulip
+        $tulipProduct4 = ProductProduct::with(['reviews', 'category'])
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'Tulip');
+        })
+        ->take(4); // Mengambil produk pertama dari kategori Tulip
+
+    $roseProduct = ProductProduct::with(['reviews', 'category'])
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'Rose');
+        })
+        ->first(); // Mengambil produk pertama dari kategori Rose
+    $roseProduct4 = ProductProduct::with(['reviews', 'category'])
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'Rose');
+        })
+        ->take(4); // Mengambil produk pertama dari kategori Rose
+
+    $romanceProduct = ProductProduct::with(['reviews', 'category'])
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'Romance');
+        })
+        ->first(); // Mengambil produk pertama dari kategori Romance
+    $romanceProduct4 = ProductProduct::with(['reviews', 'category'])
+        ->whereHas('category', function ($query) {
+            $query->where('name', 'Romance');
+        })
+        ->take(4); // Mengambil produk pertama dari kategori Romance
+
+    // Fetch products for other categories
+    $categoriesToFetch = [
+        'Birthday Flowers' => 'birthdayProducts',
+        'Get Well Soon' => 'gwsProducts',
+        'Graduation' => 'graduProducts',
+        'Wedding' => 'weddingProducts',
+        'Thank You' => 'thnxProducts',
+        'Hydrangea' => 'hydrangeaProducts',
+        'Anniversary Flower' => 'annivProducts',
+    ];
+
+    $categoryProducts = [];
+    foreach ($categoriesToFetch as $categoryName => $variableName) {
+        $categoryProducts[$categoryName] = ProductProduct::with(['category'])
+            ->whereHas('category', function ($query) use ($categoryName) {
+                $query->where('name', $categoryName);
             })
-            ->oldest() // Mengurutkan produk dari yang lebih lama
+            ->oldest()
+            ->take(5)
             ->get();
-
-        // Mengambil semua kategori (untuk ditampilkan di dropdown)
-        $categories = ProductCategory::all();
-        // Fetch products for Tulip category
-        $categoriesToFetch = [
-            'Rose' => 'roseProducts',
-            'Tulip' => 'tulipProducts',
-            'Birthday Flowers' => 'birthdayProducts',
-            'Get Well Soon' => 'gwsProducts',
-            'Graduation' => 'graduProducts',
-            'Wedding' => 'weddingProducts',
-            'Thank You' => 'thnxProducts',
-            'Hydrangea' => 'hydrangeaProducts',
-            'Anniversary Flower' => 'annivProducts',
-        ];
-
-        $categoryProducts = [];
-        foreach ($categoriesToFetch as $categoryName => $variableName) {
-            $categoryProducts[$categoryName] = ProductProduct::with(['category'])
-                ->whereHas('category', function ($query) use ($categoryName) {
-                    $query->where('name', $categoryName);
-                })
-                ->oldest()
-                ->take(5)
-                ->get();
-        }
-
-
-        // Mengirimkan data ke view
-        return view('guest-view.homepage', compact('products', 'categoryProducts', 'categories'));
     }
+
+    // Mengirimkan data ke view
+    return view('guest-view.homepage', compact('products', 'categoryProducts', 'categories', 'tulipProduct', 'roseProduct', 'romanceProduct','roseProduct4','tulipProduct4','roseProduct4','romanceProduct4'));
+}
 
     public function category($id)
     {
@@ -139,9 +171,6 @@ class GuestController extends Controller
 
          return view('guest-view.product', compact('product', 'categoryProducts', 'categories','averageRating', 'reviewCount'));
      }
-
-
-
 
 
 }
