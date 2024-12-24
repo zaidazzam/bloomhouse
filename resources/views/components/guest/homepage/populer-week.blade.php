@@ -63,7 +63,11 @@
                                             alt="{{ $product->name }}">
                                     @endif
                                 </picture>
-
+                                <div class="card-actions">
+                                    <span
+                                        class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
+                                        Add</span>
+                                </div>
                                 {{-- <div class="card-actions">
                                         <span class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick Add</span>
                                         <div class="d-flex justify-content-center align-items-center flex-wrap mt-3">
@@ -79,7 +83,7 @@
                                     <div class="rating position-relative d-table">
                                         {{-- <div class="position-absolute stars" style="width: {{ $product->product_rating * 20 }}%"> --}}
                                         <div class="position-absolute stars"
-                                            style="width: {{ 4* 20 }}%">
+                                            style="width: {{ $product->reviews->avg('rating') * 20 }}%">
 
                                             @for ($i = 0; $i < 5; $i++)
                                                 <i class="ri-star-fill text-dark mr-1"></i>
@@ -94,10 +98,11 @@
                                     {{-- <span class="small fw-bolder ms-2 text-muted"> {{ $product->product_rating }}
                                         ({{ $product->product_reviews }})</span> --}}
                                     <span class="small fw-bolder ms-2 text-muted">
-                                        (178)</span>
+                                        ({{ $product->reviews->count() }})</span>
                                 </div>
                                 <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                    href="/detail-product"></a>
+                                href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
+
                                 <p class="fw-bolder m-0 mt-2">
                                     Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
                             </div>

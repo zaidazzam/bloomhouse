@@ -44,12 +44,12 @@ class ProductProductController extends Controller
         return redirect()->route('product_products.index')->with('success', 'Product created successfully.');
     }
 
-    public function show($id)
-    {
-        $product = ProductProduct::with(['reviews','deliveryExpeditions','category'])->findOrFail($id);
+    // public function show($id)
+    // {
+    //     $product = ProductProduct::with(['reviews','deliveryExpeditions','category'])->findOrFail($id);
 
-        return view('product_products.show', compact('product'));
-    }
+    //     return view('product_products.show', compact('product'));
+    // }
 
     public function edit($id)
     {

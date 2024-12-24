@@ -26,7 +26,7 @@
         <div class="row g-2">
             <div class="d-none d-md-block col-md-4" data-aos="fade-in" data-aos-delay="150">
                 <picture>
-                    <img class="img-fluid" src="./assets/images/products/bunga1.jpg"
+                    <img class="img-fluid" src="{{ asset('assets/images/products/bunga1.jpg') }}"
                         alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                 </picture>
             </div>
@@ -34,49 +34,49 @@
                 <div class="row g-2">
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga4.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga4.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
                     <div class="col-3">
                         <picture>
-                            <img class="img-fluid" src="./assets/images/products/bunga3.jpg"
+                            <img class="img-fluid" src="{{ asset('assets/images/products/bunga3.jpg') }}"
                                 alt="Bootstrap 5 Template by Pixel Rocket" data-zoomable>
                         </picture>
                     </div>
@@ -84,11 +84,12 @@
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center mt-3">
-            <p class="text-muted m-0">Follow us on Instragram <span class="text-lowercase">@Alpine</span></p>
+            <p class="text-muted m-0">Follow us on Instagram <span class="text-lowercase">@Alpine</span></p>
             <a class="text-link-border fw-bolder m-0 text-white" href="#">More On Instagram <i
                     class="ri-external-link-line align-bottom"></i></a>
         </div>
     </div>
+
     <!-- Instagram Display-->
 
     <!-- Info Bar-->
@@ -251,33 +252,6 @@
 
 <!-- Offcanvas Imports-->
 <!-- Review Offcanvas-->
-<div class="offcanvas offcanvas-end d-none" tabindex="-1" id="offcanvasReview">
-    <div class="offcanvas-header d-flex align-items-center">
-        <h5 class="offcanvas-title" id="offcanvasReviewLabel">Leave A Review</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <!-- Review Form -->
-        <form>
-            <div class="form-group mb-3 mt-2">
-                <label class="form-label" for="formReviewName">Your Name</label>
-                <input type="text" class="form-control" id="formReviewName" placeholder="Your Name">
-            </div>
-            <div class="form-group mb-3 mt-2">
-                <label class="form-label" for="formReviewEmail">Your Email</label>
-                <input type="text" class="form-control" id="formReviewEmail" placeholder="Your Email">
-            </div>
-            <div class="form-group mb-3 mt-2">
-                <label class="form-label" for="formReviewTitle">Your Review Title</label>
-                <input type="text" class="form-control" id="formReviewTitle" placeholder="Review Title">
-            </div>
-            <div class="form-group mb-3 mt-2">
-                <label class="form-label" for="formReviewReview">Your Review</label>
-                <textarea class="form-control" name="formReviewReview" id="formReviewReview" cols="30" rows="5"
-                    placeholder="Your Review"></textarea>
-            </div>
-            <button type="submit" class="btn btn-dark hover-lift hover-boxshadow">Submit Review</button>
-        </form>
-        <!-- / Review Form-->
-    </div>
-</div>
+
+
+
