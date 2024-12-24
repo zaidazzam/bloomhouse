@@ -14,7 +14,7 @@
                 <div class="checkout-panel">
                     <h5 class="title-checkout">Contact Information</h5>
                     <div class="row">
-                        <form method="POST">
+                        <form class="formCheckOut" method="POST">
                             @csrf
                         <!-- Email-->
                         <div class="col-12">
@@ -41,7 +41,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country" class="form-label">Country</label>
-                                <select name="country" class="form-select" id="country" required="">
+                                <select name="country" class="form-select" id="sa_country" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -51,8 +51,8 @@
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" value=""
+                                <label for="sa_firstName" class="form-label">First name</label>
+                                <input type="text" name="firstName" class="form-control" id="sa_firstName" placeholder="" value=""
                                     required="">
                             </div>
                         </div>
@@ -60,8 +60,8 @@
                         <!-- Last Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="" value=""
+                                <label for="sa_lastName" class="form-label">Last name</label>
+                                <input type="text" name="lastName" class="form-control" id="sa_lastName" placeholder="" value=""
                                     required="">
                             </div>
                         </div>
@@ -69,33 +69,33 @@
                         <!-- phonenumber-->
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="address" class="form-label">Phone Number</label>
-                                <input type="number" name="phone_number" class="form-control" id="number" placeholder="" required="">
+                                <label for="sa_phone" class="form-label">Phone Number</label>
+                                <input type="number" name="phone_number" class="form-control" id="sa_phone" placeholder="" required="">
                             </div>
                         </div>
 
                         <!-- Company-->
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="address" class="form-label">Company <span class="text-muted"
+                                <label for="sa_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input type="text" name="company_name" class="form-control" id="address" placeholder="" required="">
+                                <input type="text" name="company_name" class="form-control" id="sa_company" placeholder="" required="">
                             </div>
                         </div>
 
                         <!-- Address-->
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" name="address" class="form-control" id="address"
+                                <label for="sa_address" class="form-label">Address</label>
+                                <input type="text" name="address" class="form-control" id="sa_address"
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="province" class="form-label">Province</label>
-                                <select name="provinsi" class="form-select" id="province" required="">
+                                <label for="sa_province" class="form-label">Province</label>
+                                <select name="provinsi" class="form-select" id="sa_province" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                     <!-- Provinces will be populated here -->
                                 </select>
@@ -105,8 +105,8 @@
                         <!-- City -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="city" class="form-label">City</label>
-                                <select name="city" class="form-select" id="city" required="">
+                                <label for="sa_city" class="form-label">City</label>
+                                <select name="city" class="form-select" id="sa_city" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -115,8 +115,8 @@
                         <!-- Postal Code (State/Territory) -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" name="pos_code" class="form-control" id="zip" placeholder=""
+                                <label for="sa_zip" class="form-label">Postal Code</label>
+                                <input type="text" name="pos_code" class="form-control" id="sa_zip" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -140,8 +140,8 @@
                         <!-- Country-->
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="country" class="form-label">Country</label>
-                                <select class="form-select" name="country_bill" id="country" required="">
+                                <label for="bill_country" class="form-label">Country</label>
+                                <select class="form-select" name="country_bill" id="bill_country" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -151,8 +151,8 @@
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" name="firstName_bill" class="form-control" id="firstName" placeholder=""
+                                <label for="bill_firstName" class="form-label">First name</label>
+                                <input type="text" name="firstName_bill" class="form-control" id="bill_firstName" placeholder=""
                                     value="" required="">
                             </div>
                         </div>
@@ -160,8 +160,8 @@
                         <!-- Last Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" name="lastName_bill" class="form-control" id="lastName" placeholder=""
+                                <label for="bill_lastName" class="form-label">Last name</label>
+                                <input type="text" name="lastName_bill" class="form-control" id="bill_lastName" placeholder=""
                                     value="" required="">
                             </div>
                         </div>
@@ -169,8 +169,8 @@
                         <!-- phonenumber-->
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="address" class="form-label">Phone Number</label>
-                                <input type="number" name="phone_bill" class="form-control" id="number" placeholder=""
+                                <label for="bill_phone" class="form-label">Phone Number</label>
+                                <input type="number" name="phone_bill" class="form-control" id="bill_phone" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -178,9 +178,9 @@
                         <!-- Company-->
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="address" class="form-label">Company <span class="text-muted"
+                                <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input type="text" name="company_bill" class="form-control" id="address" placeholder=""
+                                <input type="text" name="company_bill" class="form-control" id="bill_company" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -188,16 +188,16 @@
                         <!-- Address-->
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" name="address_bill" class="form-control" id="address"
+                                <label for="bill_address" class="form-label">Address</label>
+                                <input type="text" name="address_bill" class="form-control" id="bill_address"
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="province" class="form-label">Province</label>
-                                <select class="form-select" name="provinsi_bill" id="province" required="">
+                                <label for="bill_province" class="form-label">Province</label>
+                                <select class="form-select" name="provinsi_bill" id="bill_province" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                     <!-- Provinces will be populated here -->
                                 </select>
@@ -207,8 +207,8 @@
                         <!-- City -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="city" class="form-label">City</label>
-                                <select class="form-select" name="city_bill" id="city" required="">
+                                <label for="bill_city" class="form-label">City</label>
+                                <select class="form-select" name="city_bill" id="bill_city" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -217,8 +217,8 @@
                         <!-- Postal Code (State/Territory) -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" name="pos_bill" class="form-control" id="zip" placeholder=""
+                                <label for="bill_zip" class="form-label">Postal Code</label>
+                                <input type="text" name="pos_bill" class="form-control" id="bill_zip" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -302,8 +302,8 @@
                     <!-- Delivery Notes-->
                     <div class="form-check form-group  form-radio-custom mb-3">
                         <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodThree">
-                        <label class="form-check-label" for="checkoutShippingMethodThree">
+                            id="checkoutShippingMethodFour">
+                        <label class="form-check-label" for="checkoutShippingMethodFour">
                             <span class="d-flex justify-content-between align-items-start">
                                 <span>
                                     <span class="mb-0 fw-bolder d-block">Leave it at the door, a neighbor or an
@@ -316,8 +316,8 @@
 
                     <div class="form-check form-group form-radio-custom mb-3">
                         <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodThree">
-                        <label class="form-check-label" for="checkoutShippingMethodThree">
+                            id="checkoutShippingMethodFive">
+                        <label class="form-check-label" for="checkoutShippingMethodFive">
                             <span class="d-flex justify-content-between align-items-center">
                                 <span>
                                     <span class="mb-0 fw-bolder d-block">Free Notes</span>
@@ -328,9 +328,9 @@
                     <!-- Delivery Notes-->
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <label for="cc-name" class="form-label"> <span
+                            <label for="deliv-note" class="form-label"> <span
                                     class="small fw-bolder">*Note</span></label>
-                            <input name="note_deliv" type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <input name="note_deliv" type="text" class="form-control" id="deliv-note" placeholder="" required>
                         </div>
                     </div>
                 </div>
@@ -545,7 +545,8 @@
                         <label class="form-check-label fw-bolder" for="accept-terms">I agree to Alpine's <a
                                 href="#">terms & conditions</a></label>
                     </div>
-                    <a href="#" class="btn btn-dark w-100" role="button">Complete Order</a>
+                    <a href="#" id="checkoutButton" class="btn btn-dark w-100" role="button">Complete Order</a>
+                </form>
                 </div>
             </div>
             <!-- /Checkout Panel Summary -->
@@ -556,6 +557,10 @@
     <!-- / Main Section-->
 
     <script>
+        const checkoutButton = document.querySelector('#checkoutButton');
+        const formCheckOut = document.querySelector('#formCheckOut');
+        checkoutButton.disabled = true;
+
         document.addEventListener("DOMContentLoaded", function() {
             const provinceSelect = document.getElementById('province');
             const citySelect = document.getElementById('city');
