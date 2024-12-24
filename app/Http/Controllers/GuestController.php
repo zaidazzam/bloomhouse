@@ -32,7 +32,8 @@ class GuestController extends Controller
         ->whereHas('category', function ($query) {
             $query->where('name', 'Tulip');
         })
-        ->take(4); // Mengambil produk pertama dari kategori Tulip
+        ->take(4) // Limits the number of results to 4
+        ->get(); // Mengambil produk pertama dari kategori Tulip
 
     $roseProduct = ProductProduct::with(['reviews', 'category'])
         ->whereHas('category', function ($query) {
@@ -43,18 +44,20 @@ class GuestController extends Controller
         ->whereHas('category', function ($query) {
             $query->where('name', 'Rose');
         })
-        ->take(4); // Mengambil produk pertama dari kategori Rose
+        ->take(4) // Limits the number of results to 4
+        ->get(); // Mengambil produk pertama dari kategori Rose
 
     $romanceProduct = ProductProduct::with(['reviews', 'category'])
         ->whereHas('category', function ($query) {
-            $query->where('name', 'Romance');
+            $query->where('name', 'Hydrangea');
         })
         ->first(); // Mengambil produk pertama dari kategori Romance
-    $romanceProduct4 = ProductProduct::with(['reviews', 'category'])
+        $HydrangeaProduct4 = ProductProduct::with(['reviews', 'category'])
         ->whereHas('category', function ($query) {
-            $query->where('name', 'Romance');
+            $query->where('name', 'Hydrangea');
         })
-        ->take(4); // Mengambil produk pertama dari kategori Romance
+        ->take(4) // Limits the number of results to 4
+        ->get(); // Mengambil produk pertama dari kategori Romance
 
     // Fetch products for other categories
     $categoriesToFetch = [
@@ -79,7 +82,7 @@ class GuestController extends Controller
     }
 
     // Mengirimkan data ke view
-    return view('guest-view.homepage', compact('products', 'categoryProducts', 'categories', 'tulipProduct', 'roseProduct', 'romanceProduct','roseProduct4','tulipProduct4','roseProduct4','romanceProduct4'));
+    return view('guest-view.homepage', compact('products', 'categoryProducts', 'categories', 'tulipProduct', 'roseProduct', 'romanceProduct','roseProduct4','tulipProduct4','roseProduct4','HydrangeaProduct4'));
 }
 
     public function category($id)
