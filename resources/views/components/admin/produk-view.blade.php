@@ -45,7 +45,7 @@
                         <tr>
                             <td data-id="{{ $product->id }}">{{ $loop->iteration }}</td>
                             <td data-name="{{ $product->name }}"><strong>{{ $product->name }}</strong></td>
-                            <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
+                            <td data-category="{{ $product->category->pluck('id')->impltode(', ') }}">
                                 @foreach ($product->category as $category)
                                     <span class="badge bg-primary">{{ $category->name }}</span>
                                 @endforeach

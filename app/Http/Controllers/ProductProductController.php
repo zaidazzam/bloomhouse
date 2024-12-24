@@ -24,7 +24,6 @@ class ProductProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',
@@ -54,9 +53,9 @@ class ProductProductController extends Controller
 
     public function edit($id)
     {
-        $product = ProductProduct::with('category')->findOrFail($id); // Ambil produk beserta kategorinya
-        $categories = ProductCategory::all(); // Semua kategori
-        $selectedCategories = $product->category->pluck('id')->toArray(); // Array ID kategori yang dipilih
+        $product = ProductProduct::with('category')->findOrFail($id); 
+        $categories = ProductCategory::all(); 
+        $selectedCategories = $product->category->pluck('id')->toArray(); 
 
         return view('product_products.edit', compact('product', 'categories', 'selectedCategories'));
     }
@@ -65,7 +64,6 @@ class ProductProductController extends Controller
 
     public function update(Request $request, $id)
     {
-                // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',

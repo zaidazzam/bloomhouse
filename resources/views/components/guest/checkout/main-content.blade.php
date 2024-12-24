@@ -14,12 +14,13 @@
                 <div class="checkout-panel">
                     <h5 class="title-checkout">Contact Information</h5>
                     <div class="row">
-
+                        <form method="POST">
+                            @csrf
                         <!-- Email-->
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com">
                             </div>
 
                             <!-- Mailing List Signup-->
@@ -40,7 +41,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country" class="form-label">Country</label>
-                                <select class="form-select" id="country" required="">
+                                <select name="country" class="form-select" id="country" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -51,7 +52,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" value=""
                                     required="">
                             </div>
                         </div>
@@ -60,7 +61,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="" value=""
                                     required="">
                             </div>
                         </div>
@@ -69,7 +70,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="address" class="form-label">Phone Number</label>
-                                <input type="number" class="form-control" id="number" placeholder="" required="">
+                                <input type="number" name="phone_number" class="form-control" id="number" placeholder="" required="">
                             </div>
                         </div>
 
@@ -78,7 +79,7 @@
                             <div class="form-group">
                                 <label for="address" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input type="text" class="form-control" id="address" placeholder="" required="">
+                                <input type="text" name="company_name" class="form-control" id="address" placeholder="" required="">
                             </div>
                         </div>
 
@@ -86,7 +87,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address"
+                                <input type="text" name="address" class="form-control" id="address"
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
@@ -94,7 +95,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="province" class="form-label">Province</label>
-                                <select class="form-select" id="province" required="">
+                                <select name="provinsi" class="form-select" id="province" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                     <!-- Provinces will be populated here -->
                                 </select>
@@ -105,7 +106,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="city" class="form-label">City</label>
-                                <select class="form-select" id="city" required="">
+                                <select name="city" class="form-select" id="city" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -115,7 +116,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" class="form-control" id="zip" placeholder=""
+                                <input type="text" name="pos_code" class="form-control" id="zip" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -126,7 +127,7 @@
                     <div class="pt-4 mt-4 border-top d-flex justify-content-between align-items-center">
                         <!-- Shipping Same Checkbox-->
                         <div class="form-group form-check m-0">
-                            <input type="checkbox" class="form-check-input" id="same-address" checked>
+                            <input type="checkbox" name="use_for_bill" class="form-check-input" id="same-address" checked>
                             <label class="form-check-label" for="same-address">Use for billing address</label>
                         </div>
                     </div>
@@ -140,7 +141,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country" class="form-label">Country</label>
-                                <select class="form-select" id="country" required="">
+                                <select class="form-select" name="country_bill" id="country" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -151,7 +152,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder=""
+                                <input type="text" name="firstName_bill" class="form-control" id="firstName" placeholder=""
                                     value="" required="">
                             </div>
                         </div>
@@ -160,7 +161,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder=""
+                                <input type="text" name="lastName_bill" class="form-control" id="lastName" placeholder=""
                                     value="" required="">
                             </div>
                         </div>
@@ -169,7 +170,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="address" class="form-label">Phone Number</label>
-                                <input type="number" class="form-control" id="number" placeholder=""
+                                <input type="number" name="phone_bill" class="form-control" id="number" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -179,7 +180,7 @@
                             <div class="form-group">
                                 <label for="address" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input type="text" class="form-control" id="address" placeholder=""
+                                <input type="text" name="company_bill" class="form-control" id="address" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -188,7 +189,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address"
+                                <input type="text" name="address_bill" class="form-control" id="address"
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
@@ -196,7 +197,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="province" class="form-label">Province</label>
-                                <select class="form-select" id="province" required="">
+                                <select class="form-select" name="provinsi_bill" id="province" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                     <!-- Provinces will be populated here -->
                                 </select>
@@ -207,7 +208,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="city" class="form-label">City</label>
-                                <select class="form-select" id="city" required="">
+                                <select class="form-select" name="city_bill" id="city" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -217,7 +218,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" class="form-control" id="zip" placeholder=""
+                                <input type="text" name="pos_bill" class="form-control" id="zip" placeholder=""
                                     required="">
                             </div>
                         </div>
@@ -231,7 +232,7 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-date" class="form-label">Delivery Date</label>
-                            <input type="date" class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
+                            <input type="date" name="date_deliv"  class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
                                 required>
                         </div>
                     </div>
@@ -239,7 +240,7 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-schedule" class="form-label">Delivery Schedule</label>
-                            <select class="form-select" id="delivery-schedule" required>
+                            <select class="form-select" name="schedule_deliv" id="delivery-schedule" required>
                                 <option value="" disabled selected>Select a Delivery Schedule</option>
                                 <option value="slot1">Time Slot 1: 9:00 AM - 12:00 PM</option>
                                 <option value="slot2">Time Slot 2: 1:00 PM - 5:00 PM</option>
@@ -329,7 +330,7 @@
                         <div class="form-group">
                             <label for="cc-name" class="form-label"> <span
                                     class="small fw-bolder">*Note</span></label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <input name="note_deliv" type="text" class="form-control" id="cc-name" placeholder="" required>
                         </div>
                     </div>
                 </div>
