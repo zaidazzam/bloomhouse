@@ -41,7 +41,11 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="country" class="form-label">Country</label>
+<<<<<<< HEAD
                                 <select name="country" class="form-select" id="sa_country" required="">
+=======
+                                <select class="form-select" name="shipping_country" id="country" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -51,8 +55,13 @@
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_firstName" class="form-label">First name</label>
                                 <input type="text" name="firstName" class="form-control" id="sa_firstName" placeholder="" value=""
+=======
+                                <label for="firstName" class="form-label">First name</label>
+                                <input type="text" name="shipping_first_name" class="form-control" id="firstName" placeholder="" value=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
                             </div>
                         </div>
@@ -60,8 +69,13 @@
                         <!-- Last Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_lastName" class="form-label">Last name</label>
                                 <input type="text" name="lastName" class="form-control" id="sa_lastName" placeholder="" value=""
+=======
+                                <label for="lastName" class="form-label">Last name</label>
+                                <input type="text" name="shipping_last_name" class="form-control" id="lastName" placeholder="" value=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
                             </div>
                         </div>
@@ -69,8 +83,13 @@
                         <!-- phonenumber-->
                         <div class="col-12">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_phone" class="form-label">Phone Number</label>
                                 <input type="number" name="phone_number" class="form-control" id="sa_phone" placeholder="" required="">
+=======
+                                <label for="address" class="form-label">Phone Number</label>
+                                <input type="number" name="shipping_phone_number" class="form-control" id="number" placeholder="" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                             </div>
                         </div>
 
@@ -79,23 +98,37 @@
                             <div class="form-group">
                                 <label for="sa_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
+<<<<<<< HEAD
                                 <input type="text" name="company_name" class="form-control" id="sa_company" placeholder="" required="">
+=======
+                                <input type="text" name="shipping_data_company" class="form-control" id="address" placeholder="" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                             </div>
                         </div>
 
                         <!-- Address-->
                         <div class="col-12">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_address" class="form-label">Address</label>
                                 <input type="text" name="address" class="form-control" id="sa_address"
+=======
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" name="shipping_data_address" class="form-control" id="address"
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_province" class="form-label">Province</label>
                                 <select name="provinsi" class="form-select" id="sa_province" required="">
+=======
+                                <label for="province" class="form-label">Province</label>
+                                <select name="shipping_data_provinsi" class="form-select" id="province" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
                                     <!-- Provinces will be populated here -->
                                 </select>
@@ -105,8 +138,13 @@
                         <!-- City -->
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_city" class="form-label">City</label>
                                 <select name="city" class="form-select" id="sa_city" required="">
+=======
+                                <label for="city" class="form-label">City</label>
+                                <select class="form-select" name="shipping_data_city" id="city" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -115,8 +153,13 @@
                         <!-- Postal Code (State/Territory) -->
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="sa_zip" class="form-label">Postal Code</label>
                                 <input type="text" name="pos_code" class="form-control" id="sa_zip" placeholder=""
+=======
+                                <label for="zip" class="form-label">Postal Code</label>
+                                <input type="text" name="shipping_data_zip" class="form-control" id="zip" placeholder=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
                             </div>
                         </div>
@@ -127,7 +170,11 @@
                     <div class="pt-4 mt-4 border-top d-flex justify-content-between align-items-center">
                         <!-- Shipping Same Checkbox-->
                         <div class="form-group form-check m-0">
+<<<<<<< HEAD
                             <input type="checkbox" name="use_for_bill" class="form-check-input" id="same-address" checked>
+=======
+                            <input name="use_for_billing_address" type="checkbox" class="form-check-input" id="same-address" checked>
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                             <label class="form-check-label" for="same-address">Use for billing address</label>
                         </div>
                     </div>
@@ -140,8 +187,13 @@
                         <!-- Country-->
                         <div class="col-md-12">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_country" class="form-label">Country</label>
                                 <select class="form-select" name="country_bill" id="bill_country" required="">
+=======
+                                <label for="country" class="form-label">Country</label>
+                                <select name="bill_data_country" class="form-select" id="country" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -151,8 +203,13 @@
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_firstName" class="form-label">First name</label>
                                 <input type="text" name="firstName_bill" class="form-control" id="bill_firstName" placeholder=""
+=======
+                                <label for="firstName" class="form-label">First name</label>
+                                <input name="bill_data_firstname" type="text" class="form-control" id="firstName" placeholder=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     value="" required="">
                             </div>
                         </div>
@@ -160,8 +217,13 @@
                         <!-- Last Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_lastName" class="form-label">Last name</label>
                                 <input type="text" name="lastName_bill" class="form-control" id="bill_lastName" placeholder=""
+=======
+                                <label for="lastName" class="form-label">Last name</label>
+                                <input name="bill_data_lastname" type="text" class="form-control" id="lastName" placeholder=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     value="" required="">
                             </div>
                         </div>
@@ -169,8 +231,13 @@
                         <!-- phonenumber-->
                         <div class="col-12">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_phone" class="form-label">Phone Number</label>
                                 <input type="number" name="phone_bill" class="form-control" id="bill_phone" placeholder=""
+=======
+                                <label for="address" class="form-label">Phone Number</label>
+                                <input name="bill_data_phone" type="number" class="form-control" id="number" placeholder=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
                             </div>
                         </div>
@@ -180,7 +247,11 @@
                             <div class="form-group">
                                 <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
+<<<<<<< HEAD
                                 <input type="text" name="company_bill" class="form-control" id="bill_company" placeholder=""
+=======
+                                <input name="bill_data_company" type="text" class="form-control" id="address" placeholder=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
                             </div>
                         </div>
@@ -188,16 +259,26 @@
                         <!-- Address-->
                         <div class="col-12">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_address" class="form-label">Address</label>
                                 <input type="text" name="address_bill" class="form-control" id="bill_address"
+=======
+                                <label for="address" class="form-label">Address</label>
+                                <input name="bill_data_address" type="text" class="form-control" id="address"
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_province" class="form-label">Province</label>
                                 <select class="form-select" name="provinsi_bill" id="bill_province" required="">
+=======
+                                <label for="province" class="form-label">Province</label>
+                                <select name="bill_data_provinsi" class="form-select" id="province" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
                                     <!-- Provinces will be populated here -->
                                 </select>
@@ -207,8 +288,13 @@
                         <!-- City -->
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_city" class="form-label">City</label>
                                 <select class="form-select" name="city_bill" id="bill_city" required="">
+=======
+                                <label for="city" class="form-label">City</label>
+                                <select name="bill_data_city" class="form-select" id="city" required="">
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
@@ -217,8 +303,13 @@
                         <!-- Postal Code (State/Territory) -->
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="bill_zip" class="form-label">Postal Code</label>
                                 <input type="text" name="pos_bill" class="form-control" id="bill_zip" placeholder=""
+=======
+                                <label for="zip" class="form-label">Postal Code</label>
+                                <input type="text" name="bill_data_zip" class="form-control" id="zip" placeholder=""
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
                             </div>
                         </div>
@@ -232,7 +323,11 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-date" class="form-label">Delivery Date</label>
+<<<<<<< HEAD
                             <input type="date" name="date_deliv"  class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
+=======
+                            <input name="deliv_date" type="date" class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                 required>
                         </div>
                     </div>
@@ -240,7 +335,11 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-schedule" class="form-label">Delivery Schedule</label>
+<<<<<<< HEAD
                             <select class="form-select" name="schedule_deliv" id="delivery-schedule" required>
+=======
+                            <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
+>>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                 <option value="" disabled selected>Select a Delivery Schedule</option>
                                 <option value="slot1">Time Slot 1: 9:00 AM - 12:00 PM</option>
                                 <option value="slot2">Time Slot 2: 1:00 PM - 5:00 PM</option>
