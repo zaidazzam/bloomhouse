@@ -83,7 +83,7 @@
         <!-- Socials-->
         <div class="my-4">
             <div class="d-flex justify-content-start align-items-center">
-                <p class="fw-bolder lh-1 mb-0 me-3">Bagikan</p>
+                <p class="fw-bolder lh-1 mb-0 me-3">Share</p>
                 <ul class="list-unstyled p-0 m-0 d-flex justify-content-start lh-1 align-items-center mt-1">
                     <li class="me-2"><a class="text-decoration-none" href="#" role="button"><i
                                 class="ri-facebook-box-fill"></i></a></li>
@@ -97,14 +97,129 @@
             </div>
         </div>
         <!-- Socials-->
+        <!-- add on Products-->
+        <div class="container">
+            <h5 class="fw-bold mb-2 text-center">Add On Gift
+            </h5>
+            <!--  add on Swiper Latest -->
+            <div class="swiper-container overflow-visible" data-swiper
+                data-options='{
+                    "spaceBetween": 25,
+                    "cssMode": true,
+                    "roundLengths": true,
+                    "scrollbar": {
+                      "el": ".swiper-scrollbar",
+                      "hide": false,
+                      "draggable": true
+                    },
+                    "navigation": {
+                      "nextEl": ".swiper-next",
+                      "prevEl": ".swiper-prev"
+                    },
+                    "breakpoints": {
+                      "576": {
+                        "slidesPerView": 1
+                      },
+                      "768": {
+                        "slidesPerView": 2
+                      },
+                      "992": {
+                        "slidesPerView": 3
+                      },
+                      "1200": {
+                        "slidesPerView": 4
+                      }
+                    }
+                  }'>
+                <div class="swiper-wrapper pe-1">
+                    @foreach ($productAddOns as $product)
+                    <div class="swiper-slide d-flex h-auto">
+                        <!-- Card Product-->
+                        <div class="card position-relative h-100 card-listing hover-trigger">
+                            @if ($product->discount)
+                                <span class="badge card-badge bg-secondary">-{{ $product->discount }}%</span>
+                            @endif
 
+                            <div class="card-header">
+                                <picture class="position-relative overflow-hidden d-block bg-light">
+                                    <img class="w-100 img-fluid position-relative z-index-10"
+                                        title="{{ $product->name }}"
+                                        src="{{ asset('storage/' . $product->main_picture) }}"
+                                        alt="{{ $product->name }}">
+                                </picture>
+                                <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
+                                    @if ($product->pictures->first())
+                                        <img class="w-100 img-fluid" title="{{ $product->name }}"
+                                            src="{{ asset('storage/' . $product->pictures->first()->picture_path) }}"
+                                            alt="{{ $product->name }}">
+                                    @else
+                                        <img class="w-100 img-fluid" title="{{ $product->name }}"
+                                            src="{{ asset('storage/' . $product->main_picture) }}"
+                                            alt="{{ $product->name }}">
+                                    @endif
+                                </picture>
+                                <div class="card-actions">
+                                    <span
+                                        class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
+                                        Add</span>
+                                </div>
+                            </div>
+                            <div class="card-body-add-onn px-0 text-center">
+                                <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
+                                    <!-- Review Stars Small-->
+                                    <div class="rating position-relative d-table">
+                                        {{-- <div class="position-absolute stars" style="width: {{ $product->product_rating * 20 }}%"> --}}
+                                        <div class="position-absolute stars"
+                                            style="width: {{ $product->reviews->avg('rating') * 20 }}%">
+
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <i class="ri-star-fill text-dark mr-1"></i>
+                                            @endfor
+                                        </div>
+                                        <div class="stars">
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                    {{-- <span class="small fw-bolder ms-2 text-muted"> {{ $product->product_rating }}
+                                        ({{ $product->product_reviews }})</span> --}}
+                                    <span class="small fw-bolder ms-2 text-muted">
+                                        ({{ $product->reviews->count() }})</span>
+                                </div>
+                                <a class="mb-0 link-cover text-decoration-none d-block text-center"
+                                href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
+
+                                <p class="fw-bolder m-0 p-addon">
+                                    Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
+                            </div>
+                        </div>
+                        <!--/ Card Product-->
+                    </div>
+                @endforeach
+                </div>
+
+                <!-- Buttons-->
+                <div
+                    class="swiper-btn swiper-disabled-hide swiper-prev swiper-btn-side btn-icon bg-dark text-white ms-3 shadow-lg mt-n5 ms-n4">
+                    <i class="ri-arrow-left-s-line ri-lg"></i></div>
+                <div
+                    class="swiper-btn swiper-disabled-hide swiper-next swiper-btn-side swiper-btn-side-right btn-icon bg-dark text-white me-n4 shadow-lg mt-n5">
+                    <i class="ri-arrow-right-s-line ri-lg"></i></div>
+
+                <!-- Add Scrollbar -->
+                <div class="swiper-scrollbar"></div>
+
+            </div>
+            <!-- /add on Swiper Latest-->
+        </div>
+        <!--/ add on  Products-->
         <!-- Special Offers-->
         <div class="bg-light rounded py-2 px-3">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex border-0 px-0 bg-transparent">
                     <i class="ri-truck-line"></i>
-                    <span class="fs-6 ms-3">Pengiriman standar gratis untuk pesanan di atas $99. Pengiriman keesokan
-                        hari Rp.9.999.</span>
+                    <span class="fs-6 ms-3">Free standard shipping on orders over Rp.9,999 Next day shipping Rp.9,999 </span>
                 </li>
             </ul>
         </div>

@@ -24,6 +24,7 @@
         <!-- Product Tabs-->
 
         @include('components.guest.product.product-tab')
+        @include('components.guest.product.related')
         <!-- Product Tabs-->
 
     </section>

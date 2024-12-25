@@ -31,12 +31,15 @@ class ProductProductController extends Controller
             'address' => 'nullable',
             'size' => 'nullable',
             'product_price' => 'required|numeric',
-            'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
             'consist_of' => 'nullable',
             'category_id' => 'required|array|exists:product_categories,id',
+
+
         ]);
+
         if ($request->hasFile('main_picture')) {
             $validated['main_picture'] = $request->file('main_picture')->store('products', 'public');
         }
@@ -54,12 +57,19 @@ class ProductProductController extends Controller
 
     public function edit($id)
     {
-        $product = ProductProduct::with('category')->findOrFail($id); // Ambil produk beserta kategorinya
-        $categories = ProductCategory::all(); // Semua kategori
-        $selectedCategories = $product->category->pluck('id')->toArray(); // Array ID kategori yang dipilih
+        // Ambil data produk beserta kategorinya
+        $product = ProductProduct::with('category')->findOrFail($id);
 
+        // Ambil semua kategori
+        $categories = ProductCategory::all();
+
+        // Ambil array ID kategori yang terpilih untuk produk yang sedang diedit
+        $selectedCategories = $product->category->pluck('id')->toArray();
+
+        // Return ke view edit dengan membawa data produk, kategori, dan kategori yang terpilih
         return view('product_products.edit', compact('product', 'categories', 'selectedCategories'));
     }
+
 
 
 
@@ -72,7 +82,7 @@ class ProductProductController extends Controller
             'address' => 'nullable',
             'size' => 'nullable',
             'product_price' => 'required|numeric',
-            'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
             'consist_of' => 'nullable',
