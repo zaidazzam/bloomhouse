@@ -45,10 +45,18 @@
                         <tr>
                             <td data-id="{{ $product->id }}">{{ $loop->iteration }}</td>
                             <td data-name="{{ $product->name }}"><strong>{{ $product->name }}</strong></td>
-                            <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
+                            {{-- <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
                                 @foreach ($product->category as $category)
                                     <span class="badge bg-primary">{{ $category->name }}</span>
                                 @endforeach
+                            </td> --}}
+
+                            <td data-category="{{ implode(',', $product->category->pluck('id')->toArray()) }}">
+                                <ul>
+                                    @foreach ($product->category as $category)
+                                        <li>{{ $category->name }}</li>
+                                    @endforeach
+                                </ul>
                             </td>
                             <td data-desc="{{ $product->product_description }}">{{ $product->product_description }}</td>
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
@@ -280,16 +288,13 @@
                                 <li>
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
-                                            value="{{ $category->id }}" id="editCategory_{{ $category->id }}"
-                                            {{ in_array($category->id, $selectedCategories) ? 'checked' : '' }} />
-                                        <label class="form-check-label" for="editCategory_{{ $category->id }}">
+                                            value="{{ $category->id }}" id="category_{{ $category->id }}" />
+                                        <label class="form-check-label" for="category_{{ $category->id }}">
                                             {{ $category->name }}
                                         </label>
                                     </div>
                                 </li>
                             @endforeach
-
-
                         </ul>
                         @error('category_id')
                             <div class="text-danger mt-1">{{ $message }}</div>
@@ -347,6 +352,16 @@
                         <input type="number" name="discount" id="editProductDisc" class="form-control"
                             placeholder="Enter Discount Price" value="{{ old('discount') }}" />
                         @error('discount')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="editproductConsistOf" class="form-label">Consist Of</label>
+                        <textarea id="editproductConsistOf" name="consist_of" class="form-control" placeholder="Enter Materials"
+                            value="{{ old('consist_of') }}"></textarea>
+                        @error('consist_of')
                             <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -452,6 +467,9 @@
                 const product_disc = row.querySelector('[data-disc]').getAttribute('data-disc');
                 const product_consist = row.querySelector('[data-consist]').getAttribute(
                     'data-consist');
+                const product_category = row.getAttribute(
+                'data-category'); // Get the data-category attribute
+
 
                 document.getElementById('editProductName').value = product_name;
                 document.getElementById('editProductDescription').value = product_desc;
@@ -460,20 +478,43 @@
                 document.getElementById('editProductSize').value = product_size;
                 document.getElementById('editProductPrice').value = product_price;
                 document.getElementById('editProductDisc').value = product_disc;
-                document.getElementById('editProductConsistOf').value = product_consist;
+                document.getElementById('editproductConsistOf').value = product_consist;
+                document.getElementById('DropdownCheckbox').value = product_category;
 
-                const product_categories = row.querySelector('[data-categories]').getAttribute(
-                    'data-categories').split(',');
+                // let categs = [];
+                // try {
+                //     categs = JSON.parse(product_category);
+                // } catch (error) {
+                //     console.error("Failed to parse list_category:", error);
+                // }
+                // categs.forEach(categ => {
+                //     // Atur checkbox tag sesuai dengan data tags dari baris
+                //     const categCheckboxes = document.querySelectorAll(
+                //         'input[name="tags[]"]');
+                //     categCheckboxes.forEach(checkbox => {
+                //         checkbox.checked =
+                //             false; // Reset semua checkbox sebelum menandai yang sesuai
+                //         if (categs.some(categ => categ.id == checkbox
+                //                 .value)) { // Cocokkan ID tag
+                //             checkbox.checked = true;
+                //         }
+                //     });
+                // });
+                // editorInstance.setData(content)
+                // Update selected categories
+                const selectedCategories = product_category.split(
+                    ','); // Assuming categories are comma-separated
+                const categCheckboxes = document.querySelectorAll(
+                    'input[name="category_id[]"]');
 
-                const categoryCheckboxes = document.querySelectorAll(
-                    '.form-check-input[name="category_id[]"]');
-                categoryCheckboxes.forEach(checkbox => {
-                    checkbox.checked = product_categories.includes(checkbox.value);
+                categCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectedCategories.includes(checkbox
+                        .value
+                        ); // Check if the checkbox value is in selected categories
                 });
-
-
             });
         });
+
 
         photoButtons.forEach(button => {
             button.addEventListener('click', function() {

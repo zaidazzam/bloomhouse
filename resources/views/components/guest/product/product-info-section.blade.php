@@ -7,11 +7,11 @@
                     {{ $category->name }}{{ !$loop->last ? ' / ' : '' }}
                 @endforeach
             </p>
-                        <div class="d-flex justify-content-start align-items-center">
+            <div class="d-flex justify-content-start align-items-center">
                 <!-- Review Stars Small-->
                 <div class="rating position-relative d-table">
                     <div class="position-absolute stars" style="width: {{ $product->reviews->avg('rating') * 20 }}%">
-                    {{-- <div class="position-absolute stars" style="width: {{ 3 * 20 }}%"> --}}
+                        {{-- <div class="position-absolute stars" style="width: {{ 3 * 20 }}%"> --}}
                         <i class="ri-star-fill text-dark mr-1"></i>
                         <i class="ri-star-fill text-dark mr-1"></i>
                         <i class="ri-star-fill text-dark mr-1"></i>
@@ -32,10 +32,27 @@
         </div>
         <h1 class="mb-2 fs-2 fw-bold">{{ $product->name }}</h1>
         <div class="d-flex justify-content-start align-items-center">
-            <p class="lead fw-bolder m-0 fs-3 lh-1 text-danger me-2">Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
-            <s class="lh-1 me-2"><span class="fw-bolder m-0">Rp.{{ number_format($product->discounted_price ?? $product->product_price, 0, ',', '.') }}</span></s>
-            <p class="lead fw-bolder m-0 fs-6 lh-1 text-success">Save Rp {{ number_format($product->product_price - ($product->discounted_price ?? $product->product_price), 0, ',', '.') }}</p>
+            <!-- Harga Total -->
+            <p id="total-price" class="lead fw-bolder m-0 fs-3 lh-1 text-danger me-2">
+                Rp.{{ number_format($product->discounted_price ?? $product->product_price, 0, ',', '.') }}
+            </p>
+
+
+            <!-- Harga Diskon -->
+            @if ($product->discounted_price)
+                <s class="lh-1 me-2">
+                    <span class="fw-bolder m-0">Rp.{{ number_format($product->product_price, 0, ',', '.') }}</span>
+                </s>
+            @endif
+
+            <!-- Penghematan -->
+            @if ($product->discounted_price)
+                <p class="lead fw-bolder m-0 fs-6 lh-1 text-success">
+                    Save Rp {{ number_format($product->product_price - $product->discounted_price, 0, ',', '.') }}
+                </p>
+            @endif
         </div>
+
         <!-- /Product Name, Review, Brand, Price-->
 
         <!-- Product Views-->
@@ -44,7 +61,8 @@
                 <div class="d-flex justify-content-start align-items-center">
                     <i class="ri-fire-fill lh-1 text-orange"></i>
                     <div class="ms-2">
-                        <small class="opacity-75 fw-bolder lh-1 views-count">{{ $product->views ?? 143 }} Dilihat</small>
+                        <small class="opacity-75 fw-bolder lh-1 views-count">{{ $product->views ?? 143 }}
+                            Dilihat</small>
                     </div>
                 </div>
             </div>
@@ -131,81 +149,56 @@
                       }
                     }
                   }'>
-                <div class="swiper-wrapper pe-1">
-                    @foreach ($productAddOns as $product)
-                    <div class="swiper-slide d-flex h-auto">
-                        <!-- Card Product-->
-                        <div class="card position-relative h-100 card-listing hover-trigger">
-                            @if ($product->discount)
-                                <span class="badge card-badge bg-secondary">-{{ $product->discount }}%</span>
-                            @endif
+                  <div class="swiper-wrapper pe-1">
+                    @foreach ($productAddOns as $productAddon)
+                        <div class="swiper-slide d-flex h-auto">
+                            <!-- Card Product -->
+                            <div class="card-addon position-relative h-100 card-listing hover-trigger addon-card"
+                                data-price="{{ $productAddon->product_price }}">
+                                <!-- Badge Diskon -->
+                                @if ($productAddon->discount)
+                                    <span class="badge card-badge bg-secondary">-{{ $productAddon->discount }}%</span>
+                                @endif
 
-                            <div class="card-header">
-                                <picture class="position-relative overflow-hidden d-block bg-light">
-                                    <img class="w-100 img-fluid position-relative z-index-10"
-                                        title="{{ $product->name }}"
-                                        src="{{ asset('storage/' . $product->main_picture) }}"
-                                        alt="{{ $product->name }}">
-                                </picture>
-                                <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
-                                    @if ($product->pictures->first())
-                                        <img class="w-100 img-fluid" title="{{ $product->name }}"
-                                            src="{{ asset('storage/' . $product->pictures->first()->picture_path) }}"
-                                            alt="{{ $product->name }}">
-                                    @else
-                                        <img class="w-100 img-fluid" title="{{ $product->name }}"
-                                            src="{{ asset('storage/' . $product->main_picture) }}"
-                                            alt="{{ $product->name }}">
-                                    @endif
-                                </picture>
-                                <div class="card-actions">
-                                    <span
-                                        class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                        Add</span>
+                                <!-- Gambar Produk -->
+                                <div class="card-header">
+                                    <picture class="position-relative overflow-hidden d-block bg-light">
+                                        <img class="w-100 img-fluid position-relative z-index-10"
+                                            title="{{ $productAddon->name }}"
+                                            src="{{ asset('storage/' . $productAddon->main_picture) }}"
+                                            alt="{{ $productAddon->name }}">
+                                    </picture>
+                                </div>
+
+                                <!-- Konten Produk -->
+                                <div class="card-body px-3 py-2 text-center">
+                                    <!-- Nama Produk -->
+                                    <p class="mb-1 link-cover text-decoration-none text-center">
+                                        {{ $productAddon->name }}
+                                    </p>
+
+                                    <!-- Harga Produk -->
+                                    <p class="fw-bolder m-0 p-addon">
+                                        Rp.{{ number_format($productAddon->discounted_price ?? $productAddon->product_price, 0, ',', '.') }}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="card-body-add-onn px-0 text-center">
-                                <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                    <!-- Review Stars Small-->
-                                    <div class="rating position-relative d-table">
-                                        {{-- <div class="position-absolute stars" style="width: {{ $product->product_rating * 20 }}%"> --}}
-                                        <div class="position-absolute stars"
-                                            style="width: {{ $product->reviews->avg('rating') * 20 }}%">
-
-                                            @for ($i = 0; $i < 5; $i++)
-                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                            @endfor
-                                        </div>
-                                        <div class="stars">
-                                            @for ($i = 0; $i < 5; $i++)
-                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                            @endfor
-                                        </div>
-                                    </div>
-                                    {{-- <span class="small fw-bolder ms-2 text-muted"> {{ $product->product_rating }}
-                                        ({{ $product->product_reviews }})</span> --}}
-                                    <span class="small fw-bolder ms-2 text-muted">
-                                        ({{ $product->reviews->count() }})</span>
-                                </div>
-                                <a class="mb-0 link-cover text-decoration-none d-block text-center"
-                                href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
-
-                                <p class="fw-bolder m-0 p-addon">
-                                    Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
-                            </div>
+                            <!-- /Card Product -->
                         </div>
-                        <!--/ Card Product-->
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
+
+
 
                 <!-- Buttons-->
                 <div
                     class="swiper-btn swiper-disabled-hide swiper-prev swiper-btn-side btn-icon bg-dark text-white ms-3 shadow-lg mt-n5 ms-n4">
-                    <i class="ri-arrow-left-s-line ri-lg"></i></div>
+                    <i class="ri-arrow-left-s-line ri-lg"></i>
+                </div>
                 <div
                     class="swiper-btn swiper-disabled-hide swiper-next swiper-btn-side swiper-btn-side-right btn-icon bg-dark text-white me-n4 shadow-lg mt-n5">
-                    <i class="ri-arrow-right-s-line ri-lg"></i></div>
+                    <i class="ri-arrow-right-s-line ri-lg"></i>
+                </div>
 
                 <!-- Add Scrollbar -->
                 <div class="swiper-scrollbar"></div>
@@ -219,7 +212,8 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex border-0 px-0 bg-transparent">
                     <i class="ri-truck-line"></i>
-                    <span class="fs-6 ms-3">Free standard shipping on orders over Rp.9,999 Next day shipping Rp.9,999 </span>
+                    <span class="fs-6 ms-3">Free standard shipping on orders over Rp.9,999 Next day shipping Rp.9,999
+                    </span>
                 </li>
             </ul>
         </div>
@@ -238,7 +232,9 @@
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            body: JSON.stringify({ productId })
+            body: JSON.stringify({
+                productId
+            })
         }).then(response => {
             if (response.ok) {
                 console.log('Product view tracked');
@@ -255,4 +251,38 @@
     window.onbeforeunload = function() {
         clearTimeout(timer);
     };
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const basePrice = {{ $product->discounted_price ?? $product->product_price }}; // Harga produk utama
+    const totalPriceElement = document.getElementById('total-price'); // Elemen total harga
+    const addonCards = document.querySelectorAll('.addon-card'); // Semua elemen add-on
+    const formatPrice = (price) => {
+        return 'Rp.' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Format ke Rp.xxx.xxx
+    };
+
+    const calculateTotalPrice = () => {
+        let totalPrice = basePrice;
+
+        // Tambahkan harga dari add-on yang dipilih
+        addonCards.forEach((card) => {
+            if (card.classList.contains('active')) {
+                const addonPrice = parseInt(card.getAttribute('data-price'), 10);
+                totalPrice += addonPrice;
+            }
+        });
+
+        // Perbarui elemen total price
+        totalPriceElement.textContent = formatPrice(totalPrice);
+    };
+
+    // Tambahkan event listener untuk add-on cards
+    addonCards.forEach((card) => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('active'); // Toggle status aktif
+            calculateTotalPrice(); // Hitung ulang total harga
+        });
+    });
+});
+
+
 </script>

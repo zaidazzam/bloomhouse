@@ -67,7 +67,7 @@ class ProductProductController extends Controller
         $selectedCategories = $product->category->pluck('id')->toArray();
 
         // Return ke view edit dengan membawa data produk, kategori, dan kategori yang terpilih
-        return view('product_products.edit', compact('product', 'categories', 'selectedCategories'));
+        return view('dashboard-view.produk', compact('product', 'categories', 'selectedCategories'));
     }
 
 
