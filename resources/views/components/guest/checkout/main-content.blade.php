@@ -141,7 +141,7 @@
 
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <label for="address-selection" class="form-label">Delivery Address (Address)</label>
+                            <label for="address-selection" class="form-label">Delivery Address  (Postage_Rule)</label>
                             <select name="deliv_schedule_address" class="form-select" id="delivery-schedule-address"
                                 required>
                                 <option value="" disabled selected>Select an Delivery Address</option>
@@ -156,7 +156,7 @@
                     <!-- Date delivery-->
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <label for="delivery-schedule" class="form-label">Delivery Schedule</label>
+                            <label for="delivery-schedule" class="form-label">Delivery Schedule (Time Slot)</label>
                             <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
                                 <option value="" disabled selected>Select a Delivery Schedule</option>
                                 @foreach ($timePostageRules as $rule)
