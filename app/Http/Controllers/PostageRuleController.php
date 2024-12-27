@@ -16,8 +16,8 @@ class PostageRuleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'postage_rule' => 'required',
-            'category' => 'required',
+            'postage_rule' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'price' => 'required|numeric',
         ]);
 
@@ -29,20 +29,26 @@ class PostageRuleController extends Controller
 
     public function show($id)
     {
-        $postages = PostageRule::findOrFail($id);
-        return view('postages.show', compact('postages'));
+        $postage = PostageRule::findOrFail($id);
+        return view('postages.show', compact('postage'));
     }
 
-    public function update(Request $request, $id)
+    public function edit($id)
     {
-        $request->validate([
-            'postage_rule' => 'required',
-            'category' => 'required',
-            'price' => 'required|numeric',
+        $postage = PostageRule::findOrFail($id); // Ambil data berdasarkan ID
+        return view('dashboard-view.edit_postage', compact('postage')); // Ganti dengan view yang sesuai
+    }
+
+    public function update(Request $request, PostageRule $postage)
+    {
+
+        $validated = $request->validate([
+            'postage_rule' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'price' => 'required|numeric',  // Menggunakan validasi integer untuk memastikan harga adalah angka bulat
         ]);
 
-        $postage= PostageRule::findOrFail($id);
-        $postage->update($request->all());
+        $postage->update($validated);
 
         return redirect()->route('postages.index')
             ->with('success', 'Postage Rule updated successfully.');
@@ -50,7 +56,6 @@ class PostageRuleController extends Controller
 
     public function destroy($id)
     {
-        // Hapus kategori
         $postage = PostageRule::findOrFail($id);
         $postage->delete();
 

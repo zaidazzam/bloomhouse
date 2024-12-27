@@ -41,6 +41,7 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
 Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog']) ->name('tagBlog');;
+Route::get('/admin/postages', [App\Http\Controllers\AdminController::class, 'delivery']) ->name('delivery');;
 
 
 
@@ -57,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('blogs', BlogController::class);
     Route::resource('tags', TagController::class);
     Route::resource('postages', PostageRuleController::class);
-
+    Route::put('/postages/{id}', [PostageRuleController::class, 'update'])->name('postages.update');
 
     Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
     Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])

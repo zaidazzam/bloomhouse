@@ -48,12 +48,11 @@
                                     <div class='dropdown-menu'>
                                         <a class='dropdown-item btn btn-edit' href='javascript:void(0);'
                                             data-bs-toggle='modal'
-                                            data-url="{{ route('product_categories.update', $postage->id) }}"
+                                            data-url="{{ route('postages.update', $postage->id) }}"
                                             data-bs-target='#editCategoryModal'>
                                             <i class='bx bx-edit-alt me-1'></i> Edit
                                         </a>
-                                        <form method="POST"
-                                            action="{{ route('product_categories.destroy', $postage->id) }}">
+                                        <form method="POST" action="{{ route('postages.destroy', $postage->id) }}">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class='dropdown-item btn'>
@@ -114,7 +113,7 @@
 <!-- Modal Add Category -->
 <div class="modal fade" id="addCategoryModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
-        <form class="modal-content" id="addCategoryForm" method="POST" action="{{ route('product_categories.store') }}">
+        <form class="modal-content" id="addCategoryForm" method="POST" action="{{ route('postages.store') }}">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title" id="addCategoryModalTitle">Add Delivery Rule</h5>
@@ -124,21 +123,31 @@
                 <div class="row">
                     <div class="col-12 mb-2">
                         <label for="deliveryRule" class="form-label">Delivery Rule</label>
-                        <input type="text" id="deliveryRule" name="postage_rule" class="form-control @error('postage_rule') is-invalid @enderror" placeholder="Enter Delivery Rule" required />
+                        <input type="text" id="deliveryRule" name="postage_rule"
+                            class="form-control @error('postage_rule') is-invalid @enderror"
+                            placeholder="Enter Delivery Rule" required />
                         @error('postage_rule')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-12 mb-2">
                         <label for="categoryName" class="form-label">Category</label>
-                        <input type="text" id="categoryName" name="category" class="form-control @error('category') is-invalid @enderror" placeholder="Enter Category" required />
+                        <select id="categoryName" name="category"
+                            class="form-select @error('category') is-invalid @enderror" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Time">Time</option>
+                            <option value="Addres">Addres</option>
+                            <!-- Tambahkan kategori lain di sini jika diperlukan -->
+                        </select>
                         @error('category')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-12 mb-2">
                         <label for="price" class="form-label">Price</label>
-                        <input type="text" id="rupiahInput" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Enter Price" required />
+                        <input type="text" id="rupiahInput" name="price"
+                            class="form-control @error('price') is-invalid @enderror" placeholder="Enter Price"
+                            required />
                         @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -147,7 +156,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
+                <button type="submit"
+                    class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
             </div>
         </form>
     </div>
@@ -166,20 +176,34 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col mb-3">
+                    <div class="col-12 mb-2">
                         <label for="editDeliveryRule" class="form-label">Delivery Rule</label>
                         <input type="text" id="editDeliveryRule" name="postage_rule" class="form-control"
                             placeholder="Enter Delivery Rule" required />
+                        @error('postage_rule')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col mb-3">
+                    <div class="col-12 mb-2">
                         <label for="editCategoryName" class="form-label">Category</label>
-                        <input type="text" id="editCategoryName" name="category" class="form-control"
-                            placeholder="Enter Category" required />
+                        <select id="editCategoryName" name="category"
+                            class="form-select @error('category') is-invalid @enderror" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Time">Time</option>
+                            <option value="Addres">Addres</option>
+                            <!-- Tambahkan kategori lain di sini jika diperlukan -->
+                        </select>
+                        @error('category')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col mb-3">
+                    <div class="col-12 mb-2">
                         <label for="editPrice" class="form-label">Price</label>
                         <input type="number" id="editPrice" name="price" class="form-control"
                             placeholder="Enter Price" required />
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -216,20 +240,4 @@
             });
         });
     });
-
-    document.getElementById('rupiahInput').addEventListener('input', function (e) {
-    // Remove non-numeric characters
-    let value = e.target.value.replace(/[^,\d]/g, '').toString();
-
-    // Split the value into whole and decimal parts
-    let parts = value.split(',');
-    let wholePart = parts[0];
-    let decimalPart = parts.length > 1 ? ',' + parts[1] : '';
-
-    // Format the whole part with thousands separator
-    wholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-    // Combine whole and decimal parts
-    e.target.value = 'Rp ' + wholePart + decimalPart;
-});
 </script>
