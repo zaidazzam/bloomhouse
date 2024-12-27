@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ProductProduct;
 use App\Models\ProductCategory;
+use App\Models\PostageRule;
 
 class GuestController extends Controller
 {
@@ -128,10 +129,18 @@ class GuestController extends Controller
 
     return view('guest-view.detail-blog');
      }
-    public function checkout(){
+     public function checkout()
+     {
+         // Ambil data postage_rule dengan kategori 'Time' dan 'Address'
+         $timePostageRules = PostageRule::where('category', 'Time')->get();
+         $addressPostageRules = PostageRule::where('category', 'Address')->get();
 
-    return view('guest-view.checkout');
+         // Kirim data ke view
+         return view('guest-view.checkout', compact('timePostageRules', 'addressPostageRules'));
      }
+
+
+
      public function productShow1($id)
      {
          $product = ProductProduct::with(['reviews','deliveryExpeditions','category','pictures'])->findOrFail($id);

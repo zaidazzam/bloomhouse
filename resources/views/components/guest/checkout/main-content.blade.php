@@ -19,7 +19,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <input name="email" type="email" class="form-control" id="email"
+                                    placeholder="you@example.com">
                             </div>
 
                             <!-- Mailing List Signup-->
@@ -31,108 +32,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /Checkout Panel Contact --> <!-- Checkout Shipping Address -->
-                <div class="checkout-panel">
-                    <h5 class="title-checkout">Shipping Address</h5>
-                    <div class="row">
-
-                        <!-- Country-->
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="country" class="form-label">Country</label>
-                                <select class="form-select" name="shipping_country" id="country" required="">
-                                    <option value="" disabled selected>Please Select...</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <!-- First Name-->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" name="shipping_first_name" class="form-control" id="firstName" placeholder="" value=""
-                                    required="">
-                            </div>
-                        </div>
-
-                        <!-- Last Name-->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" name="shipping_last_name" class="form-control" id="lastName" placeholder="" value=""
-                                    required="">
-                            </div>
-                        </div>
-
-                        <!-- phonenumber-->
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="address" class="form-label">Phone Number</label>
-                                <input type="number" name="shipping_phone_number" class="form-control" id="number" placeholder="" required="">
-                            </div>
-                        </div>
-
-                        <!-- Company-->
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="address" class="form-label">Company <span class="text-muted"
-                                        style="font-size: 0.85em;">(optional)</span></label>
-                                <input type="text" name="shipping_data_company" class="form-control" id="address" placeholder="" required="">
-                            </div>
-                        </div>
-
-                        <!-- Address-->
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" name="shipping_data_address" class="form-control" id="address"
-                                    placeholder="123 Some Street Somewhere" required="">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="province" class="form-label">Province</label>
-                                <select name="shipping_data_provinsi" class="form-select" id="province" required="">
-                                    <option value="" disabled selected>Please Select...</option>
-                                    <!-- Provinces will be populated here -->
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- City -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="city" class="form-label">City</label>
-                                <select class="form-select" name="shipping_data_city" id="city" required="">
-                                    <option value="" disabled selected>Please Select...</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Postal Code (State/Territory) -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" name="shipping_data_zip" class="form-control" id="zip" placeholder=""
-                                    required="">
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="pt-4 mt-4 border-top d-flex justify-content-between align-items-center">
-                        <!-- Shipping Same Checkbox-->
-                        <div class="form-group form-check m-0">
-                            <input name="use_for_billing_address" type="checkbox" class="form-check-input" id="same-address" checked>
-                            <label class="form-check-label" for="same-address">Use for billing address</label>
-                        </div>
-                    </div>
-                </div>
                 <!-- /Checkout Shipping Address --> <!-- Checkout Billing Address-->
-                <div class="billing-address checkout-panel d-none">
+                <div class="billing-address checkout-panel">
                     <h5 class="title-checkout">Billing Address</h5>
                     <div class="row">
 
@@ -151,8 +52,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="firstName" class="form-label">First name</label>
-                                <input name="bill_data_firstname" type="text" class="form-control" id="firstName" placeholder=""
-                                    value="" required="">
+                                <input name="bill_data_firstname" type="text" class="form-control" id="firstName"
+                                    placeholder="" value="" required="">
                             </div>
                         </div>
 
@@ -160,8 +61,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="lastName" class="form-label">Last name</label>
-                                <input name="bill_data_lastname" type="text" class="form-control" id="lastName" placeholder=""
-                                    value="" required="">
+                                <input name="bill_data_lastname" type="text" class="form-control" id="lastName"
+                                    placeholder="" value="" required="">
                             </div>
                         </div>
 
@@ -169,8 +70,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="address" class="form-label">Phone Number</label>
-                                <input name="bill_data_phone" type="number" class="form-control" id="number" placeholder=""
-                                    required="">
+                                <input name="bill_data_phone" type="number" class="form-control" id="number"
+                                    placeholder="" required="">
                             </div>
                         </div>
 
@@ -179,8 +80,8 @@
                             <div class="form-group">
                                 <label for="address" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input name="bill_data_company" type="text" class="form-control" id="address" placeholder=""
-                                    required="">
+                                <input name="bill_data_company" type="text" class="form-control" id="address"
+                                    placeholder="" required="">
                             </div>
                         </div>
 
@@ -192,35 +93,37 @@
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
-
+                        <!-- Province -->
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="province" class="form-label">Province</label>
-                                <select name="bill_data_provinsi" class="form-select" id="province" required="">
-                                    <option value="" disabled selected>Please Select...</option>
-                                    <!-- Provinces will be populated here -->
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- City -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="city" class="form-label">City</label>
-                                <select name="bill_data_city" class="form-select" id="city" required="">
+                                <select name="bill_data_province" class="form-select" id="province" required="">
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Postal Code (State/Territory) -->
+                        <!-- City (Regency) -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="zip" class="form-label">Postal Code</label>
-                                <input type="text" name="bill_data_zip" class="form-control" id="zip" placeholder=""
+                                <label for="zip" class="form-label">City</label>
+                                <select name="bill_data_city" class="form-select" id="City" required="">
+                                    <option value="" disabled selected>Please Select...</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Subdistrict and Postal Code (Kelurahan) -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdistrict" class="form-label">Subdistrict/Postal Code</label>
+                                <select name="bill_data_subdistrict" class="form-select" id="subdistrict"
                                     required="">
+                                    <option value="" disabled selected>Please Select...</option>
+                                </select>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
@@ -231,8 +134,23 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-date" class="form-label">Delivery Date</label>
-                            <input name="deliv_date" type="date" class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
+                            <input name="deliv_date" type="date" class="form-control" id="delivery-date"
+                                min="<?= date('Y-m-d') ?>" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group">
+                            <label for="address-selection" class="form-label">Delivery Address (Address)</label>
+                            <select name="deliv_schedule_address" class="form-select" id="delivery-schedule-address"
                                 required>
+                                <option value="" disabled selected>Select an Delivery Address</option>
+                                @foreach ($addressPostageRules as $rule)
+                                    <option value="{{ $rule->id }}">{{ $rule->postage_rule }} - Rp
+                                        {{ number_format($rule->price, 0, ',', '.') }}</option>
+                                @endforeach
+                            </select>
+                            <div id="delivery-schedule-error" class="text-danger mt-2"></div>
                         </div>
                     </div>
                     <!-- Date delivery-->
@@ -241,97 +159,39 @@
                             <label for="delivery-schedule" class="form-label">Delivery Schedule</label>
                             <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
                                 <option value="" disabled selected>Select a Delivery Schedule</option>
-                                <option value="slot1">Time Slot 1: 9:00 AM - 12:00 PM</option>
-                                <option value="slot2">Time Slot 2: 1:00 PM - 5:00 PM</option>
-                                <option value="slot3">Time Slot 3: 6:00 PM - 10:00 PM (IDR 50,000)</option>
-                                <option value="slot4">Midnight Slot: 10:00 PM - 12:00 AM (IDR 100,000)</option>
-                                <option value="slot5">Early Morning: 1:00 AM - 5:00 AM (IDR 200,000)</option>
-                                <option value="valentine">Valentine's Delivery: 8:00 AM - 7:00 PM</option>
-                                <option value="testing">Testing Slot: 10:00 AM - 12:00 PM (IDR 5,000)</option>
+                                @foreach ($timePostageRules as $rule)
+                                    <option value="{{ $rule->id }}">{{ $rule->postage_rule }} - Rp
+                                        {{ number_format($rule->price, 0, ',', '.') }}</option>
+                                @endforeach
                             </select>
                             <div id="delivery-schedule-error" class="text-danger mt-2"></div>
                         </div>
-
                     </div>
-
-
-
                     <!-- Date delivery-->
+                    <!-- Delivery Note Section -->
                     <label for="delivery-note" class="form-label mb-3">Delivery Note</label>
+                    <p class="text-muted fst-italic">
+                        Please provide a personalized message for the recipient. For example:
+                    <ul>
+                        <li>"Happy Birthday, [Recipient's Name]! Wishing you a wonderful year ahead filled with joy and
+                            success."</li>
+                        <li>"Congratulations on your special day, [Recipient's Name]! May your day be as beautiful as
+                            these flowers."</li>
+                        <li>"Thank you for everything, [Recipient's Name]. You truly deserve this little surprise."</li>
+                    </ul>
+                    </p>
 
-                    <!-- Delivery Notes-->
-                    <div class="form-check form-group form-radio-custom mb-3 ">
-                        <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodOne" checked>
-                        <label class="form-check-label" for="checkoutShippingMethodOne">
-                            <span class="d-flex justify-content-between align-items-start w-100">
-                                <span>
-                                    <span class="mb-0 fw-bolder d-block">Contact the recipient before delivery </span>
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-
-                    <!-- Delivery Notes-->
-                    <div class="form-check form-group form-radio-custom mb-3">
-                        <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodTwo">
-                        <label class="form-check-label" for="checkoutShippingMethodTwo">
-                            <span class="d-flex justify-content-between align-items-start">
-                                <span>
-                                    <span class="mb-0 fw-bolder d-block">Do not contact the recipient. If the recipient
-                                        is not there</span>
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-
-                    <!-- Delivery Notes-->
-                    <div class="form-check form-group  form-radio-custom mb-3">
-                        <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodThree">
-                        <label class="form-check-label" for="checkoutShippingMethodThree">
-                            <span class="d-flex justify-content-between align-items-start">
-                                <span>
-                                    <span class="mb-0 fw-bolder d-block">Just hit the door if it doesn't open</span>
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-                    <!-- Delivery Notes-->
-                    <div class="form-check form-group  form-radio-custom mb-3">
-                        <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodThree">
-                        <label class="form-check-label" for="checkoutShippingMethodThree">
-                            <span class="d-flex justify-content-between align-items-start">
-                                <span>
-                                    <span class="mb-0 fw-bolder d-block">Leave it at the door, a neighbor or an
-                                        officer</span>
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-                    <!-- Delivery Notes-->
-
-                    <div class="form-check form-group form-radio-custom mb-3">
-                        <input class="form-check-input" type="radio" name="checkoutShippingMethod"
-                            id="checkoutShippingMethodThree">
-                        <label class="form-check-label" for="checkoutShippingMethodThree">
-                            <span class="d-flex justify-content-between align-items-center">
-                                <span>
-                                    <span class="mb-0 fw-bolder d-block">Free Notes</span>
-                                </span>
-                            </span>
-                        </label>
-                    </div>
-                    <!-- Delivery Notes-->
-                    <div class="col-md-12 mt-3">
+                    <!-- Delivery Notes -->
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <label for="cc-name" class="form-label"> <span
-                                    class="small fw-bolder">*Note</span></label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <label for="delivery-note-textarea" class="form-label">
+                                <span class="small fw-bolder">* Free Personalized Note</span>
+                            </label>
+                            <textarea class="form-control" id="delivery-note-textarea" rows="4" placeholder="Write your message here..."
+                                required></textarea>
                         </div>
                     </div>
+
                 </div>
                 <!-- /Checkout Shipping Method --> <!-- Checkout Payment Method-->
                 <div class="checkout-panel">
@@ -621,4 +481,75 @@
             // Inisialisasi Select2 pada elemen #delivery-schedule
             $('#delivery-schedule').select2();
         });
+    </script>
+    <script>
+        // URL API
+        const API_BASE_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
+
+        // Helper function untuk mengisi dropdown
+        function populateDropdown(elementId, data, defaultOptionText) {
+            const dropdown = document.getElementById(elementId);
+            dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.textContent = item.name;
+                dropdown.appendChild(option);
+            });
+        }
+
+        // Fetch data provinsi
+        function fetchProvinces() {
+            fetch(`${API_BASE_URL}/provinces.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('province', data, 'Please Select Province...');
+                })
+                .catch(error => console.error('Error fetching provinces:', error));
+        }
+
+        // Fetch data kota/kabupaten berdasarkan provinsi
+        function fetchRegencies(provinceId) {
+            fetch(`${API_BASE_URL}/regencies/${provinceId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('City', data, 'Please Select City...');
+                })
+                .catch(error => console.error('Error fetching regencies:', error));
+        }
+
+        // Fetch data kecamatan/kelurahan berdasarkan kota/kabupaten
+        function fetchDistricts(regencyId) {
+            fetch(`${API_BASE_URL}/districts/${regencyId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('subdistrict', data, 'Please Select Subdistrict...');
+                })
+                .catch(error => console.error('Error fetching districts:', error));
+        }
+
+        // Event listener untuk perubahan pada dropdown provinsi
+        document.getElementById('province').addEventListener('change', function() {
+            const provinceId = this.value;
+            if (provinceId) {
+                fetchRegencies(provinceId);
+                document.getElementById('City').innerHTML =
+                    '<option value="" disabled selected>Loading...</option>';
+                document.getElementById('subdistrict').innerHTML =
+                    '<option value="" disabled selected>Please Select Subdistrict...</option>';
+            }
+        });
+
+        // Event listener untuk perubahan pada dropdown kota/kabupaten
+        document.getElementById('City').addEventListener('change', function() {
+            const regencyId = this.value;
+            if (regencyId) {
+                fetchDistricts(regencyId);
+                document.getElementById('subdistrict').innerHTML =
+                    '<option value="" disabled selected>Loading...</option>';
+            }
+        });
+
+        // Inisialisasi: fetch data provinsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', fetchProvinces);
     </script>
