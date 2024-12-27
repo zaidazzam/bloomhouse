@@ -30,12 +30,15 @@ class ProductProductController extends Controller
             'address' => 'nullable',
             'size' => 'nullable',
             'product_price' => 'required|numeric',
-            'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
             'consist_of' => 'nullable',
             'category_id' => 'required|array|exists:product_categories,id',
+
+
         ]);
+
         if ($request->hasFile('main_picture')) {
             $validated['main_picture'] = $request->file('main_picture')->store('products', 'public');
         }
@@ -53,12 +56,25 @@ class ProductProductController extends Controller
 
     public function edit($id)
     {
+<<<<<<< HEAD
         $product = ProductProduct::with('category')->findOrFail($id); 
         $categories = ProductCategory::all(); 
         $selectedCategories = $product->category->pluck('id')->toArray(); 
+=======
+        // Ambil data produk beserta kategorinya
+        $product = ProductProduct::with('category')->findOrFail($id);
+>>>>>>> e2ef0f0f528f5cf4e36b272776325089fe7b0301
 
-        return view('product_products.edit', compact('product', 'categories', 'selectedCategories'));
+        // Ambil semua kategori
+        $categories = ProductCategory::all();
+
+        // Ambil array ID kategori yang terpilih untuk produk yang sedang diedit
+        $selectedCategories = $product->category->pluck('id')->toArray();
+
+        // Return ke view edit dengan membawa data produk, kategori, dan kategori yang terpilih
+        return view('dashboard-view.produk', compact('product', 'categories', 'selectedCategories'));
     }
+
 
 
 
@@ -70,7 +86,7 @@ class ProductProductController extends Controller
             'address' => 'nullable',
             'size' => 'nullable',
             'product_price' => 'required|numeric',
-            'main_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_description' => 'nullable',
             'discount' => 'nullable',
             'consist_of' => 'nullable',

@@ -45,20 +45,34 @@
                         <tr>
                             <td data-id="{{ $product->id }}">{{ $loop->iteration }}</td>
                             <td data-name="{{ $product->name }}"><strong>{{ $product->name }}</strong></td>
+<<<<<<< HEAD
                             <td data-category="{{ $product->category->pluck('id')->impltode(', ') }}">
+=======
+                            {{-- <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
+>>>>>>> e2ef0f0f528f5cf4e36b272776325089fe7b0301
                                 @foreach ($product->category as $category)
                                     <span class="badge bg-primary">{{ $category->name }}</span>
                                 @endforeach
+                            </td> --}}
+
+                            <td data-category="{{ implode(',', $product->category->pluck('id')->toArray()) }}">
+                                <ul>
+                                    @foreach ($product->category as $category)
+                                        <li>{{ $category->name }}</li>
+                                    @endforeach
+                                </ul>
                             </td>
                             <td data-desc="{{ $product->product_description }}">{{ $product->product_description }}</td>
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
                             <td>Bintang 5</td>
                             <td data-address="{{ $product->address }}">{{ $product->address }}</td>
-                            <td data-price="{{ $product->product_price }}">Rp {{ number_format($product->product_price, 0, ' ,', '.') }}</td>
+                            <td data-price="{{ $product->product_price }}">Rp
+                                {{ number_format($product->product_price, 0, ' ,', '.') }}</td>
                             <td data-size="{{ $product->size }}">{{ $product->size }}</td>
                             <td data-disc="{{ $product->discount }}">{{ $product->discount }}%</td>
                             <td>
-                                Rp {{ number_format($product->product_price - ($product->product_price * ($product->discount / 100)), 0, ',', '.') }}
+                                Rp
+                                {{ number_format($product->product_price - $product->product_price * ($product->discount / 100), 0, ',', '.') }}
                             </td>
                             <td data-consist="{{ $product->consist_of }}">{{ $product->consist_of }}</td>
                             <td>
@@ -155,13 +169,12 @@
                     <div class="col-12">
                         <label for="productName" class="form-label">Name</label>
                         <input type="text" name="name" id="productName" class="form-control"
-                            placeholder="Enter Product Name" />
+                            placeholder="Enter Product Name" required />
                     </div>
                 </div>
                 <label for="productName" class="form-label">Category</label>
                 <div class="row mb-3">
-                    <div class="col-12 ">
-
+                    <div class="col-12">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCheckbox"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Select Category
@@ -171,14 +184,21 @@
                                 <li>
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
-                                            value="{{ $category->id }}" id="check1" />
-                                        <label class="form-check-label" for="check1">{{ $category->name }}</label>
+                                            value="{{ $category->id }}" id="check{{ $category->id }}"
+                                            {{ in_array($category->id, old('category_id', [])) ? 'checked' : '' }} />
+                                        <label class="form-check-label"
+                                            for="check{{ $category->id }}">{{ $category->name }}</label>
                                     </div>
                                 </li>
                             @endforeach
                         </ul>
+                        <!-- Tampilkan pesan error jika validasi gagal -->
+                        @error('category_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="productDescription" class="form-label">Description</label>
@@ -189,7 +209,7 @@
                     <div class="col-4">
                         <label for="productStock" class="form-label">Stock</label>
                         <input type="number" name="product_stock" id="productStock" class="form-control"
-                            placeholder="Enter Stock" />
+                            placeholder="Enter Stock" required />
                     </div>
                     <div class="col-4">
                         <label for="productAddress" class="form-label">Address</label>
@@ -205,8 +225,6 @@
                 <div class="row mb-3">
                     <div class="col-6">
                         <label for="addProductPrice" class="form-label">Price</label>
-                        <input type="hidden" name="product_price" id="addProductPrice" class="form-control"
-                            placeholder="Enter Price" required />
                         <input type="text" name="product_price" id="addProductPrice2" class="form-control"
                             placeholder="Enter Price" required />
                     </div>
@@ -225,21 +243,21 @@
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="productPhoto" class="form-label">Photo (thumbnail)</label>
-                        <input type="file" id="productPhoto" name="main_picture" class="form-control" />
+                        <input type="file" id="productPhoto" name="main_picture" class="form-control" required />
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit"
                     class="btn btn-outline-secondary text-white btn-add-product table-dark1">Save</button>
             </div>
         </form>
+
     </div>
 </div>
 
+<!-- Edit Product Modal -->
 <!-- Edit Product Modal -->
 <div class="modal fade" id="editProductModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
@@ -255,27 +273,26 @@
                     <div class="col-12">
                         <label for="editProductName" class="form-label">Name</label>
                         <input type="text" id="editProductName" name="name" class="form-control"
-                            placeholder="Enter Product Name" value="{{ old('name') }}" />
+                            placeholder="Enter Product Name" value="{{ old('name') }}" required />
                         @error('name')
                             <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
 
-                <label for="productName" class="form-label">Category</label>
+                <label for="editProductCategory" class="form-label">Category</label>
                 <div class="row mb-3">
                     <div class="col-12">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCheckbox"
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="editDropdownCheckbox"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Select Category
                         </button>
-                        <ul class="dropdown-menu p-3" aria-labelledby="dropdownCheckbox">
+                        <ul class="dropdown-menu p-3" aria-labelledby="editDropdownCheckbox">
                             @foreach ($categories as $category)
                                 <li>
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
-                                            value="{{ $category->id }}" id="category_{{ $category->id }}"
-                                            @if (old('category_id') && in_array($category->id, old('category_id'))) checked @endif />
+                                            value="{{ $category->id }}" id="category_{{ $category->id }}" />
                                         <label class="form-check-label" for="category_{{ $category->id }}">
                                             {{ $category->name }}
                                         </label>
@@ -303,7 +320,7 @@
                     <div class="col-4">
                         <label for="editProductStock" class="form-label">Stock</label>
                         <input type="number" name="product_stock" id="editProductStock" class="form-control"
-                            placeholder="Enter Stock" value="{{ old('product_stock') }}" />
+                            placeholder="Enter Stock" value="{{ old('product_stock') }}" required />
                         @error('product_stock')
                             <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
@@ -328,17 +345,37 @@
                 <div class="row mb-3">
                     <div class="col-6">
                         <label for="editProductPrice" class="form-label">Price</label>
-                        <input type="text" name="product_price" id="editProductPrice2" class="form-control"
-                            placeholder="Enter Price" value="{{ old('product_price') }}" />
+                        <input type="text" name="product_price" id="editProductPrice" class="form-control"
+                            placeholder="Enter Price" value="{{ old('product_price') }}" required />
                         @error('product_price')
                             <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-6">
-                        <label for="editPriceBeforeDisc" class="form-label">Discount</label>
+                        <label for="editProductDisc" class="form-label">Discount</label>
                         <input type="number" name="discount" id="editProductDisc" class="form-control"
                             placeholder="Enter Discount Price" value="{{ old('discount') }}" />
                         @error('discount')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="editproductConsistOf" class="form-label">Consist Of</label>
+                        <textarea id="editproductConsistOf" name="consist_of" class="form-control" placeholder="Enter Materials"
+                            value="{{ old('consist_of') }}"></textarea>
+                        @error('consist_of')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="editProductMainPicture" class="form-label">Photo (thumbnail)</label>
+                        <input type="file" name="main_picture" id="editProductMainPicture"
+                            class="form-control" />
+                        @error('main_picture')
                             <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -354,6 +391,7 @@
         </form>
     </div>
 </div>
+
 
 <!-- Photo Product Modal -->
 <div class="modal fade" id="photoModal" data-bs-backdrop="static" tabindex="-1">
@@ -433,6 +471,9 @@
                 const product_disc = row.querySelector('[data-disc]').getAttribute('data-disc');
                 const product_consist = row.querySelector('[data-consist]').getAttribute(
                     'data-consist');
+                const product_category = row.getAttribute(
+                'data-category'); // Get the data-category attribute
+
 
                 document.getElementById('editProductName').value = product_name;
                 document.getElementById('editProductDescription').value = product_desc;
@@ -441,20 +482,43 @@
                 document.getElementById('editProductSize').value = product_size;
                 document.getElementById('editProductPrice').value = product_price;
                 document.getElementById('editProductDisc').value = product_disc;
-                document.getElementById('editProductConsistOf').value = product_consist;
+                document.getElementById('editproductConsistOf').value = product_consist;
+                document.getElementById('DropdownCheckbox').value = product_category;
 
-                const product_categories = row.querySelector('[data-categories]').getAttribute(
-                    'data-categories').split(',');
+                // let categs = [];
+                // try {
+                //     categs = JSON.parse(product_category);
+                // } catch (error) {
+                //     console.error("Failed to parse list_category:", error);
+                // }
+                // categs.forEach(categ => {
+                //     // Atur checkbox tag sesuai dengan data tags dari baris
+                //     const categCheckboxes = document.querySelectorAll(
+                //         'input[name="tags[]"]');
+                //     categCheckboxes.forEach(checkbox => {
+                //         checkbox.checked =
+                //             false; // Reset semua checkbox sebelum menandai yang sesuai
+                //         if (categs.some(categ => categ.id == checkbox
+                //                 .value)) { // Cocokkan ID tag
+                //             checkbox.checked = true;
+                //         }
+                //     });
+                // });
+                // editorInstance.setData(content)
+                // Update selected categories
+                const selectedCategories = product_category.split(
+                    ','); // Assuming categories are comma-separated
+                const categCheckboxes = document.querySelectorAll(
+                    'input[name="category_id[]"]');
 
-                const categoryCheckboxes = document.querySelectorAll(
-                    '.form-check-input[name="category_id[]"]');
-                categoryCheckboxes.forEach(checkbox => {
-                    checkbox.checked = product_categories.includes(checkbox.value);
+                categCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectedCategories.includes(checkbox
+                        .value
+                        ); // Check if the checkbox value is in selected categories
                 });
-
-
             });
         });
+
 
         photoButtons.forEach(button => {
             button.addEventListener('click', function() {
@@ -560,5 +624,45 @@
 
         // Combine whole and decimal parts
         e.target.value = 'Rp ' + wholePart + decimalPart;
+    });
+
+
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah refresh halaman
+
+        const formData = new FormData(this);
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = true; // Nonaktifkan tombol sementara
+
+        fetch("{{ route('product_products.store') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.errors) {
+                    // Tampilkan pesan error
+                    if (data.errors.category_id) {
+                        document.getElementById('categoryError').textContent = data.errors.category_id[0];
+                    } else {
+                        document.getElementById('categoryError').textContent = '';
+                    }
+                } else {
+                    // Jika berhasil, lakukan sesuatu (misalnya, refresh data tanpa reload halaman)
+                    alert('Product saved successfully!');
+                    // Optionally, you can reset the form
+                    document.getElementById('productForm').reset();
+                    document.getElementById('categoryError').textContent = '';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                submitButton.disabled = false; // Aktifkan kembali tombol
+            });
     });
 </script>

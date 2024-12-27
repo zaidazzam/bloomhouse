@@ -21,7 +21,8 @@
     {{-- CKEDITOR 5 TRIAL 14 HARI --}}
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.css" />
     <script src="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.umd.js"></script>
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/44.0.0/ckeditor5-premium-features.css" />
+    <link rel="stylesheet"
+        href="https://cdn.ckeditor.com/ckeditor5-premium-features/44.0.0/ckeditor5-premium-features.css" />
     <script src="https://cdn.ckeditor.com/ckeditor5-premium-features/44.0.0/ckeditor5-premium-features.umd.js"></script>
 
 
@@ -38,6 +39,8 @@
     <!-- Favicon -->
     {{-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> --}}
     <link href="{{ asset('/assets/images/logos/Bloom-House-02.png') }}" rel="icon" type="image/x-icon">
+    <!-- Tambahkan ini di file layout Blade -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -138,34 +141,36 @@
             Font,
             Paragraph
         } = CKEDITOR;
-        const { FormatPainter } = CKEDITOR_PREMIUM_FEATURES;
-    
+        const {
+            FormatPainter
+        } = CKEDITOR_PREMIUM_FEATURES;
+
         ClassicEditor
-            .create( document.querySelector( '#editor' ), {
+            .create(document.querySelector('#editor'), {
                 licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzU1MTY3OTksImp0aSI6IjQ5Y2JhYzdmLTg5ZjAtNDY4My1hOWZlLTk2NTE3ZjNiZDc4YiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjY5Y2IwM2I4In0.UtghZ0667Q0pT2UgFd6ke2Cce_11d2v_l_8jopptjGiRJrZlWFDoocA_vVLvKgnmVQgO8y_GocspwQE8-Islog',
-                plugins: [ Essentials, Bold, Italic, Font, Paragraph, FormatPainter ],
+                plugins: [Essentials, Bold, Italic, Font, Paragraph, FormatPainter],
                 toolbar: [
                     'undo', 'redo', '|', 'bold', 'italic', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
                     'formatPainter'
                 ]
-            } )
+            })
             .then( /* ... */ )
             .catch( /* ... */ );
 
         ClassicEditor
-            .create( document.querySelector( '#editBlogDescription' ), {
+            .create(document.querySelector('#editBlogDescription'), {
                 licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3MzU1MTY3OTksImp0aSI6IjQ5Y2JhYzdmLTg5ZjAtNDY4My1hOWZlLTk2NTE3ZjNiZDc4YiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjY5Y2IwM2I4In0.UtghZ0667Q0pT2UgFd6ke2Cce_11d2v_l_8jopptjGiRJrZlWFDoocA_vVLvKgnmVQgO8y_GocspwQE8-Islog',
-                plugins: [ Essentials, Bold, Italic, Font, Paragraph, FormatPainter ],
+                plugins: [Essentials, Bold, Italic, Font, Paragraph, FormatPainter],
                 toolbar: [
                     'undo', 'redo', '|', 'bold', 'italic', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
                     'formatPainter'
                 ]
-            } )
+            })
             .then(editor => {
-                        editorInstance = editor; // Simpan instans editor
-                    })
+                editorInstance = editor; // Simpan instans editor
+            })
             .catch( /* ... */ );
     </script>
     {{-- <==============================================================================> --}}

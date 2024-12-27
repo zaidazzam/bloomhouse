@@ -53,6 +53,7 @@ html a {
     height: 200px;
     object-fit: cover;
 }
+
 .block-20 {
     overflow: hidden;
     background-size: cover;
@@ -122,24 +123,27 @@ ul.categories li a {
 
 .tagcloud {
     display: grid;
-    grid-template-columns: repeat(
-        auto-fill,
-        minmax(100px, 1fr)
-    ); /* Ensure each tag can grow but will fit */
+    grid-template-columns: repeat(auto-fill,
+            minmax(100px, 1fr));
+    /* Ensure each tag can grow but will fit */
     gap: 10px;
     padding: 0;
 }
 
 .tagcloud a {
-    padding: 5px 10px; /* Add horizontal padding for more space */
+    padding: 5px 10px;
+    /* Add horizontal padding for more space */
     border: 1px solid #007eae;
     border-radius: 5px;
     text-align: center;
     display: inline-block;
-    white-space: nowrap; /* Prevent wrapping inside the tag */
+    white-space: nowrap;
+    /* Prevent wrapping inside the tag */
     overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis for very long text */
-    font-size: 14px; /* Adjust font size as needed */
+    text-overflow: ellipsis;
+    /* Add ellipsis for very long text */
+    font-size: 14px;
+    /* Adjust font size as needed */
     color: black;
     text-decoration: none;
 }
@@ -151,13 +155,14 @@ ul.categories li a {
 
 @media (max-width: 768px) {
     .tagcloud {
-        grid-template-columns: repeat(
-            auto-fill,
-            minmax(80px, 1fr)
-        ); /* Stack them with smaller size on small screens */
+        grid-template-columns: repeat(auto-fill,
+                minmax(80px, 1fr));
+        /* Stack them with smaller size on small screens */
     }
+
     .tagcloud a {
-        font-size: 12px; /* Adjust font size for smaller screens */
+        font-size: 12px;
+        /* Adjust font size for smaller screens */
     }
 }
 
@@ -242,7 +247,8 @@ ul.pagination li.active {
 .sidebar-box {
     box-sizing: border-box;
     padding: 1rem;
-    border: 1px solid #ddd; /* Optional, adds border around the box */
+    border: 1px solid #ddd;
+    /* Optional, adds border around the box */
     border-radius: 8px;
     background-color: #fff;
 }
@@ -293,15 +299,20 @@ ul.pagination li.active {
         margin-top: 0.25rem;
     }
 }
+
 .search-form .form-group {
     display: flex;
-    align-items: center; /* Ensures that the input and button are vertically aligned */
+    align-items: center;
+    /* Ensures that the input and button are vertically aligned */
 }
 
 .search-form .form-control {
-    border-radius: 25px 0 0 25px; /* Rounded left corners for the input */
-    padding-left: 10px; /* Adds space inside the input field */
-    flex-grow: 1; /* Makes the input field take up remaining space */
+    border-radius: 25px 0 0 25px;
+    /* Rounded left corners for the input */
+    padding-left: 10px;
+    /* Adds space inside the input field */
+    flex-grow: 1;
+    /* Makes the input field take up remaining space */
     margin-right: 4px;
 }
 
@@ -319,12 +330,14 @@ ul.pagination li.active {
 
 .search-form .btn-search i {
     color: white;
-    font-size: 20px; /* Adjusts the icon size */
+    font-size: 20px;
+    /* Adjusts the icon size */
 }
 
 .search-form .btn-search:hover {
     background-color: #005f7f;
 }
+
 input[type="date"] {
     padding: 10px;
     border: 1px solid #ddd;
@@ -337,4 +350,34 @@ input[type="date"]:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+
+.p-addon{
+    font-size: 14px;
+}
+
+.card-body-add-onn {
+    flex: 1 1 auto;
+    padding: 6px;
+}
+
+.card-addon {
+    word-wrap: none !important;
+
+}
+.addon-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    word-wrap: none !important;
+}
+
+.addon-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.addon-card.active {
+    border: 2px solid #28a745; /* Warna hijau untuk menandai pilihan */
+    background-color: #f6fff8;
 }

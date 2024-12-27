@@ -13,11 +13,9 @@ class GuestController extends Controller
 {
     // Mengambil produk dengan kategori 'Rose' dan 'Tulip'
     $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
-        ->whereHas('category', function ($query) {
-            $query->whereIn('name', ['Rose', 'Tulip']);
-        })
-        ->oldest() // Mengurutkan produk dari yang lebih lama
-        ->get();
+    ->oldest() // Mengurutkan produk dari yang lebih lama
+    ->get();
+
 
     // Mengambil semua kategori (untuk ditampilkan di dropdown)
     $categories = ProductCategory::all();
@@ -137,8 +135,18 @@ class GuestController extends Controller
      public function productShow1($id)
      {
          $product = ProductProduct::with(['reviews','deliveryExpeditions','category','pictures'])->findOrFail($id);
+         $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+         ->oldest() // Mengurutkan produk dari yang lebih lama
+         ->get();
+         $productAddOns = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'AddOn');
+            })
+            ->oldest() // Mengurutkan produk dari yang lebih lama
+            ->get();
 
-         // Pastikan additional_images ada dan jika perlu decode (misalnya jika disimpan dalam format JSON)
+
+         // Pastikan additional_images ada dan jika perlu decode (misalnya jika     impan dalam format JSON)
          $product->additional_images = $product->additional_images ? json_decode($product->additional_images) : [];
 
          $categories = ProductCategory::all();
@@ -172,7 +180,7 @@ class GuestController extends Controller
         $averageRating = $product->reviews->avg('rating');
         $reviewCount = $product->reviews->count();
 
-         return view('guest-view.product', compact('product', 'categoryProducts', 'categories','averageRating', 'reviewCount'));
+         return view('guest-view.product', compact('product','products','productAddOns', 'categoryProducts', 'categories','averageRating', 'reviewCount'));
      }
 
 

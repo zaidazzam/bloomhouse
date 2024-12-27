@@ -43,7 +43,7 @@
                         </td>
                         <td data-tags="{{ $blog->tags }}"><ul>
                             @foreach ($blog->tags as $tag)
-                                <li>{{ $tag->name }}</li>    
+                                <li>{{ $tag->name }}</li>
                             @endforeach
                         </ul></td>
                         <td>
@@ -133,7 +133,7 @@
                     <div class="col-12 mb-2">
                         {{-- <label for="blogDescription" class="form-label">Description</label>
                         <textarea id="blogDescription" name="content" class="form-control " rows="3" placeholder="Enter Blog Description"></textarea> --}}
-                        
+
                         {{-- CKEDITOR --}}
                         <label for="editor" class="form-label">Content</label>
                         <textarea id="editor" name="content" class="form-control " rows="3" placeholder="Enter Blog Content"></textarea>
@@ -239,18 +239,18 @@
 document.addEventListener('DOMContentLoaded', () => {
         const editButtons = document.querySelectorAll('.btn-edit-blog');
         const editForm = document.getElementById('editBlogForm');
-        
+
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
-                    const row = this.closest('tr'); 
+                    const row = this.closest('tr');
                     const url = row.querySelector('[data-url]').getAttribute('data-url');
                     editForm.setAttribute('action', url);
 
-                    
+
                     const title = row.querySelector('[data-title]').getAttribute('data-title');
                     const content = row.querySelector('[data-content]').getAttribute('data-content');
                     const listTags = row.querySelector('[data-tags]').getAttribute('data-tags');
-                    
+
                     let tags = [];
                     try {
                         tags = JSON.parse(listTags);
@@ -272,9 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            
+
         });
-    
+
 
     // JavaScript for adding automatic numbering to the "No." column
     const rows = document.querySelectorAll("#blog-list tr");
