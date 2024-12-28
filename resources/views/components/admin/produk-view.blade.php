@@ -632,7 +632,6 @@
         const formData = new FormData(this);
         const submitButton = document.getElementById('submitButton');
         submitButton.disabled = true; // Nonaktifkan tombol sementara
-
         fetch("{{ route('product_products.store') }}", {
                 method: 'POST',
                 headers: {

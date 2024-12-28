@@ -247,6 +247,7 @@ public function filter(Request $request)
         $averageRating = $product->reviews->avg('rating');
         $reviewCount = $product->reviews->count();
 
+
          return view('guest-view.product', compact('product','products','productAddOns', 'categoryProducts', 'categories','averageRating', 'reviewCount'));
      }
 

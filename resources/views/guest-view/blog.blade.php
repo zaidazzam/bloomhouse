@@ -3,7 +3,6 @@
 @section('title')
     Blog
 @endsection
-
 @section('content')
     <section class="mt-0 ">
 
