@@ -56,14 +56,9 @@ class ProductProductController extends Controller
 
     public function edit($id)
     {
-<<<<<<< HEAD
-        $product = ProductProduct::with('category')->findOrFail($id); 
-        $categories = ProductCategory::all(); 
-        $selectedCategories = $product->category->pluck('id')->toArray(); 
-=======
-        // Ambil data produk beserta kategorinya
         $product = ProductProduct::with('category')->findOrFail($id);
->>>>>>> e2ef0f0f528f5cf4e36b272776325089fe7b0301
+        $categories = ProductCategory::all();
+        $selectedCategories = $product->category->pluck('id')->toArray();
 
         // Ambil semua kategori
         $categories = ProductCategory::all();

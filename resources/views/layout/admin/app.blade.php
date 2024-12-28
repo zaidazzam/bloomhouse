@@ -80,6 +80,9 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('admin/assets/js/config.js') }}"></script>
     {{-- <script src="../assets/js/config.js"></script> --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/css/buttons.dataTables.min.css') }}">
 
 
 
@@ -196,6 +199,18 @@
     <!-- Page JS -->
     <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('admin/assets/js/jquery-2.2.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/dataTables.buttons.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/jszip.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/pdfmake.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/vfs_fonts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/buttons.html5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/buttons.print.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/jquery.mark.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/datatables.mark.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('admin/assets/js/buttons.colVis.min.js') }}"></script>
 
     {{-- <script src="../assets/js/dashboards-analytics.js"></script> --}}
 
