@@ -338,40 +338,6 @@
                                 <span>$1129.99</span>
                             </div>
                         </div>
-                        <div class="d-none d-md-flex justify-content-between align-items-start py-2">
-                            <div class="d-flex flex-grow-1 justify-content-start align-items-start">
-                                <div class="position-relative f-w-20 border p-2 me-4">
-                                    <span class="checkout-item-qty">2</span>
-                                    <img src="./assets/images/products/product-2.jpg" alt=""
-                                        class="rounded img-fluid">
-                                </div>
-                                <div>
-                                    <p class="mb-1 fs-6 fw-bolder">North Face Jacket</p>
-                                    <span class="fs-xs text-uppercase fw-bolder text-muted">Mens / Blue / Large</span>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 fw-bolder">
-                                <span>$999.98</span>
-                            </div>
-                        </div>
-                        <div class="d-none d-md-flex justify-content-between align-items-start py-2">
-                            <div class="d-flex flex-grow-1 justify-content-start align-items-start">
-                                <div class="position-relative f-w-20 border p-2 me-4">
-                                    <span class="checkout-item-qty">1</span>
-                                    <img src="./assets/images/products/product-4.jpg" alt=""
-                                        class="rounded img-fluid">
-                                </div>
-                                <div>
-                                    <p class="mb-1 fs-6 fw-bolder">Womens Adidas Hoodie</p>
-                                    <span class="fs-xs text-uppercase fw-bolder text-muted">Womens / Red /
-                                        Medium</span>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 fw-bolder">
-                                <span>$59.99</span>
-                            </div>
-                        </div>
-                        <!-- / Cart Item-->
                     </div>
                     <div class="py-3 border-bottom">
                         <div class="d-flex justify-content-between align-items-center mb-2">

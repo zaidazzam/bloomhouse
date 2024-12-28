@@ -17,54 +17,37 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
-
+                <?php $tot = 0?>
+                @foreach ($cart as $c)
                 <!-- Cart Product-->
                 <div class="row mx-0 pb-4 mb-4 border-bottom">
                     <div class="col-3">
                         <picture class="d-block bg-light">
                             <img class="img-fluid" src="{{ asset('assets/images/products/product-1.jpg') }}"
-                                alt="Bootstrap 5 Template by Pixel Rocket">
+                            alt="Bootstrap 5 Template by Pixel Rocket">
                         </picture>
                     </div>
                     <div class="col-9">
                         <div>
                             <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                Mens StormBreaker Jacket
+                                {{ $c['product_name'] }}
                                 <i class="ri-close-line"></i>
                             </h6>
-                            <small class="d-block text-muted fw-bolder">Size: Medium</small>
-                            <small class="d-block text-muted fw-bolder">Qty: 1</small>
+                            <small class="d-block text-muted fw-bolder">Size: {{ $c['size'] }}</small>
+                            <small class="d-block text-muted fw-bolder">Qty: {{ $c['quantity'] }}</small>
                         </div>
-                        <p class="fw-bolder text-end m-0">$85.00</p>
+                        <p class="fw-bolder text-end m-0">Rp.{{ number_format($c['product_price'] * $c['quantity'], 0, ',', '.') }}</p>
                     </div>
                 </div>
-
-                <!-- Cart Product-->
-                <div class="row mx-0 pb-4 mb-4 border-bottom">
-                    <div class="col-3">
-                        <picture class="d-block bg-light">
-                            <img class="img-fluid" src="{{ asset('assets/images/products/product-2.jpg') }}"
-                                alt="Bootstrap 5 Template by Pixel Rocket">
-                        </picture>
-                    </div>
-                    <div class="col-9">
-                        <div>
-                            <h6 class="justify-content-between d-flex align-items-start mb-2">
-                                Mens Torrent Terrain Jacket
-                                <i class="ri-close-line"></i>
-                            </h6>
-                            <small class="d-block text-muted fw-bolder">Size: Medium</small>
-                            <small class="d-block text-muted fw-bolder">Qty: 1</small>
-                        </div>
-                        <p class="fw-bolder text-end m-0">$99.00</p>
-                    </div>
-                </div>
-
+                <?php $tot = $tot + $c['product_price'] * $c['quantity']?>
+                @endforeach
+                
+                
             </div>
             <div class="border-top pt-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <p class="m-0 fw-bolder">Subtotal</p>
-                    <p class="m-0 fw-bolder">$233.33</p>
+                    <p class="m-0 fw-bolder">Rp.{{ number_format($tot,0,',','.') }}</p>
                 </div>
                 <a href="{{ url('checkout') }}"
                     class="btn btn-orange btn-orange-chunky mt-5 mb-2 d-block text-center">Checkout</a>
