@@ -371,11 +371,14 @@
                         <label for="editProductMainPicture" class="form-label">Photo (thumbnail)</label>
                         <input type="file" name="main_picture" id="editProductMainPicture"
                             class="form-control" />
+                        <!-- Hidden input untuk menyimpan gambar lama -->
+                        <input type="hidden" name="old_main_picture" value="{{ $product->main_picture }}" />
                         @error('main_picture')
                             <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -468,7 +471,7 @@
                 const product_consist = row.querySelector('[data-consist]').getAttribute(
                     'data-consist');
                 const product_category = row.getAttribute(
-                'data-category'); // Get the data-category attribute
+                    'data-category'); // Get the data-category attribute
 
 
                 document.getElementById('editProductName').value = product_name;
@@ -510,7 +513,7 @@
                 categCheckboxes.forEach(checkbox => {
                     checkbox.checked = selectedCategories.includes(checkbox
                         .value
-                        ); // Check if the checkbox value is in selected categories
+                    ); // Check if the checkbox value is in selected categories
                 });
             });
         });

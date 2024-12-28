@@ -16,11 +16,6 @@
                                 aria-selected="false">Review</a>
                         </li>
                         <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
-                            <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="delivery-tab"
-                                data-bs-toggle="tab" href="#delivery" role="tab" aria-controls="delivery"
-                                aria-selected="false">Delivery</a>
-                        </li>
-                        <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="returns-tab"
                                 data-bs-toggle="tab" href="#returns" role="tab" aria-controls="returns"
                                 aria-selected="false">Return</a>
@@ -185,56 +180,6 @@
                         </div>
                         <!-- / Review Tab Content-->
 
-                        <!-- Delivery Tab Content-->
-                        <div class="tab-pane fade py-5" id="delivery" role="tabpanel"
-                            aria-labelledby="delivery-tab">
-                            <div class="col-12 col-md-10 col-lg-8 mx-auto">
-                                <p>We are now offering contact-free delivery so that you can still receive your parcels
-                                    safely without requiring a
-                                    signature. Please see below for the available delivery methods, costs and
-                                    timescales.</p>
-                                <ul class="list-group list-group-flush mb-4">
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-4 bg-transparent">
-                                        <div>
-                                            <span class="fw-bolder d-block">Standard Delivery</span>
-                                            <span class="text-muted">Delivery within 5 days of placing your
-                                                order.</span>
-                                        </div>
-                                        <p class="m-0 lh-1 fw-bolder">$12.99</p>
-                                    </li>
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-4 bg-transparent">
-                                        <div>
-                                            <span class="fw-bolder d-block">Priority Delivery</span>
-                                            <span class="text-muted">Delivery within 2 days of placing your
-                                                order.</span>
-                                        </div>
-                                        <p class="m-0 lh-1 fw-bolder">$17.99</p>
-                                    </li>
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center px-0 py-4 bg-transparent">
-                                        <div>
-                                            <span class="fw-bolder d-block">Next Day Delivery</span>
-                                            <span class="text-muted">Delivery within 24 hours of placing your
-                                                order.</span>
-                                        </div>
-                                        <p class="m-0 lh-1 fw-bolder">$33.99</p>
-                                    </li>
-                                </ul>
-                                <div class="bg-light rounded p-3">
-                                    <p class="fs-6">Form more information, please see our delivery FAQs <a
-                                            href="#">here</a></p>
-                                    <p class="m-0 fs-6">If you do not find the answer to your query, please contact our
-                                        customer support team on
-                                        <b>0800 123 456</b> or email us at <b>support@domain.com</b>. We aim to respond
-                                        within 48 hours to queries.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- / Delivery Tab Content-->
-
                         <!-- Returns Tab Content-->
                         <div class="tab-pane fade py-5" id="returns" role="tabpanel"
                             aria-labelledby="returns-tab">
@@ -308,7 +253,7 @@
                     <!-- Customer Name Input -->
                     <div class="form-group mb-3">
                         <label class="form-label" for="customer_name">Your Name</label>
-                        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" name="customer_name" id="customer_name" placeholder="Enter your name" value="{{ old('customer_name') }}" =>
+                        <input type="text" class="form-control @error('customer_name') is-invalid @enderror" name="customer_name" id="customer_name" placeholder="Enter your name" value="{{ old('customer_name') }}" required>
                         @error('customer_name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -323,12 +268,13 @@
                             <option value="2" @if(old('rating') == 2) selected @endif>2 Stars</option>
                             <option value="3" @if(old('rating') == 3) selected @endif>3 Stars</option>
                             <option value="4" @if(old('rating') == 4) selected @endif>4 Stars</option>
-                            <option value="5" @if(old('rating') == 5) selected @endif>5 Stars</option>
+                            <option value="5" @if(old('rating') == 5 || old('rating') === null) selected @endif>5 Stars</option>
                         </select>
                         @error('rating')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                     <!-- Review Input -->
                     <div class="form-group mb-3">

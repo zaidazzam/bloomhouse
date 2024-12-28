@@ -70,25 +70,6 @@
 
         <!-- /Product Views-->
 
-        <!-- Product Options-->
-        <div class="border-top mt-4 mb-3">
-            <div class="product-option">
-                <small class="text-uppercase d-block fw-bolder mb-2">
-                    Ukuran : <span class="selected-option fw-bold"></span>
-                </small>
-                <div class="form-group">
-                    <select name="selectSize" class="form-control" data-choices>
-                        <option value="">Pilih Ukuran</option>
-                        <option value="Extra Small">XS</option>
-                        <option value="Medium">M</option>
-                        <option value="Large">L</option>
-                        <option value="Extra Large">XL</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <!-- /Product Options-->
-
         <!-- Add To Cart-->
         <div class="d-flex justify-content-between mt-3">
             <button class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan

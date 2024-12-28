@@ -112,8 +112,8 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Invoice</span>
                 </li>
-                <li class="menu-item {{ request()->is('admin/report') ? 'active' : '' }}">
-                    <a href="{{ url('/admin/report') }}" class="menu-link">
+                <li class="menu-item {{ request()->is('/admin/report-ransaksi') ? 'active' : '' }}">
+                    <a href="{{ url('/admin/report-ransaksi') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-report"></i>
                         <div data-i18n="">Invoice</div>
                     </a>

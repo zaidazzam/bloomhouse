@@ -69,7 +69,7 @@
                             </form>
                         </div>
 
-                        <div class="sidebar-box ftco-animate mt-4 mb-4">
+                        {{-- <div class="sidebar-box ftco-animate mt-4 mb-4">
                             <h3 class="heading">Flower Article Categories</h3>
                             <ul class="categories mt-3 mb-5">
                                 <?php
@@ -79,7 +79,7 @@
                                 }
                                 ?>
                             </ul>
-                        </div>
+                        </div> --}}
 
                         <div class="sidebar-box ftco-animate">
                             <h3 class="heading">Tag Cloud</h3>

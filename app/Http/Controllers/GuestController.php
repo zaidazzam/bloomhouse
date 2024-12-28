@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\ProductProduct;
 use App\Models\ProductCategory;
 use App\Models\PostageRule;
+use App\Models\Blog;
+use App\Models\Tag;
 
 class GuestController extends Controller
 {
@@ -60,6 +62,8 @@ class GuestController extends Controller
 
     // Fetch products for other categories
     $categoriesToFetch = [
+        'Rose' => 'roseProducts',
+        'Tulip' => 'tulipProducts',
         'Birthday Flowers' => 'birthdayProducts',
         'Get Well Soon' => 'gwsProducts',
         'Graduation' => 'graduProducts',
@@ -169,35 +173,16 @@ public function filter(Request $request)
 
      return view('guest-view.product');
         }
+
+
     public function blog(){
+        $blogs = Blog::with('tags')->get();
+        $tags = Tag::all();
 
-        $categories = ProductCategory::all();
-        // Fetch products for Tulip category
-        $categoriesToFetch = [
-            'Rose' => 'roseProducts',
-            'Tulip' => 'tulipProducts',
-            'Birthday Flowers' => 'birthdayProducts',
-            'Get Well Soon' => 'gwsProducts',
-            'Graduation' => 'graduProducts',
-            'Wedding' => 'weddingProducts',
-            'Thank You' => 'thnxProducts',
-            'Hydrangea' => 'hydrangeaProducts',
-            'Anniversary Flower' => 'annivProducts',
-        ];
+    return view('guest-view.blog' ,compact('blogs','tags'));
+    }
 
-        $categoryProducts = [];
-        foreach ($categoriesToFetch as $categoryName => $variableName) {
-            $categoryProducts[$categoryName] = ProductProduct::with(['category'])
-                ->whereHas('category', function ($query) use ($categoryName) {
-                    $query->where('name', $categoryName);
-                })
-                ->oldest()
-                ->take(5)
-                ->get();
-        }
 
-    return view('guest-view.blog' , compact('categoryProducts', 'categories'));
-        }
     public function detailBlog(){
 
     return view('guest-view.detail-blog');
