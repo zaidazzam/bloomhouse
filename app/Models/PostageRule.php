@@ -9,7 +9,7 @@ class PostageRule extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'rule_postage',
+        'postage_rule',
         'category',
         'price'
     ];

@@ -20,7 +20,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com">
+                                <input name="email" type="email" class="form-control" id="email"
+                                    placeholder="you@example.com">
                             </div>
 
                             <!-- Mailing List Signup-->
@@ -32,6 +33,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <!-- /Checkout Panel Contact --> <!-- Checkout Shipping Address -->
                 <div class="checkout-panel">
                     <h5 class="title-checkout">Shipping Address</h5>
@@ -179,8 +181,10 @@
                         </div>
                     </div>
                 </div>
+=======
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                 <!-- /Checkout Shipping Address --> <!-- Checkout Billing Address-->
-                <div class="billing-address checkout-panel d-none">
+                <div class="billing-address checkout-panel">
                     <h5 class="title-checkout">Billing Address</h5>
                     <div class="row">
 
@@ -208,9 +212,14 @@
                                 <input type="text" name="firstName_bill" class="form-control" id="bill_firstName" placeholder=""
 =======
                                 <label for="firstName" class="form-label">First name</label>
+<<<<<<< HEAD
                                 <input name="bill_data_firstname" type="text" class="form-control" id="firstName" placeholder=""
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     value="" required="">
+=======
+                                <input name="bill_data_firstname" type="text" class="form-control" id="firstName"
+                                    placeholder="" value="" required="">
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                             </div>
                         </div>
 
@@ -222,9 +231,14 @@
                                 <input type="text" name="lastName_bill" class="form-control" id="bill_lastName" placeholder=""
 =======
                                 <label for="lastName" class="form-label">Last name</label>
+<<<<<<< HEAD
                                 <input name="bill_data_lastname" type="text" class="form-control" id="lastName" placeholder=""
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     value="" required="">
+=======
+                                <input name="bill_data_lastname" type="text" class="form-control" id="lastName"
+                                    placeholder="" value="" required="">
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                             </div>
                         </div>
 
@@ -236,9 +250,14 @@
                                 <input type="number" name="phone_bill" class="form-control" id="bill_phone" placeholder=""
 =======
                                 <label for="address" class="form-label">Phone Number</label>
+<<<<<<< HEAD
                                 <input name="bill_data_phone" type="number" class="form-control" id="number" placeholder=""
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
+=======
+                                <input name="bill_data_phone" type="number" class="form-control" id="number"
+                                    placeholder="" required="">
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                             </div>
                         </div>
 
@@ -248,11 +267,16 @@
                                 <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <input type="text" name="company_bill" class="form-control" id="bill_company" placeholder=""
 =======
                                 <input name="bill_data_company" type="text" class="form-control" id="address" placeholder=""
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     required="">
+=======
+                                <input name="bill_data_company" type="text" class="form-control" id="address"
+                                    placeholder="" required="">
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                             </div>
                         </div>
 
@@ -269,7 +293,7 @@
                                     placeholder="123 Some Street Somewhere" required="">
                             </div>
                         </div>
-
+                        <!-- Province -->
                         <div class="col-md-4">
                             <div class="form-group">
 <<<<<<< HEAD
@@ -277,6 +301,7 @@
                                 <select class="form-select" name="provinsi_bill" id="bill_province" required="">
 =======
                                 <label for="province" class="form-label">Province</label>
+<<<<<<< HEAD
                                 <select name="bill_data_provinsi" class="form-select" id="province" required="">
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                     <option value="" disabled selected>Please Select...</option>
@@ -295,14 +320,18 @@
                                 <label for="city" class="form-label">City</label>
                                 <select name="bill_data_city" class="form-select" id="city" required="">
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
+=======
+                                <select name="bill_data_province" class="form-select" id="province" required="">
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                                     <option value="" disabled selected>Please Select...</option>
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Postal Code (State/Territory) -->
+                        <!-- City (Regency) -->
                         <div class="col-md-4">
                             <div class="form-group">
+<<<<<<< HEAD
 <<<<<<< HEAD
                                 <label for="bill_zip" class="form-label">Postal Code</label>
                                 <input type="text" name="pos_bill" class="form-control" id="bill_zip" placeholder=""
@@ -310,9 +339,26 @@
                                 <label for="zip" class="form-label">Postal Code</label>
                                 <input type="text" name="bill_data_zip" class="form-control" id="zip" placeholder=""
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
-                                    required="">
+=======
+                                <label for="zip" class="form-label">City</label>
+                                <select name="bill_data_city" class="form-select" id="City" required="">
+                                    <option value="" disabled selected>Please Select...</option>
+                                </select>
                             </div>
                         </div>
+
+                        <!-- Subdistrict and Postal Code (Kelurahan) -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdistrict" class="form-label">Subdistrict/Postal Code</label>
+                                <select name="bill_data_subdistrict" class="form-select" id="subdistrict"
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
+                                    required="">
+                                    <option value="" disabled selected>Please Select...</option>
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
@@ -324,16 +370,22 @@
                         <div class="form-group">
                             <label for="delivery-date" class="form-label">Delivery Date</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <input type="date" name="date_deliv"  class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
 =======
                             <input name="deliv_date" type="date" class="form-control" id="delivery-date" min="<?= date('Y-m-d') ?>"
 >>>>>>> 79502cff4af5aa1da6a5c4ad4de7ad6abee5aa61
                                 required>
+=======
+                            <input name="deliv_date" type="date" class="form-control" id="delivery-date"
+                                min="<?= date('Y-m-d') ?>" required>
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                         </div>
                     </div>
-                    <!-- Date delivery-->
+
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
+<<<<<<< HEAD
                             <label for="delivery-schedule" class="form-label">Delivery Schedule</label>
 <<<<<<< HEAD
                             <select class="form-select" name="schedule_deliv" id="delivery-schedule" required>
@@ -348,15 +400,22 @@
                                 <option value="slot5">Early Morning: 1:00 AM - 5:00 AM (IDR 200,000)</option>
                                 <option value="valentine">Valentine's Delivery: 8:00 AM - 7:00 PM</option>
                                 <option value="testing">Testing Slot: 10:00 AM - 12:00 PM (IDR 5,000)</option>
+=======
+                            <label for="address-selection" class="form-label">Delivery Address  (Postage_Rule)</label>
+                            <select name="deliv_schedule_address" class="form-select" id="delivery-schedule-address"
+                                required>
+                                <option value="" disabled selected>Select an Delivery Address</option>
+                                @foreach ($addressPostageRules as $rule)
+                                    <option value="{{ $rule->id }}">{{ $rule->postage_rule }} - Rp
+                                        {{ number_format($rule->price, 0, ',', '.') }}</option>
+                                @endforeach
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                             </select>
                             <div id="delivery-schedule-error" class="text-danger mt-2"></div>
                         </div>
-
                     </div>
-
-
-
                     <!-- Date delivery-->
+<<<<<<< HEAD
                     <label for="delivery-note" class="form-label mb-3">Delivery Note</label>
 
                     <!-- Delivery Notes-->
@@ -430,8 +489,46 @@
                             <label for="deliv-note" class="form-label"> <span
                                     class="small fw-bolder">*Note</span></label>
                             <input name="note_deliv" type="text" class="form-control" id="deliv-note" placeholder="" required>
+=======
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group">
+                            <label for="delivery-schedule" class="form-label">Delivery Schedule (Time Slot)</label>
+                            <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
+                                <option value="" disabled selected>Select a Delivery Schedule</option>
+                                @foreach ($timePostageRules as $rule)
+                                    <option value="{{ $rule->id }}">{{ $rule->postage_rule }} - Rp
+                                        {{ number_format($rule->price, 0, ',', '.') }}</option>
+                                @endforeach
+                            </select>
+                            <div id="delivery-schedule-error" class="text-danger mt-2"></div>
+>>>>>>> 3939e3c28df238a27fa876fa28a509093dadacf5
                         </div>
                     </div>
+                    <!-- Date delivery-->
+                    <!-- Delivery Note Section -->
+                    <label for="delivery-note" class="form-label mb-3">Delivery Note</label>
+                    <p class="text-muted fst-italic">
+                        Please provide a personalized message for the recipient. For example:
+                    <ul>
+                        <li>"Happy Birthday, [Recipient's Name]! Wishing you a wonderful year ahead filled with joy and
+                            success."</li>
+                        <li>"Congratulations on your special day, [Recipient's Name]! May your day be as beautiful as
+                            these flowers."</li>
+                        <li>"Thank you for everything, [Recipient's Name]. You truly deserve this little surprise."</li>
+                    </ul>
+                    </p>
+
+                    <!-- Delivery Notes -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="delivery-note-textarea" class="form-label">
+                                <span class="small fw-bolder">* Free Personalized Note</span>
+                            </label>
+                            <textarea class="form-control" id="delivery-note-textarea" rows="4" placeholder="Write your message here..."
+                                required></textarea>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /Checkout Shipping Method --> <!-- Checkout Payment Method-->
                 <div class="checkout-panel">
@@ -726,4 +823,75 @@
             // Inisialisasi Select2 pada elemen #delivery-schedule
             $('#delivery-schedule').select2();
         });
+    </script>
+    <script>
+        // URL API
+        const API_BASE_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
+
+        // Helper function untuk mengisi dropdown
+        function populateDropdown(elementId, data, defaultOptionText) {
+            const dropdown = document.getElementById(elementId);
+            dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.textContent = item.name;
+                dropdown.appendChild(option);
+            });
+        }
+
+        // Fetch data provinsi
+        function fetchProvinces() {
+            fetch(`${API_BASE_URL}/provinces.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('province', data, 'Please Select Province...');
+                })
+                .catch(error => console.error('Error fetching provinces:', error));
+        }
+
+        // Fetch data kota/kabupaten berdasarkan provinsi
+        function fetchRegencies(provinceId) {
+            fetch(`${API_BASE_URL}/regencies/${provinceId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('City', data, 'Please Select City...');
+                })
+                .catch(error => console.error('Error fetching regencies:', error));
+        }
+
+        // Fetch data kecamatan/kelurahan berdasarkan kota/kabupaten
+        function fetchDistricts(regencyId) {
+            fetch(`${API_BASE_URL}/districts/${regencyId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('subdistrict', data, 'Please Select Subdistrict...');
+                })
+                .catch(error => console.error('Error fetching districts:', error));
+        }
+
+        // Event listener untuk perubahan pada dropdown provinsi
+        document.getElementById('province').addEventListener('change', function() {
+            const provinceId = this.value;
+            if (provinceId) {
+                fetchRegencies(provinceId);
+                document.getElementById('City').innerHTML =
+                    '<option value="" disabled selected>Loading...</option>';
+                document.getElementById('subdistrict').innerHTML =
+                    '<option value="" disabled selected>Please Select Subdistrict...</option>';
+            }
+        });
+
+        // Event listener untuk perubahan pada dropdown kota/kabupaten
+        document.getElementById('City').addEventListener('change', function() {
+            const regencyId = this.value;
+            if (regencyId) {
+                fetchDistricts(regencyId);
+                document.getElementById('subdistrict').innerHTML =
+                    '<option value="" disabled selected>Loading...</option>';
+            }
+        });
+
+        // Inisialisasi: fetch data provinsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', fetchProvinces);
     </script>

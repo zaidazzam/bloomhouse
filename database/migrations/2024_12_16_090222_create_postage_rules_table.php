@@ -17,7 +17,7 @@ class CreatePostageRulesTable extends Migration
             $table->id();
             $table->string('postage_rule');
             $table->string('category');
-            $table->decimal('price',8,2);
+            $table->integer('price');
             $table->timestamps();
         });
     }
