@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table text-nowrap">
+        <div class="table table-responsive text-nowrap">
             <table class="table table-bordered table-striped table-hover text-center">
                 <thead class="table-dark1">
                     <tr>

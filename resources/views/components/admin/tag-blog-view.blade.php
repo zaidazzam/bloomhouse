@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table text-nowrap">
+        <div class="table table-responsive text-nowrap">
             <table class="table table-bordered table-striped table-hover text-center">
                 <thead class="table-dark1">
                     <tr>
@@ -55,7 +55,7 @@
                     </tr>
                     @endforeach
                 </tbody>
-                
+
 
             </table>
         </div>
@@ -164,21 +164,21 @@
     document.addEventListener('DOMContentLoaded', () => {
         const editButtons = document.querySelectorAll('.btn-edit-tag');
         const editForm = document.getElementById('editTagForm');
-        
+
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
-                    const row = this.closest('tr'); 
+                    const row = this.closest('tr');
                     const url = row.querySelector('[data-url]').getAttribute('data-url');
                     editForm.setAttribute('action', url);
 
-                    
+
                     const name = row.querySelector('[data-name]').getAttribute('data-name');
-                    
+
                     document.getElementById('editTagName').value = name;
                 });
             });
 
-            
+
         });
 
 
