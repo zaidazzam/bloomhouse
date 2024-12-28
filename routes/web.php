@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductReviewController;
+use App\Http\Controllers\TransactionController;
 use App\Models\PostageRule;
 
 /*
@@ -40,6 +41,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/category/filter', [ProductProductController::class, 'filter']);
 
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.add');
 });
 
 Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;

@@ -23,7 +23,7 @@
                 <div class="row mx-0 pb-4 mb-4 border-bottom">
                     <div class="col-3">
                         <picture class="d-block bg-light">
-                            <img class="img-fluid" src="{{ asset('assets/images/products/product-1.jpg') }}"
+                            <img class="img-fluid" src="{{ asset('storage/' . $c['product_pict']) }}"
                             alt="Bootstrap 5 Template by Pixel Rocket">
                         </picture>
                     </div>

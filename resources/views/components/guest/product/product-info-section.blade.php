@@ -92,7 +92,7 @@
 
         <!-- Add To Cart-->
         <div class="d-flex justify-content-between mt-3">
-            <button data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}" id="add-to-cart" class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan
+            <button data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}"  data-pict="{{ $product->main_picture }}" id="add-to-cart" class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan
                 Keranjang</button>
             <button class="btn btn-danger"><i class="ri-heart-line"></i></button>
         </div>
@@ -227,6 +227,7 @@
         const token = document.getElementById('add-to-cart').getAttribute('token');
         const productName = document.getElementById('add-to-cart').getAttribute('data-name');
         const productPrice = document.getElementById('add-to-cart').getAttribute('data-price');
+        const productPict = document.getElementById('add-to-cart').getAttribute('data-pict');
         const size = document.querySelector('[name="selectSize"]').value;
         const selectedAddOns = Array.from(document.querySelectorAll('.addon-card.selected'))
             .map(card => card.getAttribute('data-id'));
@@ -236,13 +237,6 @@
             return;
         }
 
-        alert(JSON.stringify({
-                product_id: productId,
-                product_name: productName,
-                product_price: productPrice,
-                size: size,
-                addons: selectedAddOns,
-            }))
         console.log(productId,size,selectedAddOns);
         fetch("{{ route('cart.add') }}", {
             method: 'POST',
@@ -254,6 +248,7 @@
                 product_id: productId,
                 product_name: productName,
                 product_price: productPrice,
+                product_pict: productPict,
                 size: size,
                 addons: selectedAddOns,
             }),

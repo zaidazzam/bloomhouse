@@ -12,6 +12,7 @@ class CartController extends Controller
     $productId = $request->input('product_id');
     $productName = $request->input('product_name');
     $productPrice = $request->input('product_price');
+    $productPict = $request->input('product_pict');
     $size = $request->input('size'); 
     $addons = $request->input('addons', []);
 
@@ -37,6 +38,7 @@ class CartController extends Controller
                 'product_id' => $addons->id,
                 'product_name' => $addons->name,
                 'product_price' => $price,
+                'product_pict' => $addons->main_picture,
                 'size' => $addons->size,
                 'quantity' => 1,
             ];
@@ -50,6 +52,7 @@ class CartController extends Controller
             'product_id' => $productId,
             'product_name' => $productName,
             'product_price' => $productPrice,
+            'product_pict' => $productPict,
             'size' => $size,
             'quantity' => 1,
         ];
