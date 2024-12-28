@@ -36,6 +36,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/product/{id}', [GuestController::class, 'productShow1'])->name('product1.show');
     Route::post('/product-reviews', [ProductReviewController::class, 'store'])->name('product_reviews.store');
     Route::post('/track-view/{productId}', [ProductProductController::class, 'trackView']);
+    Route::get('/category/filter', [ProductProductController::class, 'filter']);
 
 });
 

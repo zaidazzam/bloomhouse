@@ -83,14 +83,87 @@ class GuestController extends Controller
     // Mengirimkan data ke view
     return view('guest-view.homepage', compact('products', 'categoryProducts', 'categories', 'tulipProduct', 'roseProduct', 'romanceProduct','roseProduct4','tulipProduct4','roseProduct4','HydrangeaProduct4'));
 }
+public function category(Request $request)
+{
+    // Mengambil produk dengan kategori 'Rose' dan 'Tulip'
+    $products = ProductProduct::whereDoesntHave('category', function ($query) {
+        $query->where('name', 'AddOn');
+    })->paginate(8);
 
-    public function category($id)
-    {
-        $category = ProductCategory::find($id);
-        $products = $category->products()->get(); // Ambil produk terkait kategori ini
+    $products2= ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+    ->oldest() // Mengurutkan produk dari yang lebih lama
+    ->get();
 
-        return view('guest-view.category', compact('category', 'products'));
+    // Mengambil semua kategori (untuk ditampilkan di dropdown)
+    $categories = ProductCategory::all();
+
+    // Fetch products for Tulip, Rose, and Romance categories
+// Mengaplikasikan filter kategori jika ada
+    if ($request->has('categories')) {
+        $categories = $request->input('categories');
+        $products->whereHas('categories', function ($query) use ($categories) {
+            $query->whereIn('id', $categories);
+        });
     }
+
+    // Mengaplikasikan filter harga jika ada
+    if ($request->has('min_price') && $request->has('max_price')) {
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+        $products->whereBetween('product_price', [$minPrice, $maxPrice]);
+    }
+    // Mengirimkan data ke view
+    return view('guest-view.category', compact('products',  'categories', 'products2'));
+}
+
+public function filter(Request $request)
+{
+    // Start with the Product query
+    $query = ProductProduct::query();
+
+    // Filter by search term (if provided)
+    if ($request->has('search') && $request->search) {
+        $query->where('name', 'like', '%' . $request->search . '%');
+    }
+
+    // Filter by categories (if any categories are selected)
+    if ($request->has('categories') && count($request->categories) > 0) {
+        $query->whereIn('category_id', $request->categories);
+    }
+
+    // Filter by price range (if provided)
+    if ($request->has('minPrice')) {
+        $query->where('product_price', '>=', $request->minPrice);
+    }
+    if ($request->has('maxPrice')) {
+        $query->where('product_price', '<=', $request->maxPrice);
+    }
+
+    // Execute the query to get the filtered products
+    $products = $query->get();
+
+    // Return the filtered products as JSON
+    return response()->json([
+        'success' => true,
+        'products' => $products
+    ]);
+}
+
+
+
+// public function category()
+// {
+//     $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+//         ->oldest()
+//         ->get();
+
+//     // Ambil kategori unik dari produk
+//     $categories = $products->pluck('category')->filter()->unique('id');
+
+//     return view('guest-view.category', compact('products', 'categories'));
+// }
+
+
 
     public function product(){
 

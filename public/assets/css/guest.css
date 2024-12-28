@@ -191,7 +191,7 @@ p.count {
     width: 50%;
     margin: auto;
 }
-
+/*
 ul.pagination li {
     border-radius: 100%;
     border: 1px solid #007eae;
@@ -205,7 +205,7 @@ ul.pagination li.active {
     font-weight: 500;
     background: #007eae;
     color: #ffff;
-}
+} */
 
 .blog-detail p {
     text-align: justify;

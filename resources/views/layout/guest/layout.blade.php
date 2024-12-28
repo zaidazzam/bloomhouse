@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/libs.bundle.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/guest.css') }}" />
     <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.bundle.css') }}" />
