@@ -24,7 +24,6 @@ class ProductProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',
@@ -57,8 +56,9 @@ class ProductProductController extends Controller
 
     public function edit($id)
     {
-        // Ambil data produk beserta kategorinya
         $product = ProductProduct::with('category')->findOrFail($id);
+        $categories = ProductCategory::all();
+        $selectedCategories = $product->category->pluck('id')->toArray();
 
         // Ambil semua kategori
         $categories = ProductCategory::all();
@@ -75,7 +75,6 @@ class ProductProductController extends Controller
 
     public function update(Request $request, $id)
     {
-                // dd($request);
         $validated = $request->validate([
             'name' => 'required',
             'product_stock' => 'required|numeric',

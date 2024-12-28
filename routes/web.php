@@ -64,6 +64,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/postages/{id}', [PostageRuleController::class, 'update'])->name('postages.update');
 
     Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
+    Route::get('/admin/report-ransaksi', [App\Http\Controllers\AdminController::class, 'reportTransaksi']) ->name('reportTransaksi');;
+    Route::get('/admin/product-review', [App\Http\Controllers\AdminController::class, 'reportProductReview']) ->name('reportProductReview');;
     Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
     ->name('categoryProduct');;
 

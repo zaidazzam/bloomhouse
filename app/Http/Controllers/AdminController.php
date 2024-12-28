@@ -28,5 +28,12 @@ class AdminController extends Controller
     public function tagBlog(){
         return redirect('/tags');
     }
+    public function reportTransaksi(){
+        return view('dashboard-view.report-transaki');
+    }
+    public function reportProductReview(){
+        return view('dashboard-view.report-transaki');
+    }
+
 
 }

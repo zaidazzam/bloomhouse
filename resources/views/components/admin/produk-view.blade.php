@@ -45,19 +45,19 @@
                         <tr>
                             <td data-id="{{ $product->id }}">{{ $loop->iteration }}</td>
                             <td data-name="{{ $product->name }}"><strong>{{ $product->name }}</strong></td>
-                            {{-- <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
+                            <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
                                 @foreach ($product->category as $category)
                                     <span class="badge bg-primary">{{ $category->name }}</span>
                                 @endforeach
-                            </td> --}}
+                            </td>
 
-                            <td data-category="{{ implode(',', $product->category->pluck('id')->toArray()) }}">
+                            {{-- <td data-category="{{ implode(',', $product->category->pluck('id')->toArray()) }}">
                                 <ul>
                                     @foreach ($product->category as $category)
                                         <li>{{ $category->name }}</li>
                                     @endforeach
                                 </ul>
-                            </td>
+                            </td> --}}
                             <td data-desc="{{ $product->product_description }}">{{ $product->product_description }}</td>
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
                             <td>Bintang 5</td>
