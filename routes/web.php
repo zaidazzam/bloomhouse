@@ -41,6 +41,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/category/filter', [ProductProductController::class, 'filter']);
 
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.add');
 });
 

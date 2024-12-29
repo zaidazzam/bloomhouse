@@ -31,10 +31,11 @@
                         <div>
                             <h6 class="justify-content-between d-flex align-items-start mb-2">
                                 {{ $c['product_name'] }}
-                                <i class="ri-close-line"></i>
+                                <i class="ri-close-line delete_cart" data-product-id="{{ $c['product_id'] }}"></i>
                             </h6>
                             <small class="d-block text-muted fw-bolder">Size: {{ $c['size'] }}</small>
-                            <small class="d-block text-muted fw-bolder">Qty: {{ $c['quantity'] }}</small>
+                            <label for="qty" class="text-muted fw-bolder">Qty:</label>
+                            <input type="number" onchange="updateQty(this)" data-id="{{ $c['product_id'] }}" style="width: 30px; height:30px; outline:none;" value="{{ $c['quantity'] }}"/>
                         </div>
                         <p class="fw-bolder text-end m-0">Rp.{{ number_format($c['product_price'] * $c['quantity'], 0, ',', '.') }}</p>
                     </div>
@@ -57,3 +58,67 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.delete_cart').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            fetch('/cart/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                },
+                body: JSON.stringify({ product_id: productId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Item berhasil dihapus!');
+                    location.reload(); 
+                } else {
+                    alert('Gagal menghapus item: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
+
+<script>
+    function updateQty(input) {
+        const productId = input.getAttribute('data-id');
+        const newQty = input.value;
+
+        if (newQty < 1) {
+            alert('Quantity cannot be less than 1');
+            input.value = 1;
+            return;
+        }
+
+        fetch('/cart/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                qty: newQty,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Quantity updated successfully!');
+                location.reload()
+            } else {
+                alert('Failed to update quantity: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
