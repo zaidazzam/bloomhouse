@@ -87,4 +87,27 @@ class CartController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Item tidak ditemukan di cart']);
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required',
+            'qty' => 'required|integer|min:1',
+        ]);
+
+        $cart = session('cart', []);
+        $productId = $request->product_id;
+        $qty = $request->qty;
+
+        foreach ($cart as &$item) { 
+            if ($item['product_id'] == $productId) {
+                $item['quantity'] = $qty;
+                session(['cart' => $cart]); 
+
+                return response()->json(['success' => true, 'message' => 'Quantity updated successfully']);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => 'Product not found in cart']);
+    }
 }
