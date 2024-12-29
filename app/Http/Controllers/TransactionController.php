@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
+    public function index() {
+        
+        return view('dashboard-view.report-transaki');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
