@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('tags', TagController::class);
     Route::resource('postages', PostageRuleController::class);
     Route::put('/postages/{id}', [PostageRuleController::class, 'update'])->name('postages.update');
+    Route::get('/report-transactions', [TransactionController::class,'index'])->name('report_transactions');
 
     Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
     Route::get('/admin/report-ransaksi', [App\Http\Controllers\AdminController::class, 'reportTransaksi']) ->name('reportTransaksi');;

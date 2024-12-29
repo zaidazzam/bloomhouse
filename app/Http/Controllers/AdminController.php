@@ -29,7 +29,7 @@ class AdminController extends Controller
         return redirect('/tags');
     }
     public function reportTransaksi(){
-        return view('dashboard-view.report-transaki');
+        return redirect()->route('report_transactions');
     }
     public function reportProductReview(){
         return view('dashboard-view.report-transaki');
