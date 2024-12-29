@@ -66,4 +66,25 @@ class CartController extends Controller
 
     return response()->json(['success' => true, 'message' => 'Product and Add-Ons added to cart!']);
 }
+
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required',
+        ]);
+
+        $cart = session('cart', []);
+
+        $productId = $request->product_id;
+        foreach ($cart as $key => $c) {
+            if ($c['product_id'] ==  $productId) {
+                unset($cart[$key]);
+                session(['cart' => $cart]);
+                
+                return response()->json(['success' => true, 'message' => 'Item berhasil dihapus']);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => 'Item tidak ditemukan di cart']);
+    }
 }

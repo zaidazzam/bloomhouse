@@ -31,7 +31,7 @@
                         <div>
                             <h6 class="justify-content-between d-flex align-items-start mb-2">
                                 {{ $c['product_name'] }}
-                                <i class="ri-close-line"></i>
+                                <i class="ri-close-line delete_cart" data-product-id="{{ $c['product_id'] }}"></i>
                             </h6>
                             <small class="d-block text-muted fw-bolder">Size: {{ $c['size'] }}</small>
                             <small class="d-block text-muted fw-bolder">Qty: {{ $c['quantity'] }}</small>
@@ -57,3 +57,32 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.delete_cart').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            fetch('/cart/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}', 
+                },
+                body: JSON.stringify({ product_id: productId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Item berhasil dihapus!');
+                    location.reload(); 
+                } else {
+                    alert('Gagal menghapus item: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+</script>
