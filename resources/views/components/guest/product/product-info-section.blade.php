@@ -71,25 +71,6 @@
 
         <!-- /Product Views-->
 
-        <!-- Product Options-->
-        <div class="border-top mt-4 mb-3">
-            <div class="product-option">
-                <small class="text-uppercase d-block fw-bolder mb-2">
-                    Ukuran : <span class="selected-option fw-bold"></span>
-                </small>
-                <div class="form-group">
-                    <select name="selectSize" class="form-control" data-choices>
-                        <option value="">Pilih Ukuran</option>
-                        <option value="Extra Small">XS</option>
-                        <option value="Medium">M</option>
-                        <option value="Large">L</option>
-                        <option value="Extra Large">XL</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <!-- /Product Options-->
-
         <!-- Add To Cart-->
         <div class="d-flex justify-content-between mt-3">
             <button data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}"  data-pict="{{ $product->main_picture }}" id="add-to-cart" class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan
@@ -228,16 +209,10 @@
         const productName = document.getElementById('add-to-cart').getAttribute('data-name');
         const productPrice = document.getElementById('add-to-cart').getAttribute('data-price');
         const productPict = document.getElementById('add-to-cart').getAttribute('data-pict');
-        const size = document.querySelector('[name="selectSize"]').value;
         const selectedAddOns = Array.from(document.querySelectorAll('.addon-card.selected'))
             .map(card => card.getAttribute('data-id'));
 
-        if (!size) {
-            alert('Silakan pilih ukuran terlebih dahulu!');
-            return;
-        }
 
-        console.log(productId,size,selectedAddOns);
         fetch("{{ route('cart.add') }}", {
             method: 'POST',
             headers: {
@@ -249,7 +224,6 @@
                 product_name: productName,
                 product_price: productPrice,
                 product_pict: productPict,
-                size: size,
                 addons: selectedAddOns,
             }),
         })

@@ -359,7 +359,6 @@
                                 </div>
                                 <div>
                                     <p class="mb-1 fs-6 fw-bolder">{{ $c['product_name'] }}</p>
-                                    <span class="fs-xs text-uppercase fw-bolder text-muted">{{ ($c['size']) ? $c['product_name'].'/'.$c['size'] : $c['product_name'] }}</span>
                                 </div>
                             </div>
                             <div class="flex-shrink-0 fw-bolder">

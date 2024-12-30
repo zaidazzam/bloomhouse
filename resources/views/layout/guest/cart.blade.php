@@ -17,7 +17,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
-                <?php $tot = 0?>
+                <?php $tot = 0;?>
                 @foreach ($cart as $c)
                 <!-- Cart Product-->
                 <div class="row mx-0 pb-4 mb-4 border-bottom">
@@ -33,7 +33,6 @@
                                 {{ $c['product_name'] }}
                                 <i class="ri-close-line delete_cart" data-product-id="{{ $c['product_id'] }}"></i>
                             </h6>
-                            <small class="d-block text-muted fw-bolder">Size: {{ $c['size'] }}</small>
                             <label for="qty" class="text-muted fw-bolder">Qty:</label>
                             <input type="number" onchange="updateQty(this)" data-id="{{ $c['product_id'] }}" style="width: 30px; height:30px; outline:none;" value="{{ $c['quantity'] }}"/>
                         </div>
