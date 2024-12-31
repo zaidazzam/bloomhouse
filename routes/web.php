@@ -44,6 +44,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.add');
+    Route::post('/callback', [TransactionController::class, 'callback'])->name('transaction.callback');
 });
 
 Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;

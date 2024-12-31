@@ -191,6 +191,7 @@ p.count {
     width: 50%;
     margin: auto;
 }
+
 /*
 ul.pagination li {
     border-radius: 100%;
@@ -353,7 +354,7 @@ input[type="date"]:focus {
 }
 
 
-.p-addon{
+.p-addon {
     font-size: 14px;
 }
 
@@ -366,6 +367,7 @@ input[type="date"]:focus {
     word-wrap: none !important;
 
 }
+
 .addon-card {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -378,6 +380,39 @@ input[type="date"]:focus {
 }
 
 .addon-card.active {
-    border: 2px solid #28a745; /* Warna hijau untuk menandai pilihan */
+    border: 2px solid #28a745;
+    /* Warna hijau untuk menandai pilihan */
     background-color: #f6fff8;
+}
+
+.selected {
+    border: 2px solid #007bff;
+    /* Ganti dengan warna yang diinginkan */
+    background-color: rgba(0, 123, 255, 0.1);
+    /* Ganti dengan warna latar belakang yang diinginkan */
+}
+
+.text-muted-cart {
+    color: #a0a0a2 !important;
+    padding-right: 6px;
+}
+
+.btn-sm-cart {
+    display: inline-block;
+    font-weight: 500;
+    line-height: 1;
+    color: #1c212c;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    /* padding: 1.25rem 1.5rem; */
+    font-size: 1rem;
+    border-radius: 0;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

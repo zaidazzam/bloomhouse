@@ -13,15 +13,11 @@ class CartController extends Controller
     $productName = $request->input('product_name');
     $productPrice = $request->input('product_price');
     $productPict = $request->input('product_pict');
-    $size = $request->input('size'); 
     $addons = $request->input('addons', []);
 
     
-    if (!$size) {
-        return response()->json(['success' => false, 'message' => 'Ukuran harus dipilih!']);
-    }
 
-    $key = $productId . '_' . $size;
+    $key = $productId;
 
     $cart = session()->get('cart', []); 
 
@@ -39,7 +35,6 @@ class CartController extends Controller
                 'product_name' => $addons->name,
                 'product_price' => $price,
                 'product_pict' => $addons->main_picture,
-                'size' => $addons->size,
                 'quantity' => 1,
             ];
         } else {
@@ -53,7 +48,6 @@ class CartController extends Controller
             'product_name' => $productName,
             'product_price' => $productPrice,
             'product_pict' => $productPict,
-            'size' => $size,
             'quantity' => 1,
         ];
     } else {

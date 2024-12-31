@@ -73,7 +73,10 @@
 
         <!-- Add To Cart-->
         <div class="d-flex justify-content-between mt-3">
-            <button data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}"  data-pict="{{ $product->main_picture }}" id="add-to-cart" class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan
+            <button data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}"
+                data-pict="{{ $product->main_picture }}" id="add-to-cart"
+                class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan
                 Keranjang</button>
             <button class="btn btn-danger"><i class="ri-heart-line"></i></button>
         </div>
@@ -131,12 +134,12 @@
                       }
                     }
                   }'>
-                  <div class="swiper-wrapper pe-1">
+                <div class="swiper-wrapper pe-1">
                     @foreach ($productAddOns as $productAddon)
-                        <div class="swiper-slide d-flex h-auto" >
+                        <div class="swiper-slide d-flex h-auto">
                             <!-- Card Product -->
-                            <div class="card-addon position-relative h-100 card-listing hover-trigger addon-card" data-id="{{ $productAddon->id }}"
-                                data-price="{{ $productAddon->product_price }}">
+                            <div class="card-addon position-relative h-100 card-listing hover-trigger addon-card"
+                                data-id="{{ $productAddon->id }}" data-price="{{ $productAddon->product_price }}">
                                 <!-- Badge Diskon -->
                                 @if ($productAddon->discount)
                                     <span class="badge card-badge bg-secondary">-{{ $productAddon->discount }}%</span>
@@ -203,50 +206,75 @@
     </div>
 </div>
 <script>
-   document.getElementById('add-to-cart').addEventListener('click', () => {
+    document.getElementById('add-to-cart').addEventListener('click', () => {
         const productId = document.getElementById('add-to-cart').getAttribute('data-id');
         const token = document.getElementById('add-to-cart').getAttribute('token');
         const productName = document.getElementById('add-to-cart').getAttribute('data-name');
         const productPrice = document.getElementById('add-to-cart').getAttribute('data-price');
         const productPict = document.getElementById('add-to-cart').getAttribute('data-pict');
-        const size = document.querySelector('[name="selectSize"]').value;
         const selectedAddOns = Array.from(document.querySelectorAll('.addon-card.selected'))
             .map(card => card.getAttribute('data-id'));
 
-        if (!size) {
-            alert('Silakan pilih ukuran terlebih dahulu!');
-            return;
-        }
 
-        console.log(productId,size,selectedAddOns);
         fetch("{{ route('cart.add') }}", {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': token,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                product_name: productName,
-                product_price: productPrice,
-                product_pict: productPict,
-                size: size,
-                addons: selectedAddOns,
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload()
-            } else {
-                alert('Failed to add to cart: ' + data.message);
-            }
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    product_name: productName,
+                    product_price: productPrice,
+                    product_pict: productPict,
+                    addons: selectedAddOns,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload()
+                } else {
+                    alert('Failed to add to cart: ' + data.message);
+                }
+            });
+    });
+
+    document.querySelectorAll('.addon-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('selected');
         });
     });
 
-     document.querySelectorAll('.addon-card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.classList.toggle('selected');
+    document.addEventListener('DOMContentLoaded', () => {
+        const basePrice = {{ $product->discounted_price ?? $product->product_price }}; // Harga produk utama
+        const totalPriceElement = document.getElementById('total-price'); // Elemen total harga
+        const addonCards = document.querySelectorAll('.addon-card'); // Semua elemen add-on
+        const formatPrice = (price) => {
+            return 'Rp.' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Format ke Rp.xxx.xxx
+        };
+
+        const calculateTotalPrice = () => {
+            let totalPrice = basePrice;
+
+            // Tambahkan harga dari add-on yang dipilih
+            addonCards.forEach((card) => {
+                if (card.classList.contains('active')) {
+                    const addonPrice = parseInt(card.getAttribute('data-price'), 10);
+                    totalPrice += addonPrice;
+                }
+            });
+
+            // Perbarui elemen total price
+            totalPriceElement.textContent = formatPrice(totalPrice);
+        };
+
+        // Tambahkan event listener untuk add-on cards
+        addonCards.forEach((card) => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('active'); // Toggle status aktif
+                calculateTotalPrice(); // Hitung ulang total harga
+            });
         });
     });
 </script>

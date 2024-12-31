@@ -36,24 +36,23 @@
                 <div class="billing-address checkout-panel">
                     <h5 class="title-checkout">Billing Address</h5>
                     <div class="row">
-
                         <!-- Country-->
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="bill_country" class="form-label">Country</label>
-                                <select name="bill_data_country" class="form-select" id="bill_country" required="">
+                                <select name="bill_data_country" class="form-select" id="bill_country" required>
                                     <option value="" disabled selected>Please Select...</option>
+                                    <option value="ID">Indonesia</option> <!-- Menambahkan opsi untuk Indonesia -->
                                 </select>
                             </div>
                         </div>
-
 
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="bill_firstName" class="form-label">First name</label>
-                                <input name="bill_data_firstname" type="text" class="form-control" id="bill_firstName"
-                                    placeholder="" value="" required="">
+                                <input name="bill_data_firstname" type="text" class="form-control"
+                                    id="bill_firstName" placeholder="" value="" required="">
                             </div>
                         </div>
 
@@ -134,19 +133,22 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_firstName" class="form-label">First Name</label>
-                            <input name="delivery_firstName" type="text" class="form-control" id="delivery_firstName" required>
+                            <input name="delivery_firstName" type="text" class="form-control"
+                                id="delivery_firstName" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_lastName" class="form-label">Last Name</label>
-                            <input name="delivery_lastName" type="text" class="form-control" id="delivery_lastName" required>
+                            <input name="delivery_lastName" type="text" class="form-control"
+                                id="delivery_lastName" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_phone" class="form-label">WhatsApp Number</label>
-                            <input name="delivery_phone" type="number" class="form-control" id="delivery_phone" required>
+                            <input name="delivery_phone" type="number" class="form-control" id="delivery_phone"
+                                required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
@@ -167,7 +169,7 @@
 
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <label for="address-selection" class="form-label">Delivery Address  (Postage_Rule)</label>
+                            <label for="address-selection" class="form-label">Delivery Address (Postage_Rule)</label>
                             <select name="deliv_schedule_address" class="form-select" id="delivery-schedule-address"
                                 required>
                                 <option value="null" disabled selected>Select an Delivery Address</option>
@@ -348,31 +350,31 @@
                 <div class="bg-light p-4 sticky-md-top top-5">
                     <div class="border-bottom pb-3">
                         <!-- Cart Item-->
-                        <?php $tot = 0?>
+                        <?php $tot = 0; ?>
                         @foreach ($cart as $c)
-                        <div class="d-none d-md-flex justify-content-between align-items-start py-2">
-                            <div class="d-flex flex-grow-1 justify-content-start align-items-start">
-                                <div class="position-relative f-w-20 border p-2 me-4">
-                                    <span class="checkout-item-qty">{{ $c['quantity'] }}</span>
-                                    <img src="{{ asset('storage/' . $c['product_pict']) }}" alt=""
-                                    class="rounded img-fluid">
+                            <div class="d-none d-md-flex justify-content-between align-items-start py-2">
+                                <div class="d-flex flex-grow-1 justify-content-start align-items-start">
+                                    <div class="position-relative f-w-20 border p-2 me-4">
+                                        <span class="checkout-item-qty">{{ $c['quantity'] }}</span>
+                                        <img src="{{ asset('storage/' . $c['product_pict']) }}" alt=""
+                                            class="rounded img-fluid">
+                                    </div>
+                                    <div>
+                                        <p class="mb-1 fs-6 fw-bolder">{{ $c['product_name'] }}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="mb-1 fs-6 fw-bolder">{{ $c['product_name'] }}</p>
-                                    <span class="fs-xs text-uppercase fw-bolder text-muted">{{ ($c['size']) ? $c['product_name'].'/'.$c['size'] : $c['product_name'] }}</span>
+                                <div class="flex-shrink-0 fw-bolder">
+                                    <span>Rp.{{ number_format($c['product_price'] * $c['quantity'], 0, ',', '.') }}</span>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0 fw-bolder">
-                                <span>Rp.{{ number_format($c['product_price'] * $c['quantity'], 0, ',', '.') }}</span>
-                            </div>
-                        </div>
-                        <?php $tot = $tot + $c['product_price'] * $c['quantity']?>
+                            <?php $tot = $tot + $c['product_price'] * $c['quantity']; ?>
                         @endforeach
                     </div>
                     <div class="py-3 border-bottom">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <p class="m-0 fw-bolder fs-6">Subtotal</p>
-                            <p class="m-0 fs-6 fw-bolder" id="subtot" data-subtot="{{$tot}}">Rp.{{ number_format($tot,0,',','.') }}</p>
+                            <p class="m-0 fs-6 fw-bolder" id="subtot" data-subtot="{{ $tot }}">
+                                Rp.{{ number_format($tot, 0, ',', '.') }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center ">
                             <p class="m-0 fw-bolder fs-6">Shipping</p>
@@ -385,8 +387,8 @@
                                 <p class="m-0 fw-bold fs-5">Grand Total</p>
                                 {{-- <span class="text-muted small">Inc $45.89 sales tax</span> --}}
                             </div>
-                            <input type="hidden" id="gtotal" value="{{$tot}}">
-                            <p class="m-0 fs-5 fw-bold" id="grand_tot">Rp.{{ number_format($tot,0,',','.') }}</p>
+                            <input type="hidden" id="gtotal" value="{{ $tot }}">
+                            <p class="m-0 fs-5 fw-bold" id="grand_tot">Rp.{{ number_format($tot, 0, ',', '.') }}</p>
                         </div>
                     </div>
                     <div class="py-3 border-bottom">
@@ -401,7 +403,8 @@
                         <label class="form-check-label fw-bolder" for="accept-terms">I agree to Alpine's <a
                                 href="#">terms & conditions</a></label>
                     </div>
-                    <a href="#" class="btn btn-dark w-100" data-cart='@json($cart)' id="checkout" role="button">Complete Order</a>
+                    <a href="#" class="btn btn-dark w-100" data-cart='@json($cart)'
+                        id="checkout" role="button">Complete Order</a>
                 </div>
             </div>
             <!-- /Checkout Panel Summary -->
@@ -454,91 +457,100 @@
         });
 
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const countrySelect = document.getElementById('country');
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const countrySelect = document.getElementById('bill_country');
 
-            // Fetch countries from API
-            fetch('https://restcountries.com/v3.1/all')
-                .then(response => response.json())
-                .then(data => {
-                    // Loop through the countries and add them to the dropdown
-                    data.forEach(country => {
-                        const option = document.createElement('option');
-                        option.value = country.name
-                            .common; // or any other property you want to use as value
-                        option.textContent = country.name.common; // or you can use the native name
-                        countrySelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching countries:', error);
-                });
-        });
+        //     // Fetch countries from API
+        //     fetch('https://restcountries.com/v3.1/all')
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             // Loop through the countries and add them to the dropdown
+        //             data.forEach(country => {
+        //                 const option = document.createElement('option');
+        //                 option.value = country.name
+        //                     .common; // or any other property you want to use as value
+        //                 option.textContent = country.name.common; // or you can use the native name
+        //                 countrySelect.appendChild(option);
+        //             });
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching countries:', error);
+        //         });
+        // });
         $(document).ready(function() {
             // Inisialisasi Select2 pada elemen #delivery-schedule
             $('#delivery-schedule').select2();
         });
     </script>
-    <script>
-        // URL API
-        const API_BASE_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
+<script>
+    // URL API
+    const API_BASE_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
 
-        // Helper function untuk mengisi dropdown
-        function populateDropdown(elementId, data, defaultOptionText) {
-            const dropdown = document.getElementById(elementId);
-            dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
-            data.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.id;
-                option.textContent = item.name;
-                dropdown.appendChild(option);
-            });
-        }
-
-        // Fetch data provinsi
-        function fetchProvinces() {
-            fetch(`${API_BASE_URL}/provinces.json`)
-                .then(response => response.json())
-                .then(data => {
-                    populateDropdown('province', data, 'Please Select Province...');
-                })
-                .catch(error => console.error('Error fetching provinces:', error));
-        }
-
-        // Fetch data kota/kabupaten berdasarkan provinsi
-        function fetchRegencies(provinceId) {
-            fetch(`${API_BASE_URL}/regencies/${provinceId}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    populateDropdown('City', data, 'Please Select City...');
-                })
-                .catch(error => console.error('Error fetching regencies:', error));
-        }
-
-        // Fetch data kecamatan/kelurahan berdasarkan kota/kabupaten
-        function fetchDistricts(regencyId) {
-            fetch(`${API_BASE_URL}/districts/${regencyId}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    populateDropdown('subdistrict', data, 'Please Select Subdistrict...');
-                })
-                .catch(error => console.error('Error fetching districts:', error));
-        }
-
-        // Event listener untuk perubahan pada dropdown provinsi
-        document.getElementById('province').addEventListener('change', function() {
-            const provinceId = this.value;
-            if (provinceId) {
-                fetchRegencies(provinceId);
-                document.getElementById('City').innerHTML =
-                    '<option value="" disabled selected>Loading...</option>';
-                document.getElementById('subdistrict').innerHTML =
-                    '<option value="" disabled selected>Please Select Subdistrict...</option>';
-            }
+    // Helper function untuk mengisi dropdown
+    function populateDropdown(elementId, data, defaultOptionText) {
+        const dropdown = document.getElementById(elementId);
+        dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
+        data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name;
+            dropdown.appendChild(option);
         });
+    }
 
-        
-    </script>
+    // Fetch data provinsi
+    function fetchProvinces() {
+        fetch(`${API_BASE_URL}/provinces.json`)
+            .then(response => response.json())
+            .then(data => {
+                populateDropdown('bill_province', data, 'Please Select Province...');
+            })
+            .catch(error => console.error('Error fetching provinces:', error));
+    }
+
+    // Fetch data kota/kabupaten berdasarkan provinsi
+    function fetchRegencies(provinceId) {
+        fetch(`${API_BASE_URL}/regencies/${provinceId}.json`)
+            .then(response => response.json())
+            .then(data => {
+                populateDropdown('bill_city', data, 'Please Select City...');
+            })
+            .catch(error => console.error('Error fetching regencies:', error));
+    }
+
+    // Fetch data kecamatan/kelurahan berdasarkan kota/kabupaten
+    function fetchDistricts(regencyId) {
+        fetch(`${API_BASE_URL}/districts/${regencyId}.json`)
+            .then(response => response.json())
+            .then(data => {
+                populateDropdown('bill_subdistrict', data, 'Please Select Subdistrict...');
+            })
+            .catch(error => console.error('Error fetching districts:', error));
+    }
+
+    // Event listener untuk perubahan pada dropdown provinsi
+    document.getElementById('bill_province').addEventListener('change', function() {
+        const provinceId = this.value;
+        if (provinceId) {
+            fetchRegencies(provinceId);
+            document.getElementById('bill_city').innerHTML =
+                '<option value="" disabled selected>Loading...</option>';
+            document.getElementById('bill_subdistrict').innerHTML =
+                '<option value="" disabled selected>Please Select Subdistrict...</option>';
+        }
+    });
+
+    // Event listener untuk perubahan pada dropdown kota
+    document.getElementById('bill_city').addEventListener('change', function() {
+        const regencyId = this.value;
+        if (regencyId) {
+            fetchDistricts(regencyId);
+        }
+    });
+
+    // Fetch provinces on page load
+    fetchProvinces();
+</script>
 
     <script>
         document.getElementById('delivery-schedule').addEventListener('change', function() {
@@ -548,21 +560,19 @@
             const grand_tot = document.getElementById('grand_tot')
             const gtotal = document.getElementById('gtotal')
             const subtot = parseFloat(document.getElementById('subtot').getAttribute('data-subtot'));
-            let ongkir =0
+            let ongkir = 0
 
-            if (deliv_schedule_address == "null")
-            {
+            if (deliv_schedule_address == "null") {
                 alert('Delivery address is required')
                 location.reload()
-            }
-            else{
+            } else {
                 ongkir = deliv_schedule_address + deliv_schedule
 
-                tot_shipping.innerHTML ="Rp."+ new Intl.NumberFormat('id-ID').format(ongkir);
+                tot_shipping.innerHTML = "Rp." + new Intl.NumberFormat('id-ID').format(ongkir);
 
-                grandto_tot = subtot+ongkir
+                grandto_tot = subtot + ongkir
                 gtotal.value = grandto_tot
-                grand_tot.innerHTML ="Rp."+ new Intl.NumberFormat('id-ID').format(grandto_tot);
+                grand_tot.innerHTML = "Rp." + new Intl.NumberFormat('id-ID').format(grandto_tot);
             }
         });
 
@@ -587,43 +597,41 @@
             let delivery_lastName = document.getElementById('delivery_lastName').value
             let delivery_phone = document.getElementById('delivery_phone').value
 
-            const cartData = this.getAttribute('data-cart'); 
-            const cart = JSON.parse(cartData); 
-            
+            const cartData = this.getAttribute('data-cart');
+            const cart = JSON.parse(cartData);
+
             await fetch("{{ route('transaction.add') }}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    products : cart,
-                    total_amount : gtotal,
-                    email : email,
-                    bill_country : bill_country,
-                    bill_company : bill_company,
-                    bill_firstName : bill_firstName,
-                    bill_lastName : bill_lastName,
-                    bill_phoneNumber : bill_phoneNumber,
-                    bill_address : bill_address,
-                    bill_province : bill_province,
-                    bill_city : bill_city,
-                    delivery_firstName : delivery_firstName,
-                    delivery_lastName : delivery_lastName,
-                    delivery_phone : delivery_phone,
-                    bill_subdistrict : bill_subdistrict,
-                    delivery_address : delivery_address,
-                    delivery_date : delivery_date,
-                    delivery_schedule_address : delivery_schedule_address,
-                    delivery_schedule : delivery_schedule,
-                    delivery_note_textarea : delivery_note_textarea,
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                window.snap.pay(data.token)
-            });
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        products: cart,
+                        total_amount: gtotal,
+                        email: email,
+                        bill_country: bill_country,
+                        bill_company: bill_company,
+                        bill_firstName: bill_firstName,
+                        bill_lastName: bill_lastName,
+                        bill_phoneNumber: bill_phoneNumber,
+                        bill_address: bill_address,
+                        bill_province: bill_province,
+                        bill_city: bill_city,
+                        delivery_firstName: delivery_firstName,
+                        delivery_lastName: delivery_lastName,
+                        delivery_phone: delivery_phone,
+                        bill_subdistrict: bill_subdistrict,
+                        delivery_address: delivery_address,
+                        delivery_date: delivery_date,
+                        delivery_schedule_address: delivery_schedule_address,
+                        delivery_schedule: delivery_schedule,
+                        delivery_note_textarea: delivery_note_textarea,
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.snap.pay(data.token)
+                });
         });
     </script>
-
-
