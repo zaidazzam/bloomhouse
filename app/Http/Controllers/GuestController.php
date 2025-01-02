@@ -187,6 +187,10 @@ public function filter(Request $request)
 
     return view('guest-view.detail-blog');
      }
+    public function invoice(){
+
+    return view('guest-view.invoice');
+         }
      public function checkout()
      {
          // Ambil data postage_rule dengan kategori 'Time' dan 'Address'

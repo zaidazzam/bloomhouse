@@ -482,75 +482,75 @@
             $('#delivery-schedule').select2();
         });
     </script>
-<script>
-    // URL API
-    const API_BASE_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
+    <script>
+        // URL API
+        const API_BASE_URL = 'https://www.emsifa.com/api-wilayah-indonesia/api';
 
-    // Helper function untuk mengisi dropdown
-    function populateDropdown(elementId, data, defaultOptionText) {
-        const dropdown = document.getElementById(elementId);
-        dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
-        data.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id;
-            option.textContent = item.name;
-            dropdown.appendChild(option);
+        // Helper function untuk mengisi dropdown
+        function populateDropdown(elementId, data, defaultOptionText) {
+            const dropdown = document.getElementById(elementId);
+            dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.textContent = item.name;
+                dropdown.appendChild(option);
+            });
+        }
+
+        // Fetch data provinsi
+        function fetchProvinces() {
+            fetch(`${API_BASE_URL}/provinces.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('bill_province', data, 'Please Select Province...');
+                })
+                .catch(error => console.error('Error fetching provinces:', error));
+        }
+
+        // Fetch data kota/kabupaten berdasarkan provinsi
+        function fetchRegencies(provinceId) {
+            fetch(`${API_BASE_URL}/regencies/${provinceId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('bill_city', data, 'Please Select City...');
+                })
+                .catch(error => console.error('Error fetching regencies:', error));
+        }
+
+        // Fetch data kecamatan/kelurahan berdasarkan kota/kabupaten
+        function fetchDistricts(regencyId) {
+            fetch(`${API_BASE_URL}/districts/${regencyId}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('bill_subdistrict', data, 'Please Select Subdistrict...');
+                })
+                .catch(error => console.error('Error fetching districts:', error));
+        }
+
+        // Event listener untuk perubahan pada dropdown provinsi
+        document.getElementById('bill_province').addEventListener('change', function() {
+            const provinceId = this.value;
+            if (provinceId) {
+                fetchRegencies(provinceId);
+                document.getElementById('bill_city').innerHTML =
+                    '<option value="" disabled selected>Loading...</option>';
+                document.getElementById('bill_subdistrict').innerHTML =
+                    '<option value="" disabled selected>Please Select Subdistrict...</option>';
+            }
         });
-    }
 
-    // Fetch data provinsi
-    function fetchProvinces() {
-        fetch(`${API_BASE_URL}/provinces.json`)
-            .then(response => response.json())
-            .then(data => {
-                populateDropdown('bill_province', data, 'Please Select Province...');
-            })
-            .catch(error => console.error('Error fetching provinces:', error));
-    }
+        // Event listener untuk perubahan pada dropdown kota
+        document.getElementById('bill_city').addEventListener('change', function() {
+            const regencyId = this.value;
+            if (regencyId) {
+                fetchDistricts(regencyId);
+            }
+        });
 
-    // Fetch data kota/kabupaten berdasarkan provinsi
-    function fetchRegencies(provinceId) {
-        fetch(`${API_BASE_URL}/regencies/${provinceId}.json`)
-            .then(response => response.json())
-            .then(data => {
-                populateDropdown('bill_city', data, 'Please Select City...');
-            })
-            .catch(error => console.error('Error fetching regencies:', error));
-    }
-
-    // Fetch data kecamatan/kelurahan berdasarkan kota/kabupaten
-    function fetchDistricts(regencyId) {
-        fetch(`${API_BASE_URL}/districts/${regencyId}.json`)
-            .then(response => response.json())
-            .then(data => {
-                populateDropdown('bill_subdistrict', data, 'Please Select Subdistrict...');
-            })
-            .catch(error => console.error('Error fetching districts:', error));
-    }
-
-    // Event listener untuk perubahan pada dropdown provinsi
-    document.getElementById('bill_province').addEventListener('change', function() {
-        const provinceId = this.value;
-        if (provinceId) {
-            fetchRegencies(provinceId);
-            document.getElementById('bill_city').innerHTML =
-                '<option value="" disabled selected>Loading...</option>';
-            document.getElementById('bill_subdistrict').innerHTML =
-                '<option value="" disabled selected>Please Select Subdistrict...</option>';
-        }
-    });
-
-    // Event listener untuk perubahan pada dropdown kota
-    document.getElementById('bill_city').addEventListener('change', function() {
-        const regencyId = this.value;
-        if (regencyId) {
-            fetchDistricts(regencyId);
-        }
-    });
-
-    // Fetch provinces on page load
-    fetchProvinces();
-</script>
+        // Fetch provinces on page load
+        fetchProvinces();
+    </script>
 
     <script>
         document.getElementById('delivery-schedule').addEventListener('change', function() {
