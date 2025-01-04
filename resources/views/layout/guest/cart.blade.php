@@ -69,8 +69,8 @@
                 </div>
                 <a href="{{ url('checkout') }}"
                     class="btn btn-orange btn-orange-chunky mt-5 mb-2 d-block text-center">Checkout</a>
-                <a href="{{ url('cart') }}"
-                    class="btn btn-dark fw-bolder d-block text-center transition-all opacity-50-hover">View Cart</a>
+                {{-- <a href="{{ url('cart') }}"
+                    class="btn btn-dark fw-bolder d-block text-center transition-all opacity-50-hover">View Cart</a> --}}
             </div>
         </div>
     </div>

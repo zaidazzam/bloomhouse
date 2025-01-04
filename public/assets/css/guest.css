@@ -416,3 +416,7 @@ input[type="date"]:focus {
     border-radius: 0;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+.checkout-panel-checkout {
+    margin-bottom: 0.5rem;
+}

@@ -2,16 +2,15 @@
     <section class="mt-5 container ">
         <!-- Page Content Goes Here -->
 
-        <h1 class="mb-4 display-5 fw-bold text-center">Checkout Securely</h1>
-        <p class="text-center mx-auto">Please fill in the details below to complete your order. Already registered?
-            <a href="#">Login here.</a>
+        <h1 class="mb-4 display-5 fw-bold text-center">Checkout Your Flower Order Securely</h1>
+        <p class="text-center mx-auto">Please provide the details below to complete your flower order.
         </p>
 
         <div class="row g-md-8 mt-4">
             <!-- Checkout Panel Left -->
             <div class="col-12 col-lg-6 col-xl-7">
                 <!-- Checkout Panel Contact -->
-                <div class="checkout-panel">
+                <div class="checkout-panel-checkout">
                     <h5 class="title-checkout">Contact Information</h5>
                     <div class="row">
 
@@ -36,6 +35,7 @@
                 <div class="billing-address checkout-panel">
                     <h5 class="title-checkout">Billing Address</h5>
                     <div class="row">
+
                         <!-- Country-->
                         <div class="col-md-12">
                             <div class="form-group">
@@ -46,13 +46,13 @@
                                 </select>
                             </div>
                         </div>
-
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="bill_firstName" class="form-label">First name</label>
                                 <input name="bill_data_firstname" type="text" class="form-control"
-                                    id="bill_firstName" placeholder="" value="" required="">
+                                    id="bill_firstName" placeholder="John" required>
+                                <div class="invalid-feedback">Please enter your first name.</div>
                             </div>
                         </div>
 
@@ -61,16 +61,18 @@
                             <div class="form-group">
                                 <label for="bill_lastName" class="form-label">Last name</label>
                                 <input name="bill_data_lastname" type="text" class="form-control" id="bill_lastName"
-                                    placeholder="" value="" required="">
+                                    placeholder="Doe" required>
+                                <div class="invalid-feedback">Please enter your last name.</div>
                             </div>
                         </div>
 
-                        <!-- phonenumber-->
+                        <!-- Phone Number-->
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="bill_phoneNumber" class="form-label">Phone Number</label>
                                 <input name="bill_data_phone" type="number" class="form-control" id="bill_phoneNumber"
-                                    placeholder="" required="">
+                                    placeholder="+628123456789" required>
+                                <div class="invalid-feedback">Please enter a valid phone number.</div>
                             </div>
                         </div>
 
@@ -80,7 +82,7 @@
                                 <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
                                 <input name="bill_data_company" type="text" class="form-control" id="bill_company"
-                                    placeholder="" required="">
+                                    placeholder="Your Company Name">
                             </div>
                         </div>
 
@@ -89,16 +91,19 @@
                             <div class="form-group">
                                 <label for="bill_address" class="form-label">Address</label>
                                 <input name="bill_data_address" type="text" class="form-control" id="bill_address"
-                                    placeholder="123 Some Street Somewhere" required="">
+                                    placeholder="123 Some Street Somewhere" required>
+                                <div class="invalid-feedback">Please enter your address.</div>
                             </div>
                         </div>
+
                         <!-- Province -->
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="bill_province" class="form-label">Province</label>
-                                <select name="bill_data_province" class="form-select" id="bill_province" required="">
-                                    <option value="" disabled selected>Please Select...</option>
+                                <select name="bill_data_province" class="form-select" id="bill_province" required>
+                                    <option value="" disabled selected>Please Select a Province...</option>
                                 </select>
+                                <div class="invalid-feedback">Please select a province.</div>
                             </div>
                         </div>
 
@@ -106,9 +111,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="bill_city" class="form-label">City</label>
-                                <select name="bill_data_city" class="form-select" id="bill_city" required="">
-                                    <option value="" disabled selected>Please Select...</option>
+                                <select name="bill_data_city" class="form-select" id="bill_city" required>
+                                    <option value="" disabled selected>Please Select a City...</option>
                                 </select>
+                                <div class="invalid-feedback">Please select a city.</div>
                             </div>
                         </div>
 
@@ -117,15 +123,15 @@
                             <div class="form-group">
                                 <label for="bill_subdistrict" class="form-label">Subdistrict/Postal Code</label>
                                 <select name="bill_data_subdistrict" class="form-select" id="bill_subdistrict"
-                                    required="">
-                                    <option value="" disabled selected>Please Select...</option>
+                                    required>
+                                    <option value="" disabled selected>Please Select a Subdistrict...</option>
                                 </select>
+                                <div class="invalid-feedback">Please select a subdistrict or postal code.</div>
                             </div>
                         </div>
 
                     </div>
-                </div>
-                <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
+                </div> <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
                 <div class="checkout-panel">
                     <h5 class="title-checkout">Delivery</h5>
 
@@ -134,38 +140,38 @@
                         <div class="form-group">
                             <label for="delivery_firstName" class="form-label">First Name</label>
                             <input name="delivery_firstName" type="text" class="form-control"
-                                id="delivery_firstName" required>
+                                id="delivery_firstName" placeholder="Enter your first name" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_lastName" class="form-label">Last Name</label>
                             <input name="delivery_lastName" type="text" class="form-control"
-                                id="delivery_lastName" required>
+                                id="delivery_lastName" placeholder="Enter your last name" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_phone" class="form-label">WhatsApp Number</label>
                             <input name="delivery_phone" type="number" class="form-control" id="delivery_phone"
-                                required>
+                                placeholder="Enter your WhatsApp number" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-date" class="form-label">Delivery Date</label>
                             <input name="deliv_date" type="date" class="form-control" id="delivery-date"
-                                min="<?= date('Y-m-d') ?>" required>
+                                placeholder="Select a delivery date" min="<?= date('Y-m-d') ?>" required>
                         </div>
                     </div>
-                    <!-- Date delivery-->
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <label for="delivery_address" class="form-label">Delivery Addrress</label>
-                            <textarea class="form-control" id="delivery_address" rows="4" placeholder="Write your detail address here..."
-                                required></textarea>
+                            <label for="delivery_address" class="form-label">Delivery Address</label>
+                            <textarea class="form-control" id="delivery_address" rows="4"
+                                placeholder="Write your detailed address here..." required></textarea>
                         </div>
                     </div>
+
 
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
@@ -226,11 +232,26 @@
                     <h5 class="title-checkout">Payment Method</h5>
 
                     <div class="row">
+
+                        <!-- Payment Option for Virtual Account -->
+                        <div class="col-12">
+                            <div class="form-check form-group form-radio-custom mb-3">
+                                <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
+                                    id="checkoutPaymentVirtualAccount" value="bank_transfer">
+                                <label class="form-check-label" for="checkoutPaymentVirtualAccount">
+                                    <span class="d-flex justify-content-between align-items-start">
+                                        <span class="mb-0 fw-bolder d-block">Virtual Account</span>
+                                        <img src="./assets/images/logos/logo-bca.jpg" alt="Logo BCA"
+                                            style="width: 24px; height: auto;"> </span>
+                                </label>
+                            </div>
+                        </div>
+
                         <!-- Payment Option-->
                         <div class="col-12">
                             <div class="form-check form-group form-radio-custom mb-3">
                                 <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
-                                    id="checkoutPaymentStripe" checked>
+                                    id="checkoutPaymentStripe" value="credit_card">
                                 <label class="form-check-label" for="checkoutPaymentStripe">
                                     <span class="d-flex justify-content-between align-items-start">
                                         <span>
@@ -243,7 +264,7 @@
                         </div>
 
                         <!-- Payment Option for Transfer Bank BCA -->
-                        <div class="col-12">
+                        {{-- <div class="col-12">
                             <div class="form-check form-group form-radio-custom mb-3">
                                 <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
                                     id="checkoutPaymentTransferBank">
@@ -258,22 +279,9 @@
                                     </span>
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
 
 
-                        <!-- Payment Option for Virtual Account -->
-                        <div class="col-12">
-                            <div class="form-check form-group form-radio-custom mb-3">
-                                <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
-                                    id="checkoutPaymentVirtualAccount">
-                                <label class="form-check-label" for="checkoutPaymentVirtualAccount">
-                                    <span class="d-flex justify-content-between align-items-start">
-                                        <span class="mb-0 fw-bolder d-block">Virtual Account</span>
-                                        <img src="./assets/images/logos/logo-bca.jpg" alt="Logo BCA"
-                                            style="width: 24px; height: auto;"> </span>
-                                </label>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -293,7 +301,7 @@
 
                     <!-- Payment Details-->
                     <div class="card-details">
-                        <div class="row pt-3">
+                        {{-- <div class="row pt-3">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="cc-name" class="form-label">Name on card</label>
@@ -335,7 +343,7 @@
                                         required="">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- / Payment Details-->
 
@@ -377,8 +385,9 @@
                                 Rp.{{ number_format($tot, 0, ',', '.') }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center ">
-                            <p class="m-0 fw-bolder fs-6">Shipping</p>
-                            <p class="m-0 fs-6 fw-bolder" id="tot_shipping">postage + time slot</p>
+                            <p class="m-0 fw-bolder fs-6">Delivery</p>
+                            <input type="hidden" id="scost">
+                            <p class="m-0 fs-6 fw-bolder" id="tot_shipping">shipping + time slot</p>
                         </div>
                     </div>
                     <div class="py-3 border-bottom">
@@ -400,7 +409,7 @@
                     <!-- Accept Terms Checkbox-->
                     <div class="form-group form-check my-4">
                         <input type="checkbox" class="form-check-input" id="accept-terms" checked>
-                        <label class="form-check-label fw-bolder" for="accept-terms">I agree to Alpine's <a
+                        <label class="form-check-label fw-bolder" for="accept-terms">I agree to Bloomhouse's <a
                                 href="#">terms & conditions</a></label>
                     </div>
                     <a href="#" class="btn btn-dark w-100" data-cart='@json($cart)'
@@ -415,6 +424,21 @@
     <!-- / Main Section-->
 
     <script>
+        document.getElementById("checkout").addEventListener("click", function(e) {
+            e.preventDefault(); // Mencegah aksi default dari link
+            const button = this;
+
+            // Tampilkan loading
+            button.textContent = "Processing...";
+            button.classList.add("disabled"); // Opsional: Nonaktifkan tombol saat loading
+
+            // Simulasikan loading selama 5 detik
+            setTimeout(() => {
+                button.textContent = "Complete Order"; // Kembalikan teks asli
+                button.classList.remove("disabled"); // Aktifkan kembali tombol
+                // Aksi lanjutan setelah loading selesai (contoh: redirect atau submit form)
+            }, 5000);
+        });
         document.addEventListener("DOMContentLoaded", function() {
             const provinceSelect = document.getElementById('province');
             const citySelect = document.getElementById('city');
@@ -559,6 +583,7 @@
             const tot_shipping = document.getElementById('tot_shipping')
             const grand_tot = document.getElementById('grand_tot')
             const gtotal = document.getElementById('gtotal')
+            const scost = document.getElementById('scost')
             const subtot = parseFloat(document.getElementById('subtot').getAttribute('data-subtot'));
             let ongkir = 0
 
@@ -567,6 +592,8 @@
                 location.reload()
             } else {
                 ongkir = deliv_schedule_address + deliv_schedule
+
+                scost.value = ongkir
 
                 tot_shipping.innerHTML = "Rp." + new Intl.NumberFormat('id-ID').format(ongkir);
 
@@ -578,6 +605,7 @@
 
         document.getElementById('checkout').addEventListener('click', async function() {
             let email = document.getElementById('email').value
+            let scost = document.getElementById('scost').value
             let bill_country = document.getElementById('bill_country').value
             let bill_firstName = document.getElementById('bill_firstName').value
             let bill_lastName = document.getElementById('bill_lastName').value
@@ -596,6 +624,7 @@
             let delivery_firstName = document.getElementById('delivery_firstName').value
             let delivery_lastName = document.getElementById('delivery_lastName').value
             let delivery_phone = document.getElementById('delivery_phone').value
+            let payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
 
             const cartData = this.getAttribute('data-cart');
             const cart = JSON.parse(cartData);
@@ -609,6 +638,8 @@
                     body: JSON.stringify({
                         products: cart,
                         total_amount: gtotal,
+                        shipping_cost: scost,
+                        payment_methode: payment_methode,
                         email: email,
                         bill_country: bill_country,
                         bill_company: bill_company,
@@ -634,4 +665,23 @@
                     window.snap.pay(data.token)
                 });
         });
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
     </script>

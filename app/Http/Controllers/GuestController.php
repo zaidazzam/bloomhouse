@@ -190,17 +190,38 @@ public function filter(Request $request)
     public function invoice(){
 
     return view('guest-view.invoice');
+         }     public function checkout()
+         {
+             // Ambil data postage_rule dengan kategori 'Time' dan 'Address'
+             $timePostageRules = PostageRule::where('category', 'Time')->get();
+             $addressPostageRules = PostageRule::where('category', 'Address')->get();
+        // Fetch products for other categories
+        $categoriesToFetch = [
+            'Rose' => 'roseProducts',
+            'Tulip' => 'tulipProducts',
+            'Birthday Flowers' => 'birthdayProducts',
+            'Get Well Soon' => 'gwsProducts',
+            'Graduation' => 'graduProducts',
+            'Wedding' => 'weddingProducts',
+            'Thank You' => 'thnxProducts',
+            'Hydrangea' => 'hydrangeaProducts',
+            'Anniversary Flower' => 'annivProducts',
+        ];
+
+        $categoryProducts = [];
+        foreach ($categoriesToFetch as $categoryName => $variableName) {
+            $categoryProducts[$categoryName] = ProductProduct::with(['category'])
+                ->whereHas('category', function ($query) use ($categoryName) {
+                    $query->where('name', $categoryName);
+                })
+                ->oldest()
+                ->take(5)
+                ->get();
+        }
+
+             // Kirim data ke view
+             return view('guest-view.checkout', compact('timePostageRules', 'addressPostageRules','categoryProducts'));
          }
-     public function checkout()
-     {
-         // Ambil data postage_rule dengan kategori 'Time' dan 'Address'
-         $timePostageRules = PostageRule::where('category', 'Time')->get();
-         $addressPostageRules = PostageRule::where('category', 'Address')->get();
-
-         // Kirim data ke view
-         return view('guest-view.checkout', compact('timePostageRules', 'addressPostageRules'));
-     }
-
 
 
      public function productShow1($id)
