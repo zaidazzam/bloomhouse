@@ -33,7 +33,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category'])->name('category');
     // Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
-    Route::get('/detail-blog', [App\Http\Controllers\GuestController::class, 'detailBlog']);
+    Route::get('/detail-blog/{id}', [GuestController::class, 'detailBlog'])->name('detail-blog');
     Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);
     Route::get('/product/{id}', [GuestController::class, 'productShow1'])->name('product1.show');
     Route::post('/product-reviews', [ProductReviewController::class, 'store'])->name('product_reviews.store');

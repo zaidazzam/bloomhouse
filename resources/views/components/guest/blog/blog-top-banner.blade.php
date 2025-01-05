@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item breadcrumb-light"><a href="/">Beranda</a></li>
-                <li class="breadcrumb-item breadcrumb-light"><a href="/category">Artikel</a></li>
+                <li class="breadcrumb-item breadcrumb-light"><a href="/">Artikel</a></li>
                 {{-- <li class="breadcrumb-item active breadcrumb-light" aria-current="page">Clothing</li> --}}
             </ol>
         </nav>

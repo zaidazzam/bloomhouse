@@ -84,8 +84,11 @@ class GuestController extends Controller
             ->get();
     }
 
+    $blogs = Blog::all();
+    $tags = Tag::all();
+
     // Mengirimkan data ke view
-    return view('guest-view.homepage', compact('products', 'categoryProducts', 'categories', 'tulipProduct', 'roseProduct', 'romanceProduct','roseProduct4','tulipProduct4','roseProduct4','HydrangeaProduct4'));
+    return view('guest-view.homepage', compact('products','blogs', 'tags','categoryProducts', 'categories', 'tulipProduct', 'roseProduct', 'romanceProduct','roseProduct4','tulipProduct4','roseProduct4','HydrangeaProduct4'));
 }
 public function category(Request $request)
 {
@@ -116,8 +119,30 @@ public function category(Request $request)
         $maxPrice = $request->input('max_price');
         $products->whereBetween('product_price', [$minPrice, $maxPrice]);
     }
+    $categoriesToFetch = [
+        'Rose' => 'roseProducts',
+        'Tulip' => 'tulipProducts',
+        'Birthday Flowers' => 'birthdayProducts',
+        'Get Well Soon' => 'gwsProducts',
+        'Graduation' => 'graduProducts',
+        'Wedding' => 'weddingProducts',
+        'Thank You' => 'thnxProducts',
+        'Hydrangea' => 'hydrangeaProducts',
+        'Anniversary Flower' => 'annivProducts',
+    ];
+
+    $categoryProducts = [];
+    foreach ($categoriesToFetch as $categoryName => $variableName) {
+        $categoryProducts[$categoryName] = ProductProduct::with(['category'])
+            ->whereHas('category', function ($query) use ($categoryName) {
+                $query->where('name', $categoryName);
+            })
+            ->oldest()
+            ->take(5)
+            ->get();
+    }
     // Mengirimkan data ke view
-    return view('guest-view.category', compact('products',  'categories', 'products2'));
+    return view('guest-view.category', compact('products',  'categories', 'products2','categoryProducts'));
 }
 
 public function filter(Request $request)
@@ -153,22 +178,6 @@ public function filter(Request $request)
     ]);
 }
 
-
-
-// public function category()
-// {
-//     $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
-//         ->oldest()
-//         ->get();
-
-//     // Ambil kategori unik dari produk
-//     $categories = $products->pluck('category')->filter()->unique('id');
-
-//     return view('guest-view.category', compact('products', 'categories'));
-// }
-
-
-
     public function product(){
 
      return view('guest-view.product');
@@ -178,14 +187,59 @@ public function filter(Request $request)
     public function blog(){
         $blogs = Blog::with('tags')->get();
         $tags = Tag::all();
+        $categoriesToFetch = [
+            'Rose' => 'roseProducts',
+            'Tulip' => 'tulipProducts',
+            'Birthday Flowers' => 'birthdayProducts',
+            'Get Well Soon' => 'gwsProducts',
+            'Graduation' => 'graduProducts',
+            'Wedding' => 'weddingProducts',
+            'Thank You' => 'thnxProducts',
+            'Hydrangea' => 'hydrangeaProducts',
+            'Anniversary Flower' => 'annivProducts',
+        ];
 
-    return view('guest-view.blog' ,compact('blogs','tags'));
+        $categoryProducts = [];
+        foreach ($categoriesToFetch as $categoryName => $variableName) {
+            $categoryProducts[$categoryName] = ProductProduct::with(['category'])
+                ->whereHas('category', function ($query) use ($categoryName) {
+                    $query->where('name', $categoryName);
+                })
+                ->oldest()
+                ->take(5)
+                ->get();
+        }
+    return view('guest-view.blog' ,compact('blogs','tags','categoryProducts'));
     }
 
 
-    public function detailBlog(){
+    public function detailBlog($id){
+        $blogs2 = Blog::with('tags')->findOrFail($id);
+        $tags = Tag::take(5)->get();
+        $blogs = Blog::all();
+        $categoriesToFetch = [
+            'Rose' => 'roseProducts',
+            'Tulip' => 'tulipProducts',
+            'Birthday Flowers' => 'birthdayProducts',
+            'Get Well Soon' => 'gwsProducts',
+            'Graduation' => 'graduProducts',
+            'Wedding' => 'weddingProducts',
+            'Thank You' => 'thnxProducts',
+            'Hydrangea' => 'hydrangeaProducts',
+            'Anniversary Flower' => 'annivProducts',
+        ];
 
-    return view('guest-view.detail-blog');
+        $categoryProducts = [];
+        foreach ($categoriesToFetch as $categoryName => $variableName) {
+            $categoryProducts[$categoryName] = ProductProduct::with(['category'])
+                ->whereHas('category', function ($query) use ($categoryName) {
+                    $query->where('name', $categoryName);
+                })
+                ->oldest()
+                ->take(5)
+                ->get();
+        }
+    return view('guest-view.detail-blog', compact('tags','blogs','blogs2','categoryProducts'));
      }
     public function invoice(){
 

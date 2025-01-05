@@ -322,8 +322,8 @@
                      </div>
                  </li>
                  <li class="nav-item me-lg-4">
-                     <a class="nav-link fw-bolder py-lg-4" href="#">
-                         Mix Flower
+                     <a class="nav-link fw-bolder py-lg-4" href="/category">
+                         Product
                      </a>
                  </li>
                  <li class="nav-item me-lg-4">
