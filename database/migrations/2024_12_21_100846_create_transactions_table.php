@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('shipping_data_provinsi');
             $table->string('shipping_data_city');
             $table->string('shipping_data_zip');
+            $table->decimal('shipping_cost', 15, 2)->nullable();
             $table->string('bill_data_firstname')->nullable();
             $table->string('bill_data_lastname')->nullable();
             $table->string('bill_data_phone')->nullable();
@@ -33,7 +34,9 @@ class CreateTransactionsTable extends Migration
             $table->string('deliv_note')->nullable();
             $table->decimal('total_amount', 15, 2)->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->string('payment_methode')->nullable();
             $table->string('midtrans_order_id')->nullable();
+            $table->string('midtrans_token')->nullable();
             $table->string('midtrans_redirect_url')->nullable();
             $table->timestamps();
         });

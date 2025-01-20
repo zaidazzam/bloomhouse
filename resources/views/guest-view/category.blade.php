@@ -14,8 +14,11 @@
         <!-- Category Top Banner -->
 
         <!-- Main Section-->
-        @include('components.guest.category.main-content')
+        @include('components.guest.category.category-dumm')
+        @include('components.guest.category.script')
         <!-- Main Section-->
 
     </section>
 @endsection
+
+

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\ProductProduct;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Log;
+use App\Mail\PendingPaymentMail;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
@@ -37,10 +39,13 @@ class TransactionController extends Controller
             'delivery_date' => 'required',
             'delivery_schedule_address' => 'required',
             'delivery_schedule' => 'required',
+            'deliv_postage_rule' => 'required',
             'delivery_phone' => 'required',
             'delivery_note_textarea' => 'nullable',
             'total_amount' => 'required',
+            'shipping_cost' => 'required',
             'payment_status' => 'nullable',
+            'payment_methode' => 'nullable',
             'midtrans_order_id' => 'nullable',
             'midtrans_redirect_url' => 'nullable',
         ]);
@@ -52,6 +57,7 @@ class TransactionController extends Controller
             'shipping_data_provinsi' => 'null',
             'shipping_data_city' => 'null',
             'shipping_data_zip' => 'null',
+            'shipping_cost' => $request->shipping_cost,
             'shipping_first_name' => $request->delivery_firstName,
             'shipping_last_name' => $request->delivery_lastName,
             'shipping_phone_number' => $request->delivery_phone,
@@ -66,8 +72,10 @@ class TransactionController extends Controller
             'bill_data_zip' => $request->bill_subdistrict,
             'deliv_date' => $request->delivery_date,
             'deliv_schedule' => $request->delivery_schedule,
+            'deliv_postage_rule' => $request->deliv_postage_rule,
             'total_amount' => $request->total_amount,
-            'deliv_note' => $request->delivery_note_textarea
+            'deliv_note' => $request->delivery_note_textarea,
+            'payment_methode' => $request->payment_methode
         ];
 
         $transaction = Transaction::create($data);
@@ -85,15 +93,15 @@ class TransactionController extends Controller
         }
 
         $midtransResponse = $this->createTransaction($transaction);
-        Log::info('Midtrans Response:', (array) $midtransResponse);
         $transaction->update([
-            'midtrans_order_id' => $midtransResponse->token,
+            'midtrans_order_id' => $midtransResponse->order_id,
+            'midtrans_token' => $midtransResponse->token,
             'midtrans_redirect_url' => $midtransResponse->redirect_url,
         ]);
 
         return response()->json([
             'message' => 'Transaction created successfully',
-            'token' => $transaction->midtrans_order_id,
+            'token' => $transaction->midtrans_token,
         ]);
     }
 
@@ -104,11 +112,16 @@ class TransactionController extends Controller
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
+
+        $order_id = "ORDER_ID".rand();
         
         $payload = [
             'transaction_details' => [
-                'order_id' => rand(),
+                'order_id' => $order_id,
                 'gross_amount' => $transaction->total_amount,
+            ],
+            'enabled_payments' => [
+                $transaction->payment_methode
             ],
             'customer_details' => [
                 "first_name" => $transaction->bill_data_firstname,
@@ -132,31 +145,116 @@ class TransactionController extends Controller
                   "address" => $transaction->shipping_data_address,
                 ]
             ],
-            'item_details' => $transaction->details->map(function ($detail) {
-                return [
-                    'id' => $detail->product_product_id,
-                    'price' => $detail->unit_price,
-                    'quantity' => $detail->quantity,
-                    'name' => $detail->product->name,
-                ];
-            })->toArray(),
+            'item_details' => array_merge(
+                $transaction->details->map(function ($detail) {
+                    return [
+                        'id' => $detail->product_product_id,
+                        'price' => $detail->unit_price,
+                        'quantity' => $detail->quantity,
+                        'name' => $detail->product->name,
+                    ];
+                })->toArray(),
+                [
+                    [
+                        'id' => 'shipping_cost'.$order_id,
+                        'price' => $transaction->shipping_cost, 
+                        'quantity' => 1,
+                        'name' => 'Shipping Cost',
+                    ]
+                    ]),
         ];
-
-        return Snap::createTransaction($payload);
+        $response = Snap::createTransaction($payload);
+        $response->order_id = $payload['transaction_details']['order_id'];
+        return $response;
     }
 
     public function callback(Request $request)
     {
         $data = $request->all();
 
-        $transaction = Transaction::where('id', $data['order_id'])->first();
-
+        
+        $transaction = Transaction::with('details')->where('midtrans_order_id', $data['order_id'])->first();
+        
         if ($data['transaction_status'] === 'capture' || $data['transaction_status'] === 'settlement') {
             $transaction->update(['payment_status' => 'paid']);
+            session()->forget('cart');
+            foreach ($transaction->details as $qty) {
+               $productStock = ProductProduct::findOrFail($qty->product_product_id);
+               $updateStock = $productStock->product_stock - $qty->quantity;
+               $productStock->update([
+                    'product_stock' => $updateStock,
+               ]);
+            }
         } elseif ($data['transaction_status'] === 'deny') {
             $transaction->update(['payment_status' => 'failed']);
         }
+        elseif ($data['transaction_status'] === 'pending') {
+            $transaction->update(['payment_status' => 'pending']);
+            Mail::to($transaction->email)->send(new PendingPaymentMail($transaction));
+        }
+        return view('guest-view.invoice', compact('transaction'));
+    }
 
-        return response()->json(['message' => 'Callback processed successfully']);
+
+    public function createTransactionViaPaypal($transaction)
+    {
+        Config::$serverKey = 'SB-Mid-server-20CrcoJ6aTpErf_RLC9hmEB8' ;
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        $order_id = "ORDER_ID".rand();
+        
+        $payload = [
+            'transaction_details' => [
+                'order_id' => $order_id,
+                'gross_amount' => $transaction->total_amount,
+            ],
+            'enabled_payments' => [
+                $transaction->payment_methode
+            ],
+            'customer_details' => [
+                "first_name" => $transaction->bill_data_firstname,
+                "last_name" => $transaction->bill_data_lastname,
+                "email" => $transaction->email,
+                "phone" => $transaction->bill_data_phone,
+                "billing_address" => [
+                  "first_name" => $transaction->bill_data_firstname,
+                  "last_name" => $transaction->bill_data_lastname,
+                  "email" => $transaction->email,
+                  "phone" => $transaction->bill_data_phone,
+                  "address" => $transaction->bill_data_address,
+                  "city" => $transaction->bill_data_city,
+                  "postal_code" => $transaction->bill_data_zip,
+                  "country_code" => "IDN"
+                ],
+                "shipping_address" => [
+                  "first_name" => $transaction->shipping_first_name,
+                  "last_name" => $transaction->shipping_last_name,
+                  "phone" => $transaction->shipping_phone_number,
+                  "address" => $transaction->shipping_data_address,
+                ]
+            ],
+            'item_details' => array_merge(
+                $transaction->details->map(function ($detail) {
+                    return [
+                        'id' => $detail->product_product_id,
+                        'price' => $detail->unit_price,
+                        'quantity' => $detail->quantity,
+                        'name' => $detail->product->name,
+                    ];
+                })->toArray(),
+                [
+                    [
+                        'id' => 'shipping_cost'.$order_id,
+                        'price' => $transaction->shipping_cost, 
+                        'quantity' => 1,
+                        'name' => 'Shipping Cost',
+                    ]
+                    ]),
+        ];
+        $response = Snap::createTransaction($payload);
+        $response->order_id = $payload['transaction_details']['order_id'];
+        return $response;
     }
 }

@@ -14,7 +14,11 @@
                         <p class="mb-3 truncated-content">
                             {{ Str::words(strip_tags($blog->content), 25, '...') }}
                         </p>
+<<<<<<< HEAD
                         <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-primary new ">Read More</a>
+=======
+                        <a href="{{ route('detail-blog', $blog->id) }}" class="btn btn-primary new ">Read More</a>
+>>>>>>> ead80ec2c38dcc0a22f95a1ee9bdcdb71f680aeb
                     </div>
                 </div>
             @endforeach

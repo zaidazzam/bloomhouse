@@ -35,7 +35,6 @@ class AuthController extends Controller
 
         return redirect('/login')->with('success', 'Register success!');
     }
-
     public function login(Request $request)
     {
         $request->validate([
@@ -44,10 +43,11 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('username', 'password'), $request->remember)) {
-            return response()->json(['success' => true, 'redirect' => route('dashboard')]);
+            return response()->json(['success' => true, 'redirect' => url('/admin/dashboard')]);
         }
-
+        
         return response()->json(['success' => false, 'message' => 'Invalid username or password.'], 401);
+        
     }
 
     public function logout(Request $request)

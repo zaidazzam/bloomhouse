@@ -49,7 +49,7 @@
                        </div>
 
                        <!-- Price Filter -->
-                       <div class="py-4 widget-filter widget-filter-price border-top">
+                       {{-- <div class="py-4 widget-filter widget-filter-price border-top">
                            <a class="small text-body text-decoration-none text-secondary-hover transition-all transition-all fs-6 fw-bolder d-block collapse-icon-chevron"
                                data-bs-toggle="collapse" href="#filter-price" role="button" aria-expanded="true"
                                aria-controls="filter-price">
@@ -74,7 +74,7 @@
                                    </div>
                                </div>
                            </div>
-                       </div>
+                       </div> --}}
                        <!-- / Price Filter -->
                    </aside>
                    <!-- / Category Aside-->
@@ -157,7 +157,7 @@
                                        <!-- Review Stars Small-->
                                        <div class="rating position-relative d-table">
                                            <div class="position-absolute stars"
-                                               style="width: {{ $product->rating * 20 }}%">
+                                               style="width: 100%">
                                                @for ($i = 0; $i < 5; $i++)
                                                    <i class="ri-star-fill text-dark mr-1"></i>
                                                @endfor
@@ -231,7 +231,7 @@
                                        <!-- Review Stars Small-->
                                        <div class="rating position-relative d-table">
                                            <div class="position-absolute stars"
-                                               style="width: {{ $product->rating * 20 }}%">
+                                               style="width: 100%">
                                                @for ($i = 0; $i < 5; $i++)
                                                    <i class="ri-star-fill text-dark mr-1"></i>
                                                @endfor

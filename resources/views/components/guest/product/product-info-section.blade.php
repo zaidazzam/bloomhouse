@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-start align-items-center">
                 <!-- Review Stars Small-->
                 <div class="rating position-relative d-table">
-                    <div class="position-absolute stars" style="width: {{ $product->reviews->avg('rating') * 20 }}%">
+                    <div class="position-absolute stars" style="width: 100%">
                         {{-- <div class="position-absolute stars" style="width: {{ 3 * 20 }}%"> --}}
                         <i class="ri-star-fill text-dark mr-1"></i>
                         <i class="ri-star-fill text-dark mr-1"></i>
@@ -88,14 +88,12 @@
             <div class="d-flex justify-content-start align-items-center">
                 <p class="fw-bolder lh-1 mb-0 me-3">Share</p>
                 <ul class="list-unstyled p-0 m-0 d-flex justify-content-start lh-1 align-items-center mt-1">
-                    <li class="me-2"><a class="text-decoration-none" href="#" role="button"><i
-                                class="ri-facebook-box-fill"></i></a></li>
-                    <li class="me-2"><a class="text-decoration-none" href="#" role="button"><i
+                    <li class="me-2"><a class="text-decoration-none"
+                            href="https://www.instagram.com/bloomhouse.florist/" target="_blank" role="button"><i
                                 class="ri-instagram-fill"></i></a></li>
-                    <li class="me-2"><a class="text-decoration-none" href="#" role="button"><i
-                                class="ri-pinterest-fill"></i></a></li>
-                    <li class="me-2"><a class="text-decoration-none" href="#" role="button"><i
-                                class="ri-twitter-fill"></i></a></li>
+                    <li class="me-2"><a class="text-decoration-none" target="_blank"
+                            href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6281316283880&e=AT2L05NGfyDciPTpWoH4Y6YmqAEOLPK1YqGnXp3K_l9cr2rLf76sX6D791rWaF_9mJTD7dVH6J_q3K2NfJ-VadFTpJbELYgoTDFQ45eRqiWHyKUQ"
+                            target="_blank" role="button"><i class="ri-whatsapp-fill"></i></a></li>
                 </ul>
             </div>
         </div>

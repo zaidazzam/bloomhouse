@@ -10,7 +10,9 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $categories = ProductCategory::with('products')->latest()->get();
-        return view('dashboard-view.category-product', compact('categories'));
+        $countCategory = ProductCategory::count();
+
+        return view('dashboard-view.category-product', compact('categories','countCategory'));
     }
 
     public function create()

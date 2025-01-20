@@ -48,7 +48,7 @@
                             <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
                                 <!-- Review Stars Small-->
             <div class="rating position-relative d-table">
-                <div class="position-absolute stars" style="width: 80%">
+                <div class="position-absolute stars" style="width: 100%">
                     <i class="ri-star-fill text-dark mr-1"></i>
                     <i class="ri-star-fill text-dark mr-1"></i>
                     <i class="ri-star-fill text-dark mr-1"></i>

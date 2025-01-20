@@ -17,6 +17,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
+                
                 <?php $tot = 0; ?>
                 @foreach ($cart as $c)
                     <!-- Cart Product-->
@@ -95,7 +96,6 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert('Item berhasil dihapus!');
                             location.reload();
                         } else {
                             alert('Gagal menghapus item: ' + data.message);
@@ -145,7 +145,6 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Quantity updated successfully!');
                     location.reload()
                 } else {
                     alert('Failed to update quantity: ' + data.message);

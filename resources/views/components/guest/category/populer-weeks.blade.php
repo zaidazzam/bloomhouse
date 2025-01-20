@@ -83,7 +83,7 @@
                                     <div class="rating position-relative d-table">
                                         {{-- <div class="position-absolute stars" style="width: {{ $product->product_rating * 20 }}%"> --}}
                                         <div class="position-absolute stars"
-                                            style="width: {{ $product->reviews->avg('rating') * 20 }}%">
+                                            style="width: 100%">
 
                                             @for ($i = 0; $i < 5; $i++)
                                                 <i class="ri-star-fill text-dark mr-1"></i>

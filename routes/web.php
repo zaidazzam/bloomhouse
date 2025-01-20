@@ -12,6 +12,8 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Models\PostageRule;
 
 /*
@@ -27,10 +29,12 @@ use App\Models\PostageRule;
 
 // Auth Routes
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('index_login');
-    Route::post('/login', [App\Http\Controllers\Auth\AuthController::class, 'login'])->name('login');
+    // Route::get('/login', [App\Http\Controllers\Auth\AuthController::class, 'index_login'])->name('index_login');
+    Route::get('/login', [AuthController::class, 'index_login'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category'])->name('category');
+    Route::post('/filter-product', [App\Http\Controllers\GuestController::class, 'filterProduct'])->name('filterProduct');
     // Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
     Route::get('/detail-blog/{id}', [GuestController::class, 'detailBlog'])->name('detail-blog');
@@ -39,27 +43,32 @@ Route::middleware('guest')->group(function () {
     Route::post('/product-reviews', [ProductReviewController::class, 'store'])->name('product_reviews.store');
     Route::post('/track-view/{productId}', [ProductProductController::class, 'trackView']);
     Route::get('/category/filter', [ProductProductController::class, 'filter']);
+    Route::get('/invoice/{id}', [GuestController::class, 'invoice'])->name('invoice');
 
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.add');
-    Route::post('/callback', [TransactionController::class, 'callback'])->name('transaction.callback');
+    Route::get('/callback', [TransactionController::class, 'callback'])->name('transaction.callback');
+    
+    Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
+    Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
+    Route::get('/search', [GuestController::class, 'search'])->name('search');
 });
 
-Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
-Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog']) ->name('tagBlog');;
-Route::get('/admin/postages', [App\Http\Controllers\AdminController::class, 'delivery']) ->name('delivery');;
 
 
 
-Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
-Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
+
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     // ===========================================================>
+    Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
+    Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog']) ->name('tagBlog');;
+    Route::get('/admin/postages', [App\Http\Controllers\AdminController::class, 'delivery']) ->name('delivery');;
+    Route::get('/admin/tracking', [App\Http\Controllers\AdminController::class, 'tracking']) ->name('tracking');;
     Route::resource('product_products', ProductProductController::class);
     Route::resource('product_categories', ProductCategoryController::class);
     Route::resource('product_pictures', ProductPictureController::class);
@@ -67,10 +76,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('tags', TagController::class);
     Route::resource('postages', PostageRuleController::class);
     Route::put('/postages/{id}', [PostageRuleController::class, 'update'])->name('postages.update');
-    Route::get('/report-transactions', [TransactionController::class,'index'])->name('report_transactions');
-
+    // Route::get('/report-transactions', [TransactionController::class,'index'])->name('report_transactions');
+    Route::get('/admin/invoice-paid', [AdminController::class,'adminInvoicePaid'])->name('adminInvoicePaid');
+    Route::get('/admin/invoice-pending', [AdminController::class,'adminInvoicePending'])->name('adminInvoicePending');
+    Route::get('/admin/invoice/{id}', [AdminController::class,'detailInvoice'])->name('detailInvoice');
+    Route::get('/admin/report-ransaksi', [AdminController::class, 'reportTransaksi']) ->name('reportTransaksi');;
+    Route::get('/admin/sales-item', [AdminController::class, 'salesItem']) ->name('salesItem');;
+    Route::get('/admin/sales-category', [AdminController::class, 'salesCategory']) ->name('salesCategory');;
+    
     Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
-    Route::get('/admin/report-ransaksi', [App\Http\Controllers\AdminController::class, 'reportTransaksi']) ->name('reportTransaksi');;
     Route::get('/admin/product-review', [App\Http\Controllers\AdminController::class, 'reportProductReview']) ->name('reportProductReview');;
     Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
     ->name('categoryProduct');;

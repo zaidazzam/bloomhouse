@@ -130,6 +130,12 @@
                             </div>
                         </div>
 
+                        <!-- Hidden inputs to store the names -->
+                        <input type="hidden" id="bill_province_name" name="bill_data_province_name">
+                        <input type="hidden" id="bill_city_name" name="bill_data_city_name">
+                        <input type="hidden" id="bill_subdistrict_name" name="bill_data_subdistrict_name">
+
+
                     </div>
                 </div> <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
                 <div class="checkout-panel">
@@ -194,7 +200,8 @@
                             <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
                                 <option value="null" disabled selected>Select a Delivery Schedule</option>
                                 @foreach ($timePostageRules as $rule)
-                                    <option value="{{ $rule->price }}">{{ $rule->postage_rule }} - Rp
+                                    <option value="{{ $rule }}">
+                                        {{ $rule->postage_rule }} - Rp
                                         {{ number_format($rule->price, 0, ',', '.') }}</option>
                                 @endforeach
                             </select>
@@ -241,8 +248,13 @@
                                 <label class="form-check-label" for="checkoutPaymentVirtualAccount">
                                     <span class="d-flex justify-content-between align-items-start">
                                         <span class="mb-0 fw-bolder d-block">Virtual Account</span>
+<<<<<<< HEAD
                                         <img src="./assets/images/logos/logo-bca.jpg" alt="Logo BCA"
                                             style="width: 24px; height: auto;"> </span>
+=======
+                                        <i class="ri-bank-card-line"></i>
+                                    </span>
+>>>>>>> ead80ec2c38dcc0a22f95a1ee9bdcdb71f680aeb
                                 </label>
                             </div>
                         </div>
@@ -271,18 +283,19 @@
                                 <label class="form-check-label" for="checkoutPaymentTransferBank">
                                     <span class="d-flex justify-content-between align-items-center">
                                         <span class="me-3">
-                                            <span class="mb-0 fw-bolder d-block">Transfer Bank BCA</span>
+                                            <span class="mb-0 fw-bolder d-block">Paypal</span>
                                         </span>
-                                        <!-- Gambar kecil di sebelah kanan teks -->
-                                        <img src="./assets/images/logos/logo-bca.jpg" alt="Logo BCA"
-                                            style="width: 24px; height: auto;">
+                                        <i class="ri-bank-card-line"></i>
                                     </span>
                                 </label>
                             </div>
                         </div> --}}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ead80ec2c38dcc0a22f95a1ee9bdcdb71f680aeb
                     </div>
 
                     <!-- Transfer Bank Info -->
@@ -297,11 +310,14 @@
                         enter your payment details via <strong>Virtual Account</strong>.
                     </div>
 
-
-
                     <!-- Payment Details-->
+<<<<<<< HEAD
                     <div class="card-details">
                         {{-- <div class="row pt-3">
+=======
+                    <div class="card-details d-none" id="card-details">
+                        <div class="row pt-3">
+>>>>>>> ead80ec2c38dcc0a22f95a1ee9bdcdb71f680aeb
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="cc-name" class="form-label">Name on card</label>
@@ -346,9 +362,8 @@
                         </div> --}}
                     </div>
                     <!-- / Payment Details-->
-
-
                 </div>
+
                 <!-- /Checkout Payment Method-->
             </div>
             <!-- / Checkout Panel Left -->
@@ -414,6 +429,10 @@
                     </div>
                     <a href="#" class="btn btn-dark w-100" data-cart='@json($cart)'
                         id="checkout" role="button">Complete Order</a>
+
+                    {{-- button paypal --}}
+                    <a href="#" class="btn btn-danger w-100" data-cart='@json($cart)'
+                        id="checkout_paypal" role="button">Complete Order via Paypal</a>
                 </div>
             </div>
             <!-- /Checkout Panel Summary -->
@@ -422,6 +441,24 @@
         <!-- /Page Content -->
     </section>
     <!-- / Main Section-->
+
+    <!-- Add JavaScript to handle the display -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentRadioButtons = document.querySelectorAll('input[name="checkoutPaymentMethod"]');
+            const cardDetails = document.getElementById('card-details');
+
+            paymentRadioButtons.forEach(button => {
+                button.addEventListener('change', function() {
+                    if (this.id === 'checkoutPaymentStripe' && this.checked) {
+                        cardDetails.classList.remove('d-none');
+                    } else {
+                        cardDetails.classList.add('d-none');
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         document.getElementById("checkout").addEventListener("click", function(e) {
@@ -481,26 +518,6 @@
         });
 
 
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     const countrySelect = document.getElementById('bill_country');
-
-        //     // Fetch countries from API
-        //     fetch('https://restcountries.com/v3.1/all')
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // Loop through the countries and add them to the dropdown
-        //             data.forEach(country => {
-        //                 const option = document.createElement('option');
-        //                 option.value = country.name
-        //                     .common; // or any other property you want to use as value
-        //                 option.textContent = country.name.common; // or you can use the native name
-        //                 countrySelect.appendChild(option);
-        //             });
-        //         })
-        //         .catch(error => {
-        //             console.error('Error fetching countries:', error);
-        //         });
-        // });
         $(document).ready(function() {
             // Inisialisasi Select2 pada elemen #delivery-schedule
             $('#delivery-schedule').select2();
@@ -516,7 +533,8 @@
             dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
             data.forEach(item => {
                 const option = document.createElement('option');
-                option.value = item.id;
+                option.value = item.id; // Tetap gunakan ID sebagai value
+                option.setAttribute('data-name', item.name); // Tambahkan atribut data-name untuk nama
                 option.textContent = item.name;
                 dropdown.appendChild(option);
             });
@@ -556,6 +574,10 @@
         document.getElementById('bill_province').addEventListener('change', function() {
             const provinceId = this.value;
             if (provinceId) {
+                const provinceName = this.options[this.selectedIndex].getAttribute(
+                    'data-name'); // Ambil nama provinsi
+                document.getElementById('bill_province_name').value =
+                    provinceName; // Setkan nama provinsi ke input hidden
                 fetchRegencies(provinceId);
                 document.getElementById('bill_city').innerHTML =
                     '<option value="" disabled selected>Loading...</option>';
@@ -568,7 +590,20 @@
         document.getElementById('bill_city').addEventListener('change', function() {
             const regencyId = this.value;
             if (regencyId) {
+                const cityName = this.options[this.selectedIndex].getAttribute('data-name'); // Ambil nama kota
+                document.getElementById('bill_city_name').value = cityName; // Setkan nama kota ke input hidden
                 fetchDistricts(regencyId);
+            }
+        });
+
+        // Event listener untuk perubahan pada dropdown kecamatan
+        document.getElementById('bill_subdistrict').addEventListener('change', function() {
+            const subdistrictId = this.value;
+            if (subdistrictId) {
+                const subdistrictName = this.options[this.selectedIndex].getAttribute(
+                    'data-name'); // Ambil nama subdistrict
+                document.getElementById('bill_subdistrict_name').value =
+                    subdistrictName; // Setkan nama subdistrict ke input hidden
             }
         });
 
@@ -576,9 +611,12 @@
         fetchProvinces();
     </script>
 
+
     <script>
         document.getElementById('delivery-schedule').addEventListener('change', function() {
-            const deliv_schedule = parseFloat(this.value);
+
+            const deliv_schedule = JSON.parse(this.value);
+            const deliv_price = deliv_schedule.price;
             const deliv_schedule_address = parseFloat(document.getElementById('delivery-schedule-address').value)
             const tot_shipping = document.getElementById('tot_shipping')
             const grand_tot = document.getElementById('grand_tot')
@@ -591,7 +629,9 @@
                 alert('Delivery address is required')
                 location.reload()
             } else {
-                ongkir = deliv_schedule_address + deliv_schedule
+                ongkir = deliv_schedule_address + parseFloat(deliv_price)
+
+                scost.value = ongkir
 
                 scost.value = ongkir
 
@@ -603,6 +643,7 @@
             }
         });
 
+<<<<<<< HEAD
         document.getElementById('checkout').addEventListener('click', async function() {
             let email = document.getElementById('email').value
             let scost = document.getElementById('scost').value
@@ -625,10 +666,40 @@
             let delivery_lastName = document.getElementById('delivery_lastName').value
             let delivery_phone = document.getElementById('delivery_phone').value
             let payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
+=======
+        document.getElementById('checkout').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+            const button = this;
+            const email = document.getElementById('email').value;
+            const scost = document.getElementById('scost').value;
+            const bill_country = document.getElementById('bill_country').value;
+            const bill_firstName = document.getElementById('bill_firstName').value;
+            const bill_lastName = document.getElementById('bill_lastName').value;
+            const bill_phoneNumber = document.getElementById('bill_phoneNumber').value;
+            const bill_address = document.getElementById('bill_address').value;
+            const bill_province = document.getElementById('bill_province').selectedOptions[0].getAttribute(
+                'data-name');
+            const bill_city = document.getElementById('bill_city').selectedOptions[0].getAttribute('data-name');
+            const bill_company = document.getElementById('bill_company').value;
+            const bill_subdistrict = document.getElementById('bill_subdistrict').selectedOptions[0]
+                .getAttribute('data-name');
+            const delivery_date = document.getElementById('delivery-date').value;
+            const delivery_schedule_address = document.getElementById('delivery-schedule-address').value;
+            const delivery_value = document.getElementById('delivery-schedule').value;
+            const delivery_note_textarea = document.getElementById('delivery-note-textarea').value;
+            const delivery_address = document.getElementById('delivery_address').value;
+            const gtotal = document.getElementById('gtotal').value;
+            const delivery_firstName = document.getElementById('delivery_firstName').value;
+            const delivery_lastName = document.getElementById('delivery_lastName').value;
+            const delivery_phone = document.getElementById('delivery_phone').value;
+            const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
+>>>>>>> ead80ec2c38dcc0a22f95a1ee9bdcdb71f680aeb
 
             const cartData = this.getAttribute('data-cart');
             const cart = JSON.parse(cartData);
 
+<<<<<<< HEAD
             await fetch("{{ route('transaction.add') }}", {
                     method: 'POST',
                     headers: {
@@ -665,6 +736,256 @@
                     window.snap.pay(data.token)
                 });
         });
+=======
+            const delivery_schedule_data = JSON.parse(delivery_value)
+            const deliv_rule_price = delivery_schedule_data.price;
+            const deliv_postage_rule = delivery_schedule_data.postage_rule;
+
+            // SweetAlert2 Konfirmasi
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to complete the order?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, order it!',
+                cancelButtonText: 'Cancel'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna memilih "Yes", tampilkan loading
+                    Swal.fire({
+                        title: 'Processing your order...',
+                        text: 'Please wait while we process your payment.',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Proses Fetch
+                    await fetch("{{ route('transaction.add') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                products: cart,
+                                total_amount: gtotal,
+                                shipping_cost: scost,
+                                payment_methode: payment_methode,
+                                email: email,
+                                bill_country: bill_country,
+                                bill_company: bill_company,
+                                bill_firstName: bill_firstName,
+                                bill_lastName: bill_lastName,
+                                bill_phoneNumber: bill_phoneNumber,
+                                bill_address: bill_address,
+                                bill_province: bill_province,
+                                bill_city: bill_city,
+                                delivery_firstName: delivery_firstName,
+                                delivery_lastName: delivery_lastName,
+                                delivery_phone: delivery_phone,
+                                bill_subdistrict: bill_subdistrict,
+                                delivery_address: delivery_address,
+                                delivery_date: delivery_date,
+                                delivery_schedule_address: delivery_schedule_address,
+                                delivery_schedule: deliv_rule_price,
+                                deliv_postage_rule: deliv_postage_rule,
+                                delivery_note_textarea: delivery_note_textarea,
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Success!',
+                                'Your order has been processed successfully.',
+                                'success'
+                            ).then(() => {
+                                // Kosongkan tampilan cart
+                                document.querySelector('#offcanvasCart .offcanvas-body')
+                                    .innerHTML = `
+            <div class="text-center mt-5">
+                <h5>Your cart is empty</h5>
+                <p>Add some items to get started!</p>
+            </div>
+        `;
+
+                                // Redirect ke Snap payment
+                                window.snap.pay(data.token);
+                            });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Error!',
+                                'Something went wrong. Please try again.',
+                                'error'
+                            );
+                        });
+                } else {
+                    // Jika pengguna memilih "Cancel"
+                    Swal.fire(
+                        'Cancelled',
+                        'Your order has not been placed.',
+                        'info'
+                    );
+                }
+            });
+        });
+
+
+
+
+
+
+        // function order via paypal
+        document.getElementById('checkout_paypal').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+            const button = this;
+            const email = document.getElementById('email').value;
+            const scost = document.getElementById('scost').value;
+            const bill_country = document.getElementById('bill_country').value;
+            const bill_firstName = document.getElementById('bill_firstName').value;
+            const bill_lastName = document.getElementById('bill_lastName').value;
+            const bill_phoneNumber = document.getElementById('bill_phoneNumber').value;
+            const bill_address = document.getElementById('bill_address').value;
+            const bill_province = document.getElementById('bill_province').selectedOptions[0].getAttribute(
+                'data-name');
+            const bill_city = document.getElementById('bill_city').selectedOptions[0].getAttribute('data-name');
+            const bill_company = document.getElementById('bill_company').value;
+            const bill_subdistrict = document.getElementById('bill_subdistrict').selectedOptions[0]
+                .getAttribute('data-name');
+            const delivery_date = document.getElementById('delivery-date').value;
+            const delivery_schedule_address = document.getElementById('delivery-schedule-address').value;
+            const delivery_value = document.getElementById('delivery-schedule').value;
+            const delivery_note_textarea = document.getElementById('delivery-note-textarea').value;
+            const delivery_address = document.getElementById('delivery_address').value;
+            const gtotal = document.getElementById('gtotal').value;
+            const delivery_firstName = document.getElementById('delivery_firstName').value;
+            const delivery_lastName = document.getElementById('delivery_lastName').value;
+            const delivery_phone = document.getElementById('delivery_phone').value;
+            const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
+
+            const cartData = this.getAttribute('data-cart');
+            const cart = JSON.parse(cartData);
+
+            const delivery_schedule_data = JSON.parse(delivery_value)
+            const deliv_rule_price = delivery_schedule_data.price;
+            const deliv_postage_rule = delivery_schedule_data.postage_rule;
+
+            // SweetAlert2 Konfirmasi
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to complete the order?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, order it!',
+                cancelButtonText: 'Cancel'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna memilih "Yes", tampilkan loading
+                    Swal.fire({
+                        title: 'Processing your order...',
+                        text: 'Please wait while we process your payment.',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Proses Fetch
+                    await fetch("{{ route('transaction.add') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                products: cart,
+                                total_amount: gtotal,
+                                shipping_cost: scost,
+                                payment_methode: payment_methode,
+                                email: email,
+                                bill_country: bill_country,
+                                bill_company: bill_company,
+                                bill_firstName: bill_firstName,
+                                bill_lastName: bill_lastName,
+                                bill_phoneNumber: bill_phoneNumber,
+                                bill_address: bill_address,
+                                bill_province: bill_province,
+                                bill_city: bill_city,
+                                delivery_firstName: delivery_firstName,
+                                delivery_lastName: delivery_lastName,
+                                delivery_phone: delivery_phone,
+                                bill_subdistrict: bill_subdistrict,
+                                delivery_address: delivery_address,
+                                delivery_date: delivery_date,
+                                delivery_schedule_address: delivery_schedule_address,
+                                delivery_schedule: deliv_rule_price,
+                                deliv_postage_rule: deliv_postage_rule,
+                                delivery_note_textarea: delivery_note_textarea,
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Success!',
+                                'Your order has been processed successfully.',
+                                'success'
+                            ).then(() => {
+                                // Kosongkan tampilan cart
+                                document.querySelector('#offcanvasCart .offcanvas-body')
+                                    .innerHTML = `
+            <div class="text-center mt-5">
+                <h5>Your cart is empty</h5>
+                <p>Add some items to get started!</p>
+            </div>
+        `;
+
+                                // Redirect ke Snap payment
+                                window.snap.pay(data.token);
+                            });
+                        })
+                        .catch(error => {
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Error!',
+                                'Something went wrong. Please try again.',
+                                'error'
+                            );
+                        });
+                } else {
+                    // Jika pengguna memilih "Cancel"
+                    Swal.fire(
+                        'Cancelled',
+                        'Your order has not been placed.',
+                        'info'
+                    );
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+
+>>>>>>> ead80ec2c38dcc0a22f95a1ee9bdcdb71f680aeb
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict'

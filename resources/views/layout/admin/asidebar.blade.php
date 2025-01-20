@@ -58,7 +58,7 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Delivery</span>
                 </li>
-                <li class="menu-item {{ request()->is('postages') ? 'active open' : '' }}">
+                <li class="menu-item {{ request()->is('postages', 'admin/tracking') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-truck"></i>
                         <div data-i18n="Layouts">Delivery</div>
@@ -69,55 +69,68 @@
                                 <div data-i18n="Without menu">Rule</div>
                             </a>
                         </li>
+                        <li class="menu-item {{ request()->is('admin/tracking') ? 'active' : '' }}">
+                            <a href="{{ url('admin/tracking') }}" class="menu-link">
+                                <div data-i18n="Without menu">Tracking</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Report</span>
                 </li>
                 <li
-                class="menu-item {{ request()->is('reports') ? 'active open' : '' }}">
+                    class="menu-item {{ request()->is('admin/report-ransaksi', 'admin/sales-item', 'admin/sales-item', 'admin/sales-category') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-shopping-bag"></i>
                         <div data-i18n="Layouts">Report</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item {{ request()->is('reports') ? 'active' : '' }}">
+                        <li class="menu-item {{ request()->is('admin/report-ransaksi') ? 'active' : '' }}">
                             <a href="{{ url('/admin/report-ransaksi') }}" class="menu-link">
-                                <div data-i18n="Without menu">Transaction</div>
+                                <div data-i18n="Without menu">Revenue</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('reports') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/product-review') }}" class="menu-link">
-                                <div data-i18n="Without menu">Product Review </div>
+                        <li class="menu-item {{ request()->is('admin/sales-item') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/sales-item') }}" class="menu-link">
+                                <div data-i18n="Without menu">Sales By Item</div>
                             </a>
                         </li>
+                        {{-- <li class="menu-item {{ request()->is('admin/sales-category') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/sales-category') }}" class="menu-link">
+                                <div data-i18n="Without menu">Sales By Category</div>
+                            </a>
+                        </li> --}}
                     </ul>
                 </li>
                 {{-- Menu Produk --}}
-
-                {{-- Menu Penjualan --}}
-                {{-- <li class="menu-header small text-uppercase">
-                    <span class="menu-header-text">Report</span>
-                </li>
-                <li class="menu-item {{ request()->is('admin/sales') ? 'active' : '' }}">
-                    <a href="{{ url('/admin/sales') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bxs-shopping-bag"></i>
-                        <div data-i18n=" ">Report</div>
-                    </a>
-                </li> --}}
-
-                {{-- Menu Penjualan --}}
 
                 {{-- Menu Report --}}
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Invoice</span>
                 </li>
-                <li class="menu-item {{ request()->is('/admin/report-ransaksi') ? 'active' : '' }}">
-                    <a href="{{ url('/admin/report-ransaksi') }}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bxs-report"></i>
-                        <div data-i18n="">Invoice</div>
+                <li
+                    class="menu-item {{ request()->is('admin/invoice-pending', 'admin/invoice-paid') ? 'active open' : '' }}">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bxs-shopping-bag"></i>
+                        <div data-i18n="Layouts">Invoice</div>
                     </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item {{ request()->is('admin/invoice-paid') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/invoice-paid') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-report"></i>
+                                <div data-i18n="">Paid Invoice</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ request()->is('admin/invoice-pending') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/invoice-pending') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bxs-report"></i>
+                                <div data-i18n="">Pending Invoice</div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
                 {{-- Menu Report --}}
 
                 {{-- Menu Artikel --}}
@@ -127,7 +140,7 @@
                 <li
                     class="menu-item {{ request()->is('admin/blog', 'admin/blog-tag', 'admin/review-product') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bxs-florist"></i>
+                        <i class="menu-icon tf-icons bx bxl-blogger"></i>
                         <div data-i18n="Layouts">Blog</div>
                     </a>
                     <ul class="menu-sub">
@@ -141,11 +154,11 @@
                                 <div data-i18n="Without navbar">Tag</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ request()->is('admin/category-product') ? 'active' : '' }}">
+                        {{-- <li class="menu-item {{ request()->is('admin/category-product') ? 'active' : '' }}">
                             <a href="{{ url('/admin/category-product') }}" class="menu-link">
                                 <div data-i18n="Without navbar">Customize</div>
                             </a>
-                        </li>
+                        </li> --}}
                         {{-- <li class="menu-item {{ request()->is('admin/review-product') ? 'active' : '' }}">
                             <a href="{{ url('/admin/review-product') }}" class="menu-link">
                                 <div data-i18n="Container">Review Product</div>
