@@ -8,7 +8,6 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="{{ asset('js/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
 
     <script>
         tinymce.init({
@@ -41,6 +40,7 @@
     <link href="{{ asset('/assets/images/logos/Bloom-House-02.png') }}" rel="icon" type="image/x-icon">
     <!-- Tambahkan ini di file layout Blade -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/tinymce.min.js') }}" referrerpolicy="origin"></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -69,9 +69,13 @@
     {{-- <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" /> --}}
     <link href="{{ asset('admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" /> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Page CSS -->
-
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet'
+        type='text/css' />
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'>
+    </script>
     <!-- Helpers -->
     <script src="{{ asset('admin/assets/vendor/js/helpers.js') }}"></script>
     {{-- <script src="../assets/vendor/js/helpers.js"></script> --}}

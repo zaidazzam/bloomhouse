@@ -10,7 +10,8 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('dashboard-view.tag-blog', compact('tags'));
+        $countTags = Tag::count();
+        return view('dashboard-view.tag-blog', compact('tags','countTags'));
     }
 
     public function create()

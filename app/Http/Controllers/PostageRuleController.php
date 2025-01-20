@@ -9,10 +9,18 @@ class PostageRuleController extends Controller
 {
     public function index()
     {
+        // Count rules where category is 'address'
+        $countAddress = PostageRule::where('category', 'address')->count();
+    
+        // Count rules where category is 'time'
+        $countTime = PostageRule::where('category', 'time')->count();
+    
+        // Get all postage rules to display
         $postages = PostageRule::all();
-        return view('dashboard-view.postage', compact('postages'));
+    
+        return view('dashboard-view.postage', compact('postages', 'countAddress', 'countTime'));
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([

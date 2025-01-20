@@ -1,4 +1,28 @@
 <!-- Bordered Table -->
+<div class="card shadow-lg border-0 mb-4" style="background: linear-gradient(135deg, #007bff, #6610f2); color: white;">
+    <div class="card-body d-flex align-items-center">
+        <div class="me-4">
+            <!-- Icon -->
+            <div class="icon-container bg-white rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 60px; height: 60px;">
+                <i class="bx bxs-purchase-tag-alt text-primary" style="font-size: 30px;"></i>
+            </div>
+        </div>
+        <div>
+            <!-- Title -->
+            <h5 class="card-title fw-bold text-dark">Total Tag</h5>
+            <!-- Content -->
+            <p class="card-text mb-0">
+                Total number of tags available:
+            </p>
+            <p class="card-text fs-4 mt-2">
+                <span class="badge bg-light text-primary p-2 px-3" style="font-size: 1.2rem;">
+                    <strong>{{ $countTags }}</strong>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
 <div class="card">
     <div class="d-flex justify-content-between w-100">
 
@@ -6,11 +30,6 @@
 
         <div class="d-flex align-items-center">
             <!-- Input Search -->
-            <div class="input-group input-group-merge me-3">
-                <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search..." aria-label="Search..."
-                    aria-describedby="basic-addon-search31" />
-            </div>
 
             <!-- Add Product Button -->
             <button type="button" class="btn btn-primary btn-add-product table-dark1" data-bs-toggle="modal"
@@ -18,10 +37,11 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table table-responsive text-nowrap">
-            <table class="table table-bordered table-striped table-hover text-center">
+        <div class="table-responsive table-responsive text-nowrap">
+            <table id="maintable" class="display cell-border table table-bordered table-striped table-hover"
+                cellspacing="0" width="100%">
                 <thead class="table-dark1">
-                    <tr>
+                    <tr class="text-center">
                         <th class="text-white">No.</th>
                         <th class="text-white">Tag Name</th>
                         <th class="text-white">Action</th>
@@ -30,70 +50,44 @@
 
                 <tbody id="product-list">
                     @foreach ($tags as $tag)
-                    <tr>
+                    <tr class="text-center">
                         <td data-id="{{ $tag->id }}">{{ $loop->iteration }}</td>
-                        <td data-name="{{ $tag->name }}">{{ $tag->name }}</td>
-                        <td>
-                            <div class='dropdown'>
-                                <button type='button' class='btn p-0 dropdown-toggle hide-arrow' data-bs-toggle='dropdown'>
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                </button>
-                                <div class='dropdown-menu'>
-                                    <a class='dropdown-item btn-edit-tag' href='javascript:void(0);' data-url="{{ route('tags.update',$tag->id) }}" data-bs-toggle='modal' data-bs-target='#editCategoryModal'>
-                                        <i class='bx bx-edit-alt me-1'></i> Edit
-                                    </a>
-                                    <form method="POST" action="{{ route('tags.destroy',$tag->id) }}">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class='dropdown-item' type="submit">
-                                            <i class='bx bx-trash me-1'></i> Delete
-                                        </button>
-                                    </form>
+                            <td data-name="{{ $tag->name }}">{{ $tag->name }}</td>
+                            <td>
+                                <div class='dropdown'>
+                                    <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
+                                        data-bs-toggle='dropdown'>
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </button>
+                                    <div class='dropdown-menu'>
+                                        <a class='dropdown-item btn-edit-tag' href='javascript:void(0);'
+                                            data-url="{{ route('tags.update', $tag->id) }}" data-bs-toggle='modal'
+                                            data-bs-target='#editCategoryModal'>
+                                            <i class='bx bx-edit-alt me-1'></i> Edit
+                                        </a>
+                                        <form method="POST" action="{{ route('tags.destroy', $tag->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class='dropdown-item' type="submit">
+                                                <i class='bx bx-trash me-1'></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
-
+                <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em; ">
+                    <tr>
+                        <th class="text-white">No.</th>
+                        <th class="text-white">Tag Name</th>
+                        <th class="text-white">Action</th>
+                    </tr>
+                </tfoot>
 
             </table>
         </div>
-    </div>
-    <div class="demo-inline-spacing">
-        <!-- Basic Pagination -->
-        <nav aria-label="Page navigation" class="d-flex justify-content-center">
-            <ul class="pagination">
-                <li class="page-item first">
-                    <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
-                </li>
-                <li class="page-item prev">
-                    <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left"></i></a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">2</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="javascript:void(0);">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">4</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);">5</a>
-                </li>
-                <li class="page-item next">
-                    <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right"></i></a>
-                </li>
-                <li class="page-item last">
-                    <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
-                </li>
-            </ul>
-        </nav>
-        <!--/ Basic Pagination -->
     </div>
 
 </div>
@@ -112,8 +106,8 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="tagName" class="form-label">Tag Name</label>
-                        <input type="text" id="tagName" name="name" class="form-control" placeholder="Enter Tag Name"
-                            required />
+                        <input type="text" id="tagName" name="name" class="form-control"
+                            placeholder="Enter Tag Name" required />
                     </div>
                 </div>
             </div>
@@ -166,20 +160,20 @@
         const editForm = document.getElementById('editTagForm');
 
         editButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                    const row = this.closest('tr');
-                    const url = row.querySelector('[data-url]').getAttribute('data-url');
-                    editForm.setAttribute('action', url);
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const url = row.querySelector('[data-url]').getAttribute('data-url');
+                editForm.setAttribute('action', url);
 
 
-                    const name = row.querySelector('[data-name]').getAttribute('data-name');
+                const name = row.querySelector('[data-name]').getAttribute('data-name');
 
-                    document.getElementById('editTagName').value = name;
-                });
+                document.getElementById('editTagName').value = name;
             });
-
-
         });
+
+
+    });
 
 
 

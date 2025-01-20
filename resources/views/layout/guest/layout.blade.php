@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}">
     <link rel="mask-icon" href="{{ asset('assets/images/logos/Bloom-House-02.png') }}" color="#5bbad5">
@@ -21,9 +21,8 @@
     <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-    <script type="text/javascript"
-            src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.bundle.css') }}" />
@@ -64,19 +63,19 @@
     </div>
 
     {{-- Header --}}
-    @if (request()->is('/'))
-        <!-- Cek apakah ini halaman homepage -->
-        <div class="position-relative z-index-30">
+    <div class="position-relative z-index-30">
+        @if (request()->is('/'))
+            <!-- Cek apakah ini halaman homepage -->
             <nav
                 class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
                 @include('layout.guest.header')
             </nav>
-        </div>
-    @else
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0">
-            @include('layout.guest.header')
-        </nav>
-    @endif
+        @else
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0">
+                @include('layout.guest.header')
+            </nav>
+        @endif
+    </div>
 
     {{-- Content --}}
     <main class="mt-0">
@@ -97,6 +96,7 @@
 
     <!-- Vendor JS -->
     <script src="{{ asset('assets/js/vendor.bundle.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Theme JS -->
     <script src="{{ asset('assets/js/theme.bundle.js') }}"></script>

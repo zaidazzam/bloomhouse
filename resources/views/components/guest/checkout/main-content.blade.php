@@ -2,16 +2,15 @@
     <section class="mt-5 container ">
         <!-- Page Content Goes Here -->
 
-        <h1 class="mb-4 display-5 fw-bold text-center">Checkout Securely</h1>
-        <p class="text-center mx-auto">Please fill in the details below to complete your order. Already registered?
-            <a href="#">Login here.</a>
+        <h1 class="mb-4 display-5 fw-bold text-center">Checkout Your Flower Order Securely</h1>
+        <p class="text-center mx-auto">Please provide the details below to complete your flower order.
         </p>
 
         <div class="row g-md-8 mt-4">
             <!-- Checkout Panel Left -->
             <div class="col-12 col-lg-6 col-xl-7">
                 <!-- Checkout Panel Contact -->
-                <div class="checkout-panel">
+                <div class="checkout-panel-checkout">
                     <h5 class="title-checkout">Contact Information</h5>
                     <div class="row">
 
@@ -36,6 +35,7 @@
                 <div class="billing-address checkout-panel">
                     <h5 class="title-checkout">Billing Address</h5>
                     <div class="row">
+
                         <!-- Country-->
                         <div class="col-md-12">
                             <div class="form-group">
@@ -46,13 +46,13 @@
                                 </select>
                             </div>
                         </div>
-
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="bill_firstName" class="form-label">First name</label>
                                 <input name="bill_data_firstname" type="text" class="form-control"
-                                    id="bill_firstName" placeholder="" value="" required="">
+                                    id="bill_firstName" placeholder="John" required>
+                                <div class="invalid-feedback">Please enter your first name.</div>
                             </div>
                         </div>
 
@@ -61,16 +61,18 @@
                             <div class="form-group">
                                 <label for="bill_lastName" class="form-label">Last name</label>
                                 <input name="bill_data_lastname" type="text" class="form-control" id="bill_lastName"
-                                    placeholder="" value="" required="">
+                                    placeholder="Doe" required>
+                                <div class="invalid-feedback">Please enter your last name.</div>
                             </div>
                         </div>
 
-                        <!-- phonenumber-->
+                        <!-- Phone Number-->
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="bill_phoneNumber" class="form-label">Phone Number</label>
                                 <input name="bill_data_phone" type="number" class="form-control" id="bill_phoneNumber"
-                                    placeholder="" required="">
+                                    placeholder="+628123456789" required>
+                                <div class="invalid-feedback">Please enter a valid phone number.</div>
                             </div>
                         </div>
 
@@ -80,7 +82,7 @@
                                 <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
                                 <input name="bill_data_company" type="text" class="form-control" id="bill_company"
-                                    placeholder="" required="">
+                                    placeholder="Your Company Name">
                             </div>
                         </div>
 
@@ -89,16 +91,19 @@
                             <div class="form-group">
                                 <label for="bill_address" class="form-label">Address</label>
                                 <input name="bill_data_address" type="text" class="form-control" id="bill_address"
-                                    placeholder="123 Some Street Somewhere" required="">
+                                    placeholder="123 Some Street Somewhere" required>
+                                <div class="invalid-feedback">Please enter your address.</div>
                             </div>
                         </div>
+
                         <!-- Province -->
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="bill_province" class="form-label">Province</label>
-                                <select name="bill_data_province" class="form-select" id="bill_province" required="">
-                                    <option value="" disabled selected>Please Select...</option>
+                                <select name="bill_data_province" class="form-select" id="bill_province" required>
+                                    <option value="" disabled selected>Please Select a Province...</option>
                                 </select>
+                                <div class="invalid-feedback">Please select a province.</div>
                             </div>
                         </div>
 
@@ -106,9 +111,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="bill_city" class="form-label">City</label>
-                                <select name="bill_data_city" class="form-select" id="bill_city" required="">
-                                    <option value="" disabled selected>Please Select...</option>
+                                <select name="bill_data_city" class="form-select" id="bill_city" required>
+                                    <option value="" disabled selected>Please Select a City...</option>
                                 </select>
+                                <div class="invalid-feedback">Please select a city.</div>
                             </div>
                         </div>
 
@@ -117,15 +123,21 @@
                             <div class="form-group">
                                 <label for="bill_subdistrict" class="form-label">Subdistrict/Postal Code</label>
                                 <select name="bill_data_subdistrict" class="form-select" id="bill_subdistrict"
-                                    required="">
-                                    <option value="" disabled selected>Please Select...</option>
+                                    required>
+                                    <option value="" disabled selected>Please Select a Subdistrict...</option>
                                 </select>
+                                <div class="invalid-feedback">Please select a subdistrict or postal code.</div>
                             </div>
                         </div>
 
+                        <!-- Hidden inputs to store the names -->
+                        <input type="hidden" id="bill_province_name" name="bill_data_province_name">
+                        <input type="hidden" id="bill_city_name" name="bill_data_city_name">
+                        <input type="hidden" id="bill_subdistrict_name" name="bill_data_subdistrict_name">
+
+
                     </div>
-                </div>
-                <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
+                </div> <!-- / Checkout Billing Address--> <!-- Checkout Shipping Method-->
                 <div class="checkout-panel">
                     <h5 class="title-checkout">Delivery</h5>
 
@@ -134,38 +146,38 @@
                         <div class="form-group">
                             <label for="delivery_firstName" class="form-label">First Name</label>
                             <input name="delivery_firstName" type="text" class="form-control"
-                                id="delivery_firstName" required>
+                                id="delivery_firstName" placeholder="Enter your first name" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_lastName" class="form-label">Last Name</label>
                             <input name="delivery_lastName" type="text" class="form-control"
-                                id="delivery_lastName" required>
+                                id="delivery_lastName" placeholder="Enter your last name" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_phone" class="form-label">WhatsApp Number</label>
                             <input name="delivery_phone" type="number" class="form-control" id="delivery_phone"
-                                required>
+                                placeholder="Enter your WhatsApp number" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery-date" class="form-label">Delivery Date</label>
                             <input name="deliv_date" type="date" class="form-control" id="delivery-date"
-                                min="<?= date('Y-m-d') ?>" required>
+                                placeholder="Select a delivery date" min="<?= date('Y-m-d') ?>" required>
                         </div>
                     </div>
-                    <!-- Date delivery-->
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
-                            <label for="delivery_address" class="form-label">Delivery Addrress</label>
-                            <textarea class="form-control" id="delivery_address" rows="4" placeholder="Write your detail address here..."
-                                required></textarea>
+                            <label for="delivery_address" class="form-label">Delivery Address</label>
+                            <textarea class="form-control" id="delivery_address" rows="4"
+                                placeholder="Write your detailed address here..." required></textarea>
                         </div>
                     </div>
+
 
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
@@ -188,7 +200,8 @@
                             <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
                                 <option value="null" disabled selected>Select a Delivery Schedule</option>
                                 @foreach ($timePostageRules as $rule)
-                                    <option value="{{ $rule->price }}">{{ $rule->postage_rule }} - Rp
+                                    <option value="{{ $rule }}">
+                                        {{ $rule->postage_rule }} - Rp
                                         {{ number_format($rule->price, 0, ',', '.') }}</option>
                                 @endforeach
                             </select>
@@ -226,11 +239,26 @@
                     <h5 class="title-checkout">Payment Method</h5>
 
                     <div class="row">
+
+                        <!-- Payment Option for Virtual Account -->
+                        <div class="col-12">
+                            <div class="form-check form-group form-radio-custom mb-3">
+                                <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
+                                    id="checkoutPaymentVirtualAccount" value="bank_transfer">
+                                <label class="form-check-label" for="checkoutPaymentVirtualAccount">
+                                    <span class="d-flex justify-content-between align-items-start">
+                                        <span class="mb-0 fw-bolder d-block">Virtual Account</span>
+                                        <i class="ri-bank-card-line"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
                         <!-- Payment Option-->
                         <div class="col-12">
                             <div class="form-check form-group form-radio-custom mb-3">
                                 <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
-                                    id="checkoutPaymentStripe" checked>
+                                    id="checkoutPaymentStripe" value="credit_card">
                                 <label class="form-check-label" for="checkoutPaymentStripe">
                                     <span class="d-flex justify-content-between align-items-start">
                                         <span>
@@ -250,27 +278,10 @@
                                 <label class="form-check-label" for="checkoutPaymentTransferBank">
                                     <span class="d-flex justify-content-between align-items-center">
                                         <span class="me-3">
-                                            <span class="mb-0 fw-bolder d-block">Transfer Bank BCA</span>
+                                            <span class="mb-0 fw-bolder d-block">Paypal</span>
                                         </span>
-                                        <!-- Gambar kecil di sebelah kanan teks -->
-                                        <img src="./assets/images/logos/logo-bca.jpg" alt="Logo BCA"
-                                            style="width: 24px; height: auto;">
+                                        <i class="ri-bank-card-line"></i>
                                     </span>
-                                </label>
-                            </div>
-                        </div>
-
-
-                        <!-- Payment Option for Virtual Account -->
-                        <div class="col-12">
-                            <div class="form-check form-group form-radio-custom mb-3">
-                                <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
-                                    id="checkoutPaymentVirtualAccount">
-                                <label class="form-check-label" for="checkoutPaymentVirtualAccount">
-                                    <span class="d-flex justify-content-between align-items-start">
-                                        <span class="mb-0 fw-bolder d-block">Virtual Account</span>
-                                        <img src="./assets/images/logos/logo-bca.jpg" alt="Logo BCA"
-                                            style="width: 24px; height: auto;"> </span>
                                 </label>
                             </div>
                         </div>
@@ -289,10 +300,8 @@
                         enter your payment details via <strong>Virtual Account</strong>.
                     </div>
 
-
-
                     <!-- Payment Details-->
-                    <div class="card-details">
+                    <div class="card-details d-none" id="card-details">
                         <div class="row pt-3">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -338,9 +347,8 @@
                         </div>
                     </div>
                     <!-- / Payment Details-->
-
-
                 </div>
+
                 <!-- /Checkout Payment Method-->
             </div>
             <!-- / Checkout Panel Left -->
@@ -377,8 +385,9 @@
                                 Rp.{{ number_format($tot, 0, ',', '.') }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center ">
-                            <p class="m-0 fw-bolder fs-6">Shipping</p>
-                            <p class="m-0 fs-6 fw-bolder" id="tot_shipping">postage + time slot</p>
+                            <p class="m-0 fw-bolder fs-6">Delivery</p>
+                            <input type="hidden" id="scost">
+                            <p class="m-0 fs-6 fw-bolder" id="tot_shipping">shipping + time slot</p>
                         </div>
                     </div>
                     <div class="py-3 border-bottom">
@@ -400,11 +409,15 @@
                     <!-- Accept Terms Checkbox-->
                     <div class="form-group form-check my-4">
                         <input type="checkbox" class="form-check-input" id="accept-terms" checked>
-                        <label class="form-check-label fw-bolder" for="accept-terms">I agree to Alpine's <a
+                        <label class="form-check-label fw-bolder" for="accept-terms">I agree to Bloomhouse's <a
                                 href="#">terms & conditions</a></label>
                     </div>
                     <a href="#" class="btn btn-dark w-100" data-cart='@json($cart)'
                         id="checkout" role="button">Complete Order</a>
+
+                    {{-- button paypal --}}
+                    <a href="#" class="btn btn-danger w-100" data-cart='@json($cart)'
+                        id="checkout_paypal" role="button">Complete Order via Paypal</a>
                 </div>
             </div>
             <!-- /Checkout Panel Summary -->
@@ -413,6 +426,24 @@
         <!-- /Page Content -->
     </section>
     <!-- / Main Section-->
+
+    <!-- Add JavaScript to handle the display -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentRadioButtons = document.querySelectorAll('input[name="checkoutPaymentMethod"]');
+            const cardDetails = document.getElementById('card-details');
+
+            paymentRadioButtons.forEach(button => {
+                button.addEventListener('change', function() {
+                    if (this.id === 'checkoutPaymentStripe' && this.checked) {
+                        cardDetails.classList.remove('d-none');
+                    } else {
+                        cardDetails.classList.add('d-none');
+                    }
+                });
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -457,26 +488,6 @@
         });
 
 
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     const countrySelect = document.getElementById('bill_country');
-
-        //     // Fetch countries from API
-        //     fetch('https://restcountries.com/v3.1/all')
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // Loop through the countries and add them to the dropdown
-        //             data.forEach(country => {
-        //                 const option = document.createElement('option');
-        //                 option.value = country.name
-        //                     .common; // or any other property you want to use as value
-        //                 option.textContent = country.name.common; // or you can use the native name
-        //                 countrySelect.appendChild(option);
-        //             });
-        //         })
-        //         .catch(error => {
-        //             console.error('Error fetching countries:', error);
-        //         });
-        // });
         $(document).ready(function() {
             // Inisialisasi Select2 pada elemen #delivery-schedule
             $('#delivery-schedule').select2();
@@ -492,7 +503,8 @@
             dropdown.innerHTML = `<option value="" disabled selected>${defaultOptionText}</option>`; // Reset dropdown
             data.forEach(item => {
                 const option = document.createElement('option');
-                option.value = item.id;
+                option.value = item.id; // Tetap gunakan ID sebagai value
+                option.setAttribute('data-name', item.name); // Tambahkan atribut data-name untuk nama
                 option.textContent = item.name;
                 dropdown.appendChild(option);
             });
@@ -532,6 +544,10 @@
         document.getElementById('bill_province').addEventListener('change', function() {
             const provinceId = this.value;
             if (provinceId) {
+                const provinceName = this.options[this.selectedIndex].getAttribute(
+                    'data-name'); // Ambil nama provinsi
+                document.getElementById('bill_province_name').value =
+                    provinceName; // Setkan nama provinsi ke input hidden
                 fetchRegencies(provinceId);
                 document.getElementById('bill_city').innerHTML =
                     '<option value="" disabled selected>Loading...</option>';
@@ -544,7 +560,20 @@
         document.getElementById('bill_city').addEventListener('change', function() {
             const regencyId = this.value;
             if (regencyId) {
+                const cityName = this.options[this.selectedIndex].getAttribute('data-name'); // Ambil nama kota
+                document.getElementById('bill_city_name').value = cityName; // Setkan nama kota ke input hidden
                 fetchDistricts(regencyId);
+            }
+        });
+
+        // Event listener untuk perubahan pada dropdown kecamatan
+        document.getElementById('bill_subdistrict').addEventListener('change', function() {
+            const subdistrictId = this.value;
+            if (subdistrictId) {
+                const subdistrictName = this.options[this.selectedIndex].getAttribute(
+                    'data-name'); // Ambil nama subdistrict
+                document.getElementById('bill_subdistrict_name').value =
+                    subdistrictName; // Setkan nama subdistrict ke input hidden
             }
         });
 
@@ -552,13 +581,17 @@
         fetchProvinces();
     </script>
 
+
     <script>
         document.getElementById('delivery-schedule').addEventListener('change', function() {
-            const deliv_schedule = parseFloat(this.value);
+
+            const deliv_schedule = JSON.parse(this.value);
+            const deliv_price = deliv_schedule.price;
             const deliv_schedule_address = parseFloat(document.getElementById('delivery-schedule-address').value)
             const tot_shipping = document.getElementById('tot_shipping')
             const grand_tot = document.getElementById('grand_tot')
             const gtotal = document.getElementById('gtotal')
+            const scost = document.getElementById('scost')
             const subtot = parseFloat(document.getElementById('subtot').getAttribute('data-subtot'));
             let ongkir = 0
 
@@ -566,7 +599,9 @@
                 alert('Delivery address is required')
                 location.reload()
             } else {
-                ongkir = deliv_schedule_address + deliv_schedule
+                ongkir = deliv_schedule_address + parseFloat(deliv_price)
+
+                scost.value = ongkir
 
                 tot_shipping.innerHTML = "Rp." + new Intl.NumberFormat('id-ID').format(ongkir);
 
@@ -576,62 +611,302 @@
             }
         });
 
-        document.getElementById('checkout').addEventListener('click', async function() {
-            let email = document.getElementById('email').value
-            let bill_country = document.getElementById('bill_country').value
-            let bill_firstName = document.getElementById('bill_firstName').value
-            let bill_lastName = document.getElementById('bill_lastName').value
-            let bill_phoneNumber = document.getElementById('bill_phoneNumber').value
-            let bill_address = document.getElementById('bill_address').value
-            let bill_province = document.getElementById('bill_province').value
-            let bill_city = document.getElementById('bill_city').value
-            let bill_company = document.getElementById('bill_company').value
-            let bill_subdistrict = document.getElementById('bill_subdistrict').value
-            let delivery_date = document.getElementById('delivery-date').value
-            let delivery_schedule_address = document.getElementById('delivery-schedule-address').value
-            let delivery_schedule = document.getElementById('delivery-schedule').value
-            let delivery_note_textarea = document.getElementById('delivery-note-textarea').value
-            let delivery_address = document.getElementById('delivery_address').value
-            let gtotal = document.getElementById('gtotal').value
-            let delivery_firstName = document.getElementById('delivery_firstName').value
-            let delivery_lastName = document.getElementById('delivery_lastName').value
-            let delivery_phone = document.getElementById('delivery_phone').value
+        document.getElementById('checkout').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+            const button = this;
+            const email = document.getElementById('email').value;
+            const scost = document.getElementById('scost').value;
+            const bill_country = document.getElementById('bill_country').value;
+            const bill_firstName = document.getElementById('bill_firstName').value;
+            const bill_lastName = document.getElementById('bill_lastName').value;
+            const bill_phoneNumber = document.getElementById('bill_phoneNumber').value;
+            const bill_address = document.getElementById('bill_address').value;
+            const bill_province = document.getElementById('bill_province').selectedOptions[0].getAttribute(
+                'data-name');
+            const bill_city = document.getElementById('bill_city').selectedOptions[0].getAttribute('data-name');
+            const bill_company = document.getElementById('bill_company').value;
+            const bill_subdistrict = document.getElementById('bill_subdistrict').selectedOptions[0]
+                .getAttribute('data-name');
+            const delivery_date = document.getElementById('delivery-date').value;
+            const delivery_schedule_address = document.getElementById('delivery-schedule-address').value;
+            const delivery_value = document.getElementById('delivery-schedule').value;
+            const delivery_note_textarea = document.getElementById('delivery-note-textarea').value;
+            const delivery_address = document.getElementById('delivery_address').value;
+            const gtotal = document.getElementById('gtotal').value;
+            const delivery_firstName = document.getElementById('delivery_firstName').value;
+            const delivery_lastName = document.getElementById('delivery_lastName').value;
+            const delivery_phone = document.getElementById('delivery_phone').value;
+            const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
 
             const cartData = this.getAttribute('data-cart');
             const cart = JSON.parse(cartData);
 
-            await fetch("{{ route('transaction.add') }}", {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        products: cart,
-                        total_amount: gtotal,
-                        email: email,
-                        bill_country: bill_country,
-                        bill_company: bill_company,
-                        bill_firstName: bill_firstName,
-                        bill_lastName: bill_lastName,
-                        bill_phoneNumber: bill_phoneNumber,
-                        bill_address: bill_address,
-                        bill_province: bill_province,
-                        bill_city: bill_city,
-                        delivery_firstName: delivery_firstName,
-                        delivery_lastName: delivery_lastName,
-                        delivery_phone: delivery_phone,
-                        bill_subdistrict: bill_subdistrict,
-                        delivery_address: delivery_address,
-                        delivery_date: delivery_date,
-                        delivery_schedule_address: delivery_schedule_address,
-                        delivery_schedule: delivery_schedule,
-                        delivery_note_textarea: delivery_note_textarea,
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    window.snap.pay(data.token)
-                });
+            const delivery_schedule_data = JSON.parse(delivery_value)
+            const deliv_rule_price = delivery_schedule_data.price;
+            const deliv_postage_rule = delivery_schedule_data.postage_rule;
+
+            // SweetAlert2 Konfirmasi
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to complete the order?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, order it!',
+                cancelButtonText: 'Cancel'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna memilih "Yes", tampilkan loading
+                    Swal.fire({
+                        title: 'Processing your order...',
+                        text: 'Please wait while we process your payment.',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Proses Fetch
+                    await fetch("{{ route('transaction.add') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                products: cart,
+                                total_amount: gtotal,
+                                shipping_cost: scost,
+                                payment_methode: payment_methode,
+                                email: email,
+                                bill_country: bill_country,
+                                bill_company: bill_company,
+                                bill_firstName: bill_firstName,
+                                bill_lastName: bill_lastName,
+                                bill_phoneNumber: bill_phoneNumber,
+                                bill_address: bill_address,
+                                bill_province: bill_province,
+                                bill_city: bill_city,
+                                delivery_firstName: delivery_firstName,
+                                delivery_lastName: delivery_lastName,
+                                delivery_phone: delivery_phone,
+                                bill_subdistrict: bill_subdistrict,
+                                delivery_address: delivery_address,
+                                delivery_date: delivery_date,
+                                delivery_schedule_address: delivery_schedule_address,
+                                delivery_schedule: deliv_rule_price,
+                                deliv_postage_rule: deliv_postage_rule,
+                                delivery_note_textarea: delivery_note_textarea,
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Success!',
+                                'Your order has been processed successfully.',
+                                'success'
+                            ).then(() => {
+                                // Kosongkan tampilan cart
+                                document.querySelector('#offcanvasCart .offcanvas-body')
+                                    .innerHTML = `
+            <div class="text-center mt-5">
+                <h5>Your cart is empty</h5>
+                <p>Add some items to get started!</p>
+            </div>
+        `;
+
+                                // Redirect ke Snap payment
+                                window.snap.pay(data.token);
+                            });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Error!',
+                                'Something went wrong. Please try again.',
+                                'error'
+                            );
+                        });
+                } else {
+                    // Jika pengguna memilih "Cancel"
+                    Swal.fire(
+                        'Cancelled',
+                        'Your order has not been placed.',
+                        'info'
+                    );
+                }
+            });
         });
+
+
+
+
+
+
+        // function order via paypal
+        document.getElementById('checkout_paypal').addEventListener('click', async function(e) {
+            e.preventDefault();
+
+            const button = this;
+            const email = document.getElementById('email').value;
+            const scost = document.getElementById('scost').value;
+            const bill_country = document.getElementById('bill_country').value;
+            const bill_firstName = document.getElementById('bill_firstName').value;
+            const bill_lastName = document.getElementById('bill_lastName').value;
+            const bill_phoneNumber = document.getElementById('bill_phoneNumber').value;
+            const bill_address = document.getElementById('bill_address').value;
+            const bill_province = document.getElementById('bill_province').selectedOptions[0].getAttribute(
+                'data-name');
+            const bill_city = document.getElementById('bill_city').selectedOptions[0].getAttribute('data-name');
+            const bill_company = document.getElementById('bill_company').value;
+            const bill_subdistrict = document.getElementById('bill_subdistrict').selectedOptions[0]
+                .getAttribute('data-name');
+            const delivery_date = document.getElementById('delivery-date').value;
+            const delivery_schedule_address = document.getElementById('delivery-schedule-address').value;
+            const delivery_value = document.getElementById('delivery-schedule').value;
+            const delivery_note_textarea = document.getElementById('delivery-note-textarea').value;
+            const delivery_address = document.getElementById('delivery_address').value;
+            const gtotal = document.getElementById('gtotal').value;
+            const delivery_firstName = document.getElementById('delivery_firstName').value;
+            const delivery_lastName = document.getElementById('delivery_lastName').value;
+            const delivery_phone = document.getElementById('delivery_phone').value;
+            const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
+
+            const cartData = this.getAttribute('data-cart');
+            const cart = JSON.parse(cartData);
+
+            const delivery_schedule_data = JSON.parse(delivery_value)
+            const deliv_rule_price = delivery_schedule_data.price;
+            const deliv_postage_rule = delivery_schedule_data.postage_rule;
+
+            // SweetAlert2 Konfirmasi
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to complete the order?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, order it!',
+                cancelButtonText: 'Cancel'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna memilih "Yes", tampilkan loading
+                    Swal.fire({
+                        title: 'Processing your order...',
+                        text: 'Please wait while we process your payment.',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Proses Fetch
+                    await fetch("{{ route('transaction.add') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                products: cart,
+                                total_amount: gtotal,
+                                shipping_cost: scost,
+                                payment_methode: payment_methode,
+                                email: email,
+                                bill_country: bill_country,
+                                bill_company: bill_company,
+                                bill_firstName: bill_firstName,
+                                bill_lastName: bill_lastName,
+                                bill_phoneNumber: bill_phoneNumber,
+                                bill_address: bill_address,
+                                bill_province: bill_province,
+                                bill_city: bill_city,
+                                delivery_firstName: delivery_firstName,
+                                delivery_lastName: delivery_lastName,
+                                delivery_phone: delivery_phone,
+                                bill_subdistrict: bill_subdistrict,
+                                delivery_address: delivery_address,
+                                delivery_date: delivery_date,
+                                delivery_schedule_address: delivery_schedule_address,
+                                delivery_schedule: deliv_rule_price,
+                                deliv_postage_rule: deliv_postage_rule,
+                                delivery_note_textarea: delivery_note_textarea,
+                            }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Success!',
+                                'Your order has been processed successfully.',
+                                'success'
+                            ).then(() => {
+                                // Kosongkan tampilan cart
+                                document.querySelector('#offcanvasCart .offcanvas-body')
+                                    .innerHTML = `
+            <div class="text-center mt-5">
+                <h5>Your cart is empty</h5>
+                <p>Add some items to get started!</p>
+            </div>
+        `;
+
+                                // Redirect ke Snap payment
+                                window.snap.pay(data.token);
+                            });
+                        })
+                        .catch(error => {
+                            Swal.close(); // Tutup loading
+                            Swal.fire(
+                                'Error!',
+                                'Something went wrong. Please try again.',
+                                'error'
+                            );
+                        });
+                } else {
+                    // Jika pengguna memilih "Cancel"
+                    Swal.fire(
+                        'Cancelled',
+                        'Your order has not been placed.',
+                        'info'
+                    );
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
     </script>

@@ -13,7 +13,8 @@ class BlogController extends Controller
     {
         $blogs = Blog::with('tags')->get();
         $tags = Tag::all();
-        return view('dashboard-view.blog', compact('blogs','tags'));
+        $countBlogs = Blog::count();
+        return view('dashboard-view.blog', compact('blogs','tags','countBlogs'));
     }
 
     public function create()
@@ -56,7 +57,7 @@ class BlogController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'content' => 'nullable|string',
             'author' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'tags' => 'array|exists:tags,id'

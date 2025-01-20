@@ -17,6 +17,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
+                
                 <?php $tot = 0; ?>
                 @foreach ($cart as $c)
                     <!-- Cart Product-->
@@ -69,8 +70,8 @@
                 </div>
                 <a href="{{ url('checkout') }}"
                     class="btn btn-orange btn-orange-chunky mt-5 mb-2 d-block text-center">Checkout</a>
-                <a href="{{ url('cart') }}"
-                    class="btn btn-dark fw-bolder d-block text-center transition-all opacity-50-hover">View Cart</a>
+                {{-- <a href="{{ url('cart') }}"
+                    class="btn btn-dark fw-bolder d-block text-center transition-all opacity-50-hover">View Cart</a> --}}
             </div>
         </div>
     </div>
@@ -95,7 +96,6 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert('Item berhasil dihapus!');
                             location.reload();
                         } else {
                             alert('Gagal menghapus item: ' + data.message);
@@ -145,7 +145,6 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Quantity updated successfully!');
                     location.reload()
                 } else {
                     alert('Failed to update quantity: ' + data.message);

@@ -43,4 +43,9 @@ class ProductProduct extends Model
     {
         return $this->hasMany(ProductDeliveryExpedition::class);
     }
+        // Tambahkan relasi ke TransactionDetail
+        public function transactionDetails()
+        {
+            return $this->hasMany(TransactionDetail::class, 'product_product_id');
+        }
 }
