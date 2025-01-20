@@ -10,12 +10,15 @@ use App\Models\ProductProduct;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Log;
 use App\Mail\PendingPaymentMail;
+use App\Models\TrackingDelivery;
 use Illuminate\Support\Facades\Mail;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class TransactionController extends Controller
 {
-    public function index() {
-        
+    public function index()
+    {
+
         return view('dashboard-view.report-transaki');
     }
 
@@ -51,7 +54,7 @@ class TransactionController extends Controller
         ]);
 
         $data = [
-            'email' => $request->email ,
+            'email' => $request->email,
             'shipping_country' => 'Indonesia',
             'shipping_data_company' => 'null',
             'shipping_data_provinsi' => 'null',
@@ -79,7 +82,7 @@ class TransactionController extends Controller
         ];
 
         $transaction = Transaction::create($data);
-      
+
         foreach ($request->products as $product) {
 
             TransactionDetail::create([
@@ -89,7 +92,6 @@ class TransactionController extends Controller
                 'unit_price' => $product['product_price'],
                 'subtotal' => $product['product_price'] * $product['quantity'],
             ]);
-
         }
 
         $midtransResponse = $this->createTransaction($transaction);
@@ -108,13 +110,13 @@ class TransactionController extends Controller
 
     public function createTransaction($transaction)
     {
-        Config::$serverKey = 'SB-Mid-server-20CrcoJ6aTpErf_RLC9hmEB8' ;
+        Config::$serverKey = 'SB-Mid-server-20CrcoJ6aTpErf_RLC9hmEB8';
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
 
-        $order_id = "ORDER_ID".rand();
-        
+        $order_id = "ORDER_ID" . rand();
+
         $payload = [
             'transaction_details' => [
                 'order_id' => $order_id,
@@ -129,20 +131,20 @@ class TransactionController extends Controller
                 "email" => $transaction->email,
                 "phone" => $transaction->bill_data_phone,
                 "billing_address" => [
-                  "first_name" => $transaction->bill_data_firstname,
-                  "last_name" => $transaction->bill_data_lastname,
-                  "email" => $transaction->email,
-                  "phone" => $transaction->bill_data_phone,
-                  "address" => $transaction->bill_data_address,
-                  "city" => $transaction->bill_data_city,
-                  "postal_code" => $transaction->bill_data_zip,
-                  "country_code" => "IDN"
+                    "first_name" => $transaction->bill_data_firstname,
+                    "last_name" => $transaction->bill_data_lastname,
+                    "email" => $transaction->email,
+                    "phone" => $transaction->bill_data_phone,
+                    "address" => $transaction->bill_data_address,
+                    "city" => $transaction->bill_data_city,
+                    "postal_code" => $transaction->bill_data_zip,
+                    "country_code" => "IDN"
                 ],
                 "shipping_address" => [
-                  "first_name" => $transaction->shipping_first_name,
-                  "last_name" => $transaction->shipping_last_name,
-                  "phone" => $transaction->shipping_phone_number,
-                  "address" => $transaction->shipping_data_address,
+                    "first_name" => $transaction->shipping_first_name,
+                    "last_name" => $transaction->shipping_last_name,
+                    "phone" => $transaction->shipping_phone_number,
+                    "address" => $transaction->shipping_data_address,
                 ]
             ],
             'item_details' => array_merge(
@@ -156,12 +158,13 @@ class TransactionController extends Controller
                 })->toArray(),
                 [
                     [
-                        'id' => 'shipping_cost'.$order_id,
-                        'price' => $transaction->shipping_cost, 
+                        'id' => 'shipping_cost' . $order_id,
+                        'price' => $transaction->shipping_cost,
                         'quantity' => 1,
                         'name' => 'Shipping Cost',
                     ]
-                    ]),
+                ]
+            ),
         ];
         $response = Snap::createTransaction($payload);
         $response->order_id = $payload['transaction_details']['order_id'];
@@ -172,23 +175,32 @@ class TransactionController extends Controller
     {
         $data = $request->all();
 
-        
+
         $transaction = Transaction::with('details')->where('midtrans_order_id', $data['order_id'])->first();
-        
+
         if ($data['transaction_status'] === 'capture' || $data['transaction_status'] === 'settlement') {
             $transaction->update(['payment_status' => 'paid']);
             session()->forget('cart');
             foreach ($transaction->details as $qty) {
-               $productStock = ProductProduct::findOrFail($qty->product_product_id);
-               $updateStock = $productStock->product_stock - $qty->quantity;
-               $productStock->update([
+                $productStock = ProductProduct::findOrFail($qty->product_product_id);
+                $updateStock = $productStock->product_stock - $qty->quantity;
+                $productStock->update([
                     'product_stock' => $updateStock,
-               ]);
+                ]);
+            }
+            try {
+                $payload = [
+                    "transaction_id" => $transaction->id,
+                    "status" => "Packing", // enum select packing its default value,
+                ];
+
+                TrackingDelivery::create($payload);
+            } catch (\Throwable $th) {
+                dd($th);
             }
         } elseif ($data['transaction_status'] === 'deny') {
             $transaction->update(['payment_status' => 'failed']);
-        }
-        elseif ($data['transaction_status'] === 'pending') {
+        } elseif ($data['transaction_status'] === 'pending') {
             $transaction->update(['payment_status' => 'pending']);
             Mail::to($transaction->email)->send(new PendingPaymentMail($transaction));
         }
@@ -196,65 +208,41 @@ class TransactionController extends Controller
     }
 
 
-    public function createTransactionViaPaypal($transaction)
+    public function createTransactionViaPaypal()
     {
-        Config::$serverKey = 'SB-Mid-server-20CrcoJ6aTpErf_RLC9hmEB8' ;
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        $provider = new PayPalClient();
+        $provider->setApiCredentials(config('paypal'));
+        $token = $provider->getAccessToken();
+        $provider->setAccessToken($token);
 
-        $order_id = "ORDER_ID".rand();
-        
-        $payload = [
-            'transaction_details' => [
-                'order_id' => $order_id,
-                'gross_amount' => $transaction->total_amount,
-            ],
-            'enabled_payments' => [
-                $transaction->payment_methode
-            ],
-            'customer_details' => [
-                "first_name" => $transaction->bill_data_firstname,
-                "last_name" => $transaction->bill_data_lastname,
-                "email" => $transaction->email,
-                "phone" => $transaction->bill_data_phone,
-                "billing_address" => [
-                  "first_name" => $transaction->bill_data_firstname,
-                  "last_name" => $transaction->bill_data_lastname,
-                  "email" => $transaction->email,
-                  "phone" => $transaction->bill_data_phone,
-                  "address" => $transaction->bill_data_address,
-                  "city" => $transaction->bill_data_city,
-                  "postal_code" => $transaction->bill_data_zip,
-                  "country_code" => "IDN"
-                ],
-                "shipping_address" => [
-                  "first_name" => $transaction->shipping_first_name,
-                  "last_name" => $transaction->shipping_last_name,
-                  "phone" => $transaction->shipping_phone_number,
-                  "address" => $transaction->shipping_data_address,
-                ]
-            ],
-            'item_details' => array_merge(
-                $transaction->details->map(function ($detail) {
-                    return [
-                        'id' => $detail->product_product_id,
-                        'price' => $detail->unit_price,
-                        'quantity' => $detail->quantity,
-                        'name' => $detail->product->name,
-                    ];
-                })->toArray(),
+        $order = $provider->createOrder([
+            'intent' => 'CAPTURE',
+            'purchase_units' => [
                 [
-                    [
-                        'id' => 'shipping_cost'.$order_id,
-                        'price' => $transaction->shipping_cost, 
-                        'quantity' => 1,
-                        'name' => 'Shipping Cost',
-                    ]
-                    ]),
-        ];
-        $response = Snap::createTransaction($payload);
-        $response->order_id = $payload['transaction_details']['order_id'];
-        return $response;
+                    'amount' => [
+                        'currency_code' => 'USD',
+                        'value' => '100.00',
+                    ],
+                ],
+            ],
+        ]);
+
+        return redirect($order['links'][1]['href']);
+    }
+
+    public function capturePaymentPaypal(Request $request)
+    {
+        $provider = new PayPalClient();
+        $provider->setApiCredentials(config('paypal'));
+        $token = $provider->getAccessToken();
+        $provider->setAccessToken($token);
+
+        $result = $provider->capturePaymentOrder($request->query('token'));
+
+        if ($result['status'] === 'COMPLETED') {
+            return response()->json(['message' => 'Payment successful!', 'data' => $result]);
+        }
+
+        return response()->json(['message' => 'Payment failed!', 'data' => $result]);
     }
 }

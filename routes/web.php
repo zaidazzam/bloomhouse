@@ -14,7 +14,9 @@ use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\TrackingDeliveryController;
 use App\Models\PostageRule;
+use App\Models\Transaction;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +51,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/cart/delete', [CartController::class, 'delete'])->name('cart.delete');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.add');
+    // order via paypal
+    Route::get('/paypal/create-payment', [TransactionController::class, 'createTransactionViaPaypal'])->name('paypal.createPayment');
+    Route::get('/paypal/capture-payment', [TransactionController::class, 'capturePaymentPaypal'])->name('paypal.capturePayment');
     Route::get('/callback', [TransactionController::class, 'callback'])->name('transaction.callback');
-    
+
     Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
     Route::get('/search', [GuestController::class, 'search'])->name('search');
@@ -65,10 +70,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
     Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     // ===========================================================>
-    Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog']) ->name('blog');;
-    Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog']) ->name('tagBlog');;
-    Route::get('/admin/postages', [App\Http\Controllers\AdminController::class, 'delivery']) ->name('delivery');;
-    Route::get('/admin/tracking', [App\Http\Controllers\AdminController::class, 'tracking']) ->name('tracking');;
+    Route::get('/admin/blog', [App\Http\Controllers\AdminController::class, 'blog'])->name('blog');;
+    Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog'])->name('tagBlog');;
+    Route::get('/admin/postages', [App\Http\Controllers\AdminController::class, 'delivery'])->name('delivery');;
+    Route::resource('/admin/tracking', TrackingDeliveryController::class);
     Route::resource('product_products', ProductProductController::class);
     Route::resource('product_categories', ProductCategoryController::class);
     Route::resource('product_pictures', ProductPictureController::class);
@@ -77,17 +82,17 @@ Route::middleware('auth')->group(function () {
     Route::resource('postages', PostageRuleController::class);
     Route::put('/postages/{id}', [PostageRuleController::class, 'update'])->name('postages.update');
     // Route::get('/report-transactions', [TransactionController::class,'index'])->name('report_transactions');
-    Route::get('/admin/invoice-paid', [AdminController::class,'adminInvoicePaid'])->name('adminInvoicePaid');
-    Route::get('/admin/invoice-pending', [AdminController::class,'adminInvoicePending'])->name('adminInvoicePending');
-    Route::get('/admin/invoice/{id}', [AdminController::class,'detailInvoice'])->name('detailInvoice');
-    Route::get('/admin/report-ransaksi', [AdminController::class, 'reportTransaksi']) ->name('reportTransaksi');;
-    Route::get('/admin/sales-item', [AdminController::class, 'salesItem']) ->name('salesItem');;
-    Route::get('/admin/sales-category', [AdminController::class, 'salesCategory']) ->name('salesCategory');;
-    
-    Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product']) ->name('product');;
-    Route::get('/admin/product-review', [App\Http\Controllers\AdminController::class, 'reportProductReview']) ->name('reportProductReview');;
+    Route::get('/admin/invoice-paid', [AdminController::class, 'adminInvoicePaid'])->name('adminInvoicePaid');
+    Route::get('/admin/invoice-pending', [AdminController::class, 'adminInvoicePending'])->name('adminInvoicePending');
+    Route::get('/admin/invoice/{id}', [AdminController::class, 'detailInvoice'])->name('detailInvoice');
+    Route::get('/admin/report-ransaksi', [AdminController::class, 'reportTransaksi'])->name('reportTransaksi');;
+    Route::get('/admin/sales-item', [AdminController::class, 'salesItem'])->name('salesItem');;
+    Route::get('/admin/sales-category', [AdminController::class, 'salesCategory'])->name('salesCategory');;
+
+    Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product'])->name('product');;
+    Route::get('/admin/product-review', [App\Http\Controllers\AdminController::class, 'reportProductReview'])->name('reportProductReview');;
     Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
-    ->name('categoryProduct');;
+        ->name('categoryProduct');;
 
     // Home and Resource Routes
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

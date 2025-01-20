@@ -50,25 +50,36 @@
                         <th class="text-white">Address</th>
                         <th class="text-white">Delivery Date</th>
                         <th class="text-white">Timeslot</th>
-                        <th class="text-white">Courier Name</th>
-                        <th class="text-white">Photo</th>
+                        {{-- <th class="text-white">Courier Name</th> --}}
                     </tr>
                 </thead>
 
                 <tbody id="product-list">
-                    @foreach ($transactions as $item)
+                    @foreach ($data_tracking as $item)
                         <tr>
                             <td class="text-black">{{ $loop->iteration }}</td>
-                            <td class="text-black">{{ $item->midtrans_order_id }}</td>
+                            <td class="text-black">{{ $item->transaction->midtrans_order_id }}</td>
                             <td class="text-black">
-                                <select name="status_delivery" id="status_delivery">
-                                </select>
+                                <form id="update_tracking_delivery_{{ $item->id }}"
+                                    action="{{ url('/admin/tracking', [$item->id]) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <select name="status" id="status_delivery_{{ $item->id }}" class="form-select"
+                                        onchange="updateTracking( {{ $item->id }},'{{ $item->status }}')">
+                                        <option value="Packing" {{ $item->status == 'Packing' ? 'selected' : '' }}
+                                            class="text-black bg-secondary">
+                                            Packing</option>
+                                        <option value="Sent" {{ $item->status == 'Sent' ? 'selected' : '' }}>Sent
+                                        </option>
+                                        <option value="Accepted" {{ $item->status == 'Accepted' ? 'selected' : '' }}>
+                                            Accepted</option>
+                                    </select>
+                                </form>
                             </td>
-                            <td class="text-black">{{ $item->shipping_data_address }}</td>
-                            <td class="text-black">{{ $item->deliv_date }}</td>
-                            <td class="text-black">{{ $item->deliv_postage_rule }}</td>
-                            <td class="text-black"></td>
-                            <td class="text-black"></td>
+                            <td class="text-black">{{ $item->transaction->shipping_data_address }}</td>
+                            <td class="text-black">{{ $item->transaction->deliv_date }}</td>
+                            <td class="text-black">{{ $item->transaction->deliv_postage_rule }}</td>
+                            {{-- <td class="text-black">{{ $item->courier_name ?? '' }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -80,8 +91,7 @@
                         <th class="text-white">Address</th>
                         <th class="text-white">Delivery Date</th>
                         <th class="text-white">Timeslot</th>
-                        <th class="text-white">Courier Name</th>
-                        <th class="text-white">Photo</th>
+                        {{-- <th class="text-white">Courier Name</th> --}}
                     </tr>
                 </tfoot>
 
@@ -89,6 +99,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    function updateTracking(id, oldValue) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to update the status of this delivery tracking?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('update_tracking_delivery_' + id).submit();
+            } else {
+                document.getElementById('status_delivery_' + id).value = oldValue;
+            }
+        })
+    }
+</script>
 
 {{-- 
 <!-- Modal Add Category -->
