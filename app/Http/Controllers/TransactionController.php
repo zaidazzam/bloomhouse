@@ -220,7 +220,7 @@ class TransactionController extends Controller
             'purchase_units' => [
                 [
                     'amount' => [
-                        'currency_code' => 'USD',
+                        'currency_code' => 'IDR',
                         'value' => '100.00',
                     ],
                 ],
