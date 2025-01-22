@@ -15,8 +15,6 @@
     const productContainer = document.getElementById("product-container");
     const paginationContainer = document.getElementById("pagination-container");
 
-    const productContainer = document.getElementById('product-container');
-
     categoryCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
             fetchProducts();
