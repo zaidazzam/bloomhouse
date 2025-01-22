@@ -18,7 +18,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input name="email" type="email" class="form-control" id="email"
+                                <input name="email" type="email" class="form-control" id="email" value="ujangwahyudi@gmail.com"
                                     placeholder="you@example.com">
                             </div>
 
@@ -50,7 +50,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="bill_firstName" class="form-label">First name</label>
-                                <input name="bill_data_firstname" type="text" class="form-control"
+                                <input name="bill_data_firstname" type="text" class="form-control" value="Ujang"
                                     id="bill_firstName" placeholder="John" required>
                                 <div class="invalid-feedback">Please enter your first name.</div>
                             </div>
@@ -60,7 +60,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="bill_lastName" class="form-label">Last name</label>
-                                <input name="bill_data_lastname" type="text" class="form-control" id="bill_lastName"
+                                <input name="bill_data_lastname" type="text" class="form-control" id="bill_lastName" value="Wahyudi"
                                     placeholder="Doe" required>
                                 <div class="invalid-feedback">Please enter your last name.</div>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="bill_phoneNumber" class="form-label">Phone Number</label>
-                                <input name="bill_data_phone" type="number" class="form-control" id="bill_phoneNumber"
+                                <input name="bill_data_phone" type="number" class="form-control" id="bill_phoneNumber" value="085776703145"
                                     placeholder="+628123456789" required>
                                 <div class="invalid-feedback">Please enter a valid phone number.</div>
                             </div>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input name="bill_data_company" type="text" class="form-control" id="bill_company"
+                                <input name="bill_data_company" type="text" class="form-control" id="bill_company" value="PT. Sarana Digital Ritel"
                                     placeholder="Your Company Name">
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="bill_address" class="form-label">Address</label>
-                                <input name="bill_data_address" type="text" class="form-control" id="bill_address"
+                                <input name="bill_data_address" type="text" class="form-control" id="bill_address" value="Karawang"
                                     placeholder="123 Some Street Somewhere" required>
                                 <div class="invalid-feedback">Please enter your address.</div>
                             </div>
@@ -145,21 +145,21 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_firstName" class="form-label">First Name</label>
-                            <input name="delivery_firstName" type="text" class="form-control"
+                            <input name="delivery_firstName" type="text" class="form-control" value="Syifa"
                                 id="delivery_firstName" placeholder="Enter your first name" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_lastName" class="form-label">Last Name</label>
-                            <input name="delivery_lastName" type="text" class="form-control"
+                            <input name="delivery_lastName" type="text" class="form-control" value="Hadju"
                                 id="delivery_lastName" placeholder="Enter your last name" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_phone" class="form-label">WhatsApp Number</label>
-                            <input name="delivery_phone" type="number" class="form-control" id="delivery_phone"
+                            <input name="delivery_phone" type="number" class="form-control" id="delivery_phone" value="085776773241"
                                 placeholder="Enter your WhatsApp number" required>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_address" class="form-label">Delivery Address</label>
-                            <textarea class="form-control" id="delivery_address" rows="4"
+                            <textarea class="form-control" id="delivery_address" rows="4" aria-valuetext="Jakarta"
                                 placeholder="Write your detailed address here..." required></textarea>
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                             <label for="delivery-note-textarea" class="form-label">
                                 <span class="small fw-bolder">* Free Personalized Note</span>
                             </label>
-                            <textarea class="form-control" id="delivery-note-textarea" rows="4" placeholder="Write your message here..."
+                            <textarea class="form-control" id="delivery-note-textarea" rows="4" placeholder="Write your message here..." aria-valuetext="I love you"
                                 required></textarea>
                         </div>
                     </div>
@@ -274,7 +274,7 @@
                         <div class="col-12">
                             <div class="form-check form-group form-radio-custom mb-3">
                                 <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
-                                    id="checkoutPaymentTransferBank">
+                                    id="checkoutPaymentTransferBank" value="paypal">
                                 <label class="form-check-label" for="checkoutPaymentTransferBank">
                                     <span class="d-flex justify-content-between align-items-center">
                                         <span class="me-3">
@@ -416,8 +416,8 @@
                         id="checkout" role="button">Complete Order</a>
 
                     {{-- button paypal --}}
-                    <a href="#" class="btn btn-danger w-100" data-cart='@json($cart)'
-                        id="checkout_paypal" role="button">Complete Order via Paypal</a>
+                    <a href="{{ route('paypal.createPayment') }}" class="btn btn-danger w-100" data-cart='@json($cart)'
+                         role="button">Complete Order via Paypal</a>
                 </div>
             </div>
             <!-- /Checkout Panel Summary -->
@@ -638,6 +638,17 @@
             const delivery_lastName = document.getElementById('delivery_lastName').value;
             const delivery_phone = document.getElementById('delivery_phone').value;
             const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
+            let url = "";
+            if (payment_methode == 'bank_transfer'){
+               url = "{{ route('transaction.add') }}";
+            }
+            else if(payment_methode == 'paypal'){
+                url = "{{ route('paypal.createPayment') }}";
+            }
+            else {
+                url = "{{ route('transaction.add') }}";
+            }
+
 
             const cartData = this.getAttribute('data-cart');
             const cart = JSON.parse(cartData);
@@ -671,7 +682,7 @@
                     });
 
                     // Proses Fetch
-                    await fetch("{{ route('transaction.add') }}", {
+                    await fetch(url, {
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -719,9 +730,12 @@
                 <p>Add some items to get started!</p>
             </div>
         `;
-
+                            if (data.url){
+                                window.location.href = data.url;
+                            }else{
                                 // Redirect ke Snap payment
                                 window.snap.pay(data.token);
+                            }
                             });
                         })
                         .catch(error => {
@@ -743,153 +757,6 @@
                 }
             });
         });
-
-
-
-
-
-
-        // function order via paypal
-        document.getElementById('checkout_paypal').addEventListener('click', async function(e) {
-            e.preventDefault();
-
-            const button = this;
-            const email = document.getElementById('email').value;
-            const scost = document.getElementById('scost').value;
-            const bill_country = document.getElementById('bill_country').value;
-            const bill_firstName = document.getElementById('bill_firstName').value;
-            const bill_lastName = document.getElementById('bill_lastName').value;
-            const bill_phoneNumber = document.getElementById('bill_phoneNumber').value;
-            const bill_address = document.getElementById('bill_address').value;
-            const bill_province = document.getElementById('bill_province').selectedOptions[0].getAttribute(
-                'data-name');
-            const bill_city = document.getElementById('bill_city').selectedOptions[0].getAttribute('data-name');
-            const bill_company = document.getElementById('bill_company').value;
-            const bill_subdistrict = document.getElementById('bill_subdistrict').selectedOptions[0]
-                .getAttribute('data-name');
-            const delivery_date = document.getElementById('delivery-date').value;
-            const delivery_schedule_address = document.getElementById('delivery-schedule-address').value;
-            const delivery_value = document.getElementById('delivery-schedule').value;
-            const delivery_note_textarea = document.getElementById('delivery-note-textarea').value;
-            const delivery_address = document.getElementById('delivery_address').value;
-            const gtotal = document.getElementById('gtotal').value;
-            const delivery_firstName = document.getElementById('delivery_firstName').value;
-            const delivery_lastName = document.getElementById('delivery_lastName').value;
-            const delivery_phone = document.getElementById('delivery_phone').value;
-            const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
-
-            const cartData = this.getAttribute('data-cart');
-            const cart = JSON.parse(cartData);
-
-            const delivery_schedule_data = JSON.parse(delivery_value)
-            const deliv_rule_price = delivery_schedule_data.price;
-            const deliv_postage_rule = delivery_schedule_data.postage_rule;
-
-            // SweetAlert2 Konfirmasi
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you want to complete the order?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, order it!',
-                cancelButtonText: 'Cancel'
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    // Jika pengguna memilih "Yes", tampilkan loading
-                    Swal.fire({
-                        title: 'Processing your order...',
-                        text: 'Please wait while we process your payment.',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        showConfirmButton: false,
-                        willOpen: () => {
-                            Swal.showLoading();
-                        }
-                    });
-
-                    // Proses Fetch
-                    await fetch("{{ route('transaction.add') }}", {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                products: cart,
-                                total_amount: gtotal,
-                                shipping_cost: scost,
-                                payment_methode: payment_methode,
-                                email: email,
-                                bill_country: bill_country,
-                                bill_company: bill_company,
-                                bill_firstName: bill_firstName,
-                                bill_lastName: bill_lastName,
-                                bill_phoneNumber: bill_phoneNumber,
-                                bill_address: bill_address,
-                                bill_province: bill_province,
-                                bill_city: bill_city,
-                                delivery_firstName: delivery_firstName,
-                                delivery_lastName: delivery_lastName,
-                                delivery_phone: delivery_phone,
-                                bill_subdistrict: bill_subdistrict,
-                                delivery_address: delivery_address,
-                                delivery_date: delivery_date,
-                                delivery_schedule_address: delivery_schedule_address,
-                                delivery_schedule: deliv_rule_price,
-                                deliv_postage_rule: deliv_postage_rule,
-                                delivery_note_textarea: delivery_note_textarea,
-                            }),
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            Swal.close(); // Tutup loading
-                            Swal.fire(
-                                'Success!',
-                                'Your order has been processed successfully.',
-                                'success'
-                            ).then(() => {
-                                // Kosongkan tampilan cart
-                                document.querySelector('#offcanvasCart .offcanvas-body')
-                                    .innerHTML = `
-            <div class="text-center mt-5">
-                <h5>Your cart is empty</h5>
-                <p>Add some items to get started!</p>
-            </div>
-        `;
-
-                                // Redirect ke Snap payment
-                                window.snap.pay(data.token);
-                            });
-                        })
-                        .catch(error => {
-                            Swal.close(); // Tutup loading
-                            Swal.fire(
-                                'Error!',
-                                'Something went wrong. Please try again.',
-                                'error'
-                            );
-                        });
-                } else {
-                    // Jika pengguna memilih "Cancel"
-                    Swal.fire(
-                        'Cancelled',
-                        'Your order has not been placed.',
-                        'info'
-                    );
-                }
-            });
-        });
-
-
-
-
-
-
-
-
-
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict'
@@ -910,3 +777,5 @@
             })
         })()
     </script>
+
+

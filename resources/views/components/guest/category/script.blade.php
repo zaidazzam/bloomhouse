@@ -1,7 +1,17 @@
 <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
     const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
     const productListContainer = document.getElementById('product-list');
     const filter_category = document.querySelectorAll('.filter-options');
+
+    const productContainer = document.getElementById('product-container');
 
     categoryCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
@@ -16,26 +26,25 @@
             .map((checkbox) => checkbox.dataset.categoryId);
 
         fetch("{{ route('filterProduct') }}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            },
-            body: JSON.stringify({
-                categories: selectedCategories,
-            }),
-        })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    categories: selectedCategories,
+                }),
+            })
             .then((response) => response.json())
             .then((data) => {
                 renderProducts(data.products.data); // Tampilkan produk
-                renderPagination(data.products.meta);
+                renderPagination(data.products);
             })
             .catch((error) => console.error('Error fetching products:', error));
     }
 
     function renderProducts(products) {
-        const productContainer = document.getElementById("product-container"); 
-        productContainer.innerHTML = ""; 
+        productContainer.innerHTML = "";
 
         products.forEach(product => {
             const productCard = `
@@ -88,42 +97,47 @@
         paginationContainer.innerHTML = ""; // Bersihkan pagination sebelumnya
 
         // Tombol Prev
-        if (meta.current_page > 1) {
-            const prevButton = document.createElement("li");
-            prevButton.className = "page-item";
-            prevButton.innerHTML = `<a class="page-link" href="#" data-page="${meta.current_page - 1}">Prev</a>`;
-            paginationContainer.appendChild(prevButton);
-        }
+        // if (meta.prev_page_url) {
+        //     const prevButton = document.createElement("ul");
+        //     prevButton.className = "page-item";
+        //     prevButton.innerHTML =
+        //         `<a class="page-link" href="${meta.prev_page_url}" data-page="${meta.current_page - 1}">Prev</a>`;
+        //     paginationContainer.appendChild(prevButton);
+        // }
 
         // Tombol halaman
-        for (let i = 1; i <= meta.last_page; i++) {
-            const pageButton = document.createElement("li");
-            pageButton.className = `page-item ${meta.current_page === i ? 'active' : ''}`;
-            pageButton.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+        const link = meta.links;
+        for (let i = 0; i < meta.links.length; i++) {
+            const pageButton = document.createElement("ul");
+            pageButton.className = `page-item ${link[i].active ? 'active' : ''} hidden`;
+            pageButton.innerHTML = `<a class="page-link" href="${link[i].url}" data-page="${i}">${link[i].label}</a>`;
             paginationContainer.appendChild(pageButton);
         }
 
-        // Tombol Next
-        if (meta.current_page < meta.last_page) {
-            const nextButton = document.createElement("li");
-            nextButton.className = "page-item";
-            nextButton.innerHTML = `<a class="page-link" href="#" data-page="${meta.current_page + 1}">Next</a>`;
-            paginationContainer.appendChild(nextButton);
-        }
+        // // Tombol Next
+        // if (meta.current_page < meta.last_page) {
+        //     const nextButton = document.createElement("ul");
+        //     nextButton.className = "page-item";
+        //     nextButton.innerHTML =
+        //         `<a class="page-link" href="${meta.next_page_url}" data-page="${meta.current_page + 1}">Next</a>`;
+        //     paginationContainer.appendChild(nextButton);
+        // }
 
         // Tambahkan event listener untuk pagination
-        const links = paginationContainer.querySelectorAll(".page-link");
-        links.forEach(link => {
-            link.addEventListener("click", function (e) {
-                e.preventDefault();
-                const page = this.getAttribute("data-page");
-                fetchProducts(page); // Ambil produk berdasarkan halaman
-            });
-        });
+        // const links = paginationContainer.querySelectorAll(".page-link");
+        // links.forEach(link => {
+        //     link.addEventListener("click", function(e) {
+        //         e.preventDefault();
+        //         const page = this.getAttribute("data-page");
+        //         fetchProducts(page); // Ambil produk berdasarkan halaman
+        //     });
+        // });
     }
 
     function formatRupiah(number) {
-        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number);
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(number);
     }
-
 </script>

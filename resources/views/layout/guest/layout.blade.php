@@ -21,8 +21,12 @@
     <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
+    {{-- midtrans client --}}
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    {{-- paypal client --}}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
+
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/theme.bundle.css') }}" />
@@ -48,6 +52,17 @@
         @yield('title')
     </title>
 </head>
+<script>
+     let allCookies = document.cookie.split(';');
+
+// The "expire" attribute of every cookie is 
+// Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+for (let i = 0; i < allCookies.length; i++)
+    document.cookie = allCookies[i] + "=;expires="
+        + new Date(0).toUTCString();
+
+displayCookies.innerHTML = document.cookie;
+</script>
 
 <body>
     <!-- ***** Preloader Start ***** -->

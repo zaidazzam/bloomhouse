@@ -17,10 +17,10 @@
             </p>
             <div class="mt-2">
                 <span class="badge bg-light text-primary p-2 px-3 me-3">
-                    Total :
+                    Packing : {{ $packingStatusTotal }}
                 </span>
                 <span class="badge bg-light text-primary p-2 px-3">
-                    Time :
+                    Sent : {{ $sentStatusTotal }}
                 </span>
             </div>
         </div>

@@ -14,9 +14,14 @@ class TrackingDeliveryController extends Controller
      */
     public function index()
     {
-        $data_tracking = TrackingDelivery::with("transaction")->get();
-
-        return view('dashboard-view.tracking', ["data_tracking" => $data_tracking]);
+        $data_tracking = TrackingDelivery::with("transaction")->where('status', "!=", "Accepted")->get();
+        $packingStatusTotal = TrackingDelivery::where('status', "Packing")->count();
+        $sentStatusTotal = TrackingDelivery::where('status', "Sent")->count();
+        return view('dashboard-view.tracking', [
+            "data_tracking" => $data_tracking,
+            "packingStatusTotal" => $packingStatusTotal,
+            "sentStatusTotal" => $sentStatusTotal,
+        ]);
     }
 
     /**
