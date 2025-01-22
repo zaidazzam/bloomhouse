@@ -36,6 +36,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', [App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/category', [App\Http\Controllers\GuestController::class, 'category'])->name('category');
+    Route::get('/category-filtered', [App\Http\Controllers\GuestController::class, 'getProductWithCategory'])->name('getProductWithCategory');
     Route::post('/filter-product', [App\Http\Controllers\GuestController::class, 'filterProduct'])->name('filterProduct');
     // Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ProductProduct extends Model
 {
     use HasFactory;
+    protected $table = 'product_products';
     protected $fillable = [
         'name',
         'product_description',
@@ -24,9 +25,12 @@ class ProductProduct extends Model
 
     public function category()
     {
-        return $this->belongsToMany(ProductCategory::class,'product_categ',
-        'product_product_id',
-        'product_category_id');
+        return $this->belongsToMany(
+            ProductCategory::class,
+            'product_categ',
+            'product_product_id',
+            'product_category_id'
+        );
     }
 
     public function pictures()
@@ -43,9 +47,9 @@ class ProductProduct extends Model
     {
         return $this->hasMany(ProductDeliveryExpedition::class);
     }
-        // Tambahkan relasi ke TransactionDetail
-        public function transactionDetails()
-        {
-            return $this->hasMany(TransactionDetail::class, 'product_product_id');
-        }
+    // Tambahkan relasi ke TransactionDetail
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class, 'product_product_id');
+    }
 }

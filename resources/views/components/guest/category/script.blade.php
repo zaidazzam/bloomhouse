@@ -1,13 +1,84 @@
 <script>
+    // save scroll position
+    window.onscroll = function() {
+        sessionStorage.setItem("scroll", window.scrollY);
+    }
+
+    // set scroll position without smooth
+    window.onload = function() {
+        window.scrollTo(0, sessionStorage.getItem("scroll"));
+    }
+
     const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
     const productListContainer = document.getElementById('product-list');
     const filter_category = document.querySelectorAll('.filter-options');
+    const productContainer = document.getElementById("product-container");
+    const paginationContainer = document.getElementById("pagination-container");
 
     categoryCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
             fetchProducts();
         });
     });
+
+    let selectedCategories = []; // Array to store selected category IDs
+
+    // Function to handle checkbox changes
+    document.addEventListener('change', (event) => {
+        if (event.target.classList.contains('category-checkbox')) {
+            const categoryId = parseInt(event.target.dataset.categoryId, 10);
+
+            if (event.target.checked) {
+                // Add to selectedCategories if checked
+                if (!selectedCategories.includes(categoryId)) {
+                    selectedCategories.push(categoryId);
+                }
+            } else {
+                // Remove from selectedCategories if unchecked
+                selectedCategories = selectedCategories.filter(id => id !== categoryId);
+            }
+        }
+    });
+
+    // Function to update checkboxes after fetching
+    const updateCheckboxes = () => {
+        document.querySelectorAll('.category-checkbox').forEach(checkbox => {
+            const categoryId = parseInt(checkbox.dataset.categoryId, 10);
+            checkbox.checked = selectedCategories.includes(categoryId); // Check if the category is selected
+        });
+    };
+
+    updateCheckboxes();
+
+    // Function to fetch products
+    const fetchProductsCategories = (page = 1) => {
+        const params = new URLSearchParams({
+            page: page,
+            categories: selectedCategories.join(
+                ","), // Pass selected categories as a comma-separated string
+        });
+        fetch(`/category-filtered?${params.toString()}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                return response.json();
+            })
+            .then(response => {
+                // Render pagination
+                renderProducts(response.products.data);
+                renderPagination(response.products);
+                // // Replace with logic to update product display
+                updateCheckboxes(); // Ensure checkboxes are updated
+            })
+            .catch(error => console.error(error));
+    };
 
 
     function fetchProducts() {
@@ -16,26 +87,25 @@
             .map((checkbox) => checkbox.dataset.categoryId);
 
         fetch("{{ route('filterProduct') }}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-            },
-            body: JSON.stringify({
-                categories: selectedCategories,
-            }),
-        })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    categories: selectedCategories,
+                }),
+            })
             .then((response) => response.json())
             .then((data) => {
                 renderProducts(data.products.data); // Tampilkan produk
-                renderPagination(data.products.meta);
+                renderPagination(data.products);
             })
             .catch((error) => console.error('Error fetching products:', error));
     }
 
     function renderProducts(products) {
-        const productContainer = document.getElementById("product-container"); 
-        productContainer.innerHTML = ""; 
+        productContainer.innerHTML = "";
 
         products.forEach(product => {
             const productCard = `
@@ -83,47 +153,67 @@
         });
     }
 
+    let current = 1;
+    let lastPage = 1;
+
     function renderPagination(meta) {
-        const paginationContainer = document.getElementById("pagination-container");
         paginationContainer.innerHTML = ""; // Bersihkan pagination sebelumnya
 
+        current = meta.current_page;
+        lastPage = meta.last_page;
         // Tombol Prev
-        if (meta.current_page > 1) {
-            const prevButton = document.createElement("li");
-            prevButton.className = "page-item";
-            prevButton.innerHTML = `<a class="page-link" href="#" data-page="${meta.current_page - 1}">Prev</a>`;
-            paginationContainer.appendChild(prevButton);
-        }
+        // if (meta.current_page > 1) {
+        //     const prevButton = document.createElement("ul");
+        //     prevButton.className = "page-item";
+        //     prevButton.innerHTML = `<a class="page-link" href="#" data-page="${meta.current_page - 1}">Prev</a>`;
+        //     paginationContainer.appendChild(prevButton);
+        // }
 
         // Tombol halaman
-        for (let i = 1; i <= meta.last_page; i++) {
-            const pageButton = document.createElement("li");
-            pageButton.className = `page-item ${meta.current_page === i ? 'active' : ''}`;
-            pageButton.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+        const link = meta.links;
+        for (let i = 0; i < meta.links.length; i++) {
+            const pageButton = document.createElement("ul");
+            pageButton.className = `page-item ${link[i].active ? 'active' : ''}`;
+            pageButton.innerHTML =
+                `<a class="page-link" data-current="${meta.current_page}" data-last="${meta.last_page}" data-page="${i}">${link[i].label}</a>`;
             paginationContainer.appendChild(pageButton);
         }
 
         // Tombol Next
-        if (meta.current_page < meta.last_page) {
-            const nextButton = document.createElement("li");
-            nextButton.className = "page-item";
-            nextButton.innerHTML = `<a class="page-link" href="#" data-page="${meta.current_page + 1}">Next</a>`;
-            paginationContainer.appendChild(nextButton);
-        }
+        // if (meta.current_page < meta.last_page) {
+        //     const nextButton = document.createElement("ul");
+        //     nextButton.className = "page-item";
+        //     nextButton.innerHTML = `<a class="page-link" href="#" data-page="${meta.current_page + 1}">Next</a>`;
+        //     paginationContainer.appendChild(nextButton);
+        // }
 
         // Tambahkan event listener untuk pagination
         const links = paginationContainer.querySelectorAll(".page-link");
         links.forEach(link => {
-            link.addEventListener("click", function (e) {
+            link.addEventListener("click", function(e) {
                 e.preventDefault();
-                const page = this.getAttribute("data-page");
-                fetchProducts(page); // Ambil produk berdasarkan halaman
+                let page = this.getAttribute("data-page");
+
+
+                if (page == 0 && current > 1) {
+                    if (current != 1) {
+                        fetchProductsCategories(current - 1);
+                    }
+                } else if (page == (lastPage + 1) && current < lastPage) {
+                    if (current != lastPage) {
+                        fetchProductsCategories(current + 1);
+                    }
+                } else if (page > 0 && page <= lastPage) {
+                    fetchProductsCategories(page);
+                }
             });
         });
     }
 
     function formatRupiah(number) {
-        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number);
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(number);
     }
-
 </script>
