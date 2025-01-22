@@ -53,7 +53,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/transactions', [TransactionController::class, 'store'])->name('transaction.add');
     // order via paypal
-    Route::get('/paypal/create-payment', [TransactionController::class, 'createTransactionViaPaypal'])->name('paypal.createPayment');
+    Route::post('/prosses-paypal', [TransactionController::class, 'processPaypal'])->name('paypal.createPayment');
+    Route::get('/prosses-paypal-success', [TransactionController::class, 'processSuccess'])->name('paypal.processSuccess');
+    Route::get('/prosses-paypal-cancel', [TransactionController::class, 'processCancel'])->name('paypal.processCancel');
     Route::get('/paypal/capture-payment', [TransactionController::class, 'capturePaymentPaypal'])->name('paypal.capturePayment');
     Route::get('/callback', [TransactionController::class, 'callback'])->name('transaction.callback');
 

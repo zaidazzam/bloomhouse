@@ -208,41 +208,77 @@ class TransactionController extends Controller
     }
 
 
-    public function createTransactionViaPaypal()
+    public function processPaypal(Request $request)
     {
-        $provider = new PayPalClient();
-        $provider->setApiCredentials(config('paypal'));
-        $token = $provider->getAccessToken();
-        $provider->setAccessToken($token);
+        $provider = new PayPalClient;
+            $provider->setApiCredentials(config('paypal'));
+            $paypalToken = $provider->getAccessToken();
 
-        $order = $provider->createOrder([
-            'intent' => 'CAPTURE',
-            'purchase_units' => [
-                [
-                    'amount' => [
-                        'currency_code' => 'USD',
-                        'value' => '100.00',
-                    ],
+            $response = $provider->createOrder([
+                "intent" => "CAPTURE",
+                "application_context" => [
+                    "return_url" => route('paypal.processSuccess'),
+                    "cancel_url" => route('paypal.processCancel'),
                 ],
-            ],
-        ]);
+                "purchase_units" => [
+                    0 => [
+                        "amount" => [
+                            "currency_code" => "USD",
+                            "value" => "100.00"
+                        ]
+                    ]
+                ]
+            ]);
 
-        return redirect($order['links'][1]['href']);
+            if (isset($response['id']) && $response['id'] != null) {
+
+                // redirect to approve href
+                foreach ($response['links'] as $links) {
+                    if ($links['rel'] == 'approve') {
+                        $resp = [
+                            'url' => $links['href']
+                        ];
+                        return $resp;
+                    }
+                }
+
+                return redirect()
+                    ->route('createpaypal')
+                    ->with('error', 'Something went wrong.');
+
+            } else {
+                return redirect()
+                    ->route('createpaypal')
+                    ->with('error', $response['message'] ?? 'Something went wrong.');
+            }
     }
 
-    public function capturePaymentPaypal(Request $request)
+
+    public function processSuccess(Request $request)
     {
-        $provider = new PayPalClient();
-        $provider->setApiCredentials(config('paypal'));
-        $token = $provider->getAccessToken();
-        $provider->setAccessToken($token);
 
-        $result = $provider->capturePaymentOrder($request->query('token'));
+            $provider = new PayPalClient;
+            $provider->setApiCredentials(config('paypal'));
+            $provider->getAccessToken();
+            $response = $provider->capturePaymentOrder($request['token']);
 
-        if ($result['status'] === 'COMPLETED') {
-            return response()->json(['message' => 'Payment successful!', 'data' => $result]);
+            if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+                return redirect()
+                    ->route('createpaypal')
+                    ->with('success', 'Transaction complete.');
+            } else {
+                return redirect()
+                    ->route('createpaypal')
+                    ->with('error', $response['message'] ?? 'Something went wrong.');
+            }
+
+    }
+
+    public function processCancel(Request $request)
+        {
+            return redirect()
+                ->route('createpaypal')
+                ->with('error', $response['message'] ?? 'You have canceled the transaction.');
         }
 
-        return response()->json(['message' => 'Payment failed!', 'data' => $result]);
-    }
 }
