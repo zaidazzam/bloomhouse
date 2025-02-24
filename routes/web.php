@@ -15,6 +15,8 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\TrackingDeliveryController;
+use App\Http\Controllers\BannerCategoryController;
+
 use App\Models\PostageRule;
 use App\Models\Transaction;
 
@@ -96,9 +98,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/product/{id}', [ProductProductController::class, 'detailProduct'])->name('detailProduct');
     Route::get('/admin/report-ransaksi', [AdminController::class, 'reportTransaksi'])->name('reportTransaksi');;
     Route::get('/admin/sales-item', [AdminController::class, 'salesItem'])->name('salesItem');;
-    Route::get('/admin/sales-category', [AdminController::class, 'salesCategory'])->name('salesCategory');;
+    Route::get('/admin/sales-category', [AdminController::class, 'salesCategory'])->name('salesCategory');
 
-    Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product'])->name('product');;
+    Route::get('/admin/product', [App\Http\Controllers\AdminController::class, 'product'])->name('product');
+// Menampilkan daftar banner & kategori
+Route::get('/admin/banners', [BannerCategoryController::class, 'index'])->name('banner-categories.index');
+
+// Menampilkan form tambah banner
+Route::get('/admin/banners/create', [BannerCategoryController::class, 'create'])->name('banner-categories.create');
+
+// Menyimpan banner baru ke database
+Route::post('/admin/banners/store', [BannerCategoryController::class, 'store'])->name('banner-categories.store');
+
+// Menampilkan form edit banner
+Route::get('/admin/banners/edit/{id}', [BannerCategoryController::class, 'edit'])->name('banner-categories.edit');
+
+// Memperbarui banner di database
+Route::put('/admin/banners/update/{id}', [BannerCategoryController::class, 'update'])->name('banner-categories.update');
+
+// Menghapus banner dari database
+Route::delete('/admin/banners/delete/{id}', [BannerCategoryController::class, 'destroy'])->name('banner-categories.destroy');
     Route::get('/admin/product-review', [App\Http\Controllers\AdminController::class, 'reportProductReview'])->name('reportProductReview');;
     Route::get('/admin/category-product', [App\Http\Controllers\AdminController::class, 'categoryProduct'])
         ->name('categoryProduct');;
