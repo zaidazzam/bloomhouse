@@ -1,3 +1,23 @@
+<style>
+    /* Efek animasi klik pada tombol */
+.btn:active {
+    transform: scale(0.95);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efek ketika tombol diklik, memberi perubahan warna */
+.btn-clicked {
+    background-color: #28a745 !important;  /* Ganti dengan warna pilihan */
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Transisi saat hover */
+.btn:hover {
+    background-color: #007bff;
+    transition: background-color 0.3s ease-in-out;
+}
+
+</style>
 <div class="col-12 col-lg-5">
     <div class="pb-3">
         {{-- @dd($cart) --}}
@@ -76,9 +96,12 @@
             <button data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                 data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}"
                 data-pict="{{ $product->main_picture }}" id="add-to-cart"
-                class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Masukkan
-                Keranjang</button>
-            <button class="btn btn-danger"><i class="ri-heart-line"></i></button>
+                class="btn btn-blue flex-grow-1 me-2 text-white"><i class="ri-shopping-cart-line"></i> Add Cart</button>
+            <button
+                data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                data-price="{{ $product->discounted_price ?? $product->product_price }}" token="{{ csrf_token() }}"
+                data-pict="{{ $product->main_picture }}" id="paynow"
+            class="btn btn-danger"><i class='bx bxs-cart-download'> </i> Buy Now!</button>
         </div>
 
         <!-- /Add To Cart-->
@@ -89,7 +112,7 @@
                 <p class="fw-bolder lh-1 mb-0 me-3">Share</p>
                 <ul class="list-unstyled p-0 m-0 d-flex justify-content-start lh-1 align-items-center mt-1">
                     <li class="me-2"><a class="text-decoration-none"
-                            href="https://www.instagram.com/bloomhouse.florist/" target="_blank" role="button"><i
+                            href="https://www.instagram.com/bloomhouse.flower?igsh=b2UzNDZ6b2l2cjh0" target="_blank" role="button"><i
                                 class="ri-instagram-fill"></i></a></li>
                     <li class="me-2"><a class="text-decoration-none" target="_blank"
                             href="https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2F6281316283880&e=AT2L05NGfyDciPTpWoH4Y6YmqAEOLPK1YqGnXp3K_l9cr2rLf76sX6D791rWaF_9mJTD7dVH6J_q3K2NfJ-VadFTpJbELYgoTDFQ45eRqiWHyKUQ"
@@ -212,8 +235,6 @@
         const productPict = document.getElementById('add-to-cart').getAttribute('data-pict');
         const selectedAddOns = Array.from(document.querySelectorAll('.addon-card.selected'))
             .map(card => card.getAttribute('data-id'));
-
-
         fetch("{{ route('cart.add') }}", {
                 method: 'POST',
                 headers: {
@@ -238,11 +259,47 @@
             });
     });
 
+    document.getElementById('paynow').addEventListener('click', () => {
+        const productId = document.getElementById('paynow').getAttribute('data-id');
+        const token = document.getElementById('paynow').getAttribute('token');
+        const productName = document.getElementById('paynow').getAttribute('data-name');
+        const productPrice = document.getElementById('paynow').getAttribute('data-price');
+        const productPict = document.getElementById('paynow').getAttribute('data-pict');
+        const selectedAddOns = Array.from(document.querySelectorAll('.addon-card.selected'))
+            .map(card => card.getAttribute('data-id'));
+        fetch("{{ route('cart.add') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    product_name: productName,
+                    product_price: productPrice,
+                    product_pict: productPict,
+                    addons: selectedAddOns,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "{{ url('checkout') }}";
+                } else {
+                    alert('Failed to add to cart: ' + data.message);
+                }
+            });
+    });
+
     document.querySelectorAll('.addon-card').forEach(card => {
         card.addEventListener('click', () => {
             card.classList.toggle('selected');
         });
     });
+
+    function checkOut() {
+        
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
         const basePrice = {{ $product->discounted_price ?? $product->product_price }}; // Harga produk utama
@@ -275,4 +332,53 @@
             });
         });
     });
+     // Tangkap tombol 'Masukkan Keranjang' dan beri efek saat diklik
+     document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Menambahkan efek klik pada tombol
+            this.classList.add('btn-clicked');
+
+            // Menghapus kelas 'btn-clicked' setelah 1 detik
+            setTimeout(() => {
+                this.classList.remove('btn-clicked');
+            }, 1000);  // Durasi efek 1 detik
+
+            // Jika ingin tombol "Masukkan Keranjang" mengarah ke halaman atau melakukan aksi lain
+            if (this.id === 'add-to-cart') {
+                // Ambil data yang diperlukan untuk keranjang
+                let productId = this.getAttribute('data-id');
+                let productName = this.getAttribute('data-name');
+                let productPrice = this.getAttribute('data-price');
+                let productPicture = this.getAttribute('data-pict');
+                let csrfToken = this.getAttribute('token');
+
+                // Kirim permintaan AJAX untuk menambah produk ke keranjang atau lakukan aksi lain
+                fetch('/add-to-cart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify({
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                        picture: productPicture
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Berikan feedback atau animasi lainnya jika berhasil
+                    console.log('Produk berhasil dimasukkan ke keranjang');
+                    // Kamu bisa mengarahkan pengguna ke halaman keranjang atau memperbarui tampilan keranjang
+                })
+                .catch(error => {
+                    console.error('Ada kesalahan saat menambah produk ke keranjang', error);
+                });
+            }
+
+            // Tambahkan sedikit delay sebelum berpindah halaman
+        });
+    });
 </script>
+

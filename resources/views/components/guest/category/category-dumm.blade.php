@@ -1,6 +1,12 @@
    <!-- Main Section-->
    <div class="container">
-
+    <div class="w-md-50 mb-5">
+        <p class="small fw-bolder text-uppercase tracking-wider mb-2 text-muted">Gifts & Flower</p>
+        <h2 class="display-5 fw-bold mb-3">Fresh Flowers, True Love
+        </h2>
+        <p class="lead">Trusted Online Flower Shop
+        </p>
+    </div>
        <div class="row">
 
            <!-- Category Aside/Sidebar -->
@@ -105,7 +111,7 @@
                            <i class="ri-equalizer-line me-2"></i> Filters
                        </button>
                        <!-- / Filter Trigger-->
-                       <div class="dropdown ms-md-2 lh-1 p-3 bg-light w-100 mb-2 mb-md-0 w-md-auto">
+                       {{-- <div class="dropdown ms-md-2 lh-1 p-3 bg-light w-100 mb-2 mb-md-0 w-md-auto">
                            <p class="fs-xs fw-bold text-uppercase text-muted-hover p-0 m-0" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">Sort By <i
                                    class="ri-arrow-drop-down-line ri-lg align-bottom"></i></p>
@@ -117,68 +123,13 @@
                                <li><a class="dropdown-item fs-xs fw-bold text-uppercase text-muted-hover mb-2"
                                        href="#">Name</a></li>
                            </ul>
-                       </div>
+                       </div> --}}
                    </div>
                </div>
 
 
                <!-- Products-->
                <div class="row g-4 mb-5" id="product-container">
-                   @foreach ($products->take(4) as $product)
-                       <div class="col-12 col-sm-6 col-md-4 mb-4">
-                           <!-- Card Product-->
-                           <div class="card position-relative h-100 card-listing hover-trigger">
-                               <div class="card-header">
-                                   <picture class="position-relative overflow-hidden d-block bg-light">
-                                       <img class="w-100 img-fluid position-relative z-index-10"
-                                           title="{{ $product->name }}"
-                                           src="{{ asset('storage/' . $product->main_picture) }}"
-                                           alt="{{ $product->name }}">
-                                   </picture>
-                                   <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
-                                       @if ($product->pictures->first())
-                                           <img class="w-100 img-fluid" title="{{ $product->name }}"
-                                               src="{{ asset('storage/' . $product->pictures->first()->picture_path) }}"
-                                               alt="{{ $product->name }}">
-                                       @else
-                                           <img class="w-100 img-fluid" title="{{ $product->name }}"
-                                               src="{{ asset('storage/' . $product->main_picture) }}"
-                                               alt="{{ $product->name }}">
-                                       @endif
-                                   </picture>
-                                   <div class="card-actions">
-                                       <span
-                                           class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                           Add</span>
-                                   </div>
-                               </div>
-                               <div class="card-body px-0 text-center">
-                                   <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                       <!-- Review Stars Small-->
-                                       <div class="rating position-relative d-table">
-                                           <div class="position-absolute stars" style="width: 100%">
-                                               @for ($i = 0; $i < 5; $i++)
-                                                   <i class="ri-star-fill text-dark mr-1"></i>
-                                               @endfor
-                                           </div>
-                                           <div class="stars">
-                                               @for ($i = 0; $i < 5; $i++)
-                                                   <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                               @endfor
-                                           </div>
-                                       </div>
-                                       <span class="small fw-bolder ms-2 text-muted">
-                                           ({{ $product->reviews->count() }})</span>
-                                   </div>
-                                   <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                       href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
-                                   <p class="fw-bolder m-0 mt-2">
-                                       Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                   @endforeach
                    <div class="d-none d-md-flex col-md-8">
                        <div class="w-100 h-100 position-relative">
                            <div class="position-absolute w-50 h-100 start-0 bottom-0 top-0 bg-pos-center-center bg-img-cover"
@@ -196,115 +147,20 @@
                        </div>
                    </div>
 
-                   <!--/ Card Product-->
-                   @foreach ($products->reverse()->take(6) as $product)
-                       <div class="col-12 col-sm-6 col-md-4 mb-4">
-                           <!-- Card Product-->
-                           <div class="card position-relative h-100 card-listing hover-trigger">
-                               <div class="card-header">
-                                   <picture class="position-relative overflow-hidden d-block bg-light">
-                                       <img class="w-100 img-fluid position-relative z-index-10"
-                                           title="{{ $product->name }}"
-                                           src="{{ asset('storage/' . $product->main_picture) }}"
-                                           alt="{{ $product->name }}">
-                                   </picture>
-                                   <picture class="position-absolute z-index-20 start-0 top-0 hover-show bg-light">
-                                       @if ($product->pictures->first())
-                                           <img class="w-100 img-fluid" title="{{ $product->name }}"
-                                               src="{{ asset('storage/' . $product->pictures->first()->picture_path) }}"
-                                               alt="{{ $product->name }}">
-                                       @else
-                                           <img class="w-100 img-fluid" title="{{ $product->name }}"
-                                               src="{{ asset('storage/' . $product->main_picture) }}"
-                                               alt="{{ $product->name }}">
-                                       @endif
-                                   </picture>
-                                   <div class="card-actions">
-                                       <span
-                                           class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                           Add</span>
-                                   </div>
-                               </div>
-                               <div class="card-body px-0 text-center">
-                                   <div class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                       <!-- Review Stars Small-->
-                                       <div class="rating position-relative d-table">
-                                           <div class="position-absolute stars" style="width: 100%">
-                                               @for ($i = 0; $i < 5; $i++)
-                                                   <i class="ri-star-fill text-dark mr-1"></i>
-                                               @endfor
-                                           </div>
-                                           <div class="stars">
-                                               @for ($i = 0; $i < 5; $i++)
-                                                   <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                               @endfor
-                                           </div>
-                                       </div>
-                                       <span class="small fw-bolder ms-2 text-muted">
-                                           ({{ $product->reviews->count() }})</span>
-                                   </div>
-                                   <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                       href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
-                                   <p class="fw-bolder m-0 mt-2">
-                                       Rp.{{ number_format($product->product_price, 0, ',', '.') }}</p>
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                   @endforeach
 
                </div>
                <!-- / Products-->
                <!-- Pagination -->
-               <nav class="border-top mt-5 pt-5 d-flex justify-content-between align-items-center"
+               <nav class="border-top mt-5 pt-5 d-flex justify-content-center align-items-center"
                    aria-label="Category Pagination" id="pagination-container">
-                   <ul class="pagination">
-                       @if ($products->onFirstPage())
-                           <li class="page-item disabled"><a class="page-link" href="#"><i
-                                       class="ri-arrow-left-line align-bottom"></i> Prev</a></li>
-                       @else
-                           <li class="page-item"><a class="page-link" href="{{ $products->previousPageUrl() }}"><i
-                                       class="ri-arrow-left-line align-bottom"></i> Prev</a></li>
-                       @endif
-                   </ul>
-                   <ul class="pagination">
-                       @for ($i = 1; $i <= $products->lastPage(); $i++)
-                           <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }} mx-1">
-                               <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
-                           </li>
-                       @endfor
-                   </ul>
-                   <ul class="pagination">
-                       @if ($products->hasMorePages())
-                           <li class="page-item"><a class="page-link" href="{{ $products->nextPageUrl() }}">Next <i
-                                       class="ri-arrow-right-line align-bottom"></i></a></li>
-                       @else
-                           <li class="page-item disabled"><a class="page-link" href="#">Next <i
-                                       class="ri-arrow-right-line align-bottom"></i></a></li>
-                       @endif
-                   </ul>
-               </nav> <!-- / Pagination-->
-
-               <!-- Related Categories -->
-               {{-- <div class="border-top mt-5 pt-5">
-                   <p class="lead fw-bolder">Related Categories</p>
-                   <div class="d-flex flex-wrap justify-content-start align-items-center">
-                       @foreach ($categories->take(5) as $category)
-                           <a class="btn btn-sm btn-outline-dark rounded-pill me-2 mb-2 mb-md-0 text-white-hover"
-                               href="{{ $category->link }}">
-                               {{ $category->name }}
-                           </a>
-                       @endforeach
-                   </div>
-               </div> --}}
-
-               <!-- Related Categories-->
-
+                   <div class="text-center px-5" data-current-page=""  data-last-page="" id="loadmore-container">
+                    <button href="" class="btn btn-primary new py-3 px-3">Load more </button>
+                </div>
+               </nav> 
            </div>
-           <!-- / Category Products-->
-
        </div>
    </div>
+
    <!-- / Main Section-->
    <!-- Filters Offcanvas-->
    <div class="offcanvas offcanvas-end d-none" tabindex="-1" id="offcanvasFilters">
@@ -390,3 +246,36 @@
            </div>
        </div>
    </div>
+   <script>
+    document.querySelectorAll('.quick-cart-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            let productId = this.dataset.id;
+            let productName = this.dataset.name;
+            let productPrice = this.dataset.price;
+            let csrfToken = this.dataset.token;
+            let productPicture = this.dataset.picture;
+            
+            fetch("{{ route('cart.add') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                product_name: productName,
+                product_price: productPrice,
+                product_pict: productPicture,
+            }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload()
+                } else {
+                    alert('Failed to add to cart: ' + data.message);
+                }
+            });
+        });
+    });
+</script>

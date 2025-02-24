@@ -1,6 +1,5 @@
-
-        <!-- / Hero Section -->
-        <section class="vh-100 position-relative bg-overlay-dark ">
+<!-- / Hero Section -->
+{{-- <section class="vh-100 mt-7  position-relative bg-overlay-dark ">
             <div class="container d-flex h-100 justify-content-center align-items-center position-relative z-index-10">
                 <div
                     class="d-flex justify-content-center align-items-center h-100 position-relative z-index-10 text-white">
@@ -53,5 +52,19 @@
 
                 </div>
                </div>
-        </section>
-        <!--/ Hero Section-->
+        </section> --}}
+
+<div class="mt-7 py-7 bg-img-cover bg-dark position-bottom mb-4 bg-pos-center-center"
+    style="background-image: url(./assets/images/banners/banner-bloomhouse.png); ">
+    <div class="container position-relative d-flex justify-content-center align-items-center h-100" data-aos="fade-right"
+        data-aos-delay="300">
+        <div class="text-center">
+            <h1 class="fw-bold display-8 mb-4 text-dark">Bloom House - Your Online Florist</h1>
+            <div class="btn btn-primary new fw-bold text-white"><a class="text-white" href="/category">Order Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--/ Hero Section-->

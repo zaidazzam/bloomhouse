@@ -15,11 +15,11 @@
                                 data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
                                 aria-selected="false">Review</a>
                         </li>
-                        <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
+                        {{-- <li class="nav-item w-100 mb-2 mb-sm-0 w-sm-auto mx-sm-3" role="presentation">
                             <a class="nav-link fs-5 fw-bolder nav-link-underline mx-sm-3 px-0" id="returns-tab"
                                 data-bs-toggle="tab" href="#returns" role="tab" aria-controls="returns"
                                 aria-selected="false">Return</a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <!-- / Tab Nav-->
 
@@ -181,7 +181,7 @@
                         <!-- / Review Tab Content-->
 
                         <!-- Returns Tab Content-->
-                        <div class="tab-pane fade py-5" id="returns" role="tabpanel"
+                        {{-- <div class="tab-pane fade py-5" id="returns" role="tabpanel"
                             aria-labelledby="returns-tab">
                             <div class="col-12 col-md-10 col-lg-8 mx-auto">
                                 <p>We believe you will completely happy with your item, however if you aren't, there's
@@ -213,7 +213,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- / Returns Tab Content-->
 
                     </div>

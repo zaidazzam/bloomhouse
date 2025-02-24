@@ -17,8 +17,7 @@
                             </div>
 
                             <div class="swiper-wrapper">
-                                @foreach ([$tulipProduct, $roseProduct, $romanceProduct] as $product)
-                                    @if ($product)
+                                @foreach ([$tulipProduct] as $product)
                                         <!-- Swiper Slide-->
                                         <div class="swiper-slide overflow-hidden">
                                             <!-- Card-->
@@ -31,11 +30,6 @@
                                                             src="{{ asset('storage/' . $product->main_picture) }}"
                                                             alt="{{ $product->name }}">
                                                     </picture>
-                                                    <div class="card-actions">
-                                                        <span
-                                                            class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                                            Add</span>
-                                                    </div>
 
                                                 </div>
                                                 <div class="card-body px-0 text-center">
@@ -72,7 +66,6 @@
                                             <!--/ Card Product-->
                                         </div>
                                         <!-- / Swiper Slide-->
-                                    @endif
                                 @endforeach
                             </div>
                         </div> <!-- /Swiper-->
@@ -113,11 +106,6 @@
                                                             alt="{{ $product->name }}">
                                                     </picture>
 
-                                                    <div class="card-actions">
-                                                        <span
-                                                            class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                                            Add</span>
-                                                    </div>
                                                 </div>
                                                 <div class="card-body px-0 text-center">
                                                     <div
@@ -125,123 +113,6 @@
                                                         <!-- Review Stars Small-->
                                                         <div class="rating position-relative d-table">
                                                             <div class="position-absolute stars" style="width: 100%">
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                            </div>
-                                                            <div class="stars">
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                            </div>
-                                                        </div>
-                                                        <span class="small fw-bolder ms-2 text-muted">
-                                                            {{ $product->reviews->count() }} reviews
-                                                        </span>
-                                                    </div>
-                                                    <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                                        href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
-                                                    <p class="fw-bolder m-0 mt-2">
-                                                        Rp.
-                                                        {{ number_format($product->product_price, 0, ',', '.') }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <!--/ Card Product-->
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="row g-3">
-                                    @foreach ($roseProduct4 as $product)
-                                        <div class="col-12 col-md-6">
-                                            <!-- Card Product-->
-                                            <div class="card position-relative h-100 card-listing hover-trigger">
-                                                <div class="card-header">
-                                                    <picture class="position-relative overflow-hidden d-block bg-light">
-                                                        <img class="w-100 img-fluid position-relative z-index-10"
-                                                            title="{{ $product->name }}"
-                                                            src="{{ asset('storage/' . $product->main_picture) }}"
-                                                            alt="{{ $product->name }}">
-                                                    </picture>
-
-                                                    <div class="card-actions">
-                                                        <span
-                                                            class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                                            Add</span>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body px-0 text-center">
-                                                    <div
-                                                        class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                                        <!-- Review Stars Small-->
-                                                        <div class="rating position-relative d-table">
-                                                            <div class="position-absolute stars"
-                                                                style="width: {{ $product->reviews->avg('rating') * 20 }}%">
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                                <i class="ri-star-fill text-dark mr-1"></i>
-                                                            </div>
-                                                            <div class="stars">
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                                <i class="ri-star-fill mr-1 text-muted opacity-25"></i>
-                                                            </div>
-                                                        </div>
-                                                        <span class="small fw-bolder ms-2 text-muted">
-                                                            {{ $product->reviews->count() }} reviews
-                                                        </span>
-                                                    </div>
-                                                    <a class="mb-0 mx-2 mx-md-4 fs-p link-cover text-decoration-none d-block text-center"
-                                                        href="{{ route('product1.show', ['id' => $product->id]) }}">{{ $product->name }}</a>
-                                                    <p class="fw-bolder m-0 mt-2">
-                                                        Rp.
-                                                        {{ number_format($product->product_price, 0, ',', '.') }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <!--/ Card Product-->
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="row g-3">
-                                    @foreach ($HydrangeaProduct4 as $product)
-                                        <div class="col-12 col-md-6">
-                                            <!-- Card Product-->
-                                            <div class="card position-relative h-100 card-listing hover-trigger">
-                                                <div class="card-header">
-                                                    <picture
-                                                        class="position-relative overflow-hidden d-block bg-light">
-                                                        <img class="w-100 img-fluid position-relative z-index-10"
-                                                            title="{{ $product->name }}"
-                                                            src="{{ asset('storage/' . $product->main_picture) }}"
-                                                            alt="{{ $product->name }}">
-                                                    </picture>
-
-                                                    <div class="card-actions">
-                                                        <span
-                                                            class="small text-uppercase tracking-wide fw-bolder text-center d-block">Quick
-                                                            Add</span>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body px-0 text-center">
-                                                    <div
-                                                        class="d-flex justify-content-center align-items-center mx-auto mb-1">
-                                                        <!-- Review Stars Small-->
-                                                        <div class="rating position-relative d-table">
-                                                            <div class="position-absolute stars"
-                                                                style="width: {{ $product->reviews->avg('rating') * 20 }}%">
                                                                 <i class="ri-star-fill text-dark mr-1"></i>
                                                                 <i class="ri-star-fill text-dark mr-1"></i>
                                                                 <i class="ri-star-fill text-dark mr-1"></i>
@@ -281,6 +152,5 @@
 
             </div>
         </div>
-    </div>
     </div>
 </section>

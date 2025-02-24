@@ -110,10 +110,10 @@ class TransactionController extends Controller
 
     public function createTransaction($transaction)
     {
-        Config::$serverKey = 'SB-Mid-server-20CrcoJ6aTpErf_RLC9hmEB8';
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = config('midtrans.isProduction');
+        Config::$isSanitized = config('midtrans.isSanitized');
+        Config::$is3ds = config('midtrans.is3ds');
 
         $order_id = "ORDER_ID" . rand();
 
@@ -175,7 +175,6 @@ class TransactionController extends Controller
     {
         $data = $request->all();
 
-
         $transaction = Transaction::with('details')->where('midtrans_order_id', $data['order_id'])->first();
 
         if ($data['transaction_status'] === 'capture' || $data['transaction_status'] === 'settlement') {
@@ -198,18 +197,35 @@ class TransactionController extends Controller
             } catch (\Throwable $th) {
                 dd($th);
             }
-        } elseif ($data['transaction_status'] === 'deny') {
-            $transaction->update(['payment_status' => 'failed']);
         } elseif ($data['transaction_status'] === 'pending') {
             $transaction->update(['payment_status' => 'pending']);
             Mail::to($transaction->email)->send(new PendingPaymentMail($transaction));
         }
+        else {
+            $transaction->update(['payment_status' => 'failed']);
+        } 
         return view('guest-view.invoice', compact('transaction'));
     }
 
 
     public function processPaypal(Request $request)
     {
+        $items = $request->input('products');
+        $paypalItems = [];
+        $item_total = 0;
+        foreach ($items as $item) {
+            $paypalItems[] = [
+                "name" => $item['product_name'],
+                "description" => $item['product_name'],
+                "unit_amount" => [
+                    "currency_code" => "USD",
+                    "value" => $item['product_price'],
+                ],
+                "quantity" => $item['quantity'],
+            ];
+            $item_total += $item['product_price'] * $item['quantity'];
+        }
+        
         $provider = new PayPalClient;
             $provider->setApiCredentials(config('paypal'));
             $paypalToken = $provider->getAccessToken();
@@ -224,12 +240,36 @@ class TransactionController extends Controller
                     0 => [
                         "amount" => [
                             "currency_code" => "USD",
-                            "value" => "100.00"
-                        ]
+                            "value" => $request->total_amount, 
+                            "breakdown" => [
+                                "item_total" => [
+                                    "currency_code" => "USD",
+                                    "value" => $item_total, 
+                                ],
+                                "shipping" => [
+                                    "currency_code" => "USD",
+                                    "value" => $request->shipping_cost,
+                                ]
+                                ]
+                        ],
+                        "items" => $paypalItems,
+                        "shipping" => [
+                            "name" => [
+                                "full_name" => $request->delivery_firstName." ".$request->delivery_lastName,
+                            ],
+                            "address" => [
+                                "address_line_1" => $request->delivery_address ?? null,
+                                "address_line_2" => $request->delivery_schedule_address ?? null, 
+                                "admin_area_2" => $request->delivery_city ?? 'Unknown City', 
+                                "admin_area_1" => $request->delivery_state ?? null, 
+                                "postal_code" => $request->delivery_postal_code ?? '00000', 
+                                "country_code" => $request->delivery_country_code ?? 'ID',
+                            ],
+                        ],
                     ]
                 ]
             ]);
-
+            
             if (isset($response['id']) && $response['id'] != null) {
 
                 // redirect to approve href
@@ -242,14 +282,10 @@ class TransactionController extends Controller
                     }
                 }
 
-                return redirect()
-                    ->route('createpaypal')
-                    ->with('error', 'Something went wrong.');
+                return $resp = ['error' => 'Something went wrong.'];
 
             } else {
-                return redirect()
-                    ->route('createpaypal')
-                    ->with('error', $response['message'] ?? 'Something went wrong.');
+                return $resp = ['error' => $response['message'] ?? 'Something went wrong.'];
             }
     }
 
@@ -268,7 +304,7 @@ class TransactionController extends Controller
                     ->with('success', 'Transaction complete.');
             } else {
                 return redirect()
-                    ->route('createpaypal')
+                    ->route('checkout')
                     ->with('error', $response['message'] ?? 'Something went wrong.');
             }
 
@@ -277,7 +313,7 @@ class TransactionController extends Controller
     public function processCancel(Request $request)
         {
             return redirect()
-                ->route('createpaypal')
+                ->route('checkout')
                 ->with('error', $response['message'] ?? 'You have canceled the transaction.');
         }
 

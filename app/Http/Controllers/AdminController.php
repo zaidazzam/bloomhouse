@@ -8,14 +8,41 @@ use App\Models\ProductProduct;
 use App\Models\TrackingDelivery;
 use Illuminate\Support\Facades\DB;
 use App\Models\TransactionDetail;
+use Carbon\Carbon;
 
 
 class AdminController extends Controller
 {
+
+
     public function dashboard()
     {
-        return view('dashboard-view.dashboard');
+        $transactions = Transaction::selectRaw('YEAR(created_at) as year')
+            ->distinct()
+            ->orderBy('year', 'asc')
+            ->pluck('year');
+    
+        // $revenueData = [
+        //     2025 => [18000000, 7000000, 15000000, 29000000, 18000000, 12000000, 9000000],
+        //     2026 => [20000000, 10000000, 18000000, 33000000, 22000000, 15000000, 12000000],
+        // ];
+        $revenueData = DB::table('transactions')
+        ->where('payment_status', 'paid')
+        ->sum('total_amount');
+    
+        $currentYear = Carbon::now()->year;
+    
+        // Hitung total revenue untuk tahun berjalan
+        $currentYearRevenue = isset($revenueData[$currentYear]) 
+            ? array_sum($revenueData[$currentYear]) 
+            : 0;
+            $paidTransactions = Transaction::where('payment_status', 'paid');
+
+        return view('dashboard-view.dashboard', compact('transactions', 'revenueData', 'currentYear', 'currentYearRevenue','paidTransactions'));
     }
+    
+    
+    
 
     public function product()
     {
@@ -105,12 +132,10 @@ class AdminController extends Controller
     }
     public function detailInvoice($id)
     {
-        // Ambil transaksi beserta detailnya
-        $transaction = Transaction::with('details.product')->where('midtrans_order_id', $id)->firstOrFail();
-
-        // Tampilkan halaman detail invoice
+        $transaction = Transaction::findOrFail($id);
         return view('dashboard-view.detail-invoice', compact('transaction'));
     }
+    
 
     public function reportProductReview()
     {

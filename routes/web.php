@@ -41,7 +41,7 @@ Route::middleware('guest')->group(function () {
     // Route::get('/detail-product', [App\Http\Controllers\GuestController::class, 'product'])->name('detail-product');
     Route::get('/blog', [App\Http\Controllers\GuestController::class, 'blog']);
     Route::get('/detail-blog/{id}', [GuestController::class, 'detailBlog'])->name('detail-blog');
-    Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout']);
+    Route::get('/checkout', [App\Http\Controllers\GuestController::class, 'checkout'])->name('checkout');
     Route::get('/product/{id}', [GuestController::class, 'productShow1'])->name('product1.show');
     Route::post('/product-reviews', [ProductReviewController::class, 'store'])->name('product_reviews.store');
     Route::post('/track-view/{productId}', [ProductProductController::class, 'trackView']);
@@ -62,6 +62,8 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [App\Http\Controllers\Auth\AuthController::class, 'index_register'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
     Route::get('/search', [GuestController::class, 'search'])->name('search');
+    // tes login odoo
+    Route::get('/tes-login-odoo', [GuestController::class, 'odoo'])->name('tes-login-odoo');
 });
 
 
@@ -77,6 +79,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/blog-tag', [App\Http\Controllers\AdminController::class, 'tagBlog'])->name('tagBlog');;
     Route::get('/admin/postages', [App\Http\Controllers\AdminController::class, 'delivery'])->name('delivery');;
     Route::resource('/admin/tracking', TrackingDeliveryController::class);
+    Route::get('/admin/tracking-accepted', [App\Http\Controllers\TrackingDeliveryController::class, 'accepted'])->name('accepted');;
+
+    // Route::get('/admin/tracking-accepted', TrackingDeliveryController::class);
     Route::resource('product_products', ProductProductController::class);
     Route::resource('product_categories', ProductCategoryController::class);
     Route::resource('product_pictures', ProductPictureController::class);
@@ -88,6 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/invoice-paid', [AdminController::class, 'adminInvoicePaid'])->name('adminInvoicePaid');
     Route::get('/admin/invoice-pending', [AdminController::class, 'adminInvoicePending'])->name('adminInvoicePending');
     Route::get('/admin/invoice/{id}', [AdminController::class, 'detailInvoice'])->name('detailInvoice');
+    Route::get('/admin/product/{id}', [ProductProductController::class, 'detailProduct'])->name('detailProduct');
     Route::get('/admin/report-ransaksi', [AdminController::class, 'reportTransaksi'])->name('reportTransaksi');;
     Route::get('/admin/sales-item', [AdminController::class, 'salesItem'])->name('salesItem');;
     Route::get('/admin/sales-category', [AdminController::class, 'salesCategory'])->name('salesCategory');;

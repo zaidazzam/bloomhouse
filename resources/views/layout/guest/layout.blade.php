@@ -4,6 +4,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -15,15 +16,26 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    {{-- text-edit ck --}}
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/44.1.0/ckeditor5.umd.js"></script>
+    <!-- Add if you use premium features. -->
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/44.1.0/ckeditor5-premium-features.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5-premium-features/44.1.0/ckeditor5-premium-features.umd.js"></script>
+    {{-- text-edit ck --}}
+
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/libs.bundle.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/guest.css') }}" />
     <link href="{{ asset('admin/assets/vendor/fonts/boxicons.css') }}" rel="stylesheet">
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-    {{-- midtrans client --}}
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    {{-- midtrans client prod --}}
+    <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    {{-- midtrans client sb --}}
+    {{-- <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> --}}
     {{-- paypal client --}}
     <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
 
@@ -80,17 +92,16 @@ displayCookies.innerHTML = document.cookie;
     {{-- Header --}}
     <div class="position-relative z-index-30">
         @if (request()->is('/'))
-            <!-- Cek apakah ini halaman homepage -->
-            <nav
-                class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-absolute w-100 z-index-30 bg-transparent navbar-dark navbar-transparent bg-white-hover transition-all">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-fixed top-0 w-100 z-index-30 shadow-sm">
                 @include('layout.guest.header')
             </nav>
         @else
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mx-0 p-0 flex-column border-0 position-fixed top-0 w-100 z-index-30 shadow-sm">
                 @include('layout.guest.header')
             </nav>
         @endif
     </div>
+    
 
     {{-- Content --}}
     <main class="mt-0">
@@ -115,6 +126,75 @@ displayCookies.innerHTML = document.cookie;
 
     <!-- Theme JS -->
     <script src="{{ asset('assets/js/theme.bundle.js') }}"></script>
+
+    <script>
+        document.querySelectorAll('.quick-cart-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let productId = this.dataset.id;
+                let productName = this.dataset.name;
+                let productPrice = this.dataset.price;
+                let csrfToken = this.dataset.token;
+                let productPicture = this.dataset.picture;
+                
+                fetch("{{ route('cart.add') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    product_name: productName,
+                    product_price: productPrice,
+                    product_pict: productPicture,
+                }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload()
+                    } else {
+                        alert('Failed to add to cart: ' + data.message);
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.paynow-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                let productId = this.dataset.id;
+                let productName = this.dataset.name;
+                let productPrice = this.dataset.price;
+                let csrfToken = this.dataset.token;
+                let productPicture = this.dataset.picture;
+                
+                fetch("{{ route('cart.add') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    product_name: productName,
+                    product_price: productPrice,
+                    product_pict: productPicture,
+                }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = "{{ route('checkout') }}";
+                    } else {
+                        alert('Failed to add to cart: ' + data.message);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    
 </body>
 
 </html>

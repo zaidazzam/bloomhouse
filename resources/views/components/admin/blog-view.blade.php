@@ -1,4 +1,11 @@
 <!-- Bordered Table -->
+<style>
+    .main-container {
+        width: 795px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 <div class="card shadow-lg border-0 mb-4" style="background: linear-gradient(135deg, #007bff, #6610f2); color: white;">
     <div class="card-body d-flex align-items-center">
         <div class="me-4">
@@ -37,8 +44,8 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive table-responsive text-nowrap">
-            <table id="maintable" class="display cell-border table table-bordered table-striped table-hover"
+        <div class="table-responsive table-responsive text-wrap">
+            <table id="maintable" class="display cell-border text-nowrap table table-bordered table-striped table-hover"
                 cellspacing="0" width="100%">
                 <thead class="table-dark1">
                     <tr class="text-center">
@@ -53,10 +60,11 @@
 
                 <tbody id="blog-list">
                     @foreach ($blogs as $blog)
-                        <tr class="text-center">
+                        <tr class="">
                             <td data-id="{{ $blog->id }}">{{ $loop->iteration }}</td>
                             <td data-title="{{ $blog->title }}">{{ $blog->title }}</td>
-                            <td data-content="{{ $blog->content }}">{{ $blog->content }}</td>
+                            <td data-content="{{ $blog->content }}">
+                                {{ \Illuminate\Support\Str::words($blog->content, 15, '...') }}</td>
                             <td>
                                 <img src='{{ asset('/storage/' . $blog->image) }}' class='rounded' width='50' />
                             </td>
@@ -130,7 +138,7 @@
 
                         {{-- CKEDITOR --}}
                         <label for="editor" class="form-label">Content</label>
-                        <textarea id="froala-editor" name="content" class="form-control " rows="3" placeholder="Enter Blog Content"></textarea>
+                        <textarea id="editor" name="content" class="form-control " rows="3" placeholder="Enter Blog Content"></textarea>
 
                     </div>
                     <div class="col-12 mb-2">
@@ -191,8 +199,7 @@
 
                     <div class="col-12">
                         <label for="editBlogDescription" class="form-label">Description</label>
-                        <textarea id="froala-editor" name="content" class="form-control" rows="3"
-                            placeholder="Enter Blog Description"></textarea>
+                        <textarea id="editor" name="content" class="form-control" rows="3" placeholder="Enter Blog Description"></textarea>
 
                     </div>
                     <div class="col-12 mb-2">
@@ -243,38 +250,43 @@
                 const url = row.querySelector('[data-url]').getAttribute('data-url');
                 editForm.setAttribute('action', url);
 
-
+                // Ambil data dari atribut data-content
                 const title = row.querySelector('[data-title]').getAttribute('data-title');
                 const content = row.querySelector('[data-content]').getAttribute(
                     'data-content');
                 const listTags = row.querySelector('[data-tags]').getAttribute('data-tags');
 
+                // Set nilai input judul
+                document.getElementById('editBlogTitle').value = title;
+
+                // Set nilai editor Froala atau textarea
+                if (typeof editorInstance !== 'undefined' && editorInstance !== null) {
+                    editorInstance.html.set(content); // Jika menggunakan Froala
+                } else {
+                    document.getElementById('editor').value =
+                        content; // Jika textarea biasa
+                }
+
+                // Mengatur checkbox tag sesuai dengan data tags dari baris
                 let tags = [];
                 try {
                     tags = JSON.parse(listTags);
                 } catch (error) {
-                    console.error("Failed to parse list_photo:", error);
+                    console.error("Failed to parse list_tags:", error);
                 }
-                tags.forEach(tag => {
-                    // Atur checkbox tag sesuai dengan data tags dari baris
-                    const tagCheckboxes = document.querySelectorAll(
-                        'input[name="tags[]"]');
-                    tagCheckboxes.forEach(checkbox => {
-                        checkbox.checked =
-                            false; // Reset semua checkbox sebelum menandai yang sesuai
-                        if (tags.some(tag => tag.id == checkbox
-                                .value)) { // Cocokkan ID tag
-                            checkbox.checked = true;
-                        }
-                    });
+
+                const tagCheckboxes = document.querySelectorAll('input[name="tags[]"]');
+                tagCheckboxes.forEach(checkbox => {
+                    checkbox.checked =
+                        false; // Reset semua checkbox sebelum menandai yang sesuai
+                    if (tags.some(tag => tag.id == checkbox.value)) { // Cocokkan ID tag
+                        checkbox.checked = true;
+                    }
                 });
-                document.getElementById('editBlogTitle').value = title;
-                editorInstance.setData(content)
             });
         });
-
-
     });
+
 
 
     // JavaScript for adding automatic numbering to the "No." column
@@ -285,5 +297,28 @@
     });
 </script>
 <script>
-    new FroalaEditor('textarea#froala-editor')
+    const {
+        ClassicEditor,
+        Essentials,
+        Bold,
+        Italic,
+        Font,
+        Paragraph
+    } = CKEDITOR;
+    const {
+        FormatPainter
+    } = CKEDITOR_PREMIUM_FEATURES;
+
+    ClassicEditor
+        .create(document.getElementById('editor'), {
+            licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3Mzk1Nzc1OTksImp0aSI6ImRlNTU2ZTkyLWNjYWUtNDViYy05NWY4LTUxZjBhOGZhOGVhNiIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6ImJiZmNmN2RhIn0.cttA7qsNVEqvLX2mi6ICjz-1lmqQvQ3ZKgt8gUpKolIW6ljphBtjo_Bp1yu8xq9x6UBPnXkQqm84fgZde-N8iQ',
+            plugins: [Essentials, Bold, Italic, Font, Paragraph, FormatPainter],
+            toolbar: [
+                'undo', 'redo', '|', 'bold', 'italic', '|',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+                'formatPainter'
+            ]
+        })
+        .then( /* ... */ )
+        .catch( /* ... */ );
 </script>

@@ -1,12 +1,13 @@
     <!-- Main Section-->
-    <section class="mt-5 container ">
+    <section class="mb-9 mt-5 container " >
         <!-- Page Content Goes Here -->
 
-        <h1 class="mb-4 display-5 fw-bold text-center">Checkout Your Flower Order Securely</h1>
-        <p class="text-center mx-auto">Please provide the details below to complete your flower order.
-        </p>
+
 
         <div class="row g-md-8 mt-4">
+            <h1 class="mb-4 display-5 fw-bold text-center">Checkout Your Flower Order Securely</h1>
+            <p class="text-center mx-auto">Please provide the details below to complete your flower order.
+            </p>
             <!-- Checkout Panel Left -->
             <div class="col-12 col-lg-6 col-xl-7">
                 <!-- Checkout Panel Contact -->
@@ -18,8 +19,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input name="email" type="email" class="form-control" id="email" value="ujangwahyudi@gmail.com"
-                                    placeholder="you@example.com">
+                                <input name="email" type="email" class="form-control" id="email"
+                                    value="ujangwahyudi@gmail.com" placeholder="you@example.com" required>
                             </div>
 
                             <!-- Mailing List Signup-->
@@ -41,11 +42,12 @@
                             <div class="form-group">
                                 <label for="bill_country" class="form-label">Country</label>
                                 <select name="bill_data_country" class="form-select" id="bill_country" required>
-                                    <option value="" disabled selected>Please Select...</option>
-                                    <option value="ID">Indonesia</option> <!-- Menambahkan opsi untuk Indonesia -->
+                                    <option value="ID" selected>Indonesia</option>
+                                    <!-- Indonesia is now the default option -->
                                 </select>
                             </div>
                         </div>
+
                         <!-- First Name-->
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -60,8 +62,8 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="bill_lastName" class="form-label">Last name</label>
-                                <input name="bill_data_lastname" type="text" class="form-control" id="bill_lastName" value="Wahyudi"
-                                    placeholder="Doe" required>
+                                <input name="bill_data_lastname" type="text" class="form-control" id="bill_lastName"
+                                    value="Wahyudi" placeholder="Doe" required>
                                 <div class="invalid-feedback">Please enter your last name.</div>
                             </div>
                         </div>
@@ -70,8 +72,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="bill_phoneNumber" class="form-label">Phone Number</label>
-                                <input name="bill_data_phone" type="number" class="form-control" id="bill_phoneNumber" value="085776703145"
-                                    placeholder="+628123456789" required>
+                                <input name="bill_data_phone" type="number" class="form-control" id="bill_phoneNumber"
+                                    value="085776703145" placeholder="+628123456789" required>
                                 <div class="invalid-feedback">Please enter a valid phone number.</div>
                             </div>
                         </div>
@@ -81,8 +83,8 @@
                             <div class="form-group">
                                 <label for="bill_company" class="form-label">Company <span class="text-muted"
                                         style="font-size: 0.85em;">(optional)</span></label>
-                                <input name="bill_data_company" type="text" class="form-control" id="bill_company" value="PT. Sarana Digital Ritel"
-                                    placeholder="Your Company Name">
+                                <input name="bill_data_company" type="text" class="form-control" id="bill_company"
+                                    value="PT. Sarana Digital Ritel" placeholder="Your Company Name">
                             </div>
                         </div>
 
@@ -90,8 +92,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="bill_address" class="form-label">Address</label>
-                                <input name="bill_data_address" type="text" class="form-control" id="bill_address" value="Karawang"
-                                    placeholder="123 Some Street Somewhere" required>
+                                <input name="bill_data_address" type="text" class="form-control" id="bill_address"
+                                    value="Karawang" placeholder="123 Some Street Somewhere" required>
                                 <div class="invalid-feedback">Please enter your address.</div>
                             </div>
                         </div>
@@ -159,8 +161,8 @@
                     <div class="col-md-12 mt-3">
                         <div class="form-group">
                             <label for="delivery_phone" class="form-label">WhatsApp Number</label>
-                            <input name="delivery_phone" type="number" class="form-control" id="delivery_phone" value="085776773241"
-                                placeholder="Enter your WhatsApp number" required>
+                            <input name="delivery_phone" type="number" class="form-control" id="delivery_phone"
+                                value="085776773241" placeholder="Enter your WhatsApp number" required>
                         </div>
                     </div>
                     <div class="col-md-12 mt-3">
@@ -184,7 +186,8 @@
                             <label for="address-selection" class="form-label">Delivery Address (Postage_Rule)</label>
                             <select name="deliv_schedule_address" class="form-select" id="delivery-schedule-address"
                                 required>
-                                <option value="null" disabled selected>Select an Delivery Address</option>
+                                <option id="delivery-schedule-address" value="null" disabled selected>Select an
+                                    Delivery Address</option>
                                 @foreach ($addressPostageRules as $rule)
                                     <option value="{{ $rule->price }}">{{ $rule->postage_rule }} - Rp
                                         {{ number_format($rule->price, 0, ',', '.') }}</option>
@@ -198,9 +201,10 @@
                         <div class="form-group">
                             <label for="delivery-schedule" class="form-label">Delivery Schedule (Time Slot)</label>
                             <select name="deliv_schedule" class="form-select" id="delivery-schedule" required>
-                                <option value="null" disabled selected>Select a Delivery Schedule</option>
+                                <option id="delivery-schedule" value="null" disabled selected>Select a Delivery
+                                    Schedule</option>
                                 @foreach ($timePostageRules as $rule)
-                                    <option value="{{ $rule }}">
+                                    <option id="delivery-schedule" value="{{ $rule }}">
                                         {{ $rule->postage_rule }} - Rp
                                         {{ number_format($rule->price, 0, ',', '.') }}</option>
                                 @endforeach
@@ -228,8 +232,8 @@
                             <label for="delivery-note-textarea" class="form-label">
                                 <span class="small fw-bolder">* Free Personalized Note</span>
                             </label>
-                            <textarea class="form-control" id="delivery-note-textarea" rows="4" placeholder="Write your message here..." aria-valuetext="I love you"
-                                required></textarea>
+                            <textarea class="form-control" id="delivery-note-textarea" rows="4" placeholder="Write your message here..."
+                                aria-valuetext="I love you"></textarea>
                         </div>
                     </div>
 
@@ -253,9 +257,22 @@
                                 </label>
                             </div>
                         </div>
-
-                        <!-- Payment Option-->
+                        
+                        <!-- Payment Option for Credit Card -->
                         <div class="col-12">
+                            <div class="form-check form-group form-radio-custom mb-3">
+                                <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
+                                    id="checkoutPaymentCreditCard" value="credit_card">
+                                <label class="form-check-label" for="ccheckoutPaymentCreditCard">
+                                    <span class="d-flex justify-content-between align-items-start">
+                                        <span class="mb-0 fw-bolder d-block">Credit Card</span>
+                                        <i class="ri-bank-card-line"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Payment Option-->
+                        {{-- <div class="col-12">
                             <div class="form-check form-group form-radio-custom mb-3">
                                 <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
                                     id="checkoutPaymentStripe" value="credit_card">
@@ -268,10 +285,10 @@
                                     </span>
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Payment Option for Transfer Bank BCA -->
-                        <div class="col-12">
+                        {{-- <div class="col-12">
                             <div class="form-check form-group form-radio-custom mb-3">
                                 <input class="form-check-input" type="radio" name="checkoutPaymentMethod"
                                     id="checkoutPaymentTransferBank" value="paypal">
@@ -284,20 +301,26 @@
                                     </span>
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
 
                     <!-- Transfer Bank Info -->
                     <div class="transfer-bank bg-light p-4 d-none mt-3 fw-bolder">
-                        Please click on complete order. You will then be transferred to <strong>Bank BCA</strong> to
-                        enter your payment details via <strong>Virtual Account</strong>.
+                        Please click on complete order. You will then be transferred to
+                        enter your payment details via <strong>Paypal</strong>.
                     </div>
 
                     <!-- Virtual Account Info -->
                     <div class="virtual-bank bg-light p-4 d-none mt-3 fw-bolder">
-                        Please click on complete order. You will then be transferred to <strong>Bank BCA</strong> to
+                        Please click on complete order. You will then be transferredto
                         enter your payment details via <strong>Virtual Account</strong>.
+                    </div>
+                    
+                    <!-- Credit Card Info -->
+                    <div class="credit-card bg-light p-4 d-none mt-3 fw-bolder">
+                        Please click on complete order. You will then be transferredto
+                        enter your payment details via <strong>Credit Card</strong>.
                     </div>
 
                     <!-- Payment Details-->
@@ -400,12 +423,12 @@
                             <p class="m-0 fs-5 fw-bold" id="grand_tot">Rp.{{ number_format($tot, 0, ',', '.') }}</p>
                         </div>
                     </div>
-                    <div class="py-3 border-bottom">
+                    {{-- <div class="py-3 border-bottom">
                         <div class="input-group mb-0">
                             <input type="text" class="form-control" placeholder="Enter your coupon code">
                             <button class="btn btn-dark btn-sm px-4">Apply</button>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Accept Terms Checkbox-->
                     <div class="form-group form-check my-4">
                         <input type="checkbox" class="form-check-input" id="accept-terms" checked>
@@ -416,8 +439,8 @@
                         id="checkout" role="button">Complete Order</a>
 
                     {{-- button paypal --}}
-                    <a href="{{ route('paypal.createPayment') }}" class="btn btn-danger w-100" data-cart='@json($cart)'
-                         role="button">Complete Order via Paypal</a>
+                    {{-- <a href="{{ route('paypal.createPayment') }}" class="btn btn-danger w-100" data-cart='@json($cart)'
+                         role="button">Complete Order via Paypal</a> --}}
                 </div>
             </div>
             <!-- /Checkout Panel Summary -->
@@ -426,7 +449,6 @@
         <!-- /Page Content -->
     </section>
     <!-- / Main Section-->
-
     <!-- Add JavaScript to handle the display -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -639,13 +661,11 @@
             const delivery_phone = document.getElementById('delivery_phone').value;
             const payment_methode = document.querySelector('input[name="checkoutPaymentMethod"]:checked').value;
             let url = "";
-            if (payment_methode == 'bank_transfer'){
-               url = "{{ route('transaction.add') }}";
-            }
-            else if(payment_methode == 'paypal'){
+            if (payment_methode == 'bank_transfer') {
+                url = "{{ route('transaction.add') }}";
+            } else if (payment_methode == 'paypal') {
                 url = "{{ route('paypal.createPayment') }}";
-            }
-            else {
+            } else {
                 url = "{{ route('transaction.add') }}";
             }
 
@@ -730,12 +750,12 @@
                 <p>Add some items to get started!</p>
             </div>
         `;
-                            if (data.url){
-                                window.location.href = data.url;
-                            }else{
-                                // Redirect ke Snap payment
-                                window.snap.pay(data.token);
-                            }
+                                if (data.url) {
+                                    window.location.href = data.url;
+                                } else {
+                                    // Redirect ke Snap payment
+                                    window.snap.pay(data.token);
+                                }
                             });
                         })
                         .catch(error => {
@@ -778,4 +798,207 @@
         })()
     </script>
 
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Cek apakah semua input required sudah diisi
+            const requiredFields = document.querySelectorAll(
+                'input[required], select[required], textarea[required]');
+            let isFormValid = true;
 
+            requiredFields.forEach(function(field) {
+                if (!field.value) {
+                    isFormValid = false;
+                    field.classList.add(
+                    'is-invalid'); // Menambahkan class is-invalid untuk menandai field yang belum diisi
+                    if (field.closest('.form-group').querySelector('.invalid-feedback') === null) {
+                        const errorMessage = document.createElement('div');
+                        errorMessage.classList.add('invalid-feedback');
+                        errorMessage.textContent = "This field is required.";
+                        field.closest('.form-group').appendChild(errorMessage);
+                    }
+                } else {
+                    field.classList.remove(
+                    'is-invalid'); // Menghapus class is-invalid jika field sudah diisi
+                }
+            });
+
+            if (!isFormValid) {
+                event.preventDefault(); // Mencegah form submit jika ada field yang belum diisi
+                alert('Please fill in all required fields.'); // Menampilkan alert jika ada field yang kosong
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('checkout').addEventListener('click', function(event) {
+            // Reset all input fields to default (no error state)
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => input.classList.remove('is-invalid'));
+
+            // Flag for overall form validity
+            let isValid = true;
+
+            // Required fields validation
+            const requiredFields = [{
+                    id: 'email',
+                    message: 'Please fill out your email.'
+                },
+                {
+                    id: 'bill_firstName',
+                    message: 'Please fill out your first name.'
+                },
+                {
+                    id: 'bill_lastName',
+                    message: 'Please fill out your last name.'
+                },
+                {
+                    id: 'bill_phoneNumber',
+                    message: 'Please fill out your phone number.'
+                },
+                {
+                    id: 'bill_address',
+                    message: 'Please fill out your address.'
+                },
+                {
+                    id: 'bill_province',
+                    message: 'Please select your province.'
+                },
+                {
+                    id: 'bill_city',
+                    message: 'Please select your city.'
+                },
+                {
+                    id: 'bill_subdistrict',
+                    message: 'Please select your subdistrict.'
+                },
+                {
+                    id: 'delivery_firstName',
+                    message: 'Please fill out the delivery first name.'
+                },
+                {
+                    id: 'delivery_lastName',
+                    message: 'Please fill out the delivery last name.'
+                },
+                {
+                    id: 'delivery_phone',
+                    message: 'Please fill out the delivery phone number.'
+                },
+                {
+                    id: 'delivery-date',
+                    message: 'Please select a delivery date.'
+                },
+                {
+                    id: 'delivery_address',
+                    message: 'Please fill out the delivery address.'
+                },
+                {
+                    id: 'delivery-schedule-address',
+                    message: 'Please select a delivery address.'
+                },
+                {
+                    id: 'delivery-schedule-address',
+                    message: 'Please select a delivery address (postage rule).'
+                },
+                {
+                    id: 'delivery-schedule',
+                    message: 'Please select a delivery schedule (time slot).'
+                },
+            ];
+
+            // Loop through required fields and check if they are filled
+            for (let field of requiredFields) {
+                const element = document.getElementById(field.id);
+                if (!element || !element.value.trim() || element.value === 'null') {
+                    element.classList.add('is-invalid'); // Add 'is-invalid' class for invalid fields
+                    isValid = false;
+
+                    // Display custom error message in associated error div
+                    const errorDiv = document.getElementById(field.id + '-error');
+                    if (errorDiv) {
+                        errorDiv.textContent = field.message;
+                    }
+                } else {
+                    // Clear error message if the field is valid
+                    const errorDiv = document.getElementById(field.id + '-error');
+                    if (errorDiv) {
+                        errorDiv.textContent = '';
+                    }
+                }
+            }
+
+            // Payment method validation
+            const paymentMethod = document.querySelector('input[name="checkoutPaymentMethod"]:checked');
+            if (!paymentMethod) {
+                isValid = false;
+                document.getElementById('payment-method-error').textContent = 'Please select a payment method.';
+            } else {
+                document.getElementById('payment-method-error').textContent = '';
+            }
+
+            // Check if credit card details are required and filled
+            const paymentMethodValue = paymentMethod ? paymentMethod.value : '';
+            if (paymentMethodValue === 'credit_card') {
+                const ccName = document.getElementById('cc-name');
+                const ccNumber = document.getElementById('cc-number');
+                const ccExpiration = document.getElementById('cc-expiration');
+                const ccCvv = document.getElementById('cc-cvv');
+
+                // Validate credit card details
+                if (!ccName.value.trim()) {
+                    isValid = false;
+                    ccName.classList.add('is-invalid');
+                    document.getElementById('cc-name-error').textContent = 'Name on card is required.';
+                } else {
+                    document.getElementById('cc-name-error').textContent = '';
+                }
+
+                if (!ccNumber.value.trim()) {
+                    isValid = false;
+                    ccNumber.classList.add('is-invalid');
+                    document.getElementById('cc-number-error').textContent = 'Credit card number is required.';
+                } else {
+                    document.getElementById('cc-number-error').textContent = '';
+                }
+
+                if (!ccExpiration.value.trim()) {
+                    isValid = false;
+                    ccExpiration.classList.add('is-invalid');
+                    document.getElementById('cc-expiration-error').textContent = 'Expiration date is required.';
+                } else {
+                    document.getElementById('cc-expiration-error').textContent = '';
+                }
+
+                if (!ccCvv.value.trim()) {
+                    isValid = false;
+                    ccCvv.classList.add('is-invalid');
+                    document.getElementById('cc-cvv-error').textContent = 'Security code is required.';
+                } else {
+                    document.getElementById('cc-cvv-error').textContent = '';
+                }
+            }
+
+            // If not valid, prevent form submission
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <style>
+        .is-invalid {
+            border: 2px solid red;
+            /* Red border for invalid fields */
+            background-color: #f8d7da;
+            /* Light red background */
+        }
+
+        .is-invalid:focus {
+            border-color: #dc3545;
+            /* Darker red on focus */
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+    </style>

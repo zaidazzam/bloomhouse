@@ -7,10 +7,10 @@
 @section('content')
     <section class="mt-0 ">
 
+        @include('components.guest.category.category-top-banner')
         @include('components.guest.category.populer-weeks')
 
         <!-- Category Top Banner -->
-        @include('components.guest.category.category-top-banner')
         <!-- Category Top Banner -->
 
         <!-- Main Section-->

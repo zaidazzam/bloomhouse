@@ -1,6 +1,11 @@
    <!-- Main Section-->
    <div class="container">
-
+    <div class="w-md-50 mb-5">
+        <p class="small fw-bolder text-uppercase tracking-wider mb-2 text-muted">Gifts & Flower</p>
+        <h2 class="display-5 fw-bold mb-3">Populer This Week</h2>
+        <p class="lead">Explore our curated collection of gift boxes at Flower Chimp, designed to make every
+            occasion special.</p>
+    </div>
        <div class="row">
 
            <!-- Category Aside/Sidebar -->

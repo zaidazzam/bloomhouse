@@ -10,9 +10,9 @@
         </div>
         <div>
             <!-- Title -->
-            <h5 class="card-title fw-bold text-dark">Total Category</h5>
+            <h5 class="card-title fw-bold text-white">Total Category</h5>
             <!-- Content -->
-            <p class="card-text mb-0">
+            <p class="card-text mb-0 text-white">
                 Total number of category available:
             </p>
             <p class="card-text fs-4 mt-2">

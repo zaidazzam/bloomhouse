@@ -1,29 +1,12 @@
 <footer class="bg-dark mt-10  ">
 
     <!-- Footer socials-->
-    <div class="bg-light py-4">
-        <div class="container d-flex justify-content-center align-items-center py-2">
-            <p class="lead fw-bolder mb-0 lh-1">Find us online</p>
-            <ul class="list-unstyled d-flex justify-content-start align-items-center mb-0 ms-3 lh-1">
-                <li class="mx-1 mb-0 lh-1"><a class="text-muted text-decoration-none opacity-75-hover transition-all lh-1"
-                        href="#"><i class="ri-instagram-fill ri-xl lh-1"></i></a></li>
-                <li class="mx-1 mb-0 lh-1"><a
-                        class="text-muted text-decoration-none opacity-75-hover transition-all lh-1" href="#"><i
-                            class="ri-facebook-fill ri-xl lh-1"></i></a></li>
-                <li class="mx-1 mb-0 lh-1"><a
-                        class="text-muted text-decoration-none opacity-75-hover transition-all lh-1" href="#"><i
-                            class="ri-twitter-fill ri-xl lh-1"></i></a></li>
-                <li class="mx-1 mb-0 lh-1"><a
-                        class="text-muted text-decoration-none opacity-75-hover transition-all lh-1" href="#"><i
-                            class="ri-snapchat-fill ri-xl lh-1"></i></a></li>
-            </ul>
-        </div>
-    </div>
+
     <!-- / Footer socials-->
 
     <!-- Instagram Display-->
-    <div class="container pt-8">
-        <div class="row g-2">
+    <div class="container pt-4">
+        {{-- <div class="row g-2">
             <div class="d-none d-md-block col-md-4" data-aos="fade-in" data-aos-delay="150">
                 <picture>
                     <img class="img-fluid" src="{{ asset('assets/images/products/bunga1.jpg') }}"
@@ -82,12 +65,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-3">
-            <p class="text-muted m-0">Follow us on Instagram <span class="text-lowercase">@Alpine</span></p>
-            <a class="text-link-border fw-bolder m-0 text-white" href="#">More On Instagram <i
-                    class="ri-external-link-line align-bottom"></i></a>
-        </div>
+        </div> --}}
+
     </div>
 
     <!-- Instagram Display-->
@@ -141,7 +120,7 @@
     <!-- / Info Bar-->
 
     <!-- Menus & Newsletter-->
-    <div class="border-top-white-opacity py-7 mt-7 text-white">
+    <div class="border-top-white-opacity py-4 mt-4 text-white">
         <div class="container" data-aos="fade-in">
             <div class="row my-4 flex-wrap">
 
@@ -151,16 +130,16 @@
                     <ul class="list-unstyled">
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="./category.html">Flowers</a></li>
+                                href="/category">Flowers</a></li>
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="./category.html">Occasions</a></li>
+                                href="/category">Occasions</a></li>
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="./category.html">gift</a></li>
+                                href="/category">gift</a></li>
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="./category.html">Arrangement</a></li>
+                                href="/category">Arrangement</a></li>
                     </ul>
                 </nav>
                 <!-- /Footer Nav-->
@@ -171,43 +150,23 @@
                     <ul class="list-unstyled">
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">About Us</a></li>
+                                href="/">About Us</a></li>
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">Our Blog</a></li>
+                                href="/blog">Our Blog</a></li>
                         <li class="mb-2"><a
                                 class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">FAQs</a></li>
-                        <li class="mb-2"><a
-                                class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">Contact</a></li>
+                                href="/">Contact</a></li>
                     </ul>
                 </nav>
                 <!-- /Footer Nav-->
 
                 <!-- Footer Nav-->
-                <nav class="d-none d-md-block col-md">
-                    <h6 class="mb-4 fw-bolder fs-6">Navigation</h6>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a
-                                class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">Register</a></li>
-                        <li class="mb-2"><a
-                                class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">Cart</a></li>
-                        <li class="mb-2"><a
-                                class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">Checkout</a></li>
-                        <li class="mb-2"><a
-                                class="text-decoration-none text-white opacity-75 opacity-25-hover transition-all"
-                                href="#">Account</a></li>
-                    </ul>
-                </nav>
                 <!-- /Footer Nav-->
 
                 <!-- Footer Contact-->
                 <div class="col-12 col-md-5">
-                    <h6 class="mb-4 fw-bolder fs-6">Join Our Bloom House</h6>
+                    {{-- <h6 class="mb-4 fw-bolder fs-6">Join Our Bloom House</h6>
                     <p class="opacity-75">Bunga Davi came as a result of the absence of a single strong brand in
                         Indonesia for the Indonesian Online Flower & Gift Shop. Online users feel the need to find sites
                         with reliable 24 hour delivery quality that can be relied upon to send flowers, parcels and
@@ -221,13 +180,25 @@
                             <span class="input-group-text bg-transparent border-0"><i
                                     class="ri-arrow-right-line align-middle"></i></span>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 <!-- /Footer Contact-->
 
             </div>
+            <div class="bg-dark border-top-white-opacity text-white">
+                <div class="container d-flex justify-content-center align-items-center py-2">
+                    <p class="lead fw-bolder mb-0 lh-1 text-white">Find us online</p>
+                    <ul class="list-unstyled d-flex justify-content-start align-items-center mb-0 ms-3 lh-1">
+                        <li class="mx-1 mb-0 lh-1"><a class="text-muted text-decoration-none opacity-75-hover transition-all lh-1"
+                                href="https://www.instagram.com/bloomhouse.flower?igsh=b2UzNDZ6b2l2cjh0" target="_blank"><i class="ri-instagram-fill ri-xl lh-1"></i></a></li>
+                        <li class="mx-1 mb-0 lh-1"><a
+                                class="text-muted text-decoration-none opacity-75-hover transition-all lh-1" href="#"><i
+                                    class="ri-facebook-fill ri-xl lh-1"></i></a></li>
+                    </ul>
+                </div>
+            </div>
             <div
-                class="border-top-white-opacity justify-content-between flex-column flex-md-row align-items-center d-flex pt-6 mt-6 px-0">
+                class="border-top-white-opacity justify-content-between flex-column flex-md-row align-items-center d-flex pt-6 mt-2 px-0">
                 <p class="small opacity-75">&copy; 2024 BloomHouse All Rights Reserved. Template by Bloom House</p>
                 <nav>
                     <ul class="list-unstyled">
@@ -241,6 +212,7 @@
                         <li class="d-inline-block bg-white rounded px-2 pt-1"><i class="pi pi-visa pi-sm"></i></li>
                     </ul>
                 </nav>
+
             </div>
         </div>
     </div>
@@ -252,6 +224,5 @@
 
 <!-- Offcanvas Imports-->
 <!-- Review Offcanvas-->
-
 
 

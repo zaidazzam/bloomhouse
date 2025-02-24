@@ -10,9 +10,9 @@
         </div>
         <div>
             <!-- Title -->
-            <h5 class="card-title fw-bold text-light mb-1">Total Delivery tracking</h5>
+            <h5 class="card-title fw-bold text-white mb-1">Total Delivery tracking</h5>
             <!-- Content -->
-            <p class="card-text mb-1 text-light">
+            <p class="card-text mb-1 text-white">
                 Total number of Delivery Tracking available:
             </p>
             <div class="mt-2">
@@ -44,7 +44,7 @@
                 cellspacing="0" width="100%">
                 <thead class="table-dark1">
                     <tr>
-                        <th class="text-white">No.</th>
+                        {{-- <th class="text-white">No.</th> --}}
                         <th class="text-white">No.Receipt</th>
                         <th class="text-white">Status</th>
                         <th class="text-white">Address</th>
@@ -57,7 +57,7 @@
                 <tbody id="product-list">
                     @foreach ($data_tracking as $item)
                         <tr>
-                            <td class="text-black">{{ $loop->iteration }}</td>
+                            {{-- <td class="text-black">{{ $loop->iteration }}</td> --}}
                             <td class="text-black">{{ $item->transaction->midtrans_order_id }}</td>
                             <td class="text-black">
                                 <form id="update_tracking_delivery_{{ $item->id }}"
@@ -85,7 +85,7 @@
                 </tbody>
                 <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em; ">
                     <tr>
-                        <th class="text-white">No.</th>
+                        {{-- <th class="text-white">No.</th> --}}
                         <th class="text-white">No.Receipt</th>
                         <th class="text-white">Status</th>
                         <th class="text-white">Address</th>

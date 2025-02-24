@@ -57,26 +57,23 @@
                         </thead>
                         <tbody>
                             @foreach ($transactions as $index => $transaction)
-                                @if ($transaction->payment_status === 'pending')
-                                    <tr class="text-center">
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>
-                                            <a href="{{ route('detailInvoice', $transaction->midtrans_order_id) }}"
-                                                class="text-primary">
-                                                {{ $transaction->midtrans_order_id }}
-                                            </a>
-                                        </td>
-                                        <td>{{ $transaction->bill_data_firstname }}</td>
-                                        <td>{{ $transaction->payment_methode }}</td>
-                                        <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
-                                        <td>
-                                            <span class="badge bg-warning text-dark">
-                                                {{ ucfirst($transaction->payment_status) }}
-                                            </span>
-                                        </td>
-                                        <td>Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}</td>
-                                    </tr>
-                                @endif
+                                <tr class="text-center">
+                                    <td>{{ $index + 1 }}</td>
+                                   <td> <a href="{{ route('detailInvoice', $transaction->id) }}" class="text-primary">
+                                        {{ $transaction->midtrans_order_id }}
+                                    </a>
+
+                                    </td>
+                                    <td>{{ $transaction->bill_data_firstname }}</td>
+                                    <td>{{ $transaction->payment_methode }}</td>
+                                    <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
+                                    <td>
+                                        <span class="badge bg-warning text-dark">
+                                            {{ ucfirst($transaction->payment_status) }}
+                                        </span>
+                                    </td>
+                                    <td>Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}</td>
+                                </tr>
                             @endforeach
                         </tbody>
                         <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em; ">

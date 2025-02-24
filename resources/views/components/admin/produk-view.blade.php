@@ -9,9 +9,9 @@
         </div>
         <div>
             <!-- Title -->
-            <h5 class="card-title fw-bold text-dark">Total Products</h5>
+            <h5 class="card-title fw-bold text-white">Total Products</h5>
             <!-- Content -->
-            <p class="card-text mb-0">
+            <p class="card-text mb-0 text-white">
                 Total number of products available:
             </p>
             <p class="card-text fs-4 mt-2">
@@ -47,15 +47,15 @@
                         <th class="text-white">No.</th>
                         <th class="text-white">Name</th>
                         <th class="text-white">Category</th>
-                        <th class="text-white">Description</th>
+                        <th class="text-white" hidden>Description</th>
                         <th class="text-white">Stock</th>
-                        <th class="text-white">Rating</th>
-                        <th class="text-white">Address</th>
+                        <th class="text-white" hidden>Rating</th>
+                        <th class="text-white" hidden>Address</th>
                         <th class="text-white">Price</th>
-                        <th class="text-white">Size</th>
-                        <th class="text-white">Discount</th>
-                        <th class="text-white">Price After Discount</th>
-                        <th class="text-white">Consist Of</th>
+                        <th class="text-white" hidden>Size</th>
+                        <th class="text-white" hidden>Discount</th>
+                        <th class="text-white" hidden>Price After Discount</th>
+                        <th class="text-white" hidden>Consist Of</th>
                         <th class="text-white">Photo</th>
                         <th class="text-white">Action</th>
                     </tr>
@@ -65,7 +65,13 @@
                     @foreach ($products as $product)
                         <tr>
                             <td data-id="{{ $product->id }}">{{ $loop->iteration }}</td>
-                            <td data-name="{{ $product->name }}"><strong>{{ $product->name }}</strong></td>
+                            <td data-name="{{ $product->name }}">
+                                <a href="{{ route('detailProduct', $product->id) }}" class="text-primary"
+                                    style="text-decoration: underline;">
+                                    <strong>{{ $product->name }}</strong>
+                                </a>
+                            </td>
+
                             <td data-category="{{ $product->category->pluck('id')->implode(', ') }}">
                                 @foreach ($product->category as $category)
                                     <span class="badge bg-primary">{{ $category->name }}</span>
@@ -79,19 +85,20 @@
                                     @endforeach
                                 </ul>
                             </td> --}}
-                            <td data-desc="{{ $product->product_description }}">{{ $product->product_description }}</td>
+                            <td data-desc="{{ $product->product_description }}" hidden>
+                                {{ $product->product_description }}</td>
                             <td data-stock="{{ $product->product_stock }}">{{ $product->product_stock }}</td>
-                            <td>Bintang 5</td>
-                            <td data-address="{{ $product->address }}">{{ $product->address }}</td>
-                            <td data-price="{{ $product->product_price }}">Rp
+                            <td hidden>Bintang 5</td>
+                            <td data-address="{{ $product->address }}" hidden>{{ $product->address }}</td>
+                            <td data-price="{{ $product->product_price }}" hidden>Rp
                                 {{ number_format($product->product_price, 0, ' ,', '.') }}</td>
-                            <td data-size="{{ $product->size }}">{{ $product->size }}</td>
-                            <td data-disc="{{ $product->discount }}">{{ $product->discount }}%</td>
+                            <td data-size="{{ $product->size }} " hidden>{{ $product->size }}</td>
+                            <td data-disc="{{ $product->discount }}" hidden>{{ $product->discount }}%</td>
                             <td>
                                 Rp
                                 {{ number_format($product->product_price - $product->product_price * ($product->discount / 100), 0, ',', '.') }}
                             </td>
-                            <td data-consist="{{ $product->consist_of }}">{{ $product->consist_of }}</td>
+                            <td data-consist="{{ $product->consist_of }}" hidden>{{ $product->consist_of }}</td>
                             <td>
                                 <button type='button' class='btn btn-photo btn-primary btn-add-product table-dark1'
                                     data-photo-url ='{{ route('product_pictures.store') }}'
@@ -132,15 +139,15 @@
                         <th class="text-white">No.</th>
                         <th class="text-white">Name</th>
                         <th class="text-white">Category</th>
-                        <th class="text-white">Description</th>
+                        <th class="text-white" hidden>Description</th>
                         <th class="text-white">Stock</th>
-                        <th class="text-white">Rating</th>
-                        <th class="text-white">Address</th>
+                        <th class="text-white" hidden>Rating</th>
+                        <th class="text-white" hidden>Address</th>
                         <th class="text-white">Price</th>
-                        <th class="text-white">Size</th>
-                        <th class="text-white">Discount</th>
-                        <th class="text-white">Price After Discount</th>
-                        <th class="text-white">Consist Of</th>
+                        <th class="text-white" hidden>Size</th>
+                        <th class="text-white" hidden>Discount</th>
+                        <th class="text-white" hidden>Price After Discount</th>
+                        <th class="text-white" hidden>Consist Of</th>
                         <th class="text-white">Photo</th>
                         <th class="text-white">Action</th>
                     </tr>
@@ -256,7 +263,6 @@
 </div>
 
 <!-- Edit Product Modal -->
-<!-- Edit Product Modal -->
 <div class="modal fade" id="editProductModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
         <form class="modal-content" id="editProductForm" method="POST" enctype="multipart/form-data">
@@ -290,8 +296,8 @@
                                 <li>
                                     <div class="form-check">
                                         <input class="form-check-input" name="category_id[]" type="checkbox"
-                                            value="{{ $category->id }}" id="category_{{ $category->id }}" />
-                                        <label class="form-check-label" for="category_{{ $category->id }}">
+                                            value="{{ $category->id }}" id="check1" />
+                                        <label class="form-check-label" for="check1">
                                             {{ $category->name }}
                                         </label>
                                     </div>
@@ -445,129 +451,62 @@
 
 <!--/ Bordered Table -->
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const photoButtons = document.querySelectorAll('.btn-photo');
-        const editButtons = document.querySelectorAll('.btn-edit');
-        const editForm = document.getElementById('editProductForm');
-        const photoForm = document.getElementById('photoForm');
-        const main_picture = document.getElementById('main-picture');
+document.addEventListener('DOMContentLoaded', () => {
+    const editButtons = document.querySelectorAll('.btn-edit');
+    const editForm = document.getElementById('editProductForm');
 
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const url = row.querySelector('[data-url]').getAttribute('data-url');
-                editForm.setAttribute('action', url);
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const row = this.closest('tr');
+            const url = row.querySelector('[data-url]').getAttribute('data-url');
+            editForm.setAttribute('action', url);
 
+            // Ambil data produk dari atribut data
+            const product_name = row.querySelector('[data-name]').getAttribute('data-name');
+            const product_desc = row.querySelector('[data-desc]').getAttribute('data-desc');
+            const product_stock = row.querySelector('[data-stock]').getAttribute('data-stock');
+            const product_address = row.querySelector('[data-address]').getAttribute('data-address');
+            const product_price = row.querySelector('[data-price]').getAttribute('data-price');
+            const product_size = row.querySelector('[data-size]').getAttribute('data-size');
+            const product_disc = row.querySelector('[data-disc]').getAttribute('data-disc');
+            const product_consist = row.querySelector('[data-consist]').getAttribute('data-consist');
+            const listTags = row.querySelector('[data-category]').getAttribute('data-category');
 
-                const product_name = row.querySelector('[data-name]').getAttribute('data-name');
-                const product_desc = row.querySelector('[data-desc]').getAttribute('data-desc');
-                const product_stock = row.querySelector('[data-stock]').getAttribute(
-                    'data-stock');
-                const product_address = row.querySelector('[data-address]').getAttribute(
-                    'data-address');
-                const product_price = row.querySelector('[data-price]').getAttribute(
-                    'data-price');
-                const product_size = row.querySelector('[data-size]').getAttribute(
-                    'data-size');
-                const product_disc = row.querySelector('[data-disc]').getAttribute('data-disc');
-                const product_consist = row.querySelector('[data-consist]').getAttribute(
-                    'data-consist');
-                const product_category = row.getAttribute(
-                    'data-category'); // Get the data-category attribute
+            document.getElementById('editProductName').value = product_name;
+            document.getElementById('editProductDescription').value = product_desc;
+            document.getElementById('editProductStock').value = product_stock;
+            document.getElementById('editProductAddress').value = product_address;
+            document.getElementById('editProductSize').value = product_size;
+            document.getElementById('editProductPrice').value = product_price;
+            document.getElementById('editProductDisc').value = product_disc;
+            document.getElementById('editproductConsistOf').value = product_consist;
 
+            let tags = [];
 
-                document.getElementById('editProductName').value = product_name;
-                document.getElementById('editProductDescription').value = product_desc;
-                document.getElementById('editProductStock').value = product_stock;
-                document.getElementById('editProductAddress').value = product_address;
-                document.getElementById('editProductSize').value = product_size;
-                document.getElementById('editProductPrice').value = product_price;
-                document.getElementById('editProductDisc').value = product_disc;
-                document.getElementById('editproductConsistOf').value = product_consist;
-                document.getElementById('DropdownCheckbox').value = product_category;
-
-                // let categs = [];
-                // try {
-                //     categs = JSON.parse(product_category);
-                // } catch (error) {
-                //     console.error("Failed to parse list_category:", error);
-                // }
-                // categs.forEach(categ => {
-                //     // Atur checkbox tag sesuai dengan data tags dari baris
-                //     const categCheckboxes = document.querySelectorAll(
-                //         'input[name="tags[]"]');
-                //     categCheckboxes.forEach(checkbox => {
-                //         checkbox.checked =
-                //             false; // Reset semua checkbox sebelum menandai yang sesuai
-                //         if (categs.some(categ => categ.id == checkbox
-                //                 .value)) { // Cocokkan ID tag
-                //             checkbox.checked = true;
-                //         }
-                //     });
-                // });
-                // editorInstance.setData(content)
-                // Update selected categories
-                const selectedCategories = product_category.split(
-                    ','); // Assuming categories are comma-separated
-                const categCheckboxes = document.querySelectorAll(
-                    'input[name="category_id[]"]');
-
-                categCheckboxes.forEach(checkbox => {
-                    checkbox.checked = selectedCategories.includes(checkbox
-                        .value
-                    ); // Check if the checkbox value is in selected categories
-                });
-            });
-        });
-
-
-        photoButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const row = this.closest('tr');
-                const url = row.querySelector('[data-photo-url]').getAttribute(
-                    'data-photo-url');
-                photoForm.setAttribute('action', url);
-                const productId = row.querySelector('[data-id]').getAttribute('data-id');
-                const main_photo = row.querySelector('[main-photo]').getAttribute('main-photo');
-                document.getElementById('productId').value = productId;
-                main_picture.setAttribute('src', main_photo);
-
-                // Dapatkan elemen tbody dan kosongkan terlebih dahulu
-                const tbody = document.getElementById('picture-list');
-                tbody.innerHTML = ""; // Kosongkan isi tabel sebelum menambahkan gambar baru
-
-                const list_photo_raw = row.querySelector('[list-pict]').getAttribute(
-                    'list-pict');
-                let list_photo = [];
-                try {
-                    list_photo = JSON.parse(list_photo_raw);
-                } catch (error) {
-                    console.error("Failed to parse list_photo:", error);
+            try {
+                tags = JSON.parse(listTags); // Coba parse JSON jika formatnya valid
+                if (!Array.isArray(tags)) {
+                    throw new Error("Parsed tags is not an array");
                 }
+            } catch (error) {
+                console.error("Failed to parse listTags:", error);
+                tags = listTags ? listTags.split(',').map(tag => tag.trim()) : []; // Jika gagal, coba gunakan split
+            }
 
-                list_photo.forEach(photo => {
-                    const row = document.createElement('tr');
-                    const pictureCell = document.createElement('td');
-                    pictureCell.innerHTML = `
-                <img src="/storage/${photo.picture_path}" alt="Product Photo" class="rounded" width="100">`;
-
-                    const actionCell = document.createElement('td');
-                    actionCell.innerHTML = `
-                <button type="button" class="btn btn-outline-danger" onclick="deletePicture('${photo.id}')">
-                    Delete
-                </button>
-            `;
-
-                    row.appendChild(pictureCell);
-                    row.appendChild(actionCell);
-
-                    tbody.appendChild(row);
-                });
+            // Reset semua checkbox sebelum menandai yang sesuai
+            const tagCheckboxes = document.querySelectorAll('input[name="category_id[]"]');
+            tagCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                if (tags.some(tag => tag.id == checkbox.value || tag == checkbox.value)) { 
+                    checkbox.checked = true;
+                }
             });
         });
-
-
     });
+});
+
+
+
 
     function deletePicture(id) {
         const csrf = document.getElementById('token').value;

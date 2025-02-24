@@ -23,6 +23,15 @@ class TrackingDeliveryController extends Controller
             "sentStatusTotal" => $sentStatusTotal,
         ]);
     }
+    public function accepted()
+    {
+        $data_tracking = TrackingDelivery::with("transaction")->where('status', "=", "Accepted")->get();
+        $acceptedStatusTotal = TrackingDelivery::where('status', "accepted")->count();    
+        return view('dashboard-view.tracking-accepted', [
+            "data_tracking" => $data_tracking,
+            "acceptedStatusTotal" => $acceptedStatusTotal,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

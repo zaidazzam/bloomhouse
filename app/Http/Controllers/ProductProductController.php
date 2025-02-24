@@ -17,11 +17,18 @@ class ProductProductController extends Controller
         $countProducts = ProductProduct::count();
         return view('dashboard-view.produk', compact('products','categories', 'countProducts'));
     }
+    public function detailProduct($id)
+    {
+        $product = ProductProduct::findOrFail($id);
+        return view('dashboard-view.detail-product', compact('product'));
+    }
+    
 
     public function create()
     {
         return view('product_products.create');
     }
+
 
     public function store(Request $request)
     {

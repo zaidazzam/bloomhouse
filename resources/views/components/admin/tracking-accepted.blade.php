@@ -10,17 +10,14 @@
         </div>
         <div>
             <!-- Title -->
-            <h5 class="card-title fw-bold text-white">Total Delivery Rule</h5>
+            <h5 class="card-title fw-bold text-white mb-1">Total Delivery tracking</h5>
             <!-- Content -->
             <p class="card-text mb-1 text-white">
-                Total number of delivery rules available:
+                Total number of Delivery Tracking available:
             </p>
             <div class="mt-2">
-                <span class="badge bg-light text-primary p-2 px-3 me-3" >
-                    Address : {{ $countAddress }}
-                </span>
-                <span class="badge bg-light text-primary p-2 px-3" >
-                    Time : {{ $countTime }}
+                <span class="badge bg-light text-primary p-2 px-3 me-3">
+                    Accepted : {{ $acceptedStatusTotal }}
                 </span>
             </div>
         </div>
@@ -31,14 +28,11 @@
 <div class="card">
     <div class="d-flex justify-content-between w-100">
 
-        <h5 class="card-header">Delivery Rule</h5>
+        <h5 class="card-header">Delivery Tracking</h5>
 
         <div class="d-flex align-items-center">
             <!-- Input Search -->
 
-            <!-- Add Product Button -->
-            <button type="button" class="btn btn-primary btn-add-product table-dark1" data-bs-toggle="modal"
-                data-bs-target="#addCategoryModal">Add Delivery Rule</button>
         </div>
     </div>
     <div class="card-body">
@@ -47,56 +41,42 @@
                 cellspacing="0" width="100%">
                 <thead class="table-dark1">
                     <tr>
-                        <th class="text-white">No.</th>
-                        <th class="text-white">Delivery Rule</th>
-                        <th class="text-white">Category</th>
-                        <th class="text-white">Price</th>
-                        <th class="text-white">Action</th>
+                        {{-- <th class="text-white">No.</th> --}}
+                        <th class="text-white">No.Receipt</th>
+                        <th class="text-white">Status</th>
+                        <th class="text-white">Address</th>
+                        <th class="text-white">Delivery Date</th>
+                        <th class="text-white">Timeslot</th>
+                        {{-- <th class="text-white">Courier Name</th> --}}
                     </tr>
                 </thead>
 
                 <tbody id="product-list">
-                    @foreach ($postages as $postage)
+                    @foreach ($data_tracking as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td data-name="{{ $postage->postage_rule }}">{{ $postage->postage_rule }}</td>
-                            <td data-name="{{ $postage->category }}">{{ $postage->category }}</td>
-                            <td data-name="{{ $postage->price }}">
-                                Rp {{ number_format($postage->price, 0, ',', '.') }}
-                            </td>
+                            {{-- <td class="text-black">{{ $loop->iteration }}</td> --}}
+                            <td class="text-black">{{ $item->transaction->midtrans_order_id }}</td>
                             <td>
-                                <div class='dropdown'>
-                                    <button type='button' class='btn p-0 dropdown-toggle hide-arrow'
-                                        data-bs-toggle='dropdown'>
-                                        <i class='bx bx-dots-vertical-rounded'></i>
-                                    </button>
-                                    <div class='dropdown-menu'>
-                                        <a class='dropdown-item btn btn-edit' href='javascript:void(0);'
-                                            data-bs-toggle='modal'
-                                            data-url="{{ route('postages.update', $postage->id) }}"
-                                            data-bs-target='#editCategoryModal'>
-                                            <i class='bx bx-edit-alt me-1'></i> Edit
-                                        </a>
-                                        <form method="POST" action="{{ route('postages.destroy', $postage->id) }}">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class='dropdown-item btn'>
-                                                <i class='bx bx-trash me-1'></i> Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+                                <span class="badge bg-success text-dark">
+                                    {{ ucfirst($item->status) }}
+                                </span>
                             </td>
+                            <td class="text-black">{{ $item->transaction->shipping_data_address }}</td>
+                            <td class="text-black">{{ $item->transaction->deliv_date }}</td>
+                            <td class="text-black">{{ $item->transaction->deliv_postage_rule }}</td>
+                            {{-- <td class="text-black">{{ $item->courier_name ?? '' }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
                 <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em; ">
                     <tr>
-                        <th class="text-white">No.</th>
-                        <th class="text-white">Delivery Rule</th>
-                        <th class="text-white">Category</th>
-                        <th class="text-white">Price</th>
-                        <th class="text-white">Action</th>
+                        {{-- <th class="text-white">No.</th> --}}
+                        <th class="text-white">No.Receipt</th>
+                        <th class="text-white">Status</th>
+                        <th class="text-white">Address</th>
+                        <th class="text-white">Delivery Date</th>
+                        <th class="text-white">Timeslot</th>
+                        {{-- <th class="text-white">Courier Name</th> --}}
                     </tr>
                 </tfoot>
 
@@ -105,7 +85,27 @@
     </div>
 </div>
 
+<script>
+    function updateTracking(id, oldValue) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to update the status of this delivery tracking?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('update_tracking_delivery_' + id).submit();
+            } else {
+                document.getElementById('status_delivery_' + id).value = oldValue;
+            }
+        })
+    }
+</script>
 
+{{-- 
 <!-- Modal Add Category -->
 <!-- Modal Add Category -->
 <div class="modal fade" id="addCategoryModal" data-bs-backdrop="static" tabindex="-1">
@@ -237,4 +237,4 @@
             });
         });
     });
-</script>
+</script> --}}

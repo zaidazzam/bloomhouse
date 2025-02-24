@@ -1,5 +1,5 @@
     <!-- Navbar -->
- <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3">
+ <div class="w-100 pb-lg-0 pt-lg-0 pt-4 pb-3 ">
                 <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
 
                     <!-- Logo-->
@@ -74,14 +74,12 @@
                                                     <div class="col col-lg-6">
                                                         <h6 class="dropdown-heading">Rose</h6>
                                                         <ul class="list-unstyled">
-                                                            @if (isset($categoryProducts['Rose']) && count($categoryProducts['Rose']) > 0)
-                                                                @foreach ($categoryProducts['Rose'] as $product)
-                                                                    <li class="dropdown-list-item">
-                                                                        <a class="dropdown-item"
-                                                                            href="/product/{{ $product->id }}">
-                                                                            {{ $product->name }}
-                                                                        </a>
-                                                                    </li>
+                                                            @if (isset($categoryProducts['Tulip']) && count($categoryProducts['Tulip']) > 0)
+                                                                @foreach ($categoryProducts['Tulip'] as $product)
+                                                                    <a class="dropdown-item"
+                                                                        href="{{ route('product1.show', ['id' => $product->id]) }}">
+                                                                        {{ $product->name }}
+                                                                    </a>
                                                                 @endforeach
                                                             @else
                                                                 <li class="dropdown-list-item text-muted">
@@ -230,7 +228,7 @@
                                                             @endif
                                                             <li class="dropdown-list-item">
                                                                 <a class="dropdown-item dropdown-link-all"
-                                                                    href="/category/tulip">
+                                                                    href="/category">
                                                                     View All
                                                                 </a>
                                                             </li>
@@ -259,7 +257,7 @@
                                                             @endif
                                                             <li class="dropdown-list-item">
                                                                 <a class="dropdown-item dropdown-link-all"
-                                                                    href="/category/tulip">
+                                                                    href="/category">
                                                                     View All
                                                                 </a>
                                                             </li>
@@ -288,11 +286,11 @@
                                     Product
                                 </a>
                             </li>
-                            <li class="nav-item me-lg-4">
+                            {{-- <li class="nav-item me-lg-4">
                                 <a class="nav-link fw-bolder py-lg-4" href="/blog">
                                     Blog
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                     <!-- / Main Navigation-->
@@ -313,12 +311,12 @@
                         <!-- /Navbar Toggle Icon-->
 
                         <!-- Navbar Search-->
-                        <li class="ms-1 d-inline-block">
+                        {{-- <li class="ms-1 d-inline-block">
                             <button class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
                                 data-pr-search>
                                 <i class="ri-search-2-line ri-lg align-middle"></i>
                             </button>
-                        </li>
+                        </li> --}}
                         <!-- /Navbar Search-->
 
                         <!-- Navbar Wishlist-->
@@ -331,12 +329,12 @@
                         <!-- /Navbar Wishlist-->
 
                         <!-- Navbar Login-->
-                        <li class="ms-1 d-lg-inline-block">
+                        {{-- <li class="ms-1 d-lg-inline-block">
                             <a class="btn btn-link px-2 text-decoration-none d-flex align-items-center"
                                 href="/login">
                                 <i class="ri-user-line ri-lg align-middle"></i>
                             </a>
-                        </li>
+                        </li> --}}
                         <!-- /Navbar Login-->
 
                         <!-- Navbar Cart-->

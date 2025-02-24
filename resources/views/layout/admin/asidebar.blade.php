@@ -58,7 +58,7 @@
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Delivery</span>
                 </li>
-                <li class="menu-item {{ request()->is('postages', 'admin/tracking') ? 'active open' : '' }}">
+                <li class="menu-item {{ request()->is('postages', 'admin/tracking','admin/tracking-accepted') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-truck"></i>
                         <div data-i18n="Layouts">Delivery</div>
@@ -72,6 +72,11 @@
                         <li class="menu-item {{ request()->is('admin/tracking') ? 'active' : '' }}">
                             <a href="{{ url('admin/tracking') }}" class="menu-link">
                                 <div data-i18n="Without menu">Tracking</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ request()->is('admin/tracking-accepted') ? 'active' : '' }}">
+                            <a href="{{ url('admin/tracking-accepted') }}" class="menu-link">
+                                <div data-i18n="Without menu">Tracking Accepted</div>
                             </a>
                         </li>
                     </ul>
@@ -110,7 +115,7 @@
                     <span class="menu-header-text">Invoice</span>
                 </li>
                 <li
-                    class="menu-item {{ request()->is('admin/invoice-pending', 'admin/invoice-paid') ? 'active open' : '' }}">
+                    class="menu-item {{ request()->is('admin/invoice-paid', 'admin/invoice-pending') ? 'active open' : '' }}">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bxs-shopping-bag"></i>
                         <div data-i18n="Layouts">Invoice</div>

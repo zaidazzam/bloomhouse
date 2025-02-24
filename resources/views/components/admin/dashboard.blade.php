@@ -124,50 +124,47 @@
                                                               type="button" id="growthReportId"
                                                               data-bs-toggle="dropdown" aria-haspopup="true"
                                                               aria-expanded="false">
-                                                              2022
+                                                              {{ $currentYear }}
                                                           </button>
                                                           <div class="dropdown-menu dropdown-menu-end"
                                                               aria-labelledby="growthReportId">
-                                                              <a class="dropdown-item"
-                                                                  href="javascript:void(0);">2021</a>
-                                                              <a class="dropdown-item"
-                                                                  href="javascript:void(0);">2020</a>
-                                                              <a class="dropdown-item"
-                                                                  href="javascript:void(0);">2019</a>
+                                                              @foreach ($transactions as $year)
+                                                                  <a class="dropdown-item" href="javascript:void(0);"
+                                                                      onclick="updateChart({{ $year }})">{{ $year }}</a>
+                                                              @endforeach
                                                           </div>
                                                       </div>
                                                   </div>
-                                              </div>
-                                              <div id="growthChart"></div>
-                                              <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
 
+                                              </div>
+                                              <!-- Total Revenue -->
+                                              <div class="text-center fw-semibold pt-3 mb-2">
+                                                  Total Revenue: <strong>Rp
+                                                      {{ number_format($currentYearRevenue, 0, ',', '.') }}</strong>
+                                              </div>
+
+                                              <div class="text-center fw-semibold pt-3 mb-2">
+                                                Jumlah Transaksi: <strong>{{ $paidTransactions?->count() ?? 0 }}</strong>
+                                            </div>
+                                            
+
+                                              <!-- Daftar Transaksi -->
                                               <div
                                                   class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                                                  <div class="d-flex">
-                                                      <div class="me-2">
-                                                          <span class="badge bg-label-primary p-2"><i
-                                                                  class="bx bx-dollar text-primary"></i></span>
+                                                  @foreach ($paidTransactions as $transaction)
+                                                      <div class="d-flex flex-column text-center">
+                                                          <small>Order ID: {{ $transaction->midtrans_order_id }}</small>
+                                                          <h6 class="mb-0">Amount:
+                                                              ${{ number_format($transaction->total_amount, 2) }}</h6>
                                                       </div>
-                                                      <div class="d-flex flex-column">
-                                                          <small>2022</small>
-                                                          <h6 class="mb-0">$32.5k</h6>
-                                                      </div>
-                                                  </div>
-                                                  <div class="d-flex">
-                                                      <div class="me-2">
-                                                          <span class="badge bg-label-info p-2"><i
-                                                                  class="bx bx-wallet text-info"></i></span>
-                                                      </div>
-                                                      <div class="d-flex flex-column">
-                                                          <small>2021</small>
-                                                          <h6 class="mb-0">$41.2k</h6>
-                                                      </div>
-                                                  </div>
+                                                  @endforeach
                                               </div>
+
                                           </div>
                                       </div>
                                   </div>
                               </div>
+
                               <!--/ Total Revenue -->
                               <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
                                   <div class="row">
@@ -260,7 +257,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="row">
+                          {{-- <div class="row">
                               <!-- Order Statistics -->
                               <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                                   <div class="card h-100">
@@ -550,7 +547,7 @@
                                   </div>
                               </div>
                               <!--/ Transactions -->
-                          </div>
+                          </div> --}}
                       </div>
                       <!-- / Content -->
                   </div>
@@ -562,3 +559,37 @@
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
+      <script>
+          const revenueData = @json($revenueData);
+
+          function updateChart(year) {
+              const chartData = revenueData[year];
+
+              if (chartData) {
+                  totalRevenueChart.updateSeries([{
+                      name: `${year}`,
+                      data: chartData
+                  }]);
+              } else {
+                  alert('Data tidak tersedia untuk tahun ini.');
+              }
+          }
+          const totalRevenueChart = new ApexCharts(document.querySelector("#totalRevenueChart"), {
+              series: [{
+                  name: "2025",
+                  data: revenueData[2025] || [] // Data default untuk tahun 2025
+              }],
+              chart: {
+                  height: 300,
+                  stacked: true,
+                  type: 'bar',
+                  toolbar: {
+                      show: false
+                  }
+              },
+              xaxis: {
+                  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']
+              }
+          });
+          totalRevenueChart.render();
+      </script>

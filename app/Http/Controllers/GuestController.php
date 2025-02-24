@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\ProductProduct;
 use App\Models\ProductCategory;
 use App\Models\PostageRule;
+use Carbon\Carbon;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\Blog;
@@ -37,11 +38,19 @@ class GuestController extends Controller
 
     public function index()
     {
-        // Mengambil produk dengan kategori 'Rose' dan 'Tulip'
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        
         $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
-            ->oldest() // Mengurutkan produk dari yang lebih lama
+            ->withCount([
+                'transactionDetails as total_sold' => function ($query) use ($startOfWeek, $endOfWeek) {
+                    $query->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
+                          ->whereBetween('transactions.created_at', [$startOfWeek, $endOfWeek]);
+                }
+            ])
+            ->orderByDesc('total_sold') 
             ->get();
-
+            
         // Mengambil semua kategori (untuk ditampilkan di dropdown)
         $categories = ProductCategory::all();
 
@@ -108,7 +117,7 @@ class GuestController extends Controller
                 ->get();
         }
 
-        $blogs = Blog::all();
+        $blogs = Blog::take(3)->get();
         $tags = Tag::all();
 
         // Mengirimkan data ke view
@@ -117,9 +126,18 @@ class GuestController extends Controller
 
     public function category(Request $request)
     {
-        $products = ProductProduct::whereDoesntHave('category', function ($query) {
-            $query->where('name', 'AddOn');
-        })->paginate(9)->setPath("/category");
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        
+        $products = ProductProduct::with(['reviews', 'deliveryExpeditions', 'category', 'pictures'])
+            ->withCount([
+                'transactionDetails as total_sold' => function ($query) use ($startOfWeek, $endOfWeek) {
+                    $query->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
+                          ->whereBetween('transactions.created_at', [$startOfWeek, $endOfWeek]);
+                }
+            ])
+            ->orderByDesc('total_sold') 
+            ->get();
 
         // dd($products->toArray());
 
@@ -390,4 +408,5 @@ class GuestController extends Controller
 
         return view('guest-view.product', compact('product', 'products', 'productAddOns', 'categoryProducts', 'categories', 'averageRating', 'reviewCount'));
     }
+
 }
